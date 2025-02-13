@@ -17,31 +17,23 @@ export default defineNuxtConfig({
   },
   devtools: { enabled: true },
 
-  // vite: {
-  //     css: {
-  //         preprocessorOptions: {
-  //             scss: {
-  //                 additionalData:
-  //                     '@import "assets/stylesheets/style";' +
-  //                     '@import "assets/stylesheets/utilities/colors";' +
-  //                     '@import "assets/stylesheets/utilities/configs";' +
-  //                     '@import "assets/stylesheets/utilities/responsive";' +
-  //                     '@import "assets/stylesheets/utilities/animations";' +
-  //                     '@import "assets/stylesheets/utilities/fonts";'
-  //             },
-  //         }
-  //     },
-  // },
-
-  // css: [
-  //   "~/assets/stylesheets/primevue-sass/themes/mytheme/theme.scss",
-  //   '@fontsource/roboto/100.css',
-  //   '@fontsource/roboto/300.css',
-  //   '@fontsource/roboto/400.css',
-  //   '@fontsource/roboto/500.css',
-  //   '@fontsource/roboto/700.css',
-  //   '@fontsource/roboto/900.css'
-  // ],
+  vite: {
+    css: {
+      preprocessorOptions: {
+        scss: {
+          additionalData:
+              '@import "assets/stylesheets/utilities/colors";' +
+              '@import "assets/stylesheets/utilities/configs";' +
+              '@import "assets/stylesheets/utilities/responsive";' +
+              '@import "assets/stylesheets/utilities/animations";' +
+              '@import "assets/stylesheets/utilities/fonts";'
+        }
+      }
+    }
+  },
+  css: [
+    '~/assets/stylesheets/global.scss',
+  ],
   plugins: [],
   build: {},
   modules: ["@pinia/nuxt", '@nuxt/devtools'],

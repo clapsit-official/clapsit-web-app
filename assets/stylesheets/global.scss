@@ -1,0 +1,9 @@
+@import "./utilities/colors";
+@import "./utilities/configs";
+@import "./utilities/animations";
+@import "./utilities/responsive";
+@import "./utilities/fonts";
+
+* {
+    font-family: $font-family;
+}
