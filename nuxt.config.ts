@@ -22,11 +22,11 @@ export default defineNuxtConfig({
       preprocessorOptions: {
         scss: {
           additionalData:
-              '@import "assets/stylesheets/utilities/colors";' +
-              '@import "assets/stylesheets/utilities/configs";' +
-              '@import "assets/stylesheets/utilities/responsive";' +
-              '@import "assets/stylesheets/utilities/animations";' +
-              '@import "assets/stylesheets/utilities/fonts";'
+              '@use "assets/stylesheets/utilities/colors" as colors;' +
+              '@use "assets/stylesheets/utilities/configs" as configs;' +
+              '@use "assets/stylesheets/utilities/responsive" as responsive;' +
+              '@use "assets/stylesheets/utilities/animations" as animations;' +
+              '@use "assets/stylesheets/utilities/fonts" as fonts;'
         }
       }
     }

@@ -1,9 +1,11 @@
-@import "./utilities/colors";
-@import "./utilities/configs";
-@import "./utilities/animations";
-@import "./utilities/responsive";
-@import "./utilities/fonts";
-
 * {
-    font-family: $font-family;
+    font-family: fonts.$font-family;
+    margin: 0 auto;
+    padding: 0;
+}
+
+body {
+    font-size: 16px;
+    background-color: #202020;
+    color: whitesmoke
 }
