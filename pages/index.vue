@@ -1,23 +1,83 @@
 <template>
-    <div>
-        <div style="width: 50rem; text-align: justify;">
-        <br>
-        <h3>Welcome to Clapsit!</h3>
-        <br>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed sequi, rem explicabo molestias dolorem porro tempora. Assumenda enim officia ad nesciunt odio, corporis, quibusdam fugit excepturi hic, rerum quam ipsam itaque quos eligendi optio eius iure. At dolorem error debitis. Voluptas libero minima reiciendis rem dolores harum quae temporibus natus officiis molestiae deleniti numquam porro perferendis eligendi, voluptatibus, esse obcaecati, deserunt non laudantium commodi delectus fugit veniam nostrum quia? Dignissimos blanditiis unde sit adipisci excepturi architecto consequatur, nihil officiis natus esse vero aperiam magnam alias repudiandae accusamus! Doloribus dignissimos cupiditate excepturi voluptate, magni ipsa optio fugit repudiandae veniam porro architecto inventore tenetur impedit ad harum eligendi at similique! Eaque accusantium laboriosam perferendis voluptas quaerat, error consequuntur, fugit libero porro necessitatibus voluptate vero quos dicta deserunt vel totam eius quasi temporibus corporis beatae perspiciatis labore corrupti. Nisi, dignissimos quae enim, delectus laborum sunt asperiores exercitationem quasi hic odit vitae, maxime dolorum. Itaque officiis tenetur ea rem, recusandae fugit, eos vel nihil quae illo, excepturi quidem eaque sunt ex nemo ipsam est possimus aliquam ipsa accusantium sequi odit obcaecati! Doloribus, at, incidunt sequi laudantium veniam quam provident rem libero placeat neque deserunt? Illum nihil laboriosam unde at. Obcaecati vero labore unde error. Labore est fugiat libero modi doloremque sapiente sunt iusto earum, a error facilis voluptates ex eum laudantium temporibus esse dolor non quas beatae similique dolorum? Sequi maiores beatae eum sapiente possimus, veniam minus tenetur, cum eligendi veritatis, suscipit nisi nostrum doloremque cupiditate dolores? Possimus alias amet tempore quis cumque magnam officia consectetur molestiae laudantium necessitatibus. Dicta laborum perspiciatis asperiores harum cum ab sapiente nisi. Dolores, dolorum quos. Quisquam fugit ut similique a in numquam velit esse eveniet asperiores facere molestiae odio labore ea fuga nobis reprehenderit at officia nemo reiciendis voluptate, voluptas sequi sapiente. Architecto doloribus asperiores suscipit veritatis reprehenderit iure ullam sunt magnam porro explicabo odit itaque reiciendis recusandae sed at ipsa perferendis voluptate, vero cupiditate. Possimus architecto quisquam neque corporis odit id quis modi officiis facilis nisi fugit quaerat enim adipisci fugiat quasi cumque eveniet voluptas doloribus deserunt eligendi deleniti quidem nam, tempore quam. Eius non accusamus aperiam molestiae facilis aut exercitationem facere. Aliquam reprehenderit, ipsum facilis ipsam suscipit perferendis dolor. Atque cumque officiis accusamus saepe iusto dolorem nemo sequi illum nulla corrupti vitae laudantium provident veritatis similique, earum officia harum hic soluta? Adipisci sapiente illum, minus obcaecati velit eius. Officiis accusamus necessitatibus earum iste, sed ex ullam corrupti expedita ratione esse eos quia. Consectetur ipsa et reiciendis, voluptatum vel optio, ut, ducimus eos aliquid ullam soluta asperiores? Facilis, quas? Cumque consectetur exercitationem expedita obcaecati? Reiciendis delectus sequi laboriosam sit voluptate veniam ad aspernatur iste cumque. Error quisquam quia quos quis, eaque dolores nemo. Aut optio numquam dignissimos nihil, quidem doloremque debitis. Commodi optio consectetur inventore consequuntur et autem minima ipsa, corrupti excepturi. Consectetur assumenda debitis natus voluptatibus culpa nulla earum deleniti architecto quod maiores deserunt enim veritatis dolorum, molestiae ad perspiciatis id sint accusamus aliquam. Temporibus, suscipit hic id sapiente esse aliquam reiciendis harum, non exercitationem velit, sunt laboriosam eum enim error illum ullam fugit autem vitae earum possimus veniam vel similique eligendi? Atque totam qui repudiandae vel, ullam nam impedit fuga tenetur saepe modi nemo unde suscipit autem eum, vitae ea recusandae doloribus laudantium molestias commodi? Ipsam neque molestias ratione iste earum sunt est suscipit. Assumenda eveniet molestias asperiores, labore officiis fugiat similique rem hic mollitia culpa ea praesentium tempore veritatis! Nesciunt a quod exercitationem praesentium delectus ducimus ab eveniet voluptatem! Quae pariatur voluptate magni deleniti non commodi voluptas obcaecati hic culpa accusantium vero, labore sequi maxime incidunt consectetur delectus aliquid beatae illo? Quidem omnis fugit maiores, natus porro a animi, aliquam voluptate ipsam corrupti reiciendis quas possimus eius amet adipisci! Illo id dolore sit ipsam eius. Ipsam aperiam, quisquam autem adipisci reprehenderit officiis obcaecati necessitatibus fugit. Commodi eos nulla maxime sint voluptas numquam perspiciatis totam, doloremque consequuntur itaque eveniet quas inventore vero esse dignissimos, ducimus iste ex quia. Molestiae, id error? Harum fugiat doloremque cum iure corporis qui sit tempore, consequuntur officiis rerum voluptate ipsam! Facere excepturi libero dicta ea quibusdam saepe dolores sequi quo illo accusantium minima laudantium ab ducimus, dolor repellendus deserunt veniam officia animi aut reiciendis at magnam, nostrum unde ad. Accusantium, incidunt id, quidem ea, rerum excepturi ipsum iure consectetur maxime tempora pariatur facere provident quia voluptatibus doloremque quis? Minima praesentium quia ut delectus dolore obcaecati esse reprehenderit aspernatur distinctio incidunt alias nesciunt qui quam unde, nisi cumque aliquid doloribus est. Vitae ducimus soluta in numquam repellendus sunt commodi rem magnam a dignissimos accusantium dolorem eos odit asperiores tempora, cum, omnis et labore consequatur vero cupiditate eius mollitia unde. Provident accusamus, ea accusantium fuga impedit obcaecati libero ipsum consectetur, optio blanditiis aliquam maiores totam quis eos eaque architecto maxime vitae ab debitis praesentium quas quasi voluptates minus? Vel quia, id porro repudiandae perferendis ipsum laborum provident corrupti doloribus repellendus quibusdam exercitationem eligendi molestiae? Eaque consectetur sed animi, voluptate impedit ad nihil officia asperiores sit nostrum maxime consequuntur iure laboriosam iste sequi tempora amet veritatis culpa exercitationem, non minima nisi labore laborum! Iste inventore corporis, pariatur, praesentium placeat natus tempore hic ratione error laudantium ipsum minima ducimus eum voluptatibus at sint aperiam quidem nulla fugiat, est voluptates? Voluptatibus laboriosam aliquid sunt, provident expedita aut nesciunt dicta ducimus minima, repellendus magnam iusto. Est odit, sequi perspiciatis harum et eum, nam corporis neque esse voluptas veritatis eos earum quaerat quod minima asperiores excepturi incidunt repudiandae molestiae sed quo vero id deleniti. Necessitatibus, nobis. Consequuntur reiciendis fuga sint a minus et, assumenda, ipsa quo necessitatibus rerum reprehenderit expedita? Nesciunt similique unde doloremque. Veritatis at, deleniti perferendis cupiditate corporis rerum, nulla libero laudantium molestiae atque explicabo. Inventore esse veniam ipsum non deleniti nostrum sapiente dolor suscipit ad, amet modi consequatur quae at quasi eos. Modi numquam adipisci aperiam est necessitatibus culpa dignissimos maiores. Blanditiis ad eos, autem unde vel harum nulla! Cupiditate consequatur temporibus eligendi expedita quibusdam totam iste incidunt maiores quidem dolore laborum est harum corporis, labore dolores, architecto officia optio reprehenderit quia sint eveniet?</p>
-        </div>
+    <div id="get-started-page" class="flex-row-center">
+        <section id="logo-area" class="flex-row-center">
+            <nuxt-link to="/">
+                <img :src="logo" alt="Logo" :srcset="logo">
+            </nuxt-link>
+        </section>
+        <section id="form-area" class="flex-row-center">
+            <div id="static-container">
+                <label>
+                    <h1>{{ $t('greetings') }}</h1>
+                    <span>{{ $t('lets_get_started') }}</span>
+                </label>
+                <signup-with-button platform="apple"/>
+                <signup-with-button platform="google"/>
+                <signup-with-button platform="facebook"/>
+                <div class="flex-row-center" style="gap: 1rem;">
+                    <span class="divider"></span>
+                    <span style="font-size: 1rem;"> {{ $t('or') }}</span>
+                    <span class="divider"></span>
+                </div>
+                <default-button kind="main" label="Create Account"/>
+            </div>
+        </section>
     </div>
 </template>
 <script lang="ts">
-export default defineComponent({
-    name: "HomePage",
-    mounted(){
-        console.log('App Mounted', useCoreAppStore().getMessage);
+import logo from '~/assets/images/logo2.png';
+import SignupWithButton from '~/components/SignupWithButton.vue';
+import DefaultButton from '~/components/DefaultButton.vue';
+
+export default {
+    name: "GetStartedPage",
+    components: {SignupWithButton, DefaultButton},
+    setup() {
+        const {getBrandName} = useCoreAppStore();
+        return {
+            logo,
+            getBrandName
+        }
     }
-});
+};
 </script>
-<style lang="scss">
-div > h3 {
-    font-size: 2rem;
+<style lang="scss" scoped>
+div#get-started-page {
+    width: 100vw;
+    height: 100vh;
+
+    &>section {
+        width: 50%;
+        height: 100vh;
+    }
+
+    section#logo-area {
+        img { width: 80%; }
+    }
+
+    section#form-area {
+        div#static-container > * {
+            width: 100%;
+        }
+        div#static-container{
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: flex-start;
+            width: 20rem;
+            gap: .5rem;
+            h1{
+                font-weight: 900;
+            }
+            span {
+                color: colors.$textSecondary;
+                font-size: 1.2rem;
+            }
+            label {
+                text-align: center;
+                margin-bottom: 2rem;
+            }
+        }
+    }
 }
 </style>

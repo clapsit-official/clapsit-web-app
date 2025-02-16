@@ -2,11 +2,11 @@ import { defineStore } from "pinia";
 
 export const useCoreAppStore = defineStore('app', {
     state: () => ({
-        message: "Hello world"
+        brand: 'clapsit',
     }),
     getters: {
-        getMessage(state){
-            return `${state.message}!!!`
+        getBrandName(state){
+            return capitalizeFirstLetter(state.brand);
         }
     },
     actions: {
