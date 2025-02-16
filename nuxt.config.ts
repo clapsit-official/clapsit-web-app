@@ -7,6 +7,7 @@ export default defineNuxtConfig({
   app: {
       head: {
           meta: [],
+          title: "Clapsit | A new perspective"
       },
   },
 

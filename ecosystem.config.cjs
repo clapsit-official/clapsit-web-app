@@ -3,7 +3,7 @@ module.exports = {
   apps: [
     {
       name: "clapsit-web-app",
-      script: "npm",
+      script: "pnpm",
       args: "run deploy",
       autorestart: true,
       watch: false,

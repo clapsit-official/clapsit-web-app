@@ -1,83 +1,35 @@
 <template>
-    <div id="get-started-page" class="flex-row-center">
-        <section id="logo-area" class="flex-row-center">
-            <nuxt-link to="/">
-                <img :src="logo" alt="Logo" :srcset="logo">
-            </nuxt-link>
-        </section>
-        <section id="form-area" class="flex-row-center">
-            <div id="static-container">
-                <label>
-                    <h1>{{ $t('greetings') }}</h1>
-                    <span>{{ $t('lets_get_started') }}</span>
-                </label>
-                <signup-with-button platform="apple"/>
-                <signup-with-button platform="google"/>
-                <signup-with-button platform="facebook"/>
-                <div class="flex-row-center" style="gap: 1rem;">
-                    <span class="divider"></span>
-                    <span style="font-size: 1rem;"> {{ $t('or') }}</span>
-                    <span class="divider"></span>
-                </div>
-                <default-button kind="main" label="Create Account"/>
-            </div>
-        </section>
-    </div>
+  <div class="flex-column-center" style="height: 100vh;">
+    <img :src="logo" alt="logo" style="width: 200px;">
+    <br>
+    <img :src="randomVector" alt="vector" :srcset="randomVector" style="width: 40vw; min-width: 450px; margin: 2.5vh 0;">
+    <br>
+    <span style="font-size: 2.5rem; font-weight: bolder;">
+        Coming soon...
+    </span>
+    <span style="font-size: 1.4rem; color: #aaa;">
+        We're working on it
+    </span>
+  </div>
 </template>
 <script lang="ts">
-import logo from '~/assets/images/logo2.png';
-import SignupWithButton from '~/components/SignupWithButton.vue';
-import DefaultButton from '~/components/DefaultButton.vue';
-
+import logo from '~/assets/images/logo1.png';
+import amico from '~/assets/images/code-snippets-amico.svg';
+import amico2 from '~/assets/images/Programming-amico.svg';
+import amico3 from '~/assets/images/Programming-cuate.svg';
 export default {
-    name: "GetStartedPage",
-    components: {SignupWithButton, DefaultButton},
+    name: "Home",
     setup() {
-        const {getBrandName} = useCoreAppStore();
         return {
             logo,
-            getBrandName
+        }
+    },
+    computed: {
+        randomVector(){
+            const vectors = [amico, amico2, amico3]
+            return vectors[getRandomBetween(0, vectors.length - 1)]
         }
     }
-};
-</script>
-<style lang="scss" scoped>
-div#get-started-page {
-    width: 100vw;
-    height: 100vh;
 
-    &>section {
-        width: 50%;
-        height: 100vh;
-    }
-
-    section#logo-area {
-        img { width: 80%; }
-    }
-
-    section#form-area {
-        div#static-container > * {
-            width: 100%;
-        }
-        div#static-container{
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-            justify-content: flex-start;
-            width: 20rem;
-            gap: .5rem;
-            h1{
-                font-weight: 900;
-            }
-            span {
-                color: colors.$textSecondary;
-                font-size: 1.2rem;
-            }
-            label {
-                text-align: center;
-                margin-bottom: 2rem;
-            }
-        }
-    }
 }
-</style>
+</script>
