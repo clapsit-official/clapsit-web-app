@@ -33,7 +33,7 @@ jobs:
           ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SERVER_IP }} << 'EOF'
             cd ./clapsit.com/clapsit-web-app
             pm2 stop clapsit-web-app
-            git checkout master
+            git checkout main
             git pull
             pnpm install
             pm2 restart clapsit-web-app
