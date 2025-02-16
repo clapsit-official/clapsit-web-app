@@ -36,7 +36,9 @@ jobs:
             git checkout main
             git pull
             pnpm install
-            pm2 restart clapsit-web-app
+            pm2 start ecosystem.config.cjs
+            pm2 save
+            pm2 startup
           EOF
       
       - name: Update deployment status to success
