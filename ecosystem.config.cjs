@@ -12,7 +12,7 @@ module.exports = {
         },
         post_update: [
           "pnpm install",
-          "pnpm run build",
+          "pnpm run deploy",
         ],
       },
     ],
