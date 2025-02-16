@@ -3,7 +3,7 @@ module.exports = {
       {
         name: "clapsit-web-app",
         script: "pnpm",
-        args: "run start",
+        args: "run deploy",
         autorestart: true,
         watch: false,
         exec_mode: "fork",
@@ -11,7 +11,6 @@ module.exports = {
           NODE_ENV: "production",
         },
         post_update: [
-          "pnpm install",
           "pnpm run deploy",
         ],
       },
