@@ -1,8 +1,8 @@
 <template>
-  <div class="flex-column-center" style="height: 100vh;">
+  <div class="flex-column-center" style="height: 100vh">
     <img :src="logo" alt="logo" style="width: 200px;">
     <br>
-    <img :src="randomVector" alt="vector" :srcset="randomVector" style="width: 40vw; min-width: 450px; margin: 2.5vh 0;">
+    <img :src="randomVector" alt="vector" :srcset="randomVector" style="width: 40vw; min-width: 450px;">
     <br>
     <span style="font-size: 2.5rem; font-weight: bolder;">
         Coming soon...
