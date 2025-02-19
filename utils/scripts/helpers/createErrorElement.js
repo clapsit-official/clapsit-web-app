@@ -1,0 +1,1 @@
+export default (from, msg) => `<b class="error-msg">${from}: "${msg}"</b>`
