@@ -25,7 +25,7 @@
     </div>
 </template>
 <script lang="ts">
-import logo from '~/assets/images/logo2.png';
+import logo from '~/assets/images/logo2.svg';
 import SignupWithButton from '~/components/SignupWithButton.vue';
 import DefaultButton from '~/components/DefaultButton.vue';
 
@@ -52,7 +52,7 @@ div#get-started-page {
     }
 
     section#logo-area {
-        img { width: 80%; }
+        img { width: 600px; }
     }
 
     section#form-area {
