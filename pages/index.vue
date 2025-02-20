@@ -1,19 +1,17 @@
 <template>
-  <div class="flex-column-center" style="height: 100vh">
-    <img :src="logo" alt="logo" style="width: 200px;">
-    <br>
-    <img :src="randomVector" alt="vector" :srcset="randomVector" style="width: 40vw; min-width: 450px;">
-    <br>
-    <span style="font-size: 2.5rem; font-weight: bolder;">
+  <div id="coming-soon-page" class="flex-column-center">
+    <img :src="logo" alt="logo">
+    <img :src="randomVector" alt="vector" :srcset="randomVector">
+    <span id="text-1">
         Coming soon...
     </span>
-    <span style="font-size: 1.4rem; color: #aaa;">
-        We're working on it
+    <span id="text-2">
+        We're working on it!
     </span>
   </div>
 </template>
 <script lang="ts">
-import logo from '~/assets/images/logo1.png';
+import logo from '~/assets/images/logo1.svg';
 import amico from '~/assets/images/code-snippets-amico.svg';
 import amico2 from '~/assets/images/Programming-amico.svg';
 import amico3 from '~/assets/images/Programming-cuate.svg';
@@ -33,3 +31,32 @@ export default {
 
 }
 </script>
+
+<style lang="scss" scoped>
+#coming-soon-page{
+    display: flex;
+    height: 100vh;
+    flex-direction: column;
+
+    img[alt='logo']{
+        max-width: 10rem;
+        width: 40vw;
+        padding: 0 0 2rem 0;
+    }
+    
+    img[alt='vector']{
+        max-width: 35rem;
+        width: 70vw;
+        padding: 2rem 0;
+
+    }
+    span#text-1{
+        font-size: 1.8rem;
+        font-weight: bold;
+    }
+    span#text-2{
+        font-size: 1rem;
+        color: colors.$textSecondary;
+    }
+}
+</style>
