@@ -31,7 +31,7 @@ jobs:
       - name: Deploy to Server
         run: |
           ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SERVER_IP }} << 'EOF'
-            cd ./webistes/clapsit.com/clapsit-web-app
+            cd ~/websites/clapsit.com/clapsit-web-app
             pm2 stop clapsit-web-app
             rm -rf .output
             git checkout main
