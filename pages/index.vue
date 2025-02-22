@@ -3,10 +3,10 @@
     <img :src="logo" alt="logo">
     <img :src="randomVector" alt="vector" :srcset="randomVector">
     <span id="text-1">
-        I love you Farah
+        Coming soon...
     </span>
     <span id="text-2">
-        You are most beautfull girl i ever seen!
+        We're working on it!
     </span>
   </div>
 </template>
