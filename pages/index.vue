@@ -15,6 +15,10 @@ import logo from '~/assets/images/logo1.svg';
 import amico from '~/assets/images/code-snippets-amico.svg';
 import amico2 from '~/assets/images/Programming-amico.svg';
 import amico3 from '~/assets/images/Programming-cuate.svg';
+import amico4 from '~/assets/images/Static assets-amico.svg';
+import amico5 from '~/assets/images/Static assets-pana.svg';
+import amico6 from '~/assets/images/Static assets-cuate.svg';
+import amico7 from '~/assets/images/Website Creator-amico.svg';
 export default {
     name: "Home",
     setup() {
@@ -24,7 +28,7 @@ export default {
     },
     computed: {
         randomVector(){
-            const vectors = [amico, amico2, amico3]
+            const vectors = [amico, amico2, amico3, amico4, amico5, amico6, amico7]
             return vectors[getRandomBetween(0, vectors.length - 1)]
         }
     }
