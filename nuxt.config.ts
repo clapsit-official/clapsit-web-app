@@ -52,4 +52,16 @@ export default defineNuxtConfig({
   router: {
     trailingSlash: false, // Set to true to enforce trailing slashes, false to remove them
   },
+  runtimeConfig: {
+    href: process.env.ENDPOINT_HREF || undefined,
+    base: process.env.ENDPOINT_BASE || undefined,
+    version: process.env.ENDPOINT_VERSION || undefined,
+    port: process.env.ENDPOINT_PORT || undefined,
+    public: {
+      href: process.env.ENDPOINT_HREF || undefined,
+      base: process.env.ENDPOINT_BASE || undefined,
+      version: process.env.ENDPOINT_VERSION || undefined,  
+      port: process.env.ENDPOINT_PORT || undefined,
+    }
+  }
 });
