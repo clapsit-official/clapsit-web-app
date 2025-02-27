@@ -1,0 +1,13 @@
+$default_transition_duration_value: 0.1s;
+$default_hover_opacity_value: 0.6;
+
+.hover-effect{
+    transition-duration: $default_transition_duration_value;
+    transition-timing-function: linear;
+    cursor: pointer;
+    scale: 1;
+    opacity: 1;
+    &:hover {
+        opacity: $default_hover_opacity_value;
+    }
+}

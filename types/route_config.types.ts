@@ -1,5 +1,5 @@
 export type RouteConfigItemType = {
-    key: string | null;
+    key: string;
     layout: string | null;
 }
 

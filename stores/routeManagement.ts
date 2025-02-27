@@ -28,6 +28,13 @@ export const useRouteManagement = defineStore('routeManagement', {
                 return routeConfigs[state.to.path];
             }
             return routeConfigs.default;
+        },
+        availableRoutes() {
+            const obj: any = {};
+            Object.entries(routeConfigs).forEach(([key, value]) => {
+                if(value.key !== 'default') obj[value.key] = key;
+            });
+            return obj;
         }
     },
     actions: {
