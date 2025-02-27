@@ -8,7 +8,7 @@
         <section id="form-area" class="flex-row-center">
             <div id="static-container">
                 <label>
-                    <h1>{{ $t('greetings') }}</h1>
+                    <h1>{{ $t('greetings', {brand: useCoreAppStore().getBrandName}) }}</h1>
                     <span>{{ $t('lets_get_started') }}</span>
                 </label>
                 <signup-with-button platform="apple"/>
@@ -36,7 +36,9 @@ export default {
         const {getBrandName} = useCoreAppStore();
         return {
             logo,
-            getBrandName
+            getBrandName,
+            //@ts-ignore
+            $t: useI18nStore().i18n.global.t
         }
     }
 };

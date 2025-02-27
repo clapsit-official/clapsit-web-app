@@ -7,7 +7,7 @@ let appLang: LangOptionsType;
 export const useI18nStore = defineStore('i18n', {
     state: () => ({
         //@ts-ignore
-        appLang,
+        appLang: 'en-US',
         availableLocales,
     }),
     getters: {
@@ -21,8 +21,8 @@ export const useI18nStore = defineStore('i18n', {
             return createI18n({
                 legacy: false,
                 globalInjection: true,
-                locale: state.appLang || useAppConfig().defaultAppLang,
                 // @ts-ignore
+                locale: state.appLang || useAppConfig().defaultAppLang,
                 messages,
             });
         },
