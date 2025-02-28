@@ -14,10 +14,10 @@ export const useCoreAppStore = defineStore('app', {
             return capitalizeFirstLetter(state.brand);
         },
         getBrandDomain(state) {
-            return `https://${state.brand}.com`
+            return `https://${state.brand}.com`;
         },
         getPublicLogo(state) {
-            return `https://${state.brand}.com/logo.png`
+            return `https://${state.brand}.com/logo.png`;
         },
         getDeviceType(state): DeviceTypes {
             return state.deviceType;
