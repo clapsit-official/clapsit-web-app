@@ -1,6 +1,6 @@
 <template>
     <div :id="`${kind}-button-component`" class="default-button-component">
-        <button class="action-button flex-row-between-center">
+        <button class="action-button flex-row-between-center hover-effect">
             <span>{{ label }}</span>
         </button>
     </div>
@@ -33,6 +33,7 @@ div.default-button-component {
         border-radius: 10rem;
         border:  1px solid colors.$dividerColor;
         background-color: #fff;
+        transition-duration: animations.$default_transition_duration_value;
         
         img.kind-logo {
             width: 1.5rem;
@@ -42,9 +43,6 @@ div.default-button-component {
             width: 70%;
             font-weight: 500;
             color: colors.$textPrimary;
-        }
-        &:hover {
-            opacity: 0.7;
         }
     }
 }
@@ -60,7 +58,8 @@ div#main-button-component {
         border-radius: 10rem;
         border:  1px solid colors.$primaryColor;
         background-color: colors.$primaryColor;
-        
+        transition-duration: animations.$default_transition_duration_value;
+
         img.kind-logo {
             width: 1.5rem;
             height: 1.5rem;
@@ -69,9 +68,6 @@ div#main-button-component {
             width: 70%;
             font-weight: 500;
             color: colors.$backgroundColor;
-        }
-        &:hover {
-            opacity: 0.7;
         }
     }
 }

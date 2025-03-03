@@ -12,7 +12,7 @@ locales = {
     redirecting_to_home: "Redirecting to home page",
     redirecting_to_login: "Redirecting to login page",
     error: 'Oops! An error occurred',
-    greetings: 'Welcome to Clapsit!',
+    greetings: 'Welcome to {brand}!',
     lets_get_started: "Let's get started!",
     or: 'or',
     continue_with: 'Continue with {platform}',
@@ -75,6 +75,18 @@ locales = {
         PASSWORDS_ARE_SAME: 'New password cannot be same with current password!',
         INVALID_BODY: 'Invalid form fields!',
         BIRTHDAY_ALREADY_EXIST: 'Birthday already set!',
+    },
+    pages: {
+        home: {
+            title: "Home",
+            description: "Home page",
+            keywords: "Home, Main, index"
+        },
+        getstarted: {
+            title: "Get started",
+            description: "Welcome to {brand}!",
+            keywords: "Get started, Login, Logout, Sigin, Sign out, Sign up, Auth"
+        }
     }
 };
 

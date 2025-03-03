@@ -79,6 +79,7 @@ export interface LanguageContent {
 
     buttons: Buttons;
     backend_messages: BackendMessage;
+    pages: PagesType;
 }
 
 export type LangOptionsType = 'az-AZ' | 'en-US' | 'ru-RU';
@@ -90,3 +91,10 @@ export interface AvailableLocalItem {
 }
 
 export type AvailableLocals = Array <AvailableLocalItem>;
+export type PagesType = {
+    [key: string]: {
+        title: LocaleType,
+        description: LocaleType,
+        keywords: LocaleType
+    }
+}

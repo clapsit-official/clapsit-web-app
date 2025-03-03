@@ -1,6 +1,6 @@
 <template>
     <div :id="`signup-with-${platform}-button-component`" class="signup-with-button-component">
-        <button class="action-button flex-row-between-center">
+        <button class="action-button flex-row-between-center hover-effect">
             <img :src="platformLogos[platform]" :alt="platform" class="platform-logo">
             <span>{{ $t('continue_with', {platform: capitalizeFirstLetter(platform)}) }}</span>
             <div></div>
@@ -43,7 +43,7 @@ div.signup-with-button-component {
         border-radius: 10rem;
         border:  1px solid colors.$dividerColor;
         background-color: #fff;
-        
+        transition-duration: animations.$default_transition_duration_value;
         img.platform-logo {
             width: 1.5rem;
             height: 1.5rem;
@@ -52,9 +52,6 @@ div.signup-with-button-component {
             width: 70%;
             font-weight: 500;
             color: colors.$textPrimary;
-        }
-        &:hover {
-            opacity: 0.7;
         }
     }
 }

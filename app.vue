@@ -1,32 +1,30 @@
 <template>
-  <div v-if="readyForView === true">
-    <NuxtLayout>
-      <NuxtPage />
-    </NuxtLayout>
-  </div>
-  <div v-else-if="readyForView === false">
-    <NotAvailable/>
-  </div>
-  <div v-else>
-    <LoadingScreen/>
-  </div>
+  <NuxtLayout v-if="readyForView === true && deviceTypeSafe">
+    <NuxtPage />
+  </NuxtLayout>
+  <NotAvailable v-else-if="readyForView === false" />
+  <LoadingScreen v-else />
 </template>
 <script lang="ts">
 import { _HealthService } from './services/health';
 export default {
-  async mounted() {
-    console.log('App mounted!');
-    try {
-      const {success} = await _HealthService.get();
-      this.readyForView = success;
-    } catch (error: any) {
-      this.readyForView = false;
+  async mounted(){ 
+    await useCoreAppStore().checkHealth();
+    console.log(`${useCoreAppStore().getBrandDomain} mounted!`) 
+  },
+  setup() {
+    const { deviceType } = useDeviceDetector();
+    const deviceTypeSafe = computed(() => useCoreAppStore().setDeviceType(deviceType.value || null));
+    return {
+      deviceTypeSafe
     }
   },
-  data(){
-    return {
-      readyForView: null as Boolean | null
-    }
-  }
+  computed: {
+    systemHealth: () => useCoreAppStore().health,
+    deviceType: () => useCoreAppStore().getDeviceType,
+    readyForView() {
+      return this.systemHealth;
+    },
+  },
 }
 </script>
