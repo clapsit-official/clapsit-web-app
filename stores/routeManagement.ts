@@ -1,3 +1,4 @@
+import { defineStore } from "pinia";
 import type { RouteLocationNormalizedGeneric } from "vue-router";
 import { routeConfigs } from "~/configs/routes.config";
 
@@ -24,8 +25,13 @@ export const useRouteManagement = defineStore('routeManagement', {
     }),
     getters: {
         config(state) {
-            if (state.to && state.to.path) {
-                return routeConfigs[state.to.path];
+            if(state.to){
+                if(state.to.fullPath && routeConfigs[state.to.fullPath]){
+                    return routeConfigs[state.to.fullPath];
+                }
+                if (state.to.path && routeConfigs[state.to.path]) {
+                    return routeConfigs[state.to.path];
+                }
             }
             return routeConfigs.default;
         },

@@ -7,10 +7,18 @@ export const routeConfigs: RouteConfigsType = {
     },
     '/': {
         key: 'home',
-        layout: 'auth',
+        layout: 'unauth',
     },
     '/getstarted': {
         key: 'getstarted',
-        layout: 'auth'
-    }
+        layout: 'unauth'
+    },
+    '/getstarted?view=login': {
+        key: 'login',
+        layout: 'unauth'
+    },
+    '/getstarted?view=register': {
+        key: 'register',
+        layout: 'unauth'
+    },
 }

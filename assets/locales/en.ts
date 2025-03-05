@@ -86,6 +86,16 @@ locales = {
             title: "Get started",
             description: "Welcome to {brand}!",
             keywords: "Get started, Login, Logout, Sigin, Sign out, Sign up, Auth"
+        },
+        login: {
+            title: "Login",
+            description: "Welcome to our secure login page! Here, you can access your personalized account by entering your credentials!",
+            keywords: "User authentication, Account access, Secure login and registration, Sign in or sign up, Create or log in to your account, Membership login and registration, Easy account access, Online account management, Login and registration portal, Secure user onboarding"
+        },
+        register: {
+            title: "Register",
+            description: "Welcome to {brand}! Join our community by creating your account in just a few simple steps. Provide your basic details like fullname, email address, and a secure password to get started",
+            keywords: "Create an account, Sign up now, Free registration, Join our platform, Register for free, New user signup, Secure account creation, Easy registration process, Start your journey, Get started today"
         }
     }
 };

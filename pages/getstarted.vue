@@ -6,7 +6,28 @@
             </nuxt-link>
         </section>
         <section id="form-area" class="flex-row-center">
-            <div id="static-container">
+            <div id="login" class="static-container" v-if="$router.currentRoute.value.query['view'] === 'login'">
+                <form>
+                    login area
+                </form>
+            </div>
+
+            <div id="register" class="static-container" v-else-if="$router.currentRoute.value.query['view'] === 'register'">
+                <div id="logo-area-mobile" class="flex-row-center" v-if="showLogoForMobile">
+                    <nuxt-link :to="availableRoutes.home">
+                        <img :src="logo" alt="Logo" :srcset="logoMobile" style="width: 18rem;">
+                    </nuxt-link>
+                </div>
+                <label>
+                    <h1>{{ $t('greetings', { brand: useCoreAppStore().getBrandName }) }}</h1>
+                    <span>{{ $t('lets_get_started') }}</span>
+                </label>
+                <form>
+                    <custom-input/>
+                </form>
+            </div>
+
+            <div id="getstarted" class="static-container" v-else>
                 <div id="logo-area-mobile" class="flex-row-center" v-if="showLogoForMobile">
                     <nuxt-link :to="availableRoutes.home">
                         <img :src="logo" alt="Logo" :srcset="logoMobile" style="width: 18rem;">
@@ -75,11 +96,11 @@ div#get-started-page {
     }
 
     section#form-area {
-        div#static-container>* {
+        div.static-container>* {
             width: 100%;
         }
 
-        div#static-container {
+        div.static-container {
             display: flex;
             flex-direction: column;
             align-items: flex-start;
