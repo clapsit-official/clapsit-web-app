@@ -12,6 +12,7 @@ export default defineComponent({
     setup() {
         return {
             loadingGIF,
+            $t: useI18nStore().i18n.global.t,
         }
     }
 });

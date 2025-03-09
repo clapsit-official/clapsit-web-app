@@ -18,6 +18,101 @@ span.divider {
   margin: 1.5rem 0;
 }
 
+br,
+.cannot-select {
+  user-select: none;
+}
+strong,
+b {
+  font-weight: bold;
+}
+
+// Auto complete styles
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  transition: background-color 5000s ease-in-out 0s;
+  -webkit-text-fill-color: colors.$blackColor;
+  -webkit-box-shadow: 0 0 0px 1000px #fff inset;
+}
+
+button {
+  $padding-value: 1rem;
+  width: 100%;
+  max-width: 600px;
+  height: 45px;
+  border-radius: 10px;
+  border: 1px solid colors.$textSecondary;
+  padding: 0.2rem 1rem;
+  margin: 15px 0;
+  font-size: 1rem;
+  transition-duration: animations.$default_transition_duration_value;
+  cursor: pointer;
+  &.primary {
+    @include colors.box-shadow-1();
+    background-color: colors.$primaryColor;
+    border-color: colors.$primaryColor;
+    color: colors.$whiteColor;
+    font-weight: bold;
+    &.loading {
+      @include animations.buttonLoading(colors.$whiteColor);
+    }
+  }
+  &.black {
+    @include colors.box-shadow-1();
+    background-color: colors.$blackColor;
+    border-color: colors.$blackColor;
+    color: colors.$whiteColor;
+    font-weight: bold;
+    &.loading {
+      @include animations.buttonLoading(colors.$whiteColor);
+    }
+  }
+  &.white {
+    @include colors.box-shadow-2();
+    background-color: #fff;
+    border-color: #fff;
+    color: colors.$blackColor;
+    font-weight: 500;
+    &.loading {
+      @include animations.buttonLoading(colors.$blackColor);
+    }
+  }
+
+  &:hover {
+    opacity: 0.9;
+  }
+  &:active {
+    @include colors.box-shadow-3();
+  }
+  &.disabled, &:disabled {
+    opacity: 0.1;
+    cursor: not-allowed !important;
+    & * {
+      cursor: not-allowed !important;
+    }
+  }
+  &.loading {
+    cursor: progress !important;
+  }
+}
+
+.error-effect {
+  border-color: colors.$errorColor !important;
+  background-color: colors.$errorSecondary !important;
+}
+.warning-effect {
+  border-color: colors.$warningColor !important;
+  background-color: colors.$warningSecondary !important;
+}
+.error-effect-text {
+  color: colors.$errorColor !important;
+}
+.warning-effect-text {
+  color: colors.$warningColor !important;
+}
+
 .flex-column-between-center {
   display: flex;
   flex-direction: column;
@@ -42,117 +137,97 @@ span.divider {
   justify-content: center;
   align-items: center;
 }
-
 .flex-column-start-center {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
 }
-
 .flex-row-start-center {
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
 }
-
 .flex-column-end-center {
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
   align-items: center;
 }
-
 .flex-row-end-center {
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
   align-items: center;
 }
-
 .flex-column-wrap {
   display: flex;
   flex-wrap: wrap;
 }
-
 .flex-column-no-wrap {
   display: flex;
   flex-wrap: nowrap;
 }
-
 .flex-column-align-start {
   display: flex;
   align-items: flex-start;
 }
-
 .flex-column-align-end {
   display: flex;
   align-items: flex-end;
 }
-
 .flex-column-justify-start {
   display: flex;
   justify-content: flex-start;
 }
-
 .flex-column-justify-end {
   display: flex;
   justify-content: flex-end;
 }
-
 .flex-column-space-around {
   display: flex;
   justify-content: space-around;
 }
-
 .flex-column-space-evenly {
   display: flex;
   justify-content: space-evenly;
 }
-
 .flex-column-wrap {
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
 }
-
 .flex-column-no-wrap {
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
 }
-
 .flex-column-align-start {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
 }
-
 .flex-column-align-end {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
 }
-
 .flex-column-justify-start {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
 }
-
 .flex-column-justify-end {
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
 }
-
 .flex-column-space-around {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
 }
-
 .flex-column-space-evenly {
   display: flex;
   flex-direction: column;

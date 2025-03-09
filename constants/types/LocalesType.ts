@@ -1,54 +1,58 @@
 type LocaleType = string | number;
+export type BackendMessageKeys =
+    'DONE' |
+    'SOMETHING_WENT_WRONG' |
+    'EMAIL_IS_EXIST' |
+    'USER_REGISTRATION_FAILED' |
+    'USER_SUCCESSFULLY_REGISTERED' |
+    'EMAIL_SUCCESSFULLY_CONFIRMED' |
+    'EMAIL_IS_NOT_VALID' |
+    'INVALID_EMAIL' |
+    'INVALID_PASSWORD' |
+    'INVALID_FULLNAME' |
+    'INVALID_BIRTHDAY' |
+    'INVALID_TOKEN' |
+    'BCRYPT_ERROR' |
+    'USER_NOT_FOUND' |
+    'USER_LOGIN_PROGRESS_FAILED' |
+    'USER_SUCCESSFULLY_LOGIN' |
+    'EMAIL_IS_NOT_REGISTERED' |
+    'EMAIL_OR_PASSWORD_INCORRECT' |
+    'LINK_EXPIRED' |
+    'OLD_PASSWORD_INCORRECT' |
+    'PASSWORD_SUCCESSFULLY_CHANGED' |
+    'PASSWORD_RESET_LINK_WILL_SENT' |
+    'PASSWORDS_ARE_SAME' |
+    'INVALID_BODY' |
+    'BIRTHDAY_ALREADY_EXIST' |
+    'AUTH_REQUIRED' |
+    'PARAM_REQUIRED' |
+    'OBJECT_NOT_FOUND' |
+    'INVALID_PLACE_NAME' |
+    'INVALID_WEB_SITE_URL' |
+    'INVALID_ZIP_CODE' |
+    'INVALID_ADDRESS' |
+    'INVALID_PLACE_TYPE' |
+    'INVALID_CITY' |
+    'INVALID_STATE' |
+    'INVALID_PHONE' |
+    'INVALID_OPENING_HOURS' |
+    'ALREADY_EXIST' |
+    'PLACE_NOT_FOUND' |
+    'YOU_CANNOT_EDIT_PLACE_ID' |
+    'YOU_CANNOT_EDIT_BRAND_ID' |
+    'YOU_CANNOT_EDIT_OWNER_ID' |
+    'BRAND_NOT_FOUND' |
+    'BRAND_ALREADY_EXIST' |
+    'INVALID_BRAND_NAME' |
+    'INVALID_BRAND_BIO_SIZE' |
+    'NAME_ALREADY_TAKEN' |
+    'INVALID_CONVERSATION_KEY' |
+    'MODEL_IS_UNDEFINED' |
+    'MODEL_IS_UNSUPPORTED' |
+    'KEY_NAME_IS_UNDEFINED' |
+    'EMAIL_CONFIRM_REQUIRED'
 
-interface BackendMessage {
-    DONE: LocaleType;
-    SOMETHING_WENT_WRONG: LocaleType;
-    EMAIL_IS_EXIST: LocaleType;
-    USER_REGISTRATION_FAILED: LocaleType;
-    USER_SUCCESSFULLY_REGISTERED: LocaleType;
-    EMAIL_SUCCESSFULLY_CONFIRMED: LocaleType;
-    EMAIL_IS_NOT_VALID: LocaleType;
-    INVALID_EMAIL: LocaleType;
-    INVALID_PASSWORD: LocaleType;
-    INVALID_FULLNAME: LocaleType;
-    INVALID_BIRTHDAY: LocaleType;
-    INVALID_TOKEN: LocaleType;
-    BCRYPT_ERROR: LocaleType;
-    USER_NOT_FOUND: LocaleType;
-    USER_LOGIN_PROGRESS_FAILED: LocaleType;
-    USER_SUCCESSFULLY_LOGIN: LocaleType;
-    EMAIL_IS_NOT_REGISTERED: LocaleType;
-    EMAIL_OR_PASSWORD_INCORRECT: LocaleType;
-    LINK_EXPIRED: LocaleType;
-    OLD_PASSWORD_INCORRECT: LocaleType;
-    PASSWORD_SUCCESSFULLY_CHANGED: LocaleType;
-    PASSWORD_RESET_LINK_WILL_SENT: LocaleType;
-    PASSWORDS_ARE_SAME: LocaleType;
-    INVALID_BODY: LocaleType;
-    BIRTHDAY_ALREADY_EXIST: LocaleType;
-    AUTH_REQUIRED: LocaleType;
-    PARAM_REQUIRED: LocaleType;
-    OBJECT_NOT_FOUND: LocaleType;
-    INVALID_PLACE_NAME: LocaleType;
-    INVALID_WEB_SITE_URL: LocaleType;
-    INVALID_ZIP_CODE: LocaleType;
-    INVALID_ADDRESS: LocaleType;
-    INVALID_PLACE_TYPE: LocaleType;
-    INVALID_CITY: LocaleType;
-    INVALID_STATE: LocaleType;
-    INVALID_PHONE: LocaleType;
-    INVALID_OPENING_HOURS: LocaleType;
-    ALREADY_EXIST: LocaleType;
-    PLACE_NOT_FOUND: LocaleType;
-    YOU_CANNOT_EDIT_PLACE_ID: LocaleType;
-    YOU_CANNOT_EDIT_BRAND_ID: LocaleType;
-    YOU_CANNOT_EDIT_OWNER_ID: LocaleType;
-    BRAND_NOT_FOUND: LocaleType;
-    BRAND_ALREADY_EXIST: LocaleType;
-    INVALID_BRAND_NAME: LocaleType;
-    INVALID_BRAND_BIO_SIZE: LocaleType;
-    NAME_ALREADY_TAKEN: LocaleType;
-}
 export interface Buttons {
     search: LocaleType;
     filter: LocaleType;
@@ -78,7 +82,7 @@ export interface LanguageContent {
     continue_with: LocaleType;
 
     buttons: Buttons;
-    backend_messages: BackendMessage;
+    backend_messages: Record<BackendMessageKeys, string>;
     pages: PagesType;
 }
 
@@ -90,11 +94,12 @@ export interface AvailableLocalItem {
     icon: any
 }
 
-export type AvailableLocals = Array <AvailableLocalItem>;
+export type AvailableLocals = Array<AvailableLocalItem>;
 export type PagesType = {
     [key: string]: {
         title: LocaleType,
         description: LocaleType,
-        keywords: LocaleType
+        keywords: LocaleType,
+        utilities?: any,
     }
 }

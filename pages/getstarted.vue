@@ -1,15 +1,18 @@
 <template>
     <div id="get-started-page" class="flex-row-center">
         <section id="logo-area" class="flex-row-center" v-if="!showLogoForMobile">
-            <nuxt-link :to="availableRoutes.home">
+            <nuxt-link :to="availableRoutes.home" class="animation" :class="{'bounce': isLoading}">
                 <img :src="logo" alt="Logo" :srcset="logo">
             </nuxt-link>
         </section>
         <section id="form-area" class="flex-row-center">
             <div id="login" class="static-container" v-if="$router.currentRoute.value.query['view'] === 'login'">
-                <form>
-                    login area
-                </form>
+                <div id="logo-area-mobile" class="flex-row-center" v-if="showLogoForMobile">
+                    <nuxt-link :to="availableRoutes.home" class="animation" :class="{'bounce': isLoading}">
+                        <img :src="logo" alt="Logo" :srcset="logoMobile" style="width: 18rem;">
+                    </nuxt-link>
+                </div>
+                <forms-login/>
             </div>
 
             <div id="register" class="static-container" v-else-if="$router.currentRoute.value.query['view'] === 'register'">
@@ -18,13 +21,7 @@
                         <img :src="logo" alt="Logo" :srcset="logoMobile" style="width: 18rem;">
                     </nuxt-link>
                 </div>
-                <label>
-                    <h1>{{ $t('greetings', { brand: useCoreAppStore().getBrandName }) }}</h1>
-                    <span>{{ $t('lets_get_started') }}</span>
-                </label>
-                <form>
-                    <custom-input/>
-                </form>
+                <forms-register/>
             </div>
 
             <div id="getstarted" class="static-container" v-else>
@@ -45,7 +42,7 @@
                     <span style="font-size: 1rem;"> {{ $t('or') }}</span>
                     <span class="divider"></span>
                 </div>
-                <default-button kind="main" label="Create Account" />
+                <default-button kind="main" label="Create Account" @click="() => useRouter().push(availableRoutes.register)"/>
             </div>
         </section>
     </div>
@@ -55,6 +52,7 @@ import logo from '~/assets/images/logo2.svg';
 import logoMobile from '~/assets/images/logo1.svg';
 import SignupWithButton from '~/components/SignupWithButton.vue';
 import DefaultButton from '~/components/DefaultButton.vue';
+import { useGetstarted } from '~/stores/getstarted';
 
 export default {
     name: "GetStartedPage",
@@ -63,6 +61,7 @@ export default {
         const { getBrandName } = useCoreAppStore();
         const { availableRoutes } = useRouteManagement();
         return {
+            store: useGetstarted(),
             logo,
             logoMobile,
             getBrandName,
@@ -75,6 +74,10 @@ export default {
         showLogoForMobile() {
             const { getDeviceType } = useCoreAppStore();
             return getDeviceType !== 'desktop';
+        },
+        isLoading() {
+            const { loadingList } = useQueryManager();
+            return loadingList.includes('register')
         }
     }
 };
@@ -82,17 +85,25 @@ export default {
 <style lang="scss" scoped>
 div#get-started-page {
     width: 100vw;
-    max-height: 90vh;
-
     &>section {
         width: 50%;
         height: 100vh;
     }
 
-    section#logo-area {
+    section#logo-area, #logo-area-mobile {
         img {
             width: 600px;
+            @include animations.slideDownBounce(1.5s);
         }
+        &:hover {
+            & > * {
+                @include animations.bounce(1s);
+            }
+        }
+    }
+
+    #logo-area-mobile {
+        margin: 3rem 0;
     }
 
     section#form-area {
@@ -107,20 +118,6 @@ div#get-started-page {
             justify-content: flex-start;
             width: 20rem;
             gap: .5rem;
-
-            h1 {
-                font-weight: 900;
-            }
-
-            span {
-                color: colors.$textSecondary;
-                font-size: 1.2rem;
-            }
-
-            label {
-                text-align: center;
-                margin-bottom: 2rem;
-            }
         }
     }
 }

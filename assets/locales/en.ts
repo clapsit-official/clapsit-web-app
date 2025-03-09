@@ -30,7 +30,7 @@ locales = {
     backend_messages: {
         DONE: 'Done!',
         SOMETHING_WENT_WRONG: 'Something went wrong!',
-        EMAIL_IS_EXIST: 'Email is exist!',
+        EMAIL_IS_EXIST: 'Email is already registered!',
         USER_REGISTRATION_FAILED: 'User registration progress was failed!',
         USER_SUCCESSFULLY_REGISTERED: 'User successfully registered!',
         EMAIL_SUCCESSFULLY_CONFIRMED: "Email successfully confirmed!",
@@ -40,7 +40,7 @@ locales = {
         INVALID_FULLNAME: 'Fullname is not valid!',
         INVALID_TOKEN: 'Something went wrong!',
         BCRYPT_ERROR: 'Something went wrong!',
-        USER_LOGIN_PROGRESS_FAILED: 'User login progress was failed!',
+        USER_LOGIN_PROGRESS_FAILED: 'Login progress was failed!',
         USER_SUCCESSFULLY_LOGIN: 'User successfully login!',
         EMAIL_IS_NOT_REGISTERED: 'Email is not registered!',
         EMAIL_OR_PASSWORD_INCORRECT: 'Email or password incorrect!',
@@ -75,8 +75,18 @@ locales = {
         PASSWORDS_ARE_SAME: 'New password cannot be same with current password!',
         INVALID_BODY: 'Invalid form fields!',
         BIRTHDAY_ALREADY_EXIST: 'Birthday already set!',
+        INVALID_CONVERSATION_KEY: "Invalid conversation key!",
+        MODEL_IS_UNDEFINED: "Model field is required!",
+        MODEL_IS_UNSUPPORTED: "Unsupported model!",
+        KEY_NAME_IS_UNDEFINED: "Key name is required!",
+        EMAIL_CONFIRM_REQUIRED: "Email confirm required!"
     },
     pages: {
+        default: {
+            title: "Home",
+            description: "Home page",
+            keywords: "Home, Main, index"
+        },
         home: {
             title: "Home",
             description: "Home page",
@@ -90,12 +100,25 @@ locales = {
         login: {
             title: "Login",
             description: "Welcome to our secure login page! Here, you can access your personalized account by entering your credentials!",
-            keywords: "User authentication, Account access, Secure login and registration, Sign in or sign up, Create or log in to your account, Membership login and registration, Easy account access, Online account management, Login and registration portal, Secure user onboarding"
+            keywords: "User authentication, Account access, Secure login and registration, Sign in or sign up, Create or log in to your account, Membership login and registration, Easy account access, Online account management, Login and registration portal, Secure user onboarding",
+            utilities: {
+                create_account: "Create Account",
+                login: "Login",
+                email_field: 'Email',
+                password_field: 'Password',
+            }
         },
         register: {
             title: "Register",
             description: "Welcome to {brand}! Join our community by creating your account in just a few simple steps. Provide your basic details like fullname, email address, and a secure password to get started",
-            keywords: "Create an account, Sign up now, Free registration, Join our platform, Register for free, New user signup, Secure account creation, Easy registration process, Start your journey, Get started today"
+            keywords: "Create an account, Sign up now, Free registration, Join our platform, Register for free, New user signup, Secure account creation, Easy registration process, Start your journey, Get started today",
+            utilities: {
+                email_field: 'Your Email',
+                password_field: 'New Password',
+                fullname_field: 'Fullname',
+                create_account: "Create Account",
+                already_have_account: "Already have an account?",
+            }
         }
     }
 };

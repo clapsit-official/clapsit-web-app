@@ -1,15 +1,14 @@
 <template>
   <NuxtLayout v-if="readyForView === true && deviceTypeSafe">
-    <NuxtPage />
+    <NuxtPage :class="`${deviceTypeSafe}-app-container`"/>
   </NuxtLayout>
   <NotAvailable v-else-if="readyForView === false" />
   <LoadingScreen v-else />
 </template>
 <script lang="ts">
-import { _HealthService } from './services/health';
+import { _HealthService } from './services/health.service';
 export default {
-  async mounted(){ 
-    await useCoreAppStore().checkHealth();
+  mounted(){ 
     console.log(`${useCoreAppStore().getBrandDomain} mounted!`) 
   },
   setup() {
