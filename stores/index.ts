@@ -30,6 +30,7 @@ export const useCoreAppStore = defineStore('app', {
                 this.health = success;
             } catch (error: any) {
                 this.health = false;
+                setTimeout(async() => await useCoreAppStore().checkHealth(), 10000);
             }
         },
         setDeviceType(val: any){

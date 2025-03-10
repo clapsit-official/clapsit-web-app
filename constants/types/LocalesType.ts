@@ -80,7 +80,10 @@ export interface LanguageContent {
     lets_get_started: LocaleType;
     or: LocaleType;
     continue_with: LocaleType;
-
+    please_try_again_later: LocaleType;
+    service_temporarily_unavailable: LocaleType;
+    coming_soon: LocaleType;
+    we_are_working_on_it: LocaleType;
     buttons: Buttons;
     backend_messages: Record<BackendMessageKeys, string>;
     pages: PagesType;

@@ -16,6 +16,10 @@ locales = {
     lets_get_started: "Let's get started!",
     or: 'or',
     continue_with: 'Continue with {platform}',
+    please_try_again_later: "Please try again later",
+    service_temporarily_unavailable: "Service is temporarily unavailable",
+    coming_soon: "Coming soon...",
+    we_are_working_on_it: "We're working on it!",
     buttons: {
         search: "Search",
         filter: "Filter",
