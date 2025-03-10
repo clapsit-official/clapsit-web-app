@@ -92,13 +92,7 @@ div#get-started-page {
 
     section#logo-area, #logo-area-mobile {
         img {
-            width: 600px;
-            @include animations.slideDownBounce(1.5s);
-        }
-        &:hover {
-            & > * {
-                @include animations.bounce(1s);
-            }
+            width: 400px;
         }
     }
 

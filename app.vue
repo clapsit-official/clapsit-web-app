@@ -28,5 +28,16 @@ export default {
       return this.systemHealth;
     },
   },
+  watch: {
+    deviceTypeSafe: {
+      handler(newVal){
+        if(newVal) {
+          const html = document.getElementsByTagName('html')[0];
+          html.id=`${newVal}-app`;
+        }
+      },
+      immediate: true,
+    }
+  }
 }
 </script>

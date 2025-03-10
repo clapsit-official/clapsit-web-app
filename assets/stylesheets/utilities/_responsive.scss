@@ -1,11 +1,21 @@
-.desktop-app-container {
-    max-height: 98vw;
+html#desktop-ap {
+    font-size: 22px;
+    .desktop-app-container {
+        max-height: 98vw;
+    }
 }
 
-.tablet-app-container {
-    max-height: 95vh;
+html#tablet-app {
+    font-size: 20px;
+    .tablet-app-container {
+        max-height: 95vh;
+    }
 }
 
-.mobile-app-container {
-    max-height: 90vh;
+html#mobile-app {
+    font-size: 16px;
+    .mobile-app-container {
+        max-height: 90vh;
+    }
 }
+
