@@ -7,10 +7,34 @@ export const routeConfigs: RouteConfigsType = {
     },
     '/': {
         key: 'home',
-        layout: 'auth',
+        layout: 'unauth',
+        auth_required: true
     },
     '/getstarted': {
         key: 'getstarted',
-        layout: 'auth'
-    }
+        layout: 'unauth',
+        middleware: () => {
+            if(useAuth().checkAuthCredentials()){
+                useRouter().push('/');
+            }
+        }
+    },
+    '/getstarted?view=login': {
+        key: 'login',
+        layout: 'unauth',
+        middleware: () => {
+            if(useAuth().checkAuthCredentials()){
+                useRouter().push('/');
+            }
+        }
+    },
+    '/getstarted?view=register': {
+        key: 'register',
+        layout: 'unauth',
+        middleware: () => {
+            if(useAuth().checkAuthCredentials()){
+                useRouter().push('/');
+            }
+        }
+    },
 }

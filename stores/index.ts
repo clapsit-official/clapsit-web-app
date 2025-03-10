@@ -1,5 +1,5 @@
 import { defineStore } from "pinia";
-import { _HealthService } from "~/services/health";
+import { _HealthService } from "~/services/health.service";
 import { useDeviceDetector } from '~/composables/useWindowSize';
 import type { DeviceTypes } from "~/types/general.types";
 
@@ -30,6 +30,7 @@ export const useCoreAppStore = defineStore('app', {
                 this.health = success;
             } catch (error: any) {
                 this.health = false;
+                setTimeout(async() => await useCoreAppStore().checkHealth(), 10000);
             }
         },
         setDeviceType(val: any){

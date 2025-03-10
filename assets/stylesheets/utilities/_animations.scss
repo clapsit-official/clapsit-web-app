@@ -11,3 +11,239 @@ $default_hover_opacity_value: 0.6;
         opacity: $default_hover_opacity_value;
     }
 }
+
+// Base animation mixin
+@mixin animation($name, $duration: 1s, $timing-function: ease, $delay: 0s, $iteration-count: 1, $direction: normal, $fill-mode: none) {
+    animation: $name $duration $timing-function $delay $iteration-count $direction $fill-mode;
+  }
+  
+  // Fade in animation
+  @mixin fadeIn($duration: 1s, $delay: 0s) {
+    @include animation(fadeIn, $duration, ease-in, $delay);
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+  }
+  
+  // Slide in from left (original)
+  @mixin slideInLeft($duration: 1s, $delay: 0s) {
+    @include animation(slideInLeft, $duration, ease-out, $delay);
+    @keyframes slideInLeft {
+      from { transform: translateX(-100%); opacity: 0; }
+      to { transform: translateX(0); opacity: 1; }
+    }
+  }
+  
+  // Slide in from right (original)
+  @mixin slideInRight($duration: 1s, $delay: 0s) {
+    @include animation(slideInRight, $duration, ease-out, $delay);
+    @keyframes slideInRight {
+      from { transform: translateX(100%); opacity: 0; }
+      to { transform: translateX(0); opacity: 1; }
+    }
+  }
+  
+  // Bounce animation
+  @mixin bounce($duration: 1s, $delay: 0s) {
+    @include animation(bounce, $duration, ease-in-out, $delay);
+    @keyframes bounce {
+      0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+      40% { transform: translateY(-30px); }
+      60% { transform: translateY(-15px); }
+    }
+  }
+  
+  // Pulse animation
+  @mixin pulse($duration: 1s, $delay: 0s) {
+    @include animation(pulse, $duration, ease-in-out, $delay);
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+      100% { transform: scale(1); }
+    }
+  }
+  
+  // Rotate animation
+  @mixin rotate($duration: 1s, $delay: 0s, $iteration-count: 1) {
+    @include animation(rotate, $duration, linear, $delay, $iteration-count);
+    @keyframes rotate {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+  }
+  
+  // Scale in animation
+  @mixin scaleIn($duration: 1s, $delay: 0s) {
+    @include animation(scaleIn, $duration, ease-out, $delay);
+    @keyframes scaleIn {
+      from { transform: scale(0); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+  }
+  
+  // Slide up (original)
+  @mixin slideUp($duration: 1s, $delay: 0s) {
+    @include animation(slideUp, $duration, ease-out, $delay);
+    @keyframes slideUp {
+      from { transform: translateY(100%); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+  }
+  
+  // Shake animation
+  @mixin shake($duration: 0.5s, $delay: 0s) {
+    @include animation(shake, $duration, ease-in-out, $delay);
+    @keyframes shake {
+      0% { transform: translateX(0); }
+      10%, 90% { transform: translateX(-10px); }
+      20%, 80% { transform: translateX(10px); }
+      30%, 50%, 70% { transform: translateX(-8px); }
+      40%, 60% { transform: translateX(8px); }
+      100% { transform: translateX(0); }
+    }
+  }
+  
+  // Flip animation
+  @mixin flip($duration: 1s, $delay: 0s) {
+    @include animation(flip, $duration, ease-in-out, $delay);
+    @keyframes flip {
+      0% { transform: perspective(400px) rotateY(0); }
+      50% { transform: perspective(400px) rotateY(180deg); }
+      100% { transform: perspective(400px) rotateY(360deg); }
+    }
+  }
+  
+  // Wobble animation
+  @mixin wobble($duration: 1s, $delay: 0s) {
+    @include animation(wobble, $duration, ease-in-out, $delay);
+    @keyframes wobble {
+      0% { transform: translateX(0); }
+      15% { transform: translateX(-25%) rotate(-5deg); }
+      30% { transform: translateX(20%) rotate(3deg); }
+      45% { transform: translateX(-15%) rotate(-3deg); }
+      60% { transform: translateX(10%) rotate(2deg); }
+      75% { transform: translateX(-5%) rotate(-1deg); }
+      100% { transform: translateX(0); }
+    }
+  }
+  
+  // Button loading animation
+  @mixin buttonLoading($color: #000, $size: 1.2rem, $duration: 0.8s) {
+    position: relative;
+    pointer-events: none;
+    color: transparent;
+    opacity: 0.9;
+    &::after {
+      content: '';
+      position: absolute;
+      width: $size;
+      height: $size;
+      border: 3px solid $color;
+      border-top-color: transparent;
+      border-radius: 50%;
+      @include animation(spin, $duration, linear, 0s, infinite);
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+    @keyframes spin {
+      from { transform: translate(-50%, -50%) rotate(0deg); }
+      to { transform: translate(-50%, -50%) rotate(360deg); }
+    }
+  }
+  
+  // NEW SLIDE VARIATIONS:
+  
+  // Slide out to left
+  @mixin slideOutLeft($duration: 1s, $delay: 0s) {
+    @include animation(slideOutLeft, $duration, ease-in, $delay);
+    @keyframes slideOutLeft {
+      from { transform: translateX(0); opacity: 1; }
+      to { transform: translateX(-100%); opacity: 0; }
+    }
+  }
+  
+  // Slide out to right
+  @mixin slideOutRight($duration: 1s, $delay: 0s) {
+    @include animation(slideOutRight, $duration, ease-in, $delay);
+    @keyframes slideOutRight {
+      from { transform: translateX(0); opacity: 1; }
+      to { transform: translateX(100%); opacity: 0; }
+    }
+  }
+  
+  // Slide down
+  @mixin slideDown($duration: 1s, $delay: 0s) {
+    @include animation(slideDown, $duration, ease-in, $delay);
+    @keyframes slideDown {
+      from { transform: translateY(0); opacity: 1; }
+      to { transform: translateY(100%); opacity: 0; }
+    }
+  }
+  
+  // Slide in left with bounce
+  @mixin slideInLeftBounce($duration: 1s, $delay: 0s) {
+    @include animation(slideInLeftBounce, $duration, ease-out, $delay);
+    @keyframes slideInLeftBounce {
+      0% { transform: translateX(-100%); opacity: 0; }
+      60% { transform: translateX(20px); opacity: 1; }
+      80% { transform: translateX(-10px); }
+      100% { transform: translateX(0); opacity: 1; }
+    }
+  }
+  
+  // Slide in right with bounce
+  @mixin slideInRightBounce($duration: 1s, $delay: 0s) {
+    @include animation(slideInRightBounce, $duration, ease-out, $delay);
+    @keyframes slideInRightBounce {
+      0% { transform: translateX(100%); opacity: 0; }
+      60% { transform: translateX(-20px); opacity: 1; }
+      80% { transform: translateX(10px); }
+      100% { transform: translateX(0); opacity: 1; }
+    }
+  }
+  
+  // Slide up with bounce
+  @mixin slideUpBounce($duration: 1s, $delay: 0s) {
+    @include animation(slideUpBounce, $duration, ease-out, $delay);
+    @keyframes slideUpBounce {
+      0% { transform: translateY(100%); opacity: 0; }
+      60% { transform: translateY(-20px); opacity: 1; }
+      80% { transform: translateY(10px); }
+      100% { transform: translateY(0); opacity: 1; }
+    }
+  }
+  
+  // Slide down with bounce
+  @mixin slideDownBounce($duration: 1s, $delay: 0s) {
+    @include animation(slideDownBounce, $duration, ease-in-out, $delay);
+    @keyframes slideDownBounce {
+      0% { transform: translateY(-100%); opacity: 0; }
+      60% { transform: translateY(20px); opacity: 1; }
+      80% { transform: translateY(-10px); }
+      100% { transform: translateY(0); opacity: 1; }
+    }
+  }
+  
+  // Example usage:
+  .animation {
+    &.fade { @include fadeIn(1s); }
+    &.slide-left { @include slideInLeft(0.8s); }
+    &.slide-right { @include slideInRight(0.8s); }
+    &.bounce { @include bounce(1s); }
+    &.pulse { @include pulse(2s); }
+    &.rotate { @include rotate(2s, 0s, infinite); }
+    &.scale { @include scaleIn(0.8s); }
+    &.slide-up { @include slideUp(1s); }
+    &.shake { @include shake(0.5s); }
+    &.flip { @include flip(1.5s); }
+    &.wobble { @include wobble(1s); }
+    &.slide-out-left { @include slideOutLeft(0.8s); }
+    &.slide-out-right { @include slideOutRight(0.8s); }
+    &.slide-down { @include slideDown(0.8s); }
+    &.slide-left-bounce { @include slideInLeftBounce(1s); }
+    &.slide-right-bounce { @include slideInRightBounce(1s); }
+    &.slide-up-bounce { @include slideUpBounce(1s); }
+    &.slide-down-bounce { @include slideDownBounce(1s); }
+  }

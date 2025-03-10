@@ -3,10 +3,10 @@
       <img :src="logo" alt="logo">
       <img :src="randomVector" alt="vector" :srcset="randomVector">
       <span id="text-1">
-          Coming soon...
+          {{ $t('coming_soon') }}
       </span>
       <span id="text-2">
-          We're working on it!
+          {{$t('we_are_working_on_it')}}
       </span>
     </div>
   </template>
@@ -24,6 +24,7 @@
       setup() {
           return {
               logo,
+              $t: useI18nStore().i18n.global.t,
           }
       },
       computed: {

@@ -1,6 +1,9 @@
+import type { BackendMessageKeys } from "~/constants/types/LocalesType";
+
 export type ServerResponseType = {
+    service?: string;
     success: boolean;
-    message: string;
+    message: { key: BackendMessageKeys, text: string } | null;
     status: number;
     data: object | null;
 }

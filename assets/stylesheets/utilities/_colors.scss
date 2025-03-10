@@ -1,25 +1,42 @@
 $primaryColor: #0097b2;
 $secondaryColor: #44f1f1;
 
-$whiteColor: #F5F5F5;
+$whiteColor: #f5f5f5;
 $blackColor: #000000;
 
 // Background Colors
 $backgroundColor: $whiteColor;
-$surfaceColor: #EEEEEE;
+$surfaceColor: #eeeeee;
 
 // Text Colors
 $textPrimary: $blackColor;
 $textSecondary: #747474;
 
-$errorColor:#CE3F3F;
-$successColor:#1aa11d;
-$warningColor:#f9a700;
-$infoColor:#0658ff;
+$errorColor: #ce3f3f;
+$errorSecondary: #F3ECEC;
+
+$successColor: #1aa11d;
+
+$warningColor: #f9a700;
+$warningSecondary: #F5F1EA;
+$infoColor: #0658ff;
 
 // Disabled Colors
-$disabledColor:#CCCCCC;
+$disabledColor: #cccccc;
 // Divider Color
-$dividerColor : #BDBDBD;
+$dividerColor: #bdbdbd;
 // Shadows
-$shadowColor: #000
+$shadowColor: #000;
+
+@mixin box-shadow-1() {
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
+    rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+}
+@mixin box-shadow-2() {
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+}
+@mixin box-shadow-3() {
+  box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px,
+    rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+}

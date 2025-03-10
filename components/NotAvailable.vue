@@ -3,10 +3,10 @@
       <img :src="logo" alt="logo">
       <img :src="randomVector" alt="vector" :srcset="randomVector">
       <span id="text-1">
-        Please try again later.
+        {{ $t('please_try_again_later') }}
       </span>
       <span id="text-2å">
-        Service is temporarily unavailable
+        {{ $t('service_temporarily_unavailable') }}
       </span>
     </div>
   </template>
@@ -21,6 +21,7 @@
       setup() {
           return {
               logo,
+              $t: useI18nStore().i18n.global.t,
           }
       },
       computed: {

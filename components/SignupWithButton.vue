@@ -1,12 +1,3 @@
-<template>
-    <div :id="`signup-with-${platform}-button-component`" class="signup-with-button-component">
-        <button class="action-button flex-row-between-center hover-effect">
-            <img :src="platformLogos[platform]" :alt="platform" class="platform-logo">
-            <span>{{ $t('continue_with', {platform: capitalizeFirstLetter(platform)}) }}</span>
-            <div></div>
-        </button>
-    </div>
-</template>
 <script lang="ts">
 import apple from '~/assets/images/apple_logo.png'
 import facebook from '~/assets/images/facebook_logo.png'
@@ -19,7 +10,8 @@ export default defineComponent({
             platformLogos: {
                 apple,
                 facebook,
-                google
+                google,
+                $t: useI18nStore().i18n.global.t,
             }
         }
     },
@@ -31,6 +23,15 @@ export default defineComponent({
     }
 })
 </script>
+<template>
+    <div :id="`signup-with-${platform}-button-component`" class="signup-with-button-component">
+        <button class="action-button flex-row-between-center hover-effect">
+            <img :src="platformLogos[platform]" :alt="platform" class="platform-logo">
+            <span>{{ $t('continue_with', {platform: capitalizeFirstLetter(platform)}) }}</span>
+            <div></div>
+        </button>
+    </div>
+</template>
 <style lang="scss" scoped>
 div.signup-with-button-component {
     width: 100%;
