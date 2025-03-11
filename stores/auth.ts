@@ -1,6 +1,7 @@
 import { _UserService } from "~/services/user.service";
 import type { AuthStateType, LoginDataType } from "~/types/auth.types";
 import type { UserDataType } from "~/types/user.type";
+import {$availableRoutes} from "~/configs/routes.config";
 
 const model: AuthStateType = {
     loginData: {
@@ -49,18 +50,18 @@ export const useAuth = defineStore('auth', {
                 switch (error.message.key) {
                     case 'INVALID_TOKEN': {
                         this.resetAuth();
-                        useRouter().push(useRouteManagement().availableRoutes.login);
+                        useRouter().push($availableRoutes.login);
                         throw error;
                     }
                     case 'EMAIL_CONFIRM_REQUIRED': {
                         this.resetAuth();
-                        useRouter().push(useRouteManagement().availableRoutes.login);
+                        useRouter().push($availableRoutes.login);
                         this.emailConfirmRequired = true;
                         throw error;
                     }
                     default:
                         this.resetAuth();
-                        useRouter().push(useRouteManagement().availableRoutes.login);
+                        useRouter().push($availableRoutes.login);
                         throw error;
                 }
             }

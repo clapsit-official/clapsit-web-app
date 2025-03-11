@@ -53,19 +53,19 @@ import logoMobile from '~/assets/images/logo1.svg';
 import SignupWithButton from '~/components/SignupWithButton.vue';
 import DefaultButton from '~/components/DefaultButton.vue';
 import { useGetstarted } from '~/stores/getstarted';
+import {$availableRoutes} from "~/configs/routes.config";
 
 export default {
     name: "GetStartedPage",
     components: { SignupWithButton, DefaultButton },
     setup() {
         const { getBrandName } = useCoreAppStore();
-        const { availableRoutes } = useRouteManagement();
         return {
             store: useGetstarted(),
             logo,
             logoMobile,
             getBrandName,
-            availableRoutes,
+            availableRoutes: $availableRoutes,
             //@ts-ignore
             $t: useI18nStore().i18n.global.t,
         }
@@ -77,7 +77,7 @@ export default {
         },
         isLoading() {
             const { loadingList } = useQueryManager();
-            return loadingList.includes('register')
+            return loadingList.includes('register') || loadingList.includes('login')
         }
     }
 };

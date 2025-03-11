@@ -1,14 +1,14 @@
 <script lang="ts">
 import { useAuth } from '~/stores/auth';
+import {$availableRoutes} from "~/configs/routes.config";
 
 export default defineComponent({
     name: "RegisterForm",
     setup() {
         const { getBrandName } = useCoreAppStore();
-        const { availableRoutes } = useRouteManagement();
         return {
             getBrandName,
-            availableRoutes,
+            availableRoutes: $availableRoutes,
             store: useGetstarted(),
             //@ts-ignore
             $t: useI18nStore().i18n.global.t,
@@ -90,8 +90,7 @@ export default defineComponent({
             <button 
                 type="submit" 
                 class="black" 
-                :class="{'loading': isLoading}"
-                :disabled="!store.loginReadyForSubmit">
+                :class="{'loading': isLoading}">
                 {{ $t('pages.login.utilities.login') }}
             </button>
             <button 

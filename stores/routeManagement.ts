@@ -35,13 +35,6 @@ export const useRouteManagement = defineStore('routeManagement', {
             }
             return routeConfigs.default;
         },
-        availableRoutes() {
-            const obj: any = {};
-            Object.entries(routeConfigs).forEach(([key, value]) => {
-                if(value.key !== 'default') obj[value.key] = key;
-            });
-            return obj;
-        }
     },
     actions: {
         setRoutes(from: RouteLocationNormalizedGeneric, to: RouteLocationNormalizedGeneric) {
@@ -67,7 +60,7 @@ export const useRouteManagement = defineStore('routeManagement', {
                 useSeoMeta({
                     title: t(`pages.${this.config.key}.title`) + ` | ${useCoreAppStore().getBrandName}`,
                     description: t(`pages.${this.config.key}.description`, { brand: useCoreAppStore().getBrandName }),
-                    keywords: t(`pages.${this.config.key}.keywords`),
+                    keywords: `${useCoreAppStore().getBrandName}, ` + t(`pages.${this.config.key}.keywords`),
                     ogTitle: t(`pages.${this.config.key}.title`) + ` | ${useCoreAppStore().getBrandName}`,
                     ogDescription: t(`pages.${this.config.key}.description`, { brand: useCoreAppStore().getBrandName }),
                     ogImage: useCoreAppStore().getPublicLogo,

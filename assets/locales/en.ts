@@ -87,9 +87,9 @@ locales = {
     },
     pages: {
         default: {
-            title: "Home",
-            description: "Home page",
-            keywords: "Home, Main, index"
+            title: "Page",
+            description: "Page",
+            keywords: "index"
         },
         home: {
             title: "Home",
