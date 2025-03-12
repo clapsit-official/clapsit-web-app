@@ -1,10 +1,10 @@
 $desktop-font-size: 16px;
 $tablet-font-size: calc($desktop-font-size * 95 / 100);
-$mobile-font-size: calc($desktop-font-size * 85 / 100);
+$mobile-font-size: calc($desktop-font-size * 90 / 100);
 
 $desktop-height-limit: 98vh;
 $tablet-height-limit: 95vh;
-$mobile-height-limit: 90vh;
+$mobile-height-limit: 80vh;
 
 $desktop-width-limit: 99.5vw;
 $tablet-width-limit: 99.5vw;
