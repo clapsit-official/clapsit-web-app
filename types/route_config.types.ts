@@ -1,8 +1,10 @@
+import type {RouteLocationNormalizedGeneric} from "#vue-router";
+
 export type RouteConfigItemType = {
-    key: string;
+    key: string | null;
     layout: string | null;
     auth_required?: boolean;
-    middleware?: () => void;
+    middleware?: (from?: RouteLocationNormalizedGeneric, to?: RouteLocationNormalizedGeneric) => void;
 }
 
 export type RouteConfigsType = {

@@ -37,12 +37,15 @@
                 <signup-with-button platform="apple" />
                 <signup-with-button platform="google" />
                 <signup-with-button platform="facebook" />
-                <div class="flex-row-center" style="gap: 1rem;">
+                <div class="flex-row-center" style="gap: 1rem; margin-top: 2rem;">
                     <span class="divider"></span>
                     <span style="font-size: 1rem;"> {{ $t('or') }}</span>
                     <span class="divider"></span>
                 </div>
-                <default-button kind="main" label="Create Account" @click="() => useRouter().push(availableRoutes.register)"/>
+                <default-button
+                    kind="main"
+                    :label="$t('pages.getstarted.utilities.create_account')"
+                    @click="() => useRouter().push(availableRoutes.register)"/>
             </div>
         </section>
     </div>
@@ -53,19 +56,19 @@ import logoMobile from '~/assets/images/logo1.svg';
 import SignupWithButton from '~/components/SignupWithButton.vue';
 import DefaultButton from '~/components/DefaultButton.vue';
 import { useGetstarted } from '~/stores/getstarted';
+import {$availableRoutes} from "~/configs/routes.config";
 
 export default {
     name: "GetStartedPage",
     components: { SignupWithButton, DefaultButton },
     setup() {
         const { getBrandName } = useCoreAppStore();
-        const { availableRoutes } = useRouteManagement();
         return {
             store: useGetstarted(),
             logo,
             logoMobile,
             getBrandName,
-            availableRoutes,
+            availableRoutes: $availableRoutes,
             //@ts-ignore
             $t: useI18nStore().i18n.global.t,
         }
@@ -77,7 +80,7 @@ export default {
         },
         isLoading() {
             const { loadingList } = useQueryManager();
-            return loadingList.includes('register')
+            return loadingList.includes('register') || loadingList.includes('login')
         }
     }
 };

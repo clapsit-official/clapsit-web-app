@@ -1,12 +1,13 @@
 <script lang="ts">
+import {$availableRoutes} from "~/configs/routes.config";
+
 export default defineComponent({
     name: "RegisterForm",
     setup() {
         const { getBrandName } = useCoreAppStore();
-        const { availableRoutes } = useRouteManagement();
         return {
             getBrandName,
-            availableRoutes,
+            availableRoutes: $availableRoutes,
             store: useGetstarted(),
             //@ts-ignore
             $t: useI18nStore().i18n.global.t,
@@ -47,8 +48,7 @@ export default defineComponent({
             v-if="response && !response.success"
             :label="$t('error')"
             :message="$keyValidation({
-                success: ['USER_SUCCESSFULLY_REGISTERED'],
-                error: ['USER_REGISTRATION_FAILED', 'SOMETHING_WENT_WRONG'], 
+                error: ['USER_REGISTRATION_FAILED', 'SOMETHING_WENT_WRONG'],
                 warning: ['EMAIL_IS_EXIST', 'INVALID_FULLNAME', 'INVALID_PASSWORD']}, 
                 response)"/>
         <br/>
@@ -99,8 +99,7 @@ export default defineComponent({
             <button
                 type="submit"
                 class="black"
-                :class="{'loading': isLoading}"
-                :disabled="!store.registerReadyForSubmit">
+                :class="{'loading': isLoading}">
                 {{ $t('pages.register.utilities.create_account') }}
             </button>
             <button 

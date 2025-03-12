@@ -83,13 +83,14 @@ locales = {
         MODEL_IS_UNDEFINED: "Model field is required!",
         MODEL_IS_UNSUPPORTED: "Unsupported model!",
         KEY_NAME_IS_UNDEFINED: "Key name is required!",
-        EMAIL_CONFIRM_REQUIRED: "Email confirm required!"
+        EMAIL_CONFIRM_REQUIRED: "Email confirm required. Please check your email-box!",
+        NO_TOKEN: 'No token provided!'
     },
     pages: {
         default: {
-            title: "Home",
-            description: "Home page",
-            keywords: "Home, Main, index"
+            title: "Page",
+            description: "Page",
+            keywords: "index"
         },
         home: {
             title: "Home",
@@ -99,7 +100,10 @@ locales = {
         getstarted: {
             title: "Get started",
             description: "Welcome to {brand}!",
-            keywords: "Get started, Login, Logout, Sigin, Sign out, Sign up, Auth"
+            keywords: "Get started, Login, Logout, Sigin, Sign out, Sign up, Auth",
+            utilities: {
+                create_account: "Create Account",
+            }
         },
         login: {
             title: "Login",
@@ -123,6 +127,11 @@ locales = {
                 create_account: "Create Account",
                 already_have_account: "Already have an account?",
             }
+        },
+        userAccount: {
+            title: "Account",
+            description: "Your account on the {brand}",
+            keywords: "Account, Login"
         }
     }
 };

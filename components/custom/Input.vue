@@ -164,7 +164,7 @@ export default defineComponent({
         transition-duration: animations.$default_transition_duration_value;
 
         &::placeholder {
-            color: colors.$textSecondary
+            color: colors.$dividerColor
         }
     }
 
