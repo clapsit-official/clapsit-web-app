@@ -2,13 +2,22 @@
 import {defineComponent} from 'vue'
 
 export default defineComponent({
-  name: "Account"
+  name: "Account",
+  setup() {
+    return {
+      userDetails: useUser().getUserDetails
+    }
+  }
 })
 </script>
 
 <template>
   <div>
-    {{$route.params}}
+      <ul>
+        <li v-for="data in Object.keys(userDetails)">
+          {{data}}: <strong>{{userDetails[data] || '-'}}</strong>
+        </li>
+      </ul>
   </div>
 </template>
 

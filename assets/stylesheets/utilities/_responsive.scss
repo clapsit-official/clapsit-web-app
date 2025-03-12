@@ -1,21 +1,49 @@
-html#desktop-ap {
-    font-size: 22px;
-    .desktop-app-container {
-        max-height: 98vw;
+$desktop-font-size: 16px;
+$tablet-font-size: calc($desktop-font-size * 95 / 100);
+$mobile-font-size: calc($desktop-font-size * 85 / 100);
+
+$desktop-height-limit: 98vh;
+$tablet-height-limit: 95vh;
+$mobile-height-limit: 90vh;
+
+$desktop-width-limit: 99.5vw;
+$tablet-width-limit: 99.5vw;
+$mobile-width-limit: 100vw;
+
+html#desktop-ap { font-size: $desktop-font-size !important; }
+html#tablet-app { font-size: $tablet-font-size !important; }
+html#mobile-app { font-size: $mobile-font-size !important; }
+
+
+.desktop-app-container {
+    max-height: $desktop-height-limit;
+    max-width: $desktop-width-limit;
+    &.default-height {
+        height: $desktop-height-limit;
+    }
+    &.default-width {
+        width: $desktop-width-limit;
     }
 }
 
-html#tablet-app {
-    font-size: 20px;
-    .tablet-app-container {
-        max-height: 95vh;
+.tablet-app-container {
+    max-height: $tablet-height-limit;
+    max-width: $tablet-width-limit;
+    &.default-height {
+        height: $tablet-height-limit;
+    }
+    &.default-width {
+        width: $tablet-width-limit;
     }
 }
 
-html#mobile-app {
-    font-size: 16px;
-    .mobile-app-container {
-        max-height: 90vh;
+.mobile-app-container {
+    max-height: $mobile-height-limit;
+    max-width: $mobile-width-limit;
+    &.default-height {
+        height: $mobile-height-limit;
+    }
+    &.default-width {
+        width: $mobile-width-limit;
     }
 }
-

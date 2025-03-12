@@ -51,7 +51,8 @@ export type BackendMessageKeys =
     'MODEL_IS_UNDEFINED' |
     'MODEL_IS_UNSUPPORTED' |
     'KEY_NAME_IS_UNDEFINED' |
-    'EMAIL_CONFIRM_REQUIRED'
+    'EMAIL_CONFIRM_REQUIRED' |
+    'NO_TOKEN'
 
 export interface Buttons {
     search: LocaleType;

@@ -15,7 +15,7 @@ export function $keyValidation(validations: {
             if (value.includes(response.message.key)) {
                 result.push({
                     type: key,
-                    text: response.message?.text
+                    text: response.message?.text || response.message?.key
                 })
             }
         });

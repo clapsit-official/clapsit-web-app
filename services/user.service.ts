@@ -17,4 +17,9 @@ export const _UserService = {
             return await defineService('auth', () => $get('/user/auth'));
         }
     },
+    confirm_email: {
+        async get(params: {token: string}): Promise<ServerResponseType> {
+            return await defineService('confirm_email', () => $get('/user/confirm_email', {params}));
+        }
+    }
 }

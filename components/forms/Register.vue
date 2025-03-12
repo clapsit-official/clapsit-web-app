@@ -48,8 +48,7 @@ export default defineComponent({
             v-if="response && !response.success"
             :label="$t('error')"
             :message="$keyValidation({
-                success: ['USER_SUCCESSFULLY_REGISTERED'],
-                error: ['USER_REGISTRATION_FAILED', 'SOMETHING_WENT_WRONG'], 
+                error: ['USER_REGISTRATION_FAILED', 'SOMETHING_WENT_WRONG'],
                 warning: ['EMAIL_IS_EXIST', 'INVALID_FULLNAME', 'INVALID_PASSWORD']}, 
                 response)"/>
         <br/>

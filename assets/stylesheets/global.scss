@@ -4,6 +4,10 @@
   padding: 0;
 }
 
+html {
+  font-size: responsive.$desktop-font-size;
+}
+
 body {
   background-color: colors.$backgroundColor;
   color: colors.$textPrimary;

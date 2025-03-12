@@ -1,18 +1,19 @@
 import type {RouteConfigsType} from "~/types/route_config.types";
 
-export const routeConfigs: RouteConfigsType = {
-    default: {
-        key: 'default',
-        layout: null,
-    },
-}
-
 export const $availableRoutes = {
     home: "/",
     getstarted: "/getstarted",
     login: "/getstarted?view=login",
     register: "/getstarted?view=register",
-    user_account: "/account/user"
+    user_account: "/account/user",
+    confirm_email: "/confirm_email",
+}
+
+export const routeConfigs: RouteConfigsType = {
+    default: {
+        key: null,
+        layout: null,
+    },
 }
 
 routeConfigs[$availableRoutes.home] = {
@@ -53,4 +54,14 @@ routeConfigs[$availableRoutes.user_account] = {
     key: 'userAccount',
     layout: null,
     auth_required: true
+}
+
+routeConfigs[$availableRoutes.confirm_email] = {
+    key: null,
+    layout: null,
+    middleware: async () => {
+        if (useAuth().checkAuthCredentials()) {
+            await useRouter().push($availableRoutes.user_account);
+        }
+    }
 }

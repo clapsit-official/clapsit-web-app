@@ -97,6 +97,8 @@ export default defineComponent({
         flex-direction: column;
         gap: .3rem;
         .message-content {
+            text-align: center;
+            max-width: 12rem;
             color: colors.$textSecondary;
             font-size: .8rem;
         }

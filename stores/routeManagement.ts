@@ -58,7 +58,7 @@ export const useRouteManagement = defineStore('routeManagement', {
                 // @ts-ignore
                 const { t } = useI18nStore().i18n.global;
                 useSeoMeta({
-                    title: t(`pages.${this.config.key}.title`) + ` | ${useCoreAppStore().getBrandName}`,
+                    title: this.config.key ? t(`pages.${this.config.key}.title`) + ` | ${useCoreAppStore().getBrandName}` : useCoreAppStore().getBrandName,
                     description: t(`pages.${this.config.key}.description`, { brand: useCoreAppStore().getBrandName }),
                     keywords: `${useCoreAppStore().getBrandName}, ` + t(`pages.${this.config.key}.keywords`),
                     ogTitle: t(`pages.${this.config.key}.title`) + ` | ${useCoreAppStore().getBrandName}`,

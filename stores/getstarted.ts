@@ -17,11 +17,11 @@ const model: GetStartedType = {
 export const useGetstarted = defineStore('getstarted', {
     state: () => (deepCopy(model) as GetStartedType),
     getters: {
-        registerReadyForSubmit() {
+        registerReadyForSubmit(): boolean {
             //@ts-ignore
             return Object.values(this.register).every(item => item !== null);
         },
-        loginReadyForSubmit() {
+        loginReadyForSubmit(): boolean {
             //@ts-ignore
             return Object.values(this.login).every(item => item !== null);
         }

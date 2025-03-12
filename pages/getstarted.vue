@@ -37,12 +37,15 @@
                 <signup-with-button platform="apple" />
                 <signup-with-button platform="google" />
                 <signup-with-button platform="facebook" />
-                <div class="flex-row-center" style="gap: 1rem;">
+                <div class="flex-row-center" style="gap: 1rem; margin-top: 2rem;">
                     <span class="divider"></span>
                     <span style="font-size: 1rem;"> {{ $t('or') }}</span>
                     <span class="divider"></span>
                 </div>
-                <default-button kind="main" label="Create Account" @click="() => useRouter().push(availableRoutes.register)"/>
+                <default-button
+                    kind="main"
+                    :label="$t('pages.getstarted.utilities.create_account')"
+                    @click="() => useRouter().push(availableRoutes.register)"/>
             </div>
         </section>
     </div>
