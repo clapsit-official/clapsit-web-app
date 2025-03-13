@@ -68,13 +68,12 @@ export default defineComponent({
     data() {
         return {
             colorUtilities,
-            focus: false as boolean
+            focus: false as boolean,
+            showPassword: false,
         }
     },
     computed: {
-        id() {
-            return `input_${generateUniqueId(5)}`
-        },
+        id() { return `input_${generateUniqueId(5)}` },
         minComputed() { return `${this.min}` },
         maxComputed() { return `${this.max}` },
         minLengthComputed() { return `${this.minlength}` },
@@ -95,6 +94,12 @@ export default defineComponent({
                 return this.message.type;
             }
             return null;
+        },
+        typeComputed() {
+            if(this.showPassword) {
+                return 'text';
+            }
+            return this.type;
         }
     },
     methods: {
@@ -105,108 +110,127 @@ export default defineComponent({
 });
 </script>
 <template>
-    <div class="custom-input-component" :class="{ 'focused': focus, 'disabled': disabled }">
-        <label 
-            :for="id" 
-            v-if="label" 
-            class="input-label">
-            <div v-if="icon">
-                <icon-component :icon-name="icon" :fill="focus" icon-size=".9rem" />
+    <div class="custom-input-component flex-row-center" :class="{ 'focused': focus, 'disabled': disabled }">
+        <div class="left-side"></div>
+        <div class="main">
+            <label 
+                :for="id" 
+                v-if="label" 
+                class="input-label">
+                <div v-if="icon">
+                    <icon-component :icon-name="icon" :fill="focus" icon-size=".9rem" />
+                </div>
+                <span class="message">
+                    {{ label }}
+                </span>
+            </label>
+            <input 
+                :id="id" 
+                :type="typeComputed" 
+                :name="name" 
+                :disabled="disabled" 
+                :required="required" 
+                :aria-label="label"
+                :title="title"
+                :class="`${status}-effect`"
+                :min="minComputed" 
+                :max="maxComputed" 
+                :minlength="minLengthComputed"
+                :maxlength="maxLengthComputed" 
+                :autocomplete="autocomplete" 
+                :placeholder="placeholder"
+                @focusin="setFocus(true)" 
+                @focusout="setFocus(false)" 
+                v-model="modelComputed"/>
+            <label :for="id" v-if="message" class="input-message">
+                <div v-if="message.text && message.type">
+                    <icon-component :icon-name="message.type" icon-size=".9rem"
+                        :color="colorUtilities[`$${message.type}Color`]" />
+                </div>
+                <span class="message" v-if="message.text">
+                    {{ message.text }}
+                </span>
+            </label>
+            <div style="height: 10px;" v-else></div>
+        </div>
+        <div class="right-side">
+            <div class="icon-area">
+                <icon-component 
+                    v-if="type === 'password'"
+                    @click="showPassword = !showPassword"
+                    class="hover-effect"
+                    icon-size="1.5rem"
+                    :icon-name="showPassword ? 'visibility_off' : 'visibility'"/>
             </div>
-            <span class="message">
-                {{ label }}
-            </span>
-        </label>
-        <input 
-            :id="id" 
-            :type="type" 
-            :name="name" 
-            :disabled="disabled" 
-            :required="required" 
-            :aria-label="label"
-            :title="title"
-            :class="`${status}-effect`"
-            :min="minComputed" 
-            :max="maxComputed" 
-            :minlength="minLengthComputed"
-            :maxlength="maxLengthComputed" 
-            :autocomplete="autocomplete" 
-            :placeholder="placeholder"
-            @focusin="setFocus(true)" 
-            @focusout="setFocus(false)" 
-            v-model="modelComputed"/>
-        <label :for="id" v-if="message" class="input-message">
-            <div v-if="message.text && message.type">
-                <icon-component :icon-name="message.type" icon-size=".9rem"
-                    :color="colorUtilities[`$${message.type}Color`]" />
-            </div>
-            <span class="message" v-if="message.text">
-                {{ message.text }}
-            </span>
-        </label>
-        <div style="height: 10px;" v-else></div>
+        </div>
     </div>
 </template>
 <style lang="scss" scoped>
 .custom-input-component {
-    width: 100%;
-
-    input {
-        $padding-value: 1rem;
-        width: calc(100% - (2 * $padding-value) - 1px);
-        max-width: 600px;
-        height: 35px;
-        border-radius: 10px;
-        border: 1px solid colors.$textSecondary;
-        padding: .2rem 1rem;
-        font-size: 1rem;
-        outline: none;
-        transition-duration: animations.$default_transition_duration_value;
-
-        &::placeholder {
-            color: colors.$dividerColor
-        }
-    }
-
-    label {
-        cursor: pointer;
-        position: relative;
-        left: 3px;
-    }
-
-    label.input-label {
-        font-size: .7rem;
-        font-weight: 500;
-        color: colors.$textSecondary;
-
-        div {
-            display: inline;
-        }
-
-        span {
-            position: relative;
-            top: -3px;
-            display: inline;
-            margin-left: 3px;
-        }
-    }
-
-    label.input-message {
-        font-size: .6rem;
-        font-weight: 400;
+    .main {
         width: 100%;
-        gap: 0px;
 
-        div {
-            display: inline;
+        input {
+            $padding-value: 1rem;
+            width: calc(100% - (2 * $padding-value) - 1px);
+            max-width: 600px;
+            height: 35px;
+            border-radius: 10px;
+            border: 1px solid colors.$textSecondary;
+            padding: .2rem 1rem;
+            font-size: 1rem;
+            outline: none;
+            transition-duration: animations.$default_transition_duration_value;
+
+            &::placeholder {
+                color: colors.$dividerColor
+            }
         }
 
-        span {
+        label {
+            cursor: pointer;
             position: relative;
-            top: -4px;
-            display: inline;
-            margin-left: 3px;
+            left: 3px;
         }
+
+        label.input-label {
+            font-size: .7rem;
+            font-weight: 500;
+            color: colors.$textSecondary;
+
+            div {
+                display: inline;
+            }
+
+            span {
+                position: relative;
+                top: -3px;
+                display: inline;
+                margin-left: 3px;
+            }
+        }
+
+        label.input-message {
+            font-size: .6rem;
+            font-weight: 400;
+            width: 100%;
+            gap: 0px;
+
+            div {
+                display: inline;
+            }
+
+            span {
+                position: relative;
+                top: -4px;
+                display: inline;
+                margin-left: 3px;
+            }
+        }
+    }
+    .left-side,
+    .right-side {
+        width: 0;
     }
 
     &.focused {
