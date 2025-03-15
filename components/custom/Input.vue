@@ -24,6 +24,12 @@ export default defineComponent({
         icon: {
             type: String as PropType<IconsTypes>,
         },
+        leftIcon: {
+          type: String as PropType<IconsTypes>,
+        },
+        rightIcon: {
+          type: String as PropType<IconsTypes>,
+        },
         type: {
             type: String as PropType<'text' | 'password' | 'email' | 'number'>,
             default: () => 'text'
@@ -100,154 +106,233 @@ export default defineComponent({
                 return 'text';
             }
             return this.type;
+        },
+        leftIconComputed() {
+          if(this.leftIcon) return this.leftIcon;
+          return null
+        },
+        rightIconComputed(): IconsTypes | null {
+          if(this.type === 'password') {
+            if(this.showPassword) {
+              return 'visibility_off';
+            }
+            return 'visibility';
+          }
+          if(this.rightIcon) return this.rightIcon;
+          return null;
         }
     },
     methods: {
         setFocus(value: boolean) {
             this.focus = value;
-        }
-    }
+        },
+        leftIconAction(event: Event) {
+          this.$emit('clickLeftIcon', event)
+        },
+        rightIconAction(event: Event) {
+          if(this.type === 'password') {
+            this.showPassword = !this.showPassword;
+          } else {
+            this.$emit('clickRightIcon', event)
+          }
+        },
+    },
+    emits: ['clickLeftIcon', 'clickRightIcon', 'update:modelValue'],
 });
 </script>
 <template>
-    <div class="custom-input-component flex-row-center" :class="{ 'focused': focus, 'disabled': disabled }">
-        <div class="left-side"></div>
-        <div class="main">
-            <label 
-                :for="id" 
-                v-if="label" 
-                class="input-label">
-                <div v-if="icon">
-                    <icon-component :icon-name="icon" :fill="focus" icon-size=".9rem" />
-                </div>
-                <span class="message">
+    <div class="custom-input-component" :class="{ 'focused': focus, 'disabled': disabled }">
+      <div class="input-area__top" v-if="label">
+        <label
+            :for="id"
+            class="input-label">
+          <div v-if="icon">
+            <icon-component
+                :icon-name="icon"
+                :fill="focus"
+                :color="focus ? colorUtilities.$textPrimary : colorUtilities.$textSecondary"
+                icon-size=".9rem" />
+          </div>
+          <span class="message">
                     {{ label }}
                 </span>
-            </label>
-            <input 
-                :id="id" 
-                :type="typeComputed" 
-                :name="name" 
-                :disabled="disabled" 
-                :required="required" 
-                :aria-label="label"
-                :title="title"
-                :class="`${status}-effect`"
-                :min="minComputed" 
-                :max="maxComputed" 
-                :minlength="minLengthComputed"
-                :maxlength="maxLengthComputed" 
-                :autocomplete="autocomplete" 
-                :placeholder="placeholder"
-                @focusin="setFocus(true)" 
-                @focusout="setFocus(false)" 
-                v-model="modelComputed"/>
-            <label :for="id" v-if="message" class="input-message">
-                <div v-if="message.text && message.type">
-                    <icon-component :icon-name="message.type" icon-size=".9rem"
-                        :color="colorUtilities[`$${message.type}Color`]" />
-                </div>
-                <span class="message" v-if="message.text">
+        </label>
+      </div>
+      <div class="input-area__center" :class="`${status}-effect`">
+        <div class="input-area__left" v-if="leftIconComputed">
+          <icon-component
+              @click="leftIconAction"
+              class="hover-effect"
+              icon-size="1.5rem"
+              :icon-name="leftIconComputed"/>
+        </div>
+        <div class="input-area__main">
+          <input
+              :id="id"
+              :type="typeComputed"
+              :name="name"
+              :disabled="disabled"
+              :required="required"
+              :aria-label="label"
+              :title="title"
+              :min="minComputed"
+              :class="`${status}-effect`"
+              :max="maxComputed"
+              :minlength="minLengthComputed"
+              :maxlength="maxLengthComputed"
+              :autocomplete="autocomplete"
+              :placeholder="placeholder"
+              @focusin="setFocus(true)"
+              @focusout="setFocus(false)"
+              v-model="modelComputed"/>
+        </div>
+        <div class="input-area__right" v-if="rightIconComputed">
+          <icon-component
+              @click="rightIconAction"
+              class="hover-effect"
+              icon-size="1.5rem"
+              :icon-name="rightIconComputed"/>
+        </div>
+      </div>
+      <div class="input-area__bottom">
+        <label :for="id" class="input-message"  v-if="message" >
+          <div v-if="message.text && message.type">
+            <icon-component
+                :icon-name="message.type"
+                icon-size="1.1rem"
+                :color="colorUtilities[`$${message.type}Color`]" />
+          </div>
+          <span class="message" v-if="message.text">
                     {{ message.text }}
                 </span>
-            </label>
-            <div style="height: 10px;" v-else></div>
-        </div>
-        <div class="right-side">
-            <div class="icon-area">
-                <icon-component 
-                    v-if="type === 'password'"
-                    @click="showPassword = !showPassword"
-                    class="hover-effect"
-                    icon-size="1.5rem"
-                    :icon-name="showPassword ? 'visibility_off' : 'visibility'"/>
-            </div>
-        </div>
+        </label>
+      </div>
     </div>
 </template>
 <style lang="scss" scoped>
+$input-component-height: 40px;
+$input-gap-value: .5rem;
+
 .custom-input-component {
-    .main {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 600px;
+  margin: $input-gap-value 0;
+  transition-duration: animations.$default_transition_duration_value;
+
+  & > div {
+    transition-duration: animations.$default_transition_duration_value;
+    width: 100%;
+    & > label {
+      cursor: pointer;
+      position: relative;
+      left: 3px;
+    }
+  }
+
+  .input-area__top {
+    display: block;
+    label {
+      font-size: .7rem;
+      font-weight: 500;
+      color: colors.$textSecondary;
+      div {
+        display: inline;
+      }
+
+      span {
+        position: relative;
+        top: -3px;
+        display: inline;
+        margin-left: 3px;
+      }
+    }
+  }
+
+  .input-area__center {
+    display: flex;
+    border-radius: 7px;
+    border: 1px solid colors.$textSecondary;
+    height: 100%;
+    overflow: hidden;
+    width: 100%;
+
+    & > div {
+      height: $input-component-height;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+
+    .input-area__left {
+      width: 10%;
+    }
+    .input-area__main {
+      min-width: 80%;
+      width: 100%;
+      input {
         width: 100%;
-
-        input {
-            $padding-value: 1rem;
-            width: calc(100% - (2 * $padding-value) - 1px);
-            max-width: 600px;
-            height: 35px;
-            border-radius: 10px;
-            border: 1px solid colors.$textSecondary;
-            padding: .2rem 1rem;
-            font-size: 1rem;
-            outline: none;
-            transition-duration: animations.$default_transition_duration_value;
-
-            &::placeholder {
-                color: colors.$dividerColor
-            }
+        height: $input-component-height;
+        font-size: 1rem;
+        outline: none;
+        transition-duration: animations.$default_transition_duration_value;
+        padding: 0 0 0 $input-gap-value;
+        border: none !important;
+        background: transparent;
+        &::placeholder {
+          color: colors.$dividerColor
         }
-
-        label {
-            cursor: pointer;
-            position: relative;
-            left: 3px;
-        }
-
-        label.input-label {
-            font-size: .7rem;
-            font-weight: 500;
-            color: colors.$textSecondary;
-
-            div {
-                display: inline;
-            }
-
-            span {
-                position: relative;
-                top: -3px;
-                display: inline;
-                margin-left: 3px;
-            }
-        }
-
-        label.input-message {
-            font-size: .6rem;
-            font-weight: 400;
-            width: 100%;
-            gap: 0px;
-
-            div {
-                display: inline;
-            }
-
-            span {
-                position: relative;
-                top: -4px;
-                display: inline;
-                margin-left: 3px;
-            }
-        }
+      }
     }
-    .left-side,
-    .right-side {
-        width: 0;
+    .input-area__right {
+      width: 10%;
+      padding: 0 $input-gap-value;
     }
+  }
 
-    &.focused {
-        input {
-            border-color: colors.$textPrimary;
-        }
+  .input-area__bottom {
+    display: block;
+    min-height: .2rem;
+    label.input-message {
+      font-size: .7rem;
+      font-weight: 400;
+      width: 100%;
+      position: relative;
+      top: 3px;
+      div {
+        display: inline;
+      }
 
-        label.input-label {
-            color: colors.$textPrimary;
-        }
+      span {
+        position: relative;
+        top: -5px;
+        display: inline;
+        margin-left: 3px;
+      }
     }
-    &.disabled {
-        opacity: .5;
-        cursor: not-allowed !important;
-        & * {
-            cursor: not-allowed !important;
-        }
+  }
+
+  &.focused {
+    .input-area__top {
+      label {
+        color: colors.$textPrimary;
+      }
     }
+  }
+
+  &.disabled {
+    opacity: .3;
+    & * {
+      cursor: not-allowed;
+    }
+    .input-area__left,
+    .input-area__right,
+    .input-area__center {
+      background-color: #ddd;
+    }
+  }
 }
+
 </style>

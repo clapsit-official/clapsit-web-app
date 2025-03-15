@@ -1,10 +1,11 @@
 import type { UserDataType } from "~/types/user.type";
 import {_UserService} from "~/services/user.service";
-import {$availableRoutes} from "~/configs/routes.config";
+import type {LoginFieldsType, RegisterFieldsType} from "~/types/getstarted.types";
 
 type UserStateType = {
     data: UserDataType
 }
+
 const model: UserStateType = {
     data: {
         user_id: null,
@@ -35,8 +36,23 @@ export const useUser = defineStore('user', {
         setUserData(data: UserDataType) {
             this.data = {...data};
         },
-        async confirmEmail(token: string) {
+        async registerQuery(register: RegisterFieldsType) {
+            return await _UserService.signup.post(register);
+        },
+        async loginInQuery(login: LoginFieldsType) {
+            return await _UserService.login.post(login);
+        },
+        async confirmEmailQuery(token: string) {
             return await _UserService.confirm_email.get({token});
+        },
+        async logoutQuery() {
+            return await _UserService.logout.get();
+        },
+        async logoutUser() {
+            await this.logoutQuery().then(() => {
+                useAuth().resetAuth();
+                window.location.reload();
+            });
         }
     }
-})
+});
