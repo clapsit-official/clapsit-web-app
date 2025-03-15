@@ -272,13 +272,13 @@ $input-gap-value: .5rem;
     .input-area__main {
       min-width: 80%;
       width: 100%;
+      padding: 0 $input-gap-value;
       input {
         width: 100%;
         height: $input-component-height;
         font-size: 1rem;
         outline: none;
         transition-duration: animations.$default_transition_duration_value;
-        padding: 0 0 0 $input-gap-value;
         border: none !important;
         background: transparent;
         &::placeholder {
