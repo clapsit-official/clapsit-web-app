@@ -15,6 +15,9 @@ locales = {
     greetings: 'Welcome to {brand}!',
     lets_get_started: "Let's get started!",
     or: 'or',
+    and: 'and',
+    not_found: 'Not Found!',
+    not_found_description: 'The page you are looking for does not exist or has been moved. Please check the URL and try again.',
     continue_with: 'Continue with {platform}',
     please_try_again_later: "Please try again later",
     service_temporarily_unavailable: "Service is temporarily unavailable",
@@ -103,6 +106,7 @@ locales = {
             keywords: "Get started, Login, Logout, Sigin, Sign out, Sign up, Auth",
             utilities: {
                 create_account: "Create Account",
+                login: "Login",
             }
         },
         login: {
@@ -112,8 +116,11 @@ locales = {
             utilities: {
                 create_account: "Create Account",
                 login: "Login",
+                login_title: "Login to {brand}!",
+                login_description: "To access your account securely.",
                 email_field: 'Email',
                 password_field: 'Password',
+                forgot_password: "Forgot password?",
             }
         },
         register: {
@@ -126,6 +133,11 @@ locales = {
                 fullname_field: 'Fullname',
                 create_account: "Create Account",
                 already_have_account: "Already have an account?",
+                i_accepted_the: "I accepted the",
+                terms_of_service: "Terms of Service",
+                privacy_policy: "Privacy Policy",
+                register_title: "Register for {brand}!",
+                register_description: "Join us by creating your account in just a few simple steps.",
             }
         },
         userAccount: {

@@ -1,6 +1,6 @@
 * {
   font-family: fonts.$font-family;
-  margin: 0 auto;
+  margin: 0;
   padding: 0;
 }
 
@@ -30,6 +30,10 @@ b {
   font-weight: bold;
 }
 
+a {
+  color: colors.$primaryColor;
+}
+
 // Auto complete styles
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
@@ -48,7 +52,7 @@ button {
   border-radius: 10px;
   border: 1px solid colors.$textSecondary;
   padding: 0.2rem 1rem;
-  margin: 15px 0;
+  margin: 12px 0;
   font-size: 1rem;
   transition-duration: animations.$default_transition_duration_value;
   cursor: pointer;

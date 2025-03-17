@@ -7,6 +7,16 @@ export default defineComponent({
     return {
       userDetails: useUser().getUserDetails
     }
+  },
+  computed: {
+    isLoading() {
+      return useQueryManager().loadingList.includes('auth') || useQueryManager().loadingList.includes('logout');
+    }
+  },
+  methods: {
+    async logout() {
+      await useUser().logoutUser();
+    }
   }
 })
 </script>
@@ -18,6 +28,9 @@ export default defineComponent({
           {{data}}: <strong>{{userDetails[data] || '-'}}</strong>
         </li>
       </ul>
+      <button class="black" style="width: 100px" @click="logout" :class="{'loading': isLoading}">
+        Logout
+      </button>
   </div>
 </template>
 

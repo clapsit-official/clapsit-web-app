@@ -28,7 +28,7 @@ export default defineComponent({
   async mounted() {
     if (this.token) {
       try {
-        this.response = await useUser().confirmEmail(this.token.toString());
+        this.response = await useUser().confirmEmailQuery(this.token.toString());
       } catch (error) {
         this.response = error
       }

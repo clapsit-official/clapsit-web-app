@@ -5,7 +5,7 @@
       <span id="text-1">
         {{ $t('please_try_again_later') }}
       </span>
-      <span id="text-2å">
+      <span id="text-2">
         {{ $t('service_temporarily_unavailable') }}
       </span>
     </div>

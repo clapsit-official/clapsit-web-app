@@ -7,6 +7,10 @@ export const $availableRoutes = {
     register: "/getstarted?view=register",
     user_account: "/account/user",
     confirm_email: "/confirm_email",
+    terms_of_service: '/terms_of_service',
+    privacy_policy: '/privacy_policy',
+    forgot_password: '/getstarted?view=forgot_password',
+    reset_password: '/reset_password',
 }
 
 export const routeConfigs: RouteConfigsType = {

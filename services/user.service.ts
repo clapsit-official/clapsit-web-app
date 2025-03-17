@@ -21,5 +21,10 @@ export const _UserService = {
         async get(params: {token: string}): Promise<ServerResponseType> {
             return await defineService('confirm_email', () => $get('/user/confirm_email', {params}));
         }
-    }
+    },
+    logout: {
+        async get(): Promise<ServerResponseType> {
+            return await defineService('logout', () => $get('/user/logout'));
+        }
+    },
 }

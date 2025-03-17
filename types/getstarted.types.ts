@@ -7,6 +7,7 @@ export type RegisterFieldsType = {
     fullname?: string | null,
     email?: string | null ,
     password?: string | null
+    acceptTerms: boolean;
 }
 
 export type GetStartedType = {

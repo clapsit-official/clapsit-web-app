@@ -1,4 +1,3 @@
-import { _UserService } from "~/services/user.service";
 import type { GetStartedType } from "~/types/getstarted.types";
 import { useAuth } from "./auth";
 
@@ -11,7 +10,8 @@ const model: GetStartedType = {
     register: {
         fullname: null,
         email: null,
-        password: null
+        password: null,
+        acceptTerms: false,
     }
 }
 export const useGetstarted = defineStore('getstarted', {
@@ -28,11 +28,11 @@ export const useGetstarted = defineStore('getstarted', {
     },
     actions: {
         async createAccount() {
-            return await _UserService.signup.post(this.register);
+            return await useUser().registerQuery(this.register);
         },
         async loginIn() {
             useAuth().resetAuth();
-            return await _UserService.login.post(this.login);
+            return await useUser().loginInQuery(this.login);
         },
         passToLogin() {
             this.login.email = deepCopy(this.register.email);
