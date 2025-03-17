@@ -1,16 +1,17 @@
 <script lang="ts">
 import { useAuth } from '~/stores/auth';
 import {$availableRoutes} from "~/configs/routes.config";
+import colorUtilities from '~/constants/colorUtilities';
 
 export default defineComponent({
-    name: "RegisterForm",
+    name: "LoginForm",
     setup() {
         const { getBrandName } = useCoreAppStore();
         return {
             getBrandName,
+            colorUtilities,
             availableRoutes: $availableRoutes,
             store: useGetstarted(),
-            //@ts-ignore
             $t: useI18nStore().i18n.global.t,
         }
     },
@@ -22,7 +23,7 @@ export default defineComponent({
     computed: {
         isLoading() {
             const { loadingList } = useQueryManager();
-            return loadingList.includes('login')
+            return loadingList.includes('login');
         },
     },
     methods: {
@@ -55,9 +56,14 @@ export default defineComponent({
                 warning: ['INVALID_EMAIL', 'INVALID_PASSWORD']
             }, response)"/>
         <br/>
-        <label for="login-form">
-            <h1>{{ $t('greetings', { brand: getBrandName }) }}</h1>
-            <span>{{ $t('lets_get_started') }}</span>
+        <label for="login-form" class="flex-row-start-center" style="gap: 15px">
+            <nuxt-link :to="availableRoutes.getstarted" class="hover-effect">
+                <icon-component icon-name="arrow_back" icon-size="30px"/>
+            </nuxt-link>
+            <div>
+                <span class="headline">{{ $t('pages.login.utilities.login_title', { brand: useCoreAppStore().getBrandName }) }}</span>
+                <span class="description">{{ $t('pages.login.utilities.login_description') }}</span>
+            </div>
         </label>
         <br/>
         <br/>
@@ -87,6 +93,15 @@ export default defineComponent({
                 :message="$keyValidation({error: ['INVALID_PASSWORD']}, response)"
                 required/>
             <br/>
+            <div class="flex-row-end-center">
+                <nuxt-link 
+                    :to="availableRoutes.forgot_password"
+                    :style="{color: colorUtilities.$textPrimary, fontSize: '0.9rem'}"
+                    class="hover-effect">
+                    {{ $t('pages.login.utilities.forgot_password') }}
+                </nuxt-link>
+            </div>
+            <br/>
             <button 
                 type="submit" 
                 class="black" 
@@ -103,3 +118,23 @@ export default defineComponent({
         </form>
     </section>
 </template>
+<style scoped lang="scss">
+#login-section {
+    label[for='login-form'] {
+        position: relative;
+        left: -2.8rem;
+        div {
+            display: flex;
+            flex-direction: column;
+            span.headline {
+                font-weight: bolder;
+                font-size: 1.5rem;
+            }
+            span.description {
+                color: colors.$textSecondary;
+                font-size: .9rem;
+            }
+        }
+    }
+}
+</style>

@@ -120,6 +120,9 @@ export default defineComponent({
           }
           if(this.rightIcon) return this.rightIcon;
           return null;
+        },
+        iconColor(){
+          return this.focus ? this.colorUtilities.$textPrimary : this.colorUtilities.$textSecondary
         }
     },
     methods: {
@@ -150,7 +153,7 @@ export default defineComponent({
             <icon-component
                 :icon-name="icon"
                 :fill="focus"
-                :color="focus ? colorUtilities.$textPrimary : colorUtilities.$textSecondary"
+                :color="iconColor"
                 icon-size=".9rem" />
           </div>
           <span class="message">
@@ -164,6 +167,7 @@ export default defineComponent({
               @click="leftIconAction"
               class="hover-effect"
               icon-size="1.5rem"
+              :color="iconColor"
               :icon-name="leftIconComputed"/>
         </div>
         <div class="input-area__main">
@@ -191,6 +195,7 @@ export default defineComponent({
               @click="rightIconAction"
               class="hover-effect"
               icon-size="1.5rem"
+              :color="iconColor"
               :icon-name="rightIconComputed"/>
         </div>
       </div>
@@ -257,6 +262,7 @@ $input-gap-value: .5rem;
     height: 100%;
     overflow: hidden;
     width: 100%;
+    background: #fff;
 
     & > div {
       height: $input-component-height;
@@ -319,6 +325,9 @@ $input-gap-value: .5rem;
       label {
         color: colors.$textPrimary;
       }
+    }
+    .input-area__center {
+      @include colors.box-shadow-1();
     }
   }
 

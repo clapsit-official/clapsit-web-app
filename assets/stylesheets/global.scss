@@ -1,6 +1,6 @@
 * {
   font-family: fonts.$font-family;
-  margin: 0 auto;
+  margin: 0;
   padding: 0;
 }
 
@@ -28,6 +28,10 @@ br,
 strong,
 b {
   font-weight: bold;
+}
+
+a {
+  color: colors.$primaryColor;
 }
 
 // Auto complete styles

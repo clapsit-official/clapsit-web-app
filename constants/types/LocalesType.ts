@@ -80,6 +80,9 @@ export interface LanguageContent {
     greetings: LocaleType;
     lets_get_started: LocaleType;
     or: LocaleType;
+    and: LocaleType;
+    not_found: LocaleType;
+    not_found_description: LocaleType;
     continue_with: LocaleType;
     please_try_again_later: LocaleType;
     service_temporarily_unavailable: LocaleType;

@@ -46,6 +46,10 @@
                     kind="main"
                     :label="$t('pages.getstarted.utilities.create_account')"
                     @click="() => useRouter().push(availableRoutes.register)"/>
+                <default-button
+                    kind="secondary"
+                    :label="$t('pages.getstarted.utilities.login')"
+                    @click="() => useRouter().push(availableRoutes.login)"/>
             </div>
         </section>
     </div>
@@ -69,7 +73,6 @@ export default {
             logoMobile,
             getBrandName,
             availableRoutes: $availableRoutes,
-            //@ts-ignore
             $t: useI18nStore().i18n.global.t,
         }
     },

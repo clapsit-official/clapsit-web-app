@@ -42,7 +42,7 @@ export default defineComponent({
 })
 </script>
 <template>
-    <section class="message-component flex-row-center" :class="`${message?.type}-effect`" v-if="show && message" @click="action">
+    <section class="message-component" :class="`${message?.type}-effect`" v-if="show && message" @click="action">
         <div class="icon-area" v-if="icon">
             <icon-component :icon-name="icon" icon-size="1.8rem" :color="colorUtilities[`$${icon}Color`]" fill />
         </div>
@@ -68,6 +68,10 @@ export default defineComponent({
     border: 1px solid #fff;
     background-color: #fff;
     transition-duration: animations.$default_transition_duration_value;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+
     @include colors.box-shadow-2();
     @include animations.shake(1s);
 
@@ -85,7 +89,6 @@ export default defineComponent({
 
     &:hover {
         @include colors.box-shadow-1();
-        scale: 1.05;
     }
 
     .icon-area {
@@ -109,8 +112,7 @@ export default defineComponent({
         flex-direction: column;
         align-items: flex-start;
         justify-content: flex-start;
-        height: 55px;
-        width: 10px;
+        height: 100%;
         & > * {
             cursor: pointer;
         }

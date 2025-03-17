@@ -10,7 +10,8 @@ const model: GetStartedType = {
     register: {
         fullname: null,
         email: null,
-        password: null
+        password: null,
+        acceptTerms: false,
     }
 }
 export const useGetstarted = defineStore('getstarted', {

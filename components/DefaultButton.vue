@@ -1,6 +1,6 @@
 <template>
     <div :id="`${kind}-button-component`" class="default-button-component">
-        <button class="action-button flex-row-between-center hover-effect">
+        <button class="action-button flex-between-center hover-effect">
             <span>{{ label }}</span>
         </button>
     </div>
