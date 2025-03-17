@@ -1,6 +1,6 @@
 import type { UserDataType } from "~/types/user.type";
 import {_UserService} from "~/services/user.service";
-import type {LoginFieldsType, RegisterFieldsType} from "~/types/getstarted.types";
+import type {ForgotPasswordFieldsType, LoginFieldsType, RegisterFieldsType} from "~/types/getstarted.types";
 
 type UserStateType = {
     data: UserDataType
@@ -53,6 +53,10 @@ export const useUser = defineStore('user', {
                 useAuth().resetAuth();
                 window.location.reload();
             });
+        },
+        async sendLinkForResetPasswordQuery(forgotPassword: ForgotPasswordFieldsType) {
+            return await _UserService.forgot_password.post(forgotPassword);
         }
+
     }
 });

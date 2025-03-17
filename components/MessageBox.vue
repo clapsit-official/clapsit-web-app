@@ -61,7 +61,6 @@ export default defineComponent({
 </template>
 <style lang="scss" scoped>
 .message-component {
-    width: 100%;
     min-height: 5rem;
     border-radius: .5rem;
     font-size: 1rem;
@@ -71,12 +70,15 @@ export default defineComponent({
     display: flex;
     align-items: center;
     justify-content: space-around;
-
+    margin: 1rem 0;
+    cursor: pointer;
+    
     @include colors.box-shadow-2();
     @include animations.shake(1s);
 
     label {
         font-weight: bold;
+        cursor: pointer;
     }
 
     &.error-effect {
@@ -99,8 +101,9 @@ export default defineComponent({
         display: flex;
         flex-direction: column;
         gap: .3rem;
+        padding: 1rem 0;
         .message-content {
-            text-align: center;
+            cursor: pointer;
             max-width: 12rem;
             color: colors.$textSecondary;
             font-size: .8rem;

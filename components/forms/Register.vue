@@ -101,6 +101,9 @@ export default defineComponent({
 </template>
 <style scoped lang="scss">
 #register-section {
+    & > * {
+        width: 100%;
+    }
     label[for='register-form'] {
         position: relative;
         left: -2.8rem;

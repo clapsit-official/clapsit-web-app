@@ -23,6 +23,7 @@ locales = {
     service_temporarily_unavailable: "Service is temporarily unavailable",
     coming_soon: "Coming soon...",
     we_are_working_on_it: "We're working on it!",
+    done: 'Done!',
     buttons: {
         search: "Search",
         filter: "Filter",
@@ -53,7 +54,7 @@ locales = {
         EMAIL_OR_PASSWORD_INCORRECT: 'Email or password incorrect!',
         LINK_EXPIRED: "Link expired!",
         PASSWORD_SUCCESSFULLY_CHANGED: "Password successfully changed!",
-        PASSWORD_RESET_LINK_WILL_SENT: "If your email address is registered in our system, we will send an email with password reset instructions. Please check your inbox and spam folder.",
+        PASSWORD_RESET_LINK_WILL_SENT: "If your email address is registered in our system, we will send email. Please check your inbox and spam folder.",
         USER_NOT_FOUND: 'User not found',
         AUTH_REQUIRED: 'Auth required',
         PARAM_REQUIRED: 'Param required',
@@ -121,6 +122,18 @@ locales = {
                 email_field: 'Email',
                 password_field: 'Password',
                 forgot_password: "Forgot password?",
+            }
+        },
+        forgot_password: {
+            title: "Login",
+            description: "Welcome to our secure login page! Here, you can access your personalized account by entering your credentials!",
+            keywords: "User authentication, Account access, Secure login and registration, Sign in or sign up, Create or log in to your account, Membership login and registration, Easy account access, Online account management, Login and registration portal, Secure user onboarding",
+            utilities: {
+                back_to_login: "Back To Login",
+                send_reset_link: "Send Reset Link",
+                forgot_password_title: "Please enter your email!",
+                forgot_password_description: "We'll send you a magic link to reset your password.",
+                email_field: 'Your Email',
             }
         },
         register: {

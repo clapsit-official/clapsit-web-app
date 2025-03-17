@@ -10,8 +10,13 @@ export type RegisterFieldsType = {
     acceptTerms: boolean;
 }
 
+export type ForgotPasswordFieldsType = {
+    email?: string | null 
+}
+
 export type GetStartedType = {
     loadingFor: string | null;
     login: LoginFieldsType;
     register: RegisterFieldsType;
+    forgotPassword: ForgotPasswordFieldsType;
 }

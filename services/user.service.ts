@@ -1,15 +1,15 @@
 import type { ServerResponseType } from "~/types/general.types";
-import type { LoginFieldsType, RegisterFieldsType } from "~/types/getstarted.types";
+import type { ForgotPasswordFieldsType, LoginFieldsType, RegisterFieldsType } from "~/types/getstarted.types";
 
 export const _UserService = {
     signup: {
         async post(data: RegisterFieldsType): Promise<ServerResponseType> {
-            return await defineService('register', () => $post('/user/signup', {data}));
+            return await defineService('register', () => $post('/user/signup', { data }));
         }
     },
     login: {
         async post(data: LoginFieldsType): Promise<ServerResponseType> {
-            return await defineService('login', () => $post('/user/login', {data}));
+            return await defineService('login', () => $post('/user/login', { data }));
         }
     },
     auth: {
@@ -18,8 +18,8 @@ export const _UserService = {
         }
     },
     confirm_email: {
-        async get(params: {token: string}): Promise<ServerResponseType> {
-            return await defineService('confirm_email', () => $get('/user/confirm_email', {params}));
+        async get(params: { token: string }): Promise<ServerResponseType> {
+            return await defineService('confirm_email', () => $get('/user/confirm_email', { params }));
         }
     },
     logout: {
@@ -27,4 +27,9 @@ export const _UserService = {
             return await defineService('logout', () => $get('/user/logout'));
         }
     },
+    forgot_password: {
+        async post(data: ForgotPasswordFieldsType ): Promise<ServerResponseType> {
+            return await defineService('forgot_password', () => $post('/user/forgot_password', { data }));
+        }
+    }
 }
