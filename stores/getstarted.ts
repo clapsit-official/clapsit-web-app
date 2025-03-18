@@ -12,6 +12,9 @@ const model: GetStartedType = {
         email: null,
         password: null,
         acceptTerms: false,
+    },
+    forgotPassword: {
+        email: null
     }
 }
 export const useGetstarted = defineStore('getstarted', {
@@ -34,8 +37,11 @@ export const useGetstarted = defineStore('getstarted', {
             useAuth().resetAuth();
             return await useUser().loginInQuery(this.login);
         },
+        async sendLinkForResetPassword() {
+            return await useUser().sendLinkForResetPasswordQuery(this.forgotPassword);
+        },
         passToLogin() {
-            this.login.email = deepCopy(this.register.email);
+            this.login.email = deepCopy(this.register.email || this.forgotPassword.email);
             this.reset(this.register);
         },
         passToRegister() {
@@ -45,5 +51,9 @@ export const useGetstarted = defineStore('getstarted', {
         reset(target: any) {
             Object.keys(target).forEach((key: string) => { target[key as keyof typeof target] = null });
         },
+        passToForgotPassword() {
+            this.forgotPassword.email = deepCopy(this.login.email);
+            this.reset(this.login);   
+        }
     }
 });

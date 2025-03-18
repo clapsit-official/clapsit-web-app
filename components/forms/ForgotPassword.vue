@@ -1,10 +1,9 @@
 <script lang="ts">
-import { useAuth } from '~/stores/auth';
 import {$availableRoutes} from "~/configs/routes.config";
 import colorUtilities from '~/constants/colorUtilities';
 
 export default defineComponent({
-    name: "LoginForm",
+    name: "ForgotPasswordForm",
     setup() {
         const { getBrandName } = useCoreAppStore();
         return {
@@ -23,18 +22,16 @@ export default defineComponent({
     computed: {
         isLoading() {
             const { loadingList } = useQueryManager();
-            return loadingList.includes('login');
+            return loadingList.includes('forgot_password');
         },
     },
     methods: {
         async submit() {
             this.response = null;
             try {
-                this.response = await this.store.loginIn();
+                this.response = await this.store.sendLinkForResetPassword();
                 if(this.response.success) {
-                    useAuth().setAuth(this.response.data);
-                    const authResponse = await useAuth().auth();
-                    window.location.href = this.availableRoutes.home;
+                    this.store.reset(this.store.forgotPassword);
                 }
             } catch(error) {
                 this.response = error
@@ -42,36 +39,38 @@ export default defineComponent({
         },
     },
     mounted() {
-        useGetstarted().passToLogin();
+        useGetstarted().passToForgotPassword();
     },
 })
 </script>
 <template>
-    <section id="login-section">
+    <section id="forgot_password-section">
         <message-box
-            v-if="response && !response.success"
-            :label="$t('error')"
+            v-if="response"
+            @action="() => useRouter().push(availableRoutes.login)"
+            :label="response.success ? $t('done') : $t('error')"
             :message="$keyValidation({
-                error: ['USER_LOGIN_PROGRESS_FAILED', 'EMAIL_OR_PASSWORD_INCORRECT', 'SOMETHING_WENT_WRONG', 'EMAIL_CONFIRM_REQUIRED'], 
-                warning: ['INVALID_EMAIL', 'INVALID_PASSWORD']
+                error: ['SOMETHING_WENT_WRONG'], 
+                warning: ['INVALID_EMAIL'], 
+                success: ['PASSWORD_RESET_LINK_WILL_SENT']
             }, response)"/>
         <br/>
-        <label for="login-form" class="flex-row-start-center" style="gap: 15px">
+        <label for="forgot_password-form" class="flex-row-start-center" style="gap: 15px">
             <nuxt-link :to="availableRoutes.getstarted" class="hover-effect">
                 <icon-component icon-name="arrow_back" icon-size="30px"/>
             </nuxt-link>
             <div>
-                <span class="headline">{{ $t('pages.login.utilities.login_title', { brand: useCoreAppStore().getBrandName }) }}</span>
-                <span class="description">{{ $t('pages.login.utilities.login_description') }}</span>
+                <span class="headline">{{ $t('pages.forgot_password.utilities.forgot_password_title', { brand: useCoreAppStore().getBrandName }) }}</span>
+                <span class="description">{{ $t('pages.forgot_password.utilities.forgot_password_description') }}</span>
             </div>
         </label>
         <br/>
         <br/>
-        <form id="login-form" @submit.prevent="submit">
+        <form id="forgot_password-form" @submit.prevent="submit">
             <custom-input 
-                v-model="store.login.email"
+                v-model="store.forgotPassword.email"
                 type="email"
-                :label="$t('pages.login.utilities.email_field')" 
+                :label="$t('pages.forgot_password.utilities.email_field')" 
                 placeholder="example@email.com"
                 autocomplete="email"
                 icon="alternate_email"
@@ -80,50 +79,29 @@ export default defineComponent({
                 :maxlength="255"
                 :message="$keyValidation({error: ['INVALID_EMAIL']}, response)"
                 required/>
-            <custom-input 
-                v-model="store.login.password"
-                type="password"
-                :label="$t('pages.login.utilities.password_field')" 
-                autocomplete="current-password"
-                name="newpassword"
-                placeholder="••••••••••"
-                icon="lock"
-                :disabled="isLoading"
-                :maxlength="255"
-                :message="$keyValidation({error: ['INVALID_PASSWORD']}, response)"
-                required/>
-            <br/>
-            <div class="flex-row-end-center">
-                <nuxt-link 
-                    :to="availableRoutes.forgot_password"
-                    :style="{color: colorUtilities.$textPrimary, fontSize: '0.9rem'}"
-                    class="hover-effect">
-                    {{ $t('pages.login.utilities.forgot_password') }}
-                </nuxt-link>
-            </div>
             <br/>
             <button 
                 type="submit" 
                 class="black" 
                 :class="{'loading': isLoading}">
-                {{ $t('pages.login.utilities.login') }}
+                {{ $t('pages.forgot_password.utilities.send_reset_link') }}
             </button>
             <button 
                 type="button" 
                 class="white" 
                 :disabled="isLoading"
-                @click="() => useRouter().push(availableRoutes.register)">
-                {{ $t('pages.login.utilities.create_account') }}
+                @click="() => useRouter().push(availableRoutes.login)">
+                {{ $t('pages.forgot_password.utilities.back_to_login') }}
             </button>
         </form>
     </section>
 </template>
 <style scoped lang="scss">
-#login-section {
+#forgot_password-section {
     & > * {
         width: 100%;
     }
-    label[for='login-form'] {
+    label[for='forgot_password-form'] {
         position: relative;
         left: -2.8rem;
         div {

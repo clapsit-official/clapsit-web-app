@@ -46,13 +46,9 @@ export default defineComponent({
   <div id="confirm-email-page" class="flex-column-center default-height default-width">
     <loading-screen v-if="isLoading && !response"/>
     <div v-else-if="response" class="info-container">
-      <message-box
-          v-if="!response.success"
-          :label="$t('error')"
-          @action="() => useRouter().push($availableRoutes.home)"
-          :message="$keyValidation({
-            warning: [response.message.key]
-          }, response)"/>
+      <logo v-if="response.success"/>
+      <br/>
+      <LinkExpired v-if="!response.success"/>
       <message-box
           v-else
           :label="$t('backend_messages.DONE')"

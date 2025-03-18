@@ -5,7 +5,7 @@
   <div v-else class="flex-column-center" style="height: 90vh;">
     <h2>Error: {{ error.statusCode }}</h2>
     <p>{{ error.message }}</p>
-    <nuxt-link to="/">Go back to home</nuxt-link>
+    <BackToHomeButton/>
   </div>
 </template>
 

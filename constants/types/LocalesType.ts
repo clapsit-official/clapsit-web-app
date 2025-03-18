@@ -80,6 +80,10 @@ export interface LanguageContent {
     greetings: LocaleType;
     lets_get_started: LocaleType;
     or: LocaleType;
+    done: LocaleType;
+    back_to_home: LocaleType;
+    link_expired: LocaleType;
+    link_expired_description: LocaleType;
     and: LocaleType;
     not_found: LocaleType;
     not_found_description: LocaleType;
