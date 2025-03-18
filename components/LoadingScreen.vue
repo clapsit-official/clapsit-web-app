@@ -1,6 +1,6 @@
 <template>
   <div class="loading-screen flex-column-center">
-    <img :src="logo" alt="logo">
+    <logo/>
     <br>
     <br>
     <div class="flex-row-center">
@@ -9,21 +9,21 @@
     </div>
   </div>
 </template>
+
 <script lang="ts">
 import loadingGIF from '~/assets/gifs/loading2.gif';
-import logo from '~/assets/images/logo1.svg';
 
 export default defineComponent({
   name: "LoadingScreen",
   setup() {
     return {
       loadingGIF,
-      logo,
       $t: useI18nStore().i18n.global.t,
     }
   }
 });
 </script>
+
 <style scoped lang="scss">
 .loading-screen {
   position: fixed;

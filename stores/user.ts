@@ -45,6 +45,12 @@ export const useUser = defineStore('user', {
         async confirmEmailQuery(token: string) {
             return await _UserService.confirm_email.get({token});
         },
+        async checkResetPasswordTokenQuery(token: string) {
+            return await _UserService.reset_password.get({token});
+        },
+        async setNewPasswordQuery(token: string, new_password: string) {
+            return await _UserService.reset_password.post({token, new_password});
+        },
         async logoutQuery() {
             return await _UserService.logout.get();
         },

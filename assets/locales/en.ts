@@ -24,6 +24,9 @@ locales = {
     coming_soon: "Coming soon...",
     we_are_working_on_it: "We're working on it!",
     done: 'Done!',
+    back_to_home: "Back to home",
+    link_expired: "Link expired!",
+    link_expired_description: "This link has expired and is no longer valid. The event may have ended.",
     buttons: {
         search: "Search",
         filter: "Filter",
@@ -134,6 +137,21 @@ locales = {
                 forgot_password_title: "Please enter your email!",
                 forgot_password_description: "We'll send you a magic link to reset your password.",
                 email_field: 'Your Email',
+            }
+        },
+        reset_password: {
+            title: "Login",
+            description: "Welcome to our secure login page! Here, you can access your personalized account by entering your credentials!",
+            keywords: "User authentication, Account access, Secure login and registration, Sign in or sign up, Create or log in to your account, Membership login and registration, Easy account access, Online account management, Login and registration portal, Secure user onboarding",
+            utilities: {
+                back_to_login: "Back To Login",
+                send_reset_link: "Send Reset Link",
+                reset_password_title: "Reset your password!",
+                reset_password_description: "Create a new password for your account.",
+                new_password_field: 'New Password',
+                confirm_password_field: 'Confirm Password',
+                save: 'Save',
+                cancel: 'Cancel',
             }
         },
         register: {

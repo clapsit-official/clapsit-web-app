@@ -22,6 +22,14 @@ export const _UserService = {
             return await defineService('confirm_email', () => $get('/user/confirm_email', { params }));
         }
     },
+    reset_password: {
+        async get(params: { token: string }): Promise<ServerResponseType> {
+            return await defineService('check_reset_password_token', () => $get('/user/reset_password', { params }));
+        },
+        async post(data: {token: string | null, new_password: string | null} ): Promise<ServerResponseType> {
+            return await defineService('reset_password', () => $post('/user/reset_password', { data }));
+        }
+    },
     logout: {
         async get(): Promise<ServerResponseType> {
             return await defineService('logout', () => $get('/user/logout'));

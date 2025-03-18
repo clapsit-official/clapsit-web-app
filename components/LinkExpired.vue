@@ -1,29 +1,26 @@
 <template>
-    <div id="not-found-component" class="flex-column-center">
+    <div id="link-expired-component" class="flex-column-center">
         <div class="flex-column-center">
             <logo/>
             <br/>
             <img :src="randomVector" alt="vector" :srcset="randomVector">
             <span id="text-1">
-                {{ $t('not_found') }}
+                {{ $t('link_expired') }}
             </span>
             <span id="text-2">
-                {{ $t('not_found_description') }}
+                {{ $t('link_expired_description') }}
             </span>
             <BackToHomeButton/>
         </div>
     </div>
 </template>
 <script lang="ts">
-import vector1 from '~/assets/images/404 error with a landscape-amico.svg';
-import vector2 from '~/assets/images/404 error with a landscape-rafiki.svg';
-import vector3 from '~/assets/images/404 error with people holding the numbers-amico.svg';
-import vector4 from '~/assets/images/404 error with people holding the numbers-bro.svg';
-import vector5 from '~/assets/images/404 Error-amico.svg';
+import vector1 from '~/assets/images/No data-pana.svg';
+import vector2 from '~/assets/images/No data-cuate.svg';
 import { $availableRoutes } from '~/configs/routes.config';
 
 export default {
-    name: "NotFound",
+    name: "LinkExpired",
     setup() {
         return {
             $t: useI18nStore().i18n.global.t,
@@ -32,7 +29,7 @@ export default {
     },
     computed: {
         randomVector() {
-            const vectors = [vector1, vector2, vector3, vector4, vector5];
+            const vectors = [vector1, vector2];
             return vectors[getRandomBetween(0, vectors.length - 1)];
         }
     }
@@ -41,7 +38,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-#not-found-component {
+#link-expired-component {
     & > div {
         margin-top: 3rem;
     }
@@ -54,7 +51,7 @@ export default {
 
     img[alt='vector'] {
         max-width: 35rem;
-        max-height: 40vh;
+        max-height: 30vh;
         width: 70vw;
         padding: 2rem 0;
 
