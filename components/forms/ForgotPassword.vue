@@ -11,7 +11,6 @@ export default defineComponent({
             colorUtilities,
             availableRoutes: $availableRoutes,
             store: useGetstarted(),
-            $t: useI18nStore().i18n.global.t,
         }
     },
     data() {
@@ -60,8 +59,8 @@ export default defineComponent({
                 <icon-component icon-name="arrow_back" icon-size="30px"/>
             </nuxt-link>
             <div>
-                <span class="headline">{{ $t('pages.forgot_password.utilities.forgot_password_title', { brand: useCoreAppStore().getBrandName }) }}</span>
-                <span class="description">{{ $t('pages.forgot_password.utilities.forgot_password_description') }}</span>
+                <Text class="headline" locale="pages.forgot_password.utilities.forgot_password_title"/>
+                <Text class="description" locale="pages.forgot_password.utilities.forgot_password_description"/>
             </div>
         </label>
         <br/>
@@ -84,14 +83,14 @@ export default defineComponent({
                 type="submit" 
                 class="black" 
                 :class="{'loading': isLoading}">
-                {{ $t('pages.forgot_password.utilities.send_reset_link') }}
+                <Text locale="pages.forgot_password.utilities.send_reset_link"/>
             </button>
             <button 
                 type="button" 
                 class="white" 
                 :disabled="isLoading"
                 @click="() => useRouter().push(availableRoutes.login)">
-                {{ $t('pages.forgot_password.utilities.back_to_login') }}
+                <Text locale="pages.forgot_password.utilities.back_to_login"/>
             </button>
         </form>
     </section>
@@ -102,14 +101,14 @@ export default defineComponent({
         width: 100%;
     }
     label[for='forgot_password-form'] {
-        position: relative;
-        left: -2.8rem;
+        display: flex;
+        align-items: center;
         div {
             display: flex;
             flex-direction: column;
             span.headline {
                 font-weight: bolder;
-                font-size: 1.5rem;
+                font-size: 1.2rem;
             }
             span.description {
                 color: colors.$textSecondary;

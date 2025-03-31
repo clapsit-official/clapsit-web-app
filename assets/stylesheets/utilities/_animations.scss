@@ -232,7 +232,7 @@ $default_hover_opacity_value: 0.6;
     &.slide-left { @include slideInLeft(0.8s); }
     &.slide-right { @include slideInRight(0.8s); }
     &.bounce { @include bounce(1s); }
-    &.pulse { @include pulse(2s); }
+    &.pulse { @include pulse(.5s); }
     &.rotate { @include rotate(2s, 0s, infinite); }
     &.scale { @include scaleIn(0.8s); }
     &.slide-up { @include slideUp(1s); }

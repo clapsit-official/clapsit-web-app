@@ -9,7 +9,6 @@ export default defineComponent({
             getBrandName,
             availableRoutes: $availableRoutes,
             store: useGetstarted(),
-            $t: useI18nStore().i18n.global.t,
         }
     },
     data() {
@@ -54,8 +53,8 @@ export default defineComponent({
                 <icon-component icon-name="arrow_back" icon-size="30px"/>
             </nuxt-link>
             <div>
-                <span class="headline">{{ $t('pages.register.utilities.register_title', { brand: useCoreAppStore().getBrandName }) }}</span>
-                <span class="description">{{ $t('pages.register.utilities.register_description') }}</span>
+                <Text class="headline" locale="pages.register.utilities.register_title"/>
+                <Text class="description" locale="pages.register.utilities.register_description"/>
             </div>
         </label>
         <br />
@@ -75,26 +74,26 @@ export default defineComponent({
                 :message="$keyValidation({ error: ['INVALID_PASSWORD'] }, response)" required />
             <br />
             <custom-checkbox :disabled="isLoading" name="acceptTerms" required v-model="store.register.acceptTerms">
-                {{$t('pages.register.utilities.i_accepted_the')}}
+                <Text locale="pages.register.utilities.i_accepted_the"/>
                 <nuxt-link 
                     target="_blank"
                     :to="availableRoutes.terms_of_service">
-                    {{$t('pages.register.utilities.terms_of_service')}}
+                    <Text locale="pages.register.utilities.terms_of_service"/>
                 </nuxt-link>
-                {{$t('and')}}
+                <Text locale="and"/>
                 <nuxt-link 
                     target="_blank"
                     :to="availableRoutes.privacy_policy">
-                    {{$t('pages.register.utilities.privacy_policy')}}
+                   <Text locale="pages.register.utilities.privacy_policy"/>
                 </nuxt-link>    
             </custom-checkbox>
             <br>
             <button type="submit" class="black" :class="{ 'loading': isLoading }">
-                {{ $t('pages.register.utilities.create_account') }}
+                <Text locale="pages.register.utilities.create_account"/>
             </button>
             <button type="button" class="white" :disabled="isLoading"
                 @click="() => useRouter().push(availableRoutes.login)">
-                {{ $t('pages.register.utilities.already_have_account') }}
+                <Text locale="pages.register.utilities.already_have_account"/>
             </button>
         </form>
     </section>
@@ -105,14 +104,14 @@ export default defineComponent({
         width: 100%;
     }
     label[for='register-form'] {
-        position: relative;
-        left: -2.8rem;
+        display: flex;
+        align-items: center;
         div {
             display: flex;
             flex-direction: column;
             span.headline {
                 font-weight: bolder;
-                font-size: 1.5rem;
+                font-size: 1.2rem;
             }
             span.description {
                 color: colors.$textSecondary;

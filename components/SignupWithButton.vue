@@ -11,7 +11,6 @@ export default defineComponent({
                 apple,
                 facebook,
                 google,
-                $t: useI18nStore().i18n.global.t,
             }
         }
     },
@@ -27,7 +26,7 @@ export default defineComponent({
     <div :id="`signup-with-${platform}-button-component`" class="signup-with-button-component">
         <button class="action-button flex-row-between-center hover-effect">
             <img :src="platformLogos[platform]" :alt="platform" class="platform-logo">
-            <span>{{ $t('continue_with', {platform: capitalizeFirstLetter(platform)}) }}</span>
+            <Text locale="continue_with" :args=" {platform: capitalizeFirstLetter(platform)}"/>
             <div></div>
         </button>
     </div>

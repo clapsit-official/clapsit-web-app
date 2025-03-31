@@ -116,13 +116,23 @@ export function capitalizeFirstLetter(string) {
   return string;
 }
 
-export function getShortOfFullName(fullName) {
-  const names = fullName.split(" ");
-  let initials = "";
-  for (let i = 0; i < names.length && i < 2; i++) {
-    initials += names[i].charAt(0).toUpperCase();
+export function getShortOfFullName(name) {
+  const words = name.trim().split(/\s+/); // split by spaces
+  let initials = '';
+
+  if (words.length > 0) initials += words[0][0];
+  if (words.length > 1) initials += words[1][0];
+
+  return initials.toUpperCase();
+}
+
+export function parseFullname(fullname) {
+  const parsed = fullname.split(' ');
+  return {
+    first_name: parsed[0],
+    mid_name: parsed.length > 2 ? parsed[1] : null,
+    last_name: parsed[parsed.length - 1]
   }
-  return initials;
 }
 
 export function reverseObject(obj) {

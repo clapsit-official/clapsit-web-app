@@ -50,18 +50,18 @@ export const useAuth = defineStore('auth', {
                 switch (error.message.key) {
                     case 'INVALID_TOKEN': {
                         this.resetAuth();
-                        useRouter().push($availableRoutes.login);
+                        await useRouter().push($availableRoutes.login);
                         throw error;
                     }
                     case 'EMAIL_CONFIRM_REQUIRED': {
                         this.resetAuth();
-                        useRouter().push($availableRoutes.login);
+                        await useRouter().push($availableRoutes.login);
                         this.emailConfirmRequired = true;
                         throw error;
                     }
                     default:
                         this.resetAuth();
-                        useRouter().push($availableRoutes.login);
+                        await useRouter().push($availableRoutes.login);
                         throw error;
                 }
             }

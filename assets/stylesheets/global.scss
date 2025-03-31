@@ -32,6 +32,10 @@ b {
 
 a {
   color: colors.$primaryColor;
+  &.black {
+    color: colors.$textPrimary;
+    text-decoration: none;
+  }
 }
 
 // Auto complete styles
@@ -49,10 +53,10 @@ button {
   width: 100%;
   max-width: 600px;
   height: 45px;
-  border-radius: 10px;
+  border-radius: 8px;
   border: 1px solid colors.$textSecondary;
   padding: 0.2rem 1rem;
-  margin: 12px 0;
+  margin: 8px 0;
   font-size: 1rem;
   transition-duration: animations.$default_transition_duration_value;
   cursor: pointer;
@@ -87,13 +91,33 @@ button {
     }
   }
 
+  &.danger {
+    @include colors.box-shadow-2();
+    background-color: colors.$errorColor;
+    border-color: colors.$errorColor;
+    color: colors.$whiteColor;
+    font-weight: 500;
+    &.loading {
+      @include animations.buttonLoading(colors.$whiteColor);
+    }
+  }
+
+  &.ghost {
+    background-color: transparent;
+    padding: 0;
+    margin: 0;
+    height: 100%;
+    border: none;
+  }
+
   &:hover {
     opacity: 0.9;
   }
   &:active {
     @include colors.box-shadow-3();
   }
-  &.disabled, &:disabled {
+  &.disabled,
+  &:disabled {
     opacity: 0.1;
     cursor: not-allowed !important;
     & * {
@@ -101,8 +125,15 @@ button {
     }
   }
   &.loading {
+    @include animations.buttonLoading(colors.$blackColor);
     cursor: progress !important;
   }
+}
+
+.ellipsis {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .error-effect {
