@@ -25,8 +25,8 @@ export const useRouteManagement = defineStore('routeManagement', {
     }),
     getters: {
         config(state) {
-            if(state.to){
-                if(state.to.fullPath && routeConfigs[state.to.fullPath]){
+            if (state.to) {
+                if (state.to.fullPath && routeConfigs[state.to.fullPath]) {
                     return routeConfigs[state.to.fullPath];
                 }
                 if (state.to.path && routeConfigs[state.to.path]) {
@@ -54,8 +54,7 @@ export const useRouteManagement = defineStore('routeManagement', {
                 this.to.name = to.name;
                 this.to.params = to.params;
                 this.to.meta = to.meta;
-                
-                // @ts-ignore
+
                 const { t } = useI18nStore().i18n.global;
                 useSeoMeta({
                     title: this.config.key ? t(`pages.${this.config.key}.title`) + ` | ${useCoreAppStore().getBrandName}` : useCoreAppStore().getBrandName,
@@ -65,7 +64,11 @@ export const useRouteManagement = defineStore('routeManagement', {
                     ogDescription: t(`pages.${this.config.key}.description`, { brand: useCoreAppStore().getBrandName }),
                     ogImage: useCoreAppStore().getPublicLogo,
                     ogUrl: `${useCoreAppStore().getBrandDomain}${this.to.fullPath}`,
-                })
+                });
+                if (this.config.layout) {
+                    // @ts-ignore
+                    setPageLayout(this.config.layout);
+                }
             } catch (error: any) {
                 throw error;
             }

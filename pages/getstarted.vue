@@ -1,34 +1,26 @@
 <template>
     <div id="get-started-page">
         <section id="logo-area" class="flex-row-center" v-if="!showLogoForMobile">
-            <nuxt-link :to="availableRoutes.home" class="animation" :class="{'bounce': isLoading}">
-                <img :src="logo" alt="Logo" :srcset="logo">
-            </nuxt-link>
+            <logo size="500"/>
         </section>
         <section id="form-area" class="flex-row-center">
             <div id="login" class="static-container" v-if="$router.currentRoute.value.query['view'] === 'login'">
                 <div id="logo-area-mobile" class="flex-row-center" v-if="showLogoForMobile">
-                    <nuxt-link :to="availableRoutes.home" class="animation" :class="{'bounce': isLoading}">
-                        <img :src="logo" alt="Logo" :srcset="logoMobile">
-                    </nuxt-link>
+                    <logo size="70%" type="2"/>
                 </div>
                 <forms-login/>
             </div>
 
             <div id="register" class="static-container" v-else-if="$router.currentRoute.value.query['view'] === 'register'">
                 <div id="logo-area-mobile" class="flex-row-center" v-if="showLogoForMobile">
-                    <nuxt-link :to="availableRoutes.home">
-                        <img :src="logo" alt="Logo" :srcset="logoMobile">
-                    </nuxt-link>
+                    <logo size="70%" type="2"/>
                 </div>
                 <forms-register/>
             </div>
 
             <div id="forgot-password" class="static-container" v-else-if="$router.currentRoute.value.query['view'] === 'forgot_password'">
                 <div id="logo-area-mobile" class="flex-row-center" v-if="showLogoForMobile">
-                    <nuxt-link :to="availableRoutes.home" class="animation" :class="{'bounce': isLoading}">
-                        <img :src="logo" alt="Logo" :srcset="logoMobile">
-                    </nuxt-link>
+                    <logo size="70%" type="2"/>
                 </div>
                 <forms-forgot-password/>
             </div>
@@ -36,21 +28,19 @@
 
             <div id="getstarted" class="static-container" v-else>
                 <div id="logo-area-mobile" class="flex-row-center" v-if="showLogoForMobile">
-                    <nuxt-link :to="availableRoutes.home">
-                        <img :src="logo" alt="Logo" :srcset="logoMobile">
-                    </nuxt-link>
+                    <logo size="70%" type="2"/>
                 </div>
                 <br/>
                 <label>
-                    <h1>{{ $t('greetings', { brand: useCoreAppStore().getBrandName }) }}</h1>
-                    <span>{{ $t('lets_get_started') }}</span>
+                    <h1><Text locale="greetings"/></h1>
+                    <Text locale="lets_get_started"/>
                 </label>
                 <signup-with-button platform="apple" />
                 <signup-with-button platform="google" />
                 <signup-with-button platform="facebook" />
                 <div class="flex-row-center" style="gap: 1rem; margin-top: 2rem;">
                     <span class="divider"></span>
-                    <span style="font-size: 1rem;"> {{ $t('or') }}</span>
+                    <Text locale="or"/>
                     <span class="divider"></span>
                 </div>
                 <default-button
@@ -66,7 +56,7 @@
     </div>
 </template>
 <script lang="ts">
-import logo from '~/assets/images/logo2.svg';
+import logo from '~/assets/images/logo1.svg';
 import logoMobile from '~/assets/images/logo1.svg';
 import SignupWithButton from '~/components/SignupWithButton.vue';
 import DefaultButton from '~/components/DefaultButton.vue';
@@ -84,7 +74,6 @@ export default {
             logoMobile,
             getBrandName,
             availableRoutes: $availableRoutes,
-            $t: useI18nStore().i18n.global.t,
         }
     },
     computed: {
@@ -100,7 +89,11 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-div#get-started-page.desktop-app-container {
+#get-started-page {
+    background-color: colors.$backgroundColor;
+}
+
+.desktop-app-container > #get-started-page {
     width: 100vw;
     display: flex;
     &>section {
@@ -110,7 +103,7 @@ div#get-started-page.desktop-app-container {
 
     section#logo-area { 
         img {
-            width: 400px;
+            width: 500px;
         }
     }
     section#form-area {
@@ -128,7 +121,7 @@ div#get-started-page.desktop-app-container {
         }
     }
 }
-div#get-started-page.tablet-app-container {
+.tablet-app-container > #get-started-page {
     width: 100vw;
     height: 90vh;
     display: flex;
@@ -154,13 +147,14 @@ div#get-started-page.tablet-app-container {
         }
     }
 }
-div#get-started-page.mobile-app-container {
+.mobile-app-container > #get-started-page {
     width: 100vw;
     display: flex;
     flex-direction: column;
     align-items: center;
     margin: 3rem 0 15rem 0;
     #logo-area-mobile {
+        margin: 3rem 0;
         img {
             width: 50vw;
         }

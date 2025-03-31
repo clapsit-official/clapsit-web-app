@@ -17,7 +17,7 @@ export const useCoreAppStore = defineStore('app', {
             return `https://${state.brand}.com`;
         },
         getPublicLogo(state) {
-            return `https://${state.brand}.com/logo.png`;
+            return `https://${state.brand}.com/logo1.svg`;
         },
         getDeviceType(state): DeviceTypes {
             return state.deviceType;

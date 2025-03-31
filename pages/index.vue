@@ -1,3 +1,106 @@
 <template>
-    <ComingSoon/>
+  <div id="home-page" class="default-height">
+    <ComingSoon v-if="!ready" />
+    <div class="flex-column-center" v-else>
+      <div id="area-header" class="flex-column-center">
+        <h1>
+          <Text locale="say_hello_to" :args="{
+            name: parseFullname(useUser().getUserDetails.fullname).first_name
+          }" />
+        </h1>
+        <span class="description">Discover and create custom versions of Clapsit that combine instructions, extra
+          knowledge, and any combination of skills.</span>
+      </div>
+      <AssistantNavigation />
+    </div>
+  </div>
 </template>
+<script lang="ts">
+import { defineComponent } from 'vue'
+
+export default defineComponent({
+  name: "Home",
+  setup() {
+    return {
+      auth: useAuth()
+    }
+  },
+  computed: {
+    ready() {
+      return this.auth.checkAuthCredentials();
+    }
+  },
+  methods: {
+    async logout() {
+      await useUser().logoutUser();
+    }
+  },
+})
+</script>
+<style lang="scss" scoped>
+.desktop-app-container {
+  #home-page {
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+
+    div {
+      gap: 1rem;
+      margin: 1.5rem 0
+    }
+
+    #area-header {
+      width: 40rem;
+      text-align: center;
+      gap: 1rem;
+
+      span.description {
+        color: colors.$textSecondary;
+      }
+    }
+  }
+}
+
+.tablet-app-container {
+  #home-page {
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+    div {
+      gap: 1rem;
+      margin: 1.5rem 0
+    }
+
+    #area-header {
+      width: 35rem;
+      text-align: center;
+      gap: 1rem;
+
+      span.description {
+        color: colors.$textSecondary;
+      }
+    }
+  }
+}
+.mobile-app-container {
+  #home-page {
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+    div {
+      gap: 1rem;
+      margin: 1.5rem 0
+    }
+
+    #area-header {
+      width: 100%;
+      text-align: center;
+      gap: 1rem;
+
+      span.description {
+        color: colors.$textSecondary;
+      }
+    }
+  }
+}
+</style>

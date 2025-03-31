@@ -1,13 +1,13 @@
-$desktop-font-size: 16px;
+$desktop-font-size: 15px;
 $tablet-font-size: calc($desktop-font-size * 95 / 100);
 $mobile-font-size: calc($desktop-font-size * 90 / 100);
 
-$desktop-height-limit: 98vh;
-$tablet-height-limit: 95vh;
-$mobile-height-limit: 80vh;
+$desktop-height-limit: 100vh;
+$tablet-height-limit: 95.5vh;
+$mobile-height-limit: 91vh;
 
-$desktop-width-limit: 99.5vw;
-$tablet-width-limit: 99.5vw;
+$desktop-width-limit: 100vw;
+$tablet-width-limit: 100vw;
 $mobile-width-limit: 100vw;
 
 html#desktop-ap { font-size: $desktop-font-size !important; }
@@ -18,10 +18,17 @@ html#mobile-app { font-size: $mobile-font-size !important; }
 .desktop-app-container {
     max-height: $desktop-height-limit;
     max-width: $desktop-width-limit;
-    &.default-height {
+    
+    $width-limit: $desktop-width-limit;
+    $height-limit: $desktop-height-limit;
+    & > .default-height,
+    &.default-height,
+    .default-height {
         height: $desktop-height-limit;
     }
-    &.default-width {
+    & > .default-width,
+    &.default-width,
+    .default-width {
         width: $desktop-width-limit;
     }
 }
@@ -29,10 +36,17 @@ html#mobile-app { font-size: $mobile-font-size !important; }
 .tablet-app-container {
     max-height: $tablet-height-limit;
     max-width: $tablet-width-limit;
-    &.default-height {
+    
+    $width-limit: $tablet-width-limit;
+    $height-limit: $tablet-height-limit;
+    & > .default-height,
+    &.default-height,
+    .default-height {
         height: $tablet-height-limit;
     }
-    &.default-width {
+    & > .default-width,
+    &.default-width,
+    .default-width {
         width: $tablet-width-limit;
     }
 }
@@ -40,10 +54,17 @@ html#mobile-app { font-size: $mobile-font-size !important; }
 .mobile-app-container {
     max-height: $mobile-height-limit;
     max-width: $mobile-width-limit;
-    &.default-height {
+    
+    $width-limit: $mobile-width-limit;
+    $height-limit: $mobile-height-limit;
+    & > .default-height,
+    &.default-height,
+    .default-height {
         height: $mobile-height-limit;
     }
-    &.default-width {
+    & > .default-width,
+    &.default-width,
+    .default-width {
         width: $mobile-width-limit;
     }
 }

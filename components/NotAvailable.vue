@@ -3,25 +3,20 @@
         <logo />
         <img :src="randomVector" alt="vector" :srcset="randomVector">
         <span id="text-1">
-            {{ $t('please_try_again_later') }}
+            <Text locale="please_try_again_later"/>            
         </span>
         <span id="text-2">
-            {{ $t('service_temporarily_unavailable') }}
+            <Text locale="service_temporarily_unavailable"/>
         </span>
     </div>
 </template>
 <script lang="ts">
-import vector1 from '~/assets/images/503 Error Service Unavailable-bro.svg';
-import vector2 from '~/assets/images/503 Error Service Unavailable-cuate.svg';
-import vector3 from '~/assets/images/503 Error Service Unavailable-pana.svg';
+import vector1 from 'assets/images/vectors/503 Error Service Unavailable-bro.svg';
+import vector2 from 'assets/images/vectors/503 Error Service Unavailable-cuate.svg';
+import vector3 from 'assets/images/vectors/503 Error Service Unavailable-pana.svg';
 
 export default {
     name: "NotAvailable",
-    setup() {
-        return {
-            $t: useI18nStore().i18n.global.t,
-        }
-    },
     computed: {
         randomVector() {
             const vectors = [vector1, vector2, vector3]

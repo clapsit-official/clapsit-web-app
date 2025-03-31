@@ -9,4 +9,4 @@ export type ServerResponseType = {
 }
 
 export type QueryMethods = 'GET' | 'POST' | 'PUT' | 'DELETE' | 'PATCH';
-export type DeviceTypes = 'desktop' | 'tabled' | 'mobile' | null
+export type DeviceTypes = 'desktop' | 'tablet' | 'mobile' | null

@@ -1,11 +1,11 @@
 <template>
   <div class="loading-screen flex-column-center">
-    <logo/>
+    <logo :type="2" small size="200"/>
     <br>
     <br>
     <div class="flex-row-center">
-      <img :src="loadingGIF" alt="loading">
-      <span>{{ $t('please_wait') }}...</span>
+      <img :src="loadingGIF" alt="loading" width="20">
+      <Text locale="please_wait"/>
     </div>
   </div>
 </template>
@@ -18,7 +18,6 @@ export default defineComponent({
   setup() {
     return {
       loadingGIF,
-      $t: useI18nStore().i18n.global.t,
     }
   }
 });
@@ -38,14 +37,10 @@ export default defineComponent({
 
   img[alt="logo"] {
     width: 30vw;
-    @include animations.bounce(1s, 1s);
   }
 
   div {
     gap: .5rem;
-    img[alt="loading"] {
-      width: 1.5rem
-    }
   }
 }
 

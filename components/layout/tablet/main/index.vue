@@ -1,0 +1,141 @@
+<script lang="ts">
+import colorUtilities from '~/constants/colorUtilities';
+export default defineComponent({
+    name: 'MainLayoutIndex',
+    setup() {
+        return {
+            colorUtilities
+        }
+    },
+    data() {
+        return {
+            showSidebar: false
+        }
+    },
+    methods: {
+        setSidebarVisibility(val: boolean) {
+            this.showSidebar = val;
+            if (val) {
+                localStorage.setItem('main-layout-sidebar', val.toString());
+            } else {
+                localStorage.removeItem('main-layout-sidebar');
+            }
+        }
+    },
+});
+</script>
+
+<template>
+    <div id="main_layout-tablet" :class="{ 'full': !showSidebar, 'partial': showSidebar }">
+        <LayoutTabletMainSidebar :flod="!showSidebar" @flod-action="setSidebarVisibility(!showSidebar)"/>
+        <div id="sidebar-flod" class="flex-column-center" v-if="!showSidebar">
+            <div id="flod-btn" class="hover-effect" @click="setSidebarVisibility(!showSidebar)">
+                <IconComponent :icon-name="`caret_${!showSidebar ? 'right' : 'left'}`" icon-size="13"
+                    :color="colorUtilities.$textSecondary" fill />
+            </div>
+        </div>
+        <div id="content" @click.prevent="setSidebarVisibility(false)">
+            <LayoutTabletMainHeader />
+            <main>
+                <slot />
+            </main>
+        </div>
+    </div>
+</template>
+<style lang="scss" scoped>
+$default-padding: 1.5rem;
+$gap-header-main: 1.3rem;
+
+#main_layout-tablet {
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+
+    :deep(#sidebar) {
+        transition-duration: .5s;
+        background-color: colors.$surfaceColor;
+        padding: calc($default-padding / 1.1) $default-padding;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        gap: $gap-header-main;
+        height: 100%;
+        section#sidebar_logo-area {
+            div#flod-sidebar {
+                display: block;
+                position: relative;
+                left: 10px;
+                top: -15px;
+            }
+        }
+
+        section#sidebar_history-area {
+            overflow-y: auto;
+        }
+    }
+
+    #sidebar-flod {
+        width: 0;
+
+        #flod-btn {
+            @include colors.box-shadow-2();
+            background-color: colors.$surfaceColor;
+            padding: .8rem 0;
+            border-radius: .3rem;
+        }
+    }
+
+    #content {
+        @include colors.box-shadow-4;
+        display: flex;
+        flex-direction: column;
+        gap: $gap-header-main;
+        padding: calc($default-padding / 1.1) $default-padding;
+        background-color: colors.$backgroundColor;
+
+        main {
+            overflow-y: auto;
+            overflow-x: hidden;
+        }
+    }
+}
+
+#main_layout-tablet.partial {
+    $sidebar-width: 260px;
+
+    :deep(#sidebar) {
+        width: calc($sidebar-width - ($default-padding * 2));
+    }
+
+    #content {
+        width: calc(100vw - $sidebar-width - ($default-padding * 2));
+    }
+}
+
+#main_layout-tablet.full {
+    $sidebar-width: 60px;
+
+    :deep(#sidebar) {
+        width: calc($sidebar-width - ($default-padding * 2));
+
+        section#sidebar_logo-area {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        section#sidebar_history-area {
+            display: none;
+        }
+
+    }
+
+    #sidebar-flod {
+        #flod-btn {}
+    }
+
+    #content {
+        width: calc(100vw - $sidebar-width);
+    }
+}
+</style>

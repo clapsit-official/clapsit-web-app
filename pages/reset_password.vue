@@ -1,7 +1,7 @@
 <template>
     <div id="reset-password-page" class="flex-column-center default-height default-width">
         <LoadingScreen v-if="isLoading || !response" />
-        <div v-else-if="response.success" class="flex-column-center">
+        <div v-else-if="response.success" class="flex-column-center" style="gap: 30px">
             <logo size="250"/>
             <div style="width: 20rem">
                 <FormsResetPassword />
@@ -19,7 +19,6 @@ export default {
     name: 'ResetPassword',
     setup() {
         return {
-            $t: useI18nStore().i18n.global.t,
             $availableRoutes
         }
     },

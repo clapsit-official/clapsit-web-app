@@ -11,7 +11,6 @@ export default defineComponent({
             colorUtilities,
             availableRoutes: $availableRoutes,
             store: useUser(),
-            $t: useI18nStore().i18n.global.t,
         }
     },
     data() {
@@ -72,12 +71,12 @@ export default defineComponent({
         <br>
         <br/>
         <label for="reset_password-form" class="flex-row-start-center" style="gap: 15px">
-            <nuxt-link :to="availableRoutes.getstarted" class="hover-effect">
-                <icon-component icon-name="lock_reset" icon-size="35px"/>
-            </nuxt-link>
             <div>
-                <span class="headline">{{ $t('pages.reset_password.utilities.reset_password_title', { brand: useCoreAppStore().getBrandName }) }}</span>
-                <span class="description">{{ $t('pages.reset_password.utilities.reset_password_description') }}</span>
+                <icon-component icon-name="lock_reset" icon-size="35px"/>
+            </div>
+            <div>
+                <Text class="headline" locale="pages.reset_password.utilities.reset_password_title"/>
+                <Text class="description" locale="pages.reset_password.utilities.reset_password_description"/>
             </div>
         </label>
         <br/>
@@ -90,7 +89,7 @@ export default defineComponent({
                 autocomplete="new-password" 
                 name="newpassword"
                 placeholder="••••••••••" 
-                icon="key_vertical" 
+                icon="lock_open" 
                 :maxlength="255" 
                 :disabled="isLoading"
                 :message="$keyValidation({ error: ['INVALID_PASSWORD'] }, response)" 
@@ -112,14 +111,14 @@ export default defineComponent({
                 class="black" 
                 :disabled="disableSubmit"
                 :class="{'loading': isLoading}">
-                {{ $t('pages.reset_password.utilities.save') }}
+                <Text locale="pages.reset_password.utilities.save"/>
             </button>
             <button 
                 type="button" 
                 class="white" 
                 :disabled="isLoading"
                 @click="() => useRouter().push(availableRoutes.forgot_password)">
-                {{ $t('pages.reset_password.utilities.cancel') }}
+                <Text locale="pages.reset_password.utilities.cancel"/>
             </button>
         </form>
     </section>

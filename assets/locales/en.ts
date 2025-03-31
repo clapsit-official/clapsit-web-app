@@ -8,7 +8,7 @@ locales = {
     en: "English",
     ru: "Russian",
     email_confirming: "Email address confirming",
-    please_wait: "Please wait",
+    please_wait: "Please wait...",
     redirecting_to_home: "Redirecting to home page",
     redirecting_to_login: "Redirecting to login page",
     error: 'Oops! An error occurred',
@@ -27,6 +27,9 @@ locales = {
     back_to_home: "Back to home",
     link_expired: "Link expired!",
     link_expired_description: "This link has expired and is no longer valid. The event may have ended.",
+    logout_prompt_question: "Are you sure you want to log out?",
+    settings: 'Settings',
+    say_hello_to: 'Hello, {name}!',
     buttons: {
         search: "Search",
         filter: "Filter",
@@ -36,7 +39,8 @@ locales = {
         waiting: "Waiting",
         get_started: "Get started",
         save: "Save",
-        change: "Change"
+        change: "Change",
+        cancel: "Cancel"
     },
     backend_messages: {
         DONE: 'Done!',
@@ -171,10 +175,10 @@ locales = {
                 register_description: "Join us by creating your account in just a few simple steps.",
             }
         },
-        userAccount: {
-            title: "Account",
-            description: "Your account on the {brand}",
-            keywords: "Account, Login"
+    },
+    modals: {
+        user_account: {
+            label: 'User Account'
         }
     }
 };

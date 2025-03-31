@@ -5,25 +5,24 @@
             <br/>
             <img :src="randomVector" alt="vector" :srcset="randomVector">
             <span id="text-1">
-                {{ $t('link_expired') }}
+                <Text locale="link_expired"/>
             </span>
             <span id="text-2">
-                {{ $t('link_expired_description') }}
+                <Text locale="link_expired_description"/>
             </span>
             <BackToHomeButton/>
         </div>
     </div>
 </template>
 <script lang="ts">
-import vector1 from '~/assets/images/No data-pana.svg';
-import vector2 from '~/assets/images/No data-cuate.svg';
+import vector1 from 'assets/images/vectors/No data-pana.svg';
+import vector2 from 'assets/images/vectors/No data-cuate.svg';
 import { $availableRoutes } from '~/configs/routes.config';
 
 export default {
     name: "LinkExpired",
     setup() {
         return {
-            $t: useI18nStore().i18n.global.t,
             $availableRoutes
         }
     },

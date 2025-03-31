@@ -1,15 +1,18 @@
 <template>
-  <LoadingScreen v-if="!deviceTypeSafe || isLoading" />
-  <NuxtLayout v-else>
-    <NuxtPage :class="`${deviceTypeSafe}-app-container`"  v-if="readyForView === true && deviceTypeSafe"/>
-    <NotAvailable v-else-if="readyForView === false" />
-  </NuxtLayout>
+  <div id="clapsit">
+    <LoadingScreen v-show="!deviceTypeSafe || isLoading"/>
+    <NuxtLayout v-if="deviceTypeSafe && !isLoading" :class="`${deviceTypeSafe}-app-container`">
+      <NuxtPage v-if="readyForView === true && deviceTypeSafe" ref="NuxtPage"/>
+      <NotAvailable v-else-if="readyForView === false" />
+      <Modal/>
+    </NuxtLayout>
+  </div>
 </template>
 <script lang="ts">
 import { _HealthService } from './services/health.service';
 export default {
-  async mounted(){ 
-    console.log(`${useCoreAppStore().getBrandDomain} mounted!`) 
+  async mounted() {
+    console.log(`${useCoreAppStore().getBrandDomain} mounted!`);
   },
   setup() {
     const { deviceType } = useDeviceDetector();
@@ -30,10 +33,10 @@ export default {
   },
   watch: {
     deviceTypeSafe: {
-      handler(newVal){
-        if(newVal) {
+      handler(newVal) {
+        if (newVal) {
           const html = document.getElementsByTagName('html')[0];
-          html.id=`${newVal}-app`;
+          html.id = `${newVal}-app`;
         }
       },
       immediate: true,

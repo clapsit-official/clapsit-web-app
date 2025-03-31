@@ -12,7 +12,6 @@ export default defineComponent({
             colorUtilities,
             availableRoutes: $availableRoutes,
             store: useGetstarted(),
-            $t: useI18nStore().i18n.global.t,
         }
     },
     data() {
@@ -61,8 +60,8 @@ export default defineComponent({
                 <icon-component icon-name="arrow_back" icon-size="30px"/>
             </nuxt-link>
             <div>
-                <span class="headline">{{ $t('pages.login.utilities.login_title', { brand: useCoreAppStore().getBrandName }) }}</span>
-                <span class="description">{{ $t('pages.login.utilities.login_description') }}</span>
+                <Text class="headline" locale="pages.login.utilities.login_title"/>
+                <Text class="description" locale="pages.login.utilities.login_description"/>
             </div>
         </label>
         <br/>
@@ -98,7 +97,7 @@ export default defineComponent({
                     :to="availableRoutes.forgot_password"
                     :style="{color: colorUtilities.$textPrimary, fontSize: '0.9rem'}"
                     class="hover-effect">
-                    {{ $t('pages.login.utilities.forgot_password') }}
+                    <Text locale="pages.login.utilities.forgot_password"/>
                 </nuxt-link>
             </div>
             <br/>
@@ -106,14 +105,14 @@ export default defineComponent({
                 type="submit" 
                 class="black" 
                 :class="{'loading': isLoading}">
-                {{ $t('pages.login.utilities.login') }}
+                <Text locale="pages.login.utilities.login"/>
             </button>
             <button 
                 type="button" 
                 class="white" 
                 :disabled="isLoading"
                 @click="() => useRouter().push(availableRoutes.register)">
-                {{ $t('pages.login.utilities.create_account') }}
+                <Text locale="pages.login.utilities.create_account"/>
             </button>
         </form>
     </section>
@@ -124,14 +123,14 @@ export default defineComponent({
         width: 100%;
     }
     label[for='login-form'] {
-        position: relative;
-        left: -2.8rem;
+        display: flex;
+        align-items: center;
         div {
             display: flex;
             flex-direction: column;
             span.headline {
                 font-weight: bolder;
-                font-size: 1.5rem;
+                font-size: 1.2rem;
             }
             span.description {
                 color: colors.$textSecondary;

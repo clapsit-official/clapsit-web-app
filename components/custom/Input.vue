@@ -31,7 +31,7 @@ export default defineComponent({
           type: String as PropType<IconsTypes>,
         },
         type: {
-            type: String as PropType<'text' | 'password' | 'email' | 'number'>,
+            type: String as PropType<'text' | 'password' | 'email' | 'number' | 'tel' | 'date' | 'search'>,
             default: () => 'text'
         },
         name: {
@@ -154,7 +154,7 @@ export default defineComponent({
                 :icon-name="icon"
                 :fill="focus"
                 :color="iconColor"
-                icon-size=".9rem" />
+                icon-size="1rem" />
           </div>
           <span class="message">
                     {{ label }}

@@ -5,12 +5,13 @@ export const $availableRoutes = {
     getstarted: "/getstarted",
     login: "/getstarted?view=login",
     register: "/getstarted?view=register",
-    user_account: "/account/user",
     confirm_email: "/confirm_email",
     terms_of_service: '/terms_of_service',
     privacy_policy: '/privacy_policy',
     forgot_password: '/getstarted?view=forgot_password',
     reset_password: '/reset_password',
+    assistant: '/assistant',
+    learn_a_lang: '/assistant/learn_a_lang',
 }
 
 export const routeConfigs: RouteConfigsType = {
@@ -22,42 +23,42 @@ export const routeConfigs: RouteConfigsType = {
 
 routeConfigs[$availableRoutes.home] = {
     key: 'home',
-    layout: 'unauth',
+    layout: 'default',
+    middleware: () => {
+        if (useAuth().checkAuthCredentials()) {
+            routeConfigs[$availableRoutes.home].layout = 'main';
+            setPageLayout('main');
+        }
+    }
 }
 
 routeConfigs[$availableRoutes.getstarted] = {
     key: 'getstarted',
-    layout: 'unauth',
+    layout: 'default',
     middleware: async () => {
         if (useAuth().checkAuthCredentials()) {
-            await useRouter().push($availableRoutes.user_account);
+            await useRouter().push($availableRoutes.home);
         }
     }
 }
 routeConfigs[$availableRoutes.login] = {
     key: 'login',
-    layout: 'unauth',
+    layout: 'default',
     middleware: async () => {
         if (useAuth().checkAuthCredentials()) {
-            await useRouter().push($availableRoutes.user_account);
+            await useRouter().push($availableRoutes.home);
         }
     }
 }
 
 routeConfigs[$availableRoutes.register] = {
     key: 'register',
-    layout: 'unauth',
+    layout: 'default',
     middleware: async () => {
         if (useAuth().checkAuthCredentials()) {
-            await useRouter().push($availableRoutes.user_account);
+            await useRouter().push($availableRoutes.home);
         }
     }
-}
-
-routeConfigs[$availableRoutes.user_account] = {
-    key: 'userAccount',
-    layout: null,
-    auth_required: true
 }
 
 routeConfigs[$availableRoutes.confirm_email] = {
@@ -65,7 +66,24 @@ routeConfigs[$availableRoutes.confirm_email] = {
     layout: null,
     middleware: async () => {
         if (useAuth().checkAuthCredentials()) {
-            await useRouter().push($availableRoutes.user_account);
+            await useRouter().push($availableRoutes.home);
         }
+    }
+}
+
+routeConfigs[$availableRoutes.assistant] = {
+    key: 'assistant',
+    layout: 'main',
+    auth_required: true,
+    async middleware() {
+        await useRouter().push($availableRoutes.home);
+    }
+}
+
+routeConfigs[$availableRoutes.learn_a_lang] = {
+    key: 'assistant',
+    layout: 'main',
+    auth_required: true,
+    async middleware() {
     }
 }

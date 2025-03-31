@@ -5,28 +5,27 @@
             <br/>
             <img :src="randomVector" alt="vector" :srcset="randomVector">
             <span id="text-1">
-                {{ $t('not_found') }}
+                <Text locale="not_found"/>
             </span>
             <span id="text-2">
-                {{ $t('not_found_description') }}
+                <Text locale="not_found_description"/>
             </span>
             <BackToHomeButton/>
         </div>
     </div>
 </template>
 <script lang="ts">
-import vector1 from '~/assets/images/404 error with a landscape-amico.svg';
-import vector2 from '~/assets/images/404 error with a landscape-rafiki.svg';
-import vector3 from '~/assets/images/404 error with people holding the numbers-amico.svg';
-import vector4 from '~/assets/images/404 error with people holding the numbers-bro.svg';
-import vector5 from '~/assets/images/404 Error-amico.svg';
+import vector1 from 'assets/images/vectors/404 error with a landscape-amico.svg';
+import vector2 from 'assets/images/vectors/404 error with a landscape-rafiki.svg';
+import vector3 from 'assets/images/vectors/404 error with people holding the numbers-amico.svg';
+import vector4 from 'assets/images/vectors/404 error with people holding the numbers-bro.svg';
+import vector5 from 'assets/images/vectors/404 Error-amico.svg';
 import { $availableRoutes } from '~/configs/routes.config';
 
 export default {
     name: "NotFound",
     setup() {
         return {
-            $t: useI18nStore().i18n.global.t,
             $availableRoutes
         }
     },
