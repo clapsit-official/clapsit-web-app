@@ -1,36 +1,37 @@
 <script lang="ts">
 import ClapsitTeachLang from 'assets/images/vectors/English teacher-amico.svg';
 import ClapsitMentor from 'assets/images/vectors/Webinar-pana.svg';
-import Clapsit from 'assets/images/vectors/Webinar-amico.svg';
+import ClapsitJSONGenerator from 'assets/images/vectors/Cyborg-amico.svg';
 import ClapsitHr from 'assets/images/vectors/Telecommuting-rafiki.svg';
 export default defineComponent({
     name: "MainNavigation",
     setup() {
         return {
+            $t: useI18nStore().i18n.global.t,
             ClapsitMentor,
             ClapsitTeachLang,
             ClapsitHr,
             versions: [
                 {
-                    to: '/assistant/json_generator',
-                    title: 'JSON Generator',
-                    description: 'Generate and design JSON objects however you want!',
-                    imgSrc: ClapsitTeachLang
+                    key: 'json_generator',
+                    title: useI18nStore().i18n.global.t('assistants.json_generator.label'),
+                    description: useI18nStore().i18n.global.t('assistants.json_generator.slogan'),
+                    imgSrc: ClapsitJSONGenerator
                 },
                 {
-                    to: '/',
+                    key: '/',
                     title: 'Clapsit HR',
                     description: 'Bring your trip plans to life – get there, stay there, find things to see and do.',
                     imgSrc: ClapsitHr
                 },
                 {
-                    to: '/',
+                    key: '/',
                     title: 'Clapsit Mentor',
                     description: 'Bring your trip plans to life – get there, stay there, find things to see and do.',
                     imgSrc: ClapsitMentor
                 },
                 {
-                    to: '/',
+                    key: '/',
                     title: 'Learn a language',
                     description: 'Bring your trip plans to life – get there, stay there, find things to see and do.',
                     imgSrc: ClapsitTeachLang
@@ -51,7 +52,7 @@ export default defineComponent({
         <form id="search-nav-area">
             <custom-input 
                 left-icon="search"
-                placeholder="Search your journey..."
+                :placeholder="$t('search_for', {value: $t('your_journey').toLowerCase()})"
                 type="search" />
         </form>
         <div id="options-area">
@@ -59,7 +60,7 @@ export default defineComponent({
                 <AssistantNavItem
                     v-for="(version, index) in [...versions]"
                     :key="index"
-                    :to="version.to"
+                    :target="version.key"
                     :title="version.title"
                     :description="version.description"
                     :img-src="version.imgSrc"

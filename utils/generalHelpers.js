@@ -167,3 +167,59 @@ export function generateArrayForEmptyElems(count,arr) {
 export const getRandomBetween = function (min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
+
+export function formatDate(dateString) {
+  const date = new Date(dateString);
+
+  const day = String(date.getDate()).padStart(2, '0');
+  const month = String(date.getMonth() + 1).padStart(2, '0'); // Months are 0-indexed
+  const year = date.getFullYear();
+  
+  const hours = String(date.getHours()).padStart(2, '0');
+  const minutes = String(date.getMinutes()).padStart(2, '0');
+
+  return {day, month, year, hours, minutes};
+}
+
+export function isToday(dateString) {
+  const inputDate = new Date(dateString);
+  const today = new Date();
+
+  // Compare only the year, month, and date (ignore time)
+  return inputDate.getDate() === today.getDate() &&
+         inputDate.getMonth() === today.getMonth() &&
+         inputDate.getFullYear() === today.getFullYear();
+}
+
+export function formatDateString(dateString) {
+  const inputDate = new Date(dateString);
+  const today = new Date();
+
+  // Get the difference in days between the input date and today
+  const timeDifference = today - inputDate;
+  const dayInMillis = 1000 * 60 * 60 * 24;
+  const diffDays = Math.floor(timeDifference / dayInMillis);
+
+  // If it's the same day
+  if (diffDays === 0) {
+    return `${formatDate(dateString).hours}:${formatDate(dateString).minutes}`;
+  }
+
+  // If it's yesterday
+  if (diffDays === 1) {
+    return 'yesterday';
+  }
+
+  // If it's within the past week, return the weekday
+  if (diffDays < 7) {
+    const weekdays = ['Sun.', 'Mon.', 'Tue.', 'Wed.', 'Thu.', 'Fri.', 'Sat.'];
+    return weekdays[inputDate.getDay()];
+  }
+
+  // If it's more than a week ago, return the full date in dd/mm/yyyy format
+  const day = String(inputDate.getDate()).padStart(2, '0');
+  const month = String(inputDate.getMonth() + 1).padStart(2, '0'); // Months are 0-indexed
+  const year = inputDate.getFullYear();
+
+  return `${day}/${month}/${year}`;
+}

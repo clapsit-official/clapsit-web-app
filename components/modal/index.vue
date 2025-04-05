@@ -5,7 +5,9 @@ import type { AvailableModals } from '~/stores/modal';
 
 const modalMap: Record<string, () => Promise<any>> = {
     user_account: () => import('~/components/modal/views/user_account.vue'),
+    json_generator: () => import('~/components/modal/views/json_generator.vue'),
     logout: () => import('~/components/modal/views/logout_prompt.vue'),
+    session_expired: () => import('~/components/modal/views/session_expired.vue'),
 }
 
 export default defineComponent({
@@ -137,7 +139,6 @@ export default defineComponent({
     #modal-component {
         section#modal-content {
             .modal-area {
-                top: 15vh;
                 max-width: 75%;
                 min-width: 15%;
                 max-height: 80%;

@@ -5,7 +5,7 @@ export type ServerResponseType = {
     success: boolean;
     message: { key: BackendMessageKeys, text: string } | null;
     status: number;
-    data: object | null;
+    data: any;
 }
 
 export type QueryMethods = 'GET' | 'POST' | 'PUT' | 'DELETE' | 'PATCH';

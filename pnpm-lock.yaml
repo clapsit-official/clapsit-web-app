@@ -35,6 +35,9 @@ importers:
       nuxt:
         specifier: ^3.15.4
         version: 3.15.4(@parcel/watcher@2.5.1)(@types/node@22.13.2)(db0@0.2.4)(ioredis@5.5.0)(magicast@0.3.5)(rollup@4.34.6)(sass@1.84.0)(terser@5.39.0)(typescript@5.7.3)(vite@6.1.0(@types/node@22.13.2)(jiti@2.4.2)(sass@1.84.0)(terser@5.39.0)(yaml@2.7.0))(yaml@2.7.0)
+      nuxt-monaco-editor:
+        specifier: ^1.3.1
+        version: 1.3.1(magicast@0.3.5)(monaco-editor@0.52.2)(vite@6.1.0(@types/node@22.13.2)(jiti@2.4.2)(sass@1.84.0)(terser@5.39.0)(yaml@2.7.0))
       pinia:
         specifier: ^2.1.7
         version: 2.3.1(typescript@5.7.3)(vue@3.5.13(typescript@5.7.3))
@@ -2356,6 +2359,9 @@ packages:
   moment@2.30.1:
     resolution: {integrity: sha512-uEmtNhbDOrWPFS+hdjFCBfy9f2YoyzRpwcl+DqpC6taX21FzsTLQVbMV/W7PzNSX6x/bhC1zA3c2UQ5NzH6how==}
 
+  monaco-editor@0.52.2:
+    resolution: {integrity: sha512-GEQWEZmfkOGLdd3XK8ryrfWz3AIP8YymVXiPHEdewrUq7mh0qrKrfHLNCXcbB6sTnMLnOZ3ztSiKcciFUkIJwQ==}
+
   mrmime@2.0.0:
     resolution: {integrity: sha512-eu38+hdgojoyq63s+yTpN4XMBdt5l8HhMhc4VKLO9KM5caLIBvUm4thi7fFaxyTmCKeNnXZ5pAlBwCUnhA09uw==}
     engines: {node: '>=10'}
@@ -2442,6 +2448,11 @@ packages:
   nth-check@2.1.1:
     resolution: {integrity: sha512-lqjrjmaOoAnWfMmBPL+XNnynZh2+swxiX3WUE0s4yEHI6m+AwrK2UZOimIRl3X/4QctVqS8AiZjFqyOGrMXb/w==}
 
+  nuxt-monaco-editor@1.3.1:
+    resolution: {integrity: sha512-GcgG0of4NsHQloYzqAop4E3lR8QKsycasy8ExIeEEba9Cg1Sts7R1tOatT/wlCyJl3Od6G0Vjeoqqpjko5Au6g==}
+    peerDependencies:
+      monaco-editor: '*'
+
   nuxt-primevue@0.3.1:
     resolution: {integrity: sha512-wTFvUbniEhntFamnRP4znMqU9a4lYr7eXvA7FW5nGX51YCV3nJzXZlCML4l6kEL0pyJsSV4DTb0Qo61nZnn9JQ==}
 
@@ -2513,6 +2524,10 @@ packages:
   p-map@4.0.0:
     resolution: {integrity: sha512-/bjOqmgETBYB5BoEeGVea8dmvHb2m9GLy1E9W43yeyfP6QQCZGFNa+XRceJEuDB6zqr+gKpIAmlLebMpykw/MQ==}
     engines: {node: '>=10'}
+
+  p-map@7.0.3:
+    resolution: {integrity: sha512-VkndIv2fIB99swvQoA65bm+fsmt6UNdGeIB0oxBs+WhAhdh08QA04JXpI7rbB9r08/nkbysKoya9rtDERYOYMA==}
+    engines: {node: '>=18'}
 
   package-json-from-dist@1.0.1:
     resolution: {integrity: sha512-UEZIS3/by4OC8vL3P2dTXRETpebLI2NiI5vIrjaD/5UtrkFX/tNbwjTSRAGC/+7CAo2pIcBaRgWmcBBHcsaCIw==}
@@ -3483,6 +3498,12 @@ packages:
     peerDependenciesMeta:
       '@nuxt/kit':
         optional: true
+
+  vite-plugin-static-copy@2.3.0:
+    resolution: {integrity: sha512-LLKwhhHetGaCnWz4mas4qqjjguDka6/6b4+SeIohRroj8aCE7QTfiZECfPecslFQkWZ3HdQuq5kOPmWZjNYlKA==}
+    engines: {node: ^18.0.0 || >=20.0.0}
+    peerDependencies:
+      vite: ^5.0.0 || ^6.0.0
 
   vite-plugin-vue-inspector@5.3.1:
     resolution: {integrity: sha512-cBk172kZKTdvGpJuzCCLg8lJ909wopwsu3Ve9FsL1XsnLBiRT9U3MePcqrgGHgCX2ZgkqZmAGR8taxw+TV6s7A==}
@@ -6191,6 +6212,8 @@ snapshots:
 
   moment@2.30.1: {}
 
+  monaco-editor@0.52.2: {}
+
   mrmime@2.0.0: {}
 
   ms@2.0.0: {}
@@ -6336,6 +6359,17 @@ snapshots:
   nth-check@2.1.1:
     dependencies:
       boolbase: 1.0.0
+
+  nuxt-monaco-editor@1.3.1(magicast@0.3.5)(monaco-editor@0.52.2)(vite@6.1.0(@types/node@22.13.2)(jiti@2.4.2)(sass@1.84.0)(terser@5.39.0)(yaml@2.7.0)):
+    dependencies:
+      '@nuxt/kit': 3.15.4(magicast@0.3.5)
+      defu: 6.1.4
+      monaco-editor: 0.52.2
+      vite-plugin-static-copy: 2.3.0(vite@6.1.0(@types/node@22.13.2)(jiti@2.4.2)(sass@1.84.0)(terser@5.39.0)(yaml@2.7.0))
+    transitivePeerDependencies:
+      - magicast
+      - supports-color
+      - vite
 
   nuxt-primevue@0.3.1(magicast@0.3.5)(vue@3.5.13(typescript@5.7.3)):
     dependencies:
@@ -6540,6 +6574,8 @@ snapshots:
   p-map@4.0.0:
     dependencies:
       aggregate-error: 3.1.0
+
+  p-map@7.0.3: {}
 
   package-json-from-dist@1.0.1: {}
 
@@ -7542,6 +7578,15 @@ snapshots:
     transitivePeerDependencies:
       - rollup
       - supports-color
+
+  vite-plugin-static-copy@2.3.0(vite@6.1.0(@types/node@22.13.2)(jiti@2.4.2)(sass@1.84.0)(terser@5.39.0)(yaml@2.7.0)):
+    dependencies:
+      chokidar: 3.6.0
+      fast-glob: 3.3.3
+      fs-extra: 11.3.0
+      p-map: 7.0.3
+      picocolors: 1.1.1
+      vite: 6.1.0(@types/node@22.13.2)(jiti@2.4.2)(sass@1.84.0)(terser@5.39.0)(yaml@2.7.0)
 
   vite-plugin-vue-inspector@5.3.1(vite@6.1.0(@types/node@22.13.2)(jiti@2.4.2)(sass@1.84.0)(terser@5.39.0)(yaml@2.7.0)):
     dependencies:

@@ -40,6 +40,9 @@ export const useQueryManager = defineStore('queryManager', {
             if(target > -1) {
                 this.queries[target].isLoading = false;
                 this.queries[target].result = response;
+                if(response.status === 401){
+                    useModal().provide('session_expired');
+                }
             }
         },
         checkQueryIsLoading(serivce: string) {

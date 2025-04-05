@@ -42,7 +42,7 @@ export default defineNuxtConfig({
   ],
   plugins: [],
   build: {},
-  modules: ["@pinia/nuxt", '@nuxt/devtools'],
+  modules: ["@pinia/nuxt", '@nuxt/devtools', 'nuxt-monaco-editor'],
   pinia: { storesDirs: ['./stores/**', './stores/**/*'] },
   imports: {
       dirs: [

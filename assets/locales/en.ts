@@ -30,6 +30,12 @@ locales = {
     logout_prompt_question: "Are you sure you want to log out?",
     settings: 'Settings',
     say_hello_to: 'Hello, {name}!',
+    main_description: 'Discover and create custom versions of Clapsit that combine instructions, extra knowledge, and any combination of skills.',
+    search_for: "Search for {value}...",
+    your_journey: "Your journey",
+    how_can_use_it: "How can use it?",
+    session_expired: "Sorry, we can't continue because your session expired!",
+    start_now: "Start now",
     buttons: {
         search: "Search",
         filter: "Filter",
@@ -40,7 +46,9 @@ locales = {
         get_started: "Get started",
         save: "Save",
         change: "Change",
-        cancel: "Cancel"
+        cancel: "Cancel",
+        start: "Start",
+        ok: "Okay",
     },
     backend_messages: {
         DONE: 'Done!',
@@ -175,10 +183,22 @@ locales = {
                 register_description: "Join us by creating your account in just a few simple steps.",
             }
         },
+        json_generator: {
+            title: "AI-JSON Generator",
+            description: "Generate and design JSON objects however you want!",
+            keywords: "AI-JSON Generator, JSON objects, Design JSON, Generate JSON",
+        }
     },
     modals: {
         user_account: {
             label: 'User Account'
+        },
+    },
+    assistants: {
+        json_generator: {
+            label: "AI-JSON Generator",
+            slogan: "Generate and design JSON objects however you want!",
+            description: "Generate and design JSON objects however you want. Generate and design JSON objects however you want. Generate and design JSON objects however generate and design JSON objects however you want!"
         }
     }
 };

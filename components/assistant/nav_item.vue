@@ -1,8 +1,10 @@
 <script lang="ts">
+import { $availableRoutes } from '~/configs/routes.config';
+
 export default defineComponent({
     name: "NavItemComponent",
     props: {
-        to: {
+        target: {
             type: String,
             required: true
         },
@@ -18,23 +20,39 @@ export default defineComponent({
             type: String,
             required: true
         },
+    },
+    computed: {
+        to() {
+            if (this.target) {
+                return `${$availableRoutes.assistant}/${this.target}`
+            }
+            return `${$availableRoutes.assistant}`
+        }
+    },
+    methods: {
+        openAssitantItemModal() {
+            switch (this.target) {
+                case 'json_generator':
+                    useModal().provide('json_generator');
+                    break;
+            }
+        }
     }
 });
 </script>
 <template>
-    <nuxt-link :to="to" class="nav-item_component black">
+    <div class="nav-item_component black" @click.prevent="openAssitantItemModal">
         <div class="img-area_nav-item">
             <img :src="imgSrc" :alt="title + '_logo'" />
         </div>
         <div class="item-info_nav-item">
             <span class="title">{{ title }}</span>
             <span class="description">{{ description }}</span>
-            <nuxt-link :to="to" class="black" style="text-decoration: underline;">Start now</nuxt-link :to="to">
+            <span class="black" style="text-decoration: underline;">Start now</span>
         </div>
-    </nuxt-link>
+    </div>
 </template>
 <style lang="scss" scoped>
-
 .desktop-app-container {
     $items-gap-value: 1.9rem;
 
@@ -79,13 +97,15 @@ export default defineComponent({
                 font-weight: bold;
             }
 
-            span.description, a{
+            span.description,
+            a {
                 font-size: .8rem;
             }
 
-            a {
+            span.black {
                 color: colors.$textSecondary;
                 margin-top: 5px;
+                font-size: .8rem;
             }
         }
     }
@@ -136,9 +156,17 @@ export default defineComponent({
                 font-weight: bold;
             }
 
-            span.description, a {
+            span.description,
+            a {
                 font-size: .8rem;
             }
+
+            span.black {
+                color: colors.$textSecondary;
+                margin-top: 5px;
+                font-size: .8rem;
+            }
+
             a {
                 color: colors.$textSecondary;
                 margin-top: 5px;
@@ -146,6 +174,7 @@ export default defineComponent({
         }
     }
 }
+
 .mobile-app-container {
     $items-gap-value: 2rem;
 
@@ -191,9 +220,17 @@ export default defineComponent({
                 font-weight: bold;
             }
 
-            span.description, a {
+            span.description,
+            a {
                 font-size: .8rem;
             }
+
+            span.black {
+                color: colors.$textSecondary;
+                margin-top: 5px;
+                font-size: .8rem;
+            }
+
             a {
                 color: colors.$textSecondary;
                 margin-top: 5px;

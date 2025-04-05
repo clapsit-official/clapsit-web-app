@@ -1,19 +1,36 @@
 <script lang="ts">
 import colorUtilities from '~/constants/colorUtilities';
+import type { UserAssistantKeyItem } from '~/types/assistants.types';
 export default defineComponent({
     name: "MainLayoutSidebar",
     emits: ['flodAction'],
     setup() {
         return {
-            colorUtilities
+            colorUtilities,
+            $t: useI18nStore().i18n.global.t
         }
     },
+    computed: {
+        userAssistantKeys() {
+        return useAssistant().getUserAssistantKeys;
+        }
+    },
+    methods: {
+        formatDateString,
+        formatDateForTitle(date: Date) {
+            const formated = formatDate(date);
+            return `${formated.day}/${formated.month}/${formated.year} - ${formated.hours}:${formated.minutes}`;
+        },
+        async getAssistantItem(item: UserAssistantKeyItem) {
+            await useAssistant().goToAssistantItem(item.key_name, item.c_key);
+        }
+    }
 })
 </script>
 <template>
     <div id="sidebar" class="default-height">
         <div id="close_sidebar">
-            <div class="hover-effect" @click="()=> $emit('flodAction')">
+            <div class="hover-effect" @click="() => $emit('flodAction')">
                 <icon-component icon-name="close" icon-size="20px" />
             </div>
         </div>
@@ -26,20 +43,21 @@ export default defineComponent({
         </div>
         <div id="create-btn_right-side" class="flex-row-center hover-effect" @click="useModal().provide('logout')">
             <div>
-                <icon-component icon-name="logout" icon-size="18px"
-                 :color="colorUtilities.$errorColor" />
+                <icon-component icon-name="logout" icon-size="18px" :color="colorUtilities.$errorColor" />
             </div>
             <Text locale="buttons.logout" />
         </div>
         <div id="chat_history-sidebar">
-            <div v-for="i in 40" style="margin: .4rem 0;" class="hover-effect">
-                <div>
-                    <icon-component icon-name="clock_arrow" color="grey" />
+            <div v-for="(item, index) in userAssistantKeys" style="margin: .8rem 0;" class="hover-effect ellipsis"
+                :key="item.id">
+                <div class="flex-row-start-center" style="gap: 5px" @click.prevent="getAssistantItem(item)"
+                    :title="formatDateForTitle(item.date)">
+                    <div class="icon-area">
+                        <icon-component icon-name="clock_arrow" icon-size="18px" />
+                    </div>
+                    <strong>[{{ formatDateString(item.date) }}]</strong>
+                    <span>&nbsp;- {{item.label || $t(`assistants.${item.key_name}.label`) }} </span>
                 </div>
-                <span class="ellipsis">
-                    [ {{ new Date().toLocaleTimeString() }} ] - Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Earum, tempora!
-                </span>
             </div>
         </div>
     </div>

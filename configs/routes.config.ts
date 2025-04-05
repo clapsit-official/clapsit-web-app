@@ -11,7 +11,7 @@ export const $availableRoutes = {
     forgot_password: '/getstarted?view=forgot_password',
     reset_password: '/reset_password',
     assistant: '/assistant',
-    learn_a_lang: '/assistant/learn_a_lang',
+    json_generator: '/assistant/json_generator',
 }
 
 export const routeConfigs: RouteConfigsType = {
@@ -80,10 +80,11 @@ routeConfigs[$availableRoutes.assistant] = {
     }
 }
 
-routeConfigs[$availableRoutes.learn_a_lang] = {
-    key: 'assistant',
+routeConfigs[$availableRoutes.json_generator] = {
+    key: 'json_generator',
     layout: 'main',
     auth_required: true,
     async middleware() {
+        
     }
 }

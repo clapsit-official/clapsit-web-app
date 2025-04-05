@@ -65,6 +65,8 @@ export interface Buttons {
     save: LocaleType;
     change: LocaleType;
     cancel: LocaleType;
+    start: LocaleType;
+    ok: LocaleType;
 }
 
 export interface LanguageContent {
@@ -79,6 +81,12 @@ export interface LanguageContent {
     redirecting_to_login: LocaleType;
     logout_prompt_question: LocaleType;
     say_hello_to: LocaleType;
+    main_description: LocaleType;
+    search_for: LocaleType;
+    your_journey: LocaleType;
+    how_can_use_it: LocaleType;
+    session_expired: LocaleType;
+    start_now: LocaleType;
     settings: LocaleType;
     error: LocaleType;
     greetings: LocaleType;
@@ -98,8 +106,9 @@ export interface LanguageContent {
     we_are_working_on_it: LocaleType;
     buttons: Buttons;
     backend_messages: Record<BackendMessageKeys, string>;
-    pages: PagesType;
-    modals: ModalsType;
+    pages: PagesLocaleType;
+    modals: ModalsLocaleType;
+    assistants: AssistantsLocale;
 }
 
 export type LangOptionsType = 'az-AZ' | 'en-US' | 'ru-RU';
@@ -111,7 +120,7 @@ export interface AvailableLocalItem {
 }
 
 export type AvailableLocals = Array<AvailableLocalItem>;
-export type PagesType = {
+export type PagesLocaleType = {
     [key: string]: {
         title: LocaleType,
         description: LocaleType,
@@ -119,8 +128,16 @@ export type PagesType = {
         utilities?: any,
     }
 }
-export type ModalsType = {
+export type ModalsLocaleType = {
     [key: string]: {
         label: LocaleType,
+    }
+}
+
+export type AssistantsLocale = {
+    [key: string]: {
+        label: LocaleType,
+        slogan: LocaleType
+        description: LocaleType
     }
 }

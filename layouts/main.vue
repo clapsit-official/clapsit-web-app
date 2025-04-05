@@ -5,6 +5,9 @@ export default {
         deviceType() {
             return useCoreAppStore().getDeviceType;
         }
+    },
+    created() {
+        useAssistant().updateUserAssistantKeys();
     }
 }
 </script>
