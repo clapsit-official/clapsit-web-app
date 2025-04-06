@@ -1,6 +1,6 @@
 import type { AvailableAssistants, UserAssistantKeyItem } from "~/types/assistants.types";
 import { useJSONGenerator } from "./providers/json_generator";
-import { _UserAssistantKeys } from "~/services/assistants.service";
+import { _AIMUserKeys } from "~/services/assistants.service";
 import { $availableRoutes } from "~/configs/routes.config";
 
 export const useAssistant = defineStore('assistant', {
@@ -22,7 +22,7 @@ export const useAssistant = defineStore('assistant', {
     actions: {
         async updateUserAssistantKeys() {
             try {
-                const response = await _UserAssistantKeys.get({
+                const response = await _AIMUserKeys.get({
                     user_id: useUser().getUserId,
                 });
                 if(response.success && response?.data) {

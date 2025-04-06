@@ -6,6 +6,11 @@ export type StartAssistantParamsType = {
 export type GetUserAssistantKeysParamsType = {
     user_id: number | null,
 };
+export type AssistantEnvironmentsType = {
+    key_name: AvailableAssistants,
+    conversation_key: string | null
+}
+
 export type UserAssistantKeyItem = {
     id: number,
     c_key: string,

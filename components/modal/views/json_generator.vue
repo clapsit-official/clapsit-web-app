@@ -1,10 +1,8 @@
 <script lang="ts">
-import JsonGeneratorInfoVideo from '~/assets/videos/learn_json_generator.mov';
 export default defineComponent({
     name: "InfoJSONGenerator",
     setup() {
         return {
-            JsonGeneratorInfoVideo,
             $t: useI18nStore().i18n.global.t
         }
     },
@@ -29,7 +27,6 @@ export default defineComponent({
     <div id="json_generator-component" class="modal">
        <assistant-info 
         @start-event="start"
-        :mediaLink="JsonGeneratorInfoVideo" 
         :description="$t('assistants.json_generator.description')"/>
     </div>
 </template>

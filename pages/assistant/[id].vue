@@ -66,9 +66,11 @@ export default {
     </div>
 </template>
 <style lang="scss" scoped>
-#learn_a_lang-page {
+#assistant_provider-page {
     width: 100%;
     height: 100%;
+    display: flex;
+    justify-content: center;
     @include animations.fadeIn(.1s);
 }
 </style>

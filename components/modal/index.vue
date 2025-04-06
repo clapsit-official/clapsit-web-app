@@ -37,7 +37,9 @@ export default defineComponent({
             this.store.deprive(key);
         },
         outsideClick() {
-            this.closeModal(this.resolvedViews[this.resolvedViews.length - 1].key);
+            if(this.resolvedViews[this.resolvedViews.length - 1]) {
+                this.closeModal(this.resolvedViews[this.resolvedViews.length - 1].key);
+            }
         },
         handleEscKey(event: KeyboardEvent) {
             if (event.key === 'Escape') {

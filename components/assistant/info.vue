@@ -9,7 +9,6 @@ export default defineComponent({
         },
         mediaLink: {
             type: String,
-            required: true
         }
     },
     computed: {
@@ -25,7 +24,6 @@ export default defineComponent({
 <template>
     <div id="assistant-info">
         <section id="media-area">
-            <video :src="mediaLink" autoplay controls width="100%" />
         </section>
         <section id="description-area">
             <strong>{{ $t('how_can_use_it') }}</strong>

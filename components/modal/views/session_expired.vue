@@ -1,4 +1,5 @@
 <script lang="ts">
+import { $availableRoutes } from '~/configs/routes.config';
 import colorUtilities from '~/constants/colorUtilities';
 
 export default defineComponent({
@@ -12,7 +13,9 @@ export default defineComponent({
         async logOut() {
             useAuth().resetAuth();
             useModal().deprive('session_expired');
-            window.location.reload();
+            if(useRoute().path !== $availableRoutes.getstarted) {
+                window.location.reload();
+            }
         }
     },
     beforeUnmount() {

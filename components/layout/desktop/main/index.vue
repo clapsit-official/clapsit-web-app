@@ -43,7 +43,7 @@ export default defineComponent({
         </div>
         <div id="content">
             <LayoutDesktopMainHeader />
-            <main>
+            <main :key="showSidebar.toString()">
                 <slot />
             </main>
         </div>
@@ -103,6 +103,7 @@ $gap-header-main: 1.3rem;
         main {
             overflow-y: auto;
             overflow-x: hidden;
+            height: 100%;
         }
     }
 }

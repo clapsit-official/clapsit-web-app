@@ -1,15 +1,22 @@
 import type { GetUserAssistantKeysParamsType, StartAssistantParamsType } from "~/types/assistants.types";
 import type { ServerResponseType } from "~/types/general.types";
+import type { JSONGeneratorPayloadType } from "~/types/json_generator.types";
 
 
-export const _StartAssistant = {
+export const _AIMStart = {
     async get(params: StartAssistantParamsType): Promise<ServerResponseType> {
-        return await defineService('start_assistant', () => $query('GET', '/aim/start', {params}))
+        return await defineService('start_assistant', () => $get('/aim/start', {params}));
     }
 }
 
-export const _UserAssistantKeys = {
+export const _AIMUserKeys = {
     async get(params: GetUserAssistantKeysParamsType): Promise<ServerResponseType> {
-        return await defineService('user_assistant_keys', () => $query('GET', '/aim/user_keys', {params}))
+        return await defineService('user_assistant_keys', () => $get('/aim/user_keys', {params}));
+    }
+}
+
+export const _AIMJSONGenerator = {
+    async post(data: JSONGeneratorPayloadType, cKey: string): Promise<ServerResponseType> {
+        return await defineService('json_generator', () => $post(`/aim/json_generator/${cKey}`, {data}));
     }
 }
