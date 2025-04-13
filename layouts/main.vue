@@ -4,15 +4,25 @@ export default {
     computed: {
         deviceType() {
             return useCoreAppStore().getDeviceType;
+        },
+        cId() {
+            const cData = useAssistant().data.keys.find(item => item.c_key === useRoute().query.c_key);
+            if(cData) {
+                return cData.id;
+            }
+            return null;
         }
     },
     created() {
         useAssistant().updateUserAssistantKeys();
+        if(this.cId) {
+            useAssistant().updateAssistantKeyHistoryById(this.cId);
+        }
     }
 }
 </script>
 <template>
-    <body id="main_layout-area" class="default-width default-height">
+    <body id="main_layout-area" class="default-width default-height" :key="cId?.toString()">
         <layout-desktop-main v-if="deviceType === 'desktop'">
             <slot/>
         </layout-desktop-main>

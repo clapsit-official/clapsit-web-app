@@ -1,9 +1,11 @@
 <script lang="ts">
+import { $availableRoutes } from "~/configs/routes.config";
 import colorUtilities from "~/constants/colorUtilities";
 export default defineComponent({
   name: "JsonGenerator",
   setup() {
     return {
+      $availableRoutes,
       colorUtilities,
       store: useJSONGenerator(),
     };
@@ -34,10 +36,10 @@ export default defineComponent({
       },
       set(value: string) {
         if (!value.startsWith("{") || !value.endsWith("}")) {
-          this.store.inputProgress(`{\n}`);
+          this.store.resetInputProgress();
           this.count++;
         } else if (value === "" || !value) {
-          this.store.inputProgress(`{\n}`);
+          this.store.resetInputProgress();
           this.count++;
         } else {
           this.store.inputProgress(value);
@@ -55,18 +57,28 @@ export default defineComponent({
     isLoading() {
       return useQueryManager().loadingList.includes("json_generator");
     },
+    cKey() {
+      return this.cData.c_key;
+    }
   },
   watch: {
     cData: {
       immediate: true,
       deep: true,
-      handler() {
-        if (this.cData) {
-          useJSONGenerator().environments.conversation_key = this.cData.c_key;
+      async handler() {
+        if (this.cData.c_key && this.cData.key_name) {
+          useJSONGenerator().environments.c_key = this.cData.c_key;
+          useJSONGenerator().environments.c_id = this.cData.id;
           useJSONGenerator().environments.key_name = this.cData.key_name;
         }
       },
     },
+    cKey: {
+      immediate: true,
+      handler() {
+        this.store.resetAll();
+      }
+    }
   },
 });
 </script>
@@ -87,18 +99,17 @@ export default defineComponent({
         class="primary"
         :class="{ loading: isLoading }"
         title="Generate"
-        @click="store.generate"
-      >
+        @click="store.generate">
         <icon-component
           v-if="!isLoading"
           icon-name="rocket"
           :color="colorUtilities.$whiteColor"
-          fill
-        />
+          fill />
       </button>
-      <button class="white" title="Reset">
+      <button class="white" title="Reset" @click="store.resetAll">
         <icon-component
-          icon-name="refresh"
+          fill
+          icon-name="trash"
           :color="colorUtilities.$errorColor"
         />
       </button>
@@ -121,7 +132,8 @@ export default defineComponent({
   </div>
 </template>
 <style lang="scss" scoped>
-.desktop-app-container {
+.desktop-app-container,
+.tablet-app-container {
   #assistant-jsong_generator {
     display: flex;
     justify-content: center;
@@ -135,6 +147,11 @@ export default defineComponent({
       height: 80%;
       button {
         width: 3rem;
+      }
+    }
+    .editor-area {
+      :deep(.custom-input-component) {
+        max-width: 100%;
       }
     }
   }

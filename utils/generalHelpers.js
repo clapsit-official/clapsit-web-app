@@ -195,14 +195,20 @@ export function formatDateString(dateString) {
   const inputDate = new Date(dateString);
   const today = new Date();
 
-  // Get the difference in days between the input date and today
+  // Normalize both dates to midnight for accurate day comparison
+  today.setHours(0, 0, 0, 0);
+  inputDate.setHours(0, 0, 0, 0);
+
   const timeDifference = today - inputDate;
   const dayInMillis = 1000 * 60 * 60 * 24;
   const diffDays = Math.floor(timeDifference / dayInMillis);
 
   // If it's the same day
   if (diffDays === 0) {
-    return `${formatDate(dateString).hours}:${formatDate(dateString).minutes}`;
+    const original = new Date(dateString);
+    const hours = String(original.getHours()).padStart(2, '0');
+    const minutes = String(original.getMinutes()).padStart(2, '0');
+    return `${hours}:${minutes}`;
   }
 
   // If it's yesterday
@@ -212,13 +218,13 @@ export function formatDateString(dateString) {
 
   // If it's within the past week, return the weekday
   if (diffDays < 7) {
-    const weekdays = ['Sun.', 'Mon.', 'Tue.', 'Wed.', 'Thu.', 'Fri.', 'Sat.'];
+    const weekdays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
     return weekdays[inputDate.getDay()];
   }
 
-  // If it's more than a week ago, return the full date in dd/mm/yyyy format
+  // If it's more than a week ago, return the full date
   const day = String(inputDate.getDate()).padStart(2, '0');
-  const month = String(inputDate.getMonth() + 1).padStart(2, '0'); // Months are 0-indexed
+  const month = String(inputDate.getMonth() + 1).padStart(2, '0');
   const year = inputDate.getFullYear();
 
   return `${day}/${month}/${year}`;

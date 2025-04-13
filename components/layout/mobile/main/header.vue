@@ -2,7 +2,7 @@
 import colorUtilities from '~/constants/colorUtilities';
 export default defineComponent({
     name: "MainLayoutHeader",
-    emits: ['flodAction'],
+    emits: ['foldAction'],
     setup() {
         return {
             colorUtilities
@@ -21,7 +21,7 @@ export default defineComponent({
             </div>
             <div id="header-item_right-side" class="flex-row-between-center">
                 <div id="show-more-area">
-                    <div id="icon-area" class="hover-effect" @click="()=> $emit('flodAction')">
+                    <div id="icon-area" class="hover-effect" @click="()=> $emit('foldAction')">
                         <icon-component icon-name="menu" icon-size="24px" fill/>
                     </div>
                 </div>

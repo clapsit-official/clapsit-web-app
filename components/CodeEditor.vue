@@ -5,7 +5,7 @@
       :lang="lang" 
       :options="{ 
         theme: theme,
-        automaticLayout: false,
+        automaticLayout: true,
         wordWrap: 'on',
         readOnly: readOnly,
         minimap: {
@@ -58,23 +58,43 @@ export default defineComponent({
 </script>
 <style scoped lang="scss">
 .code-editor-component {
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-  padding: 1.3rem 0;
-  background-color: #fff;
-  border-radius: 7px;
-  border: 1px solid colors.$textSecondary;
-  & > * {
-    position: relative;
     width: 100%;
     height: 100%;
-    min-width: 600px;
-    min-height: 500px;
-    &:deep(.monaco-editor) {
-      * {
-        font-size: .8rem !important;
-        font-family: "JetBrains Mono", monospace !important;
+    overflow: hidden;
+    padding: 1.3rem 0;
+    background-color: #fff;
+    border-radius: 7px;
+    border: 1px solid colors.$textSecondary;
+}
+.desktop-app-container{
+  .code-editor-component {
+    & > * {
+      position: relative;
+      width: 33vw;
+      height: 100%;
+      min-height: 500px;
+      &:deep(.monaco-editor) {
+        * {
+          font-size: .8rem !important;
+          font-family: "JetBrains Mono", monospace !important;
+        }
+      }
+    }
+  }
+}
+
+.tablet-app-container{
+  .code-editor-component {
+    & > * {
+      position: relative;
+      width: 36vw;
+      height: 100%;
+      min-height: 500px;
+      &:deep(.monaco-editor) {
+        * {
+          font-size: .8rem !important;
+          font-family: "JetBrains Mono", monospace !important;
+        }
       }
     }
   }

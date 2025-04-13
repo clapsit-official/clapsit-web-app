@@ -1,4 +1,4 @@
-import type { GetUserAssistantKeysParamsType, StartAssistantParamsType } from "~/types/assistants.types";
+import type { GetAssistantHistoryByIdParamsType, GetUserAssistantKeysParamsType, StartAssistantParamsType } from "~/types/assistants.types";
 import type { ServerResponseType } from "~/types/general.types";
 import type { JSONGeneratorPayloadType } from "~/types/json_generator.types";
 
@@ -18,5 +18,11 @@ export const _AIMUserKeys = {
 export const _AIMJSONGenerator = {
     async post(data: JSONGeneratorPayloadType, cKey: string): Promise<ServerResponseType> {
         return await defineService('json_generator', () => $post(`/aim/json_generator/${cKey}`, {data}));
+    }
+}
+
+export const _AIMKeyHistory = {
+    async get(params: GetAssistantHistoryByIdParamsType) {
+        return await defineService('assistant_key_history', () => $get('/aim/key_history', {params}));   
     }
 }

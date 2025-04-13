@@ -40,6 +40,5 @@ export default defineComponent({
 <style scoped lang="scss">
 .json-editor-component {
   width: 100%;
-  max-width: 600px;
 }
 </style>

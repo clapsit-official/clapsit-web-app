@@ -34,8 +34,9 @@ locales = {
     search_for: "Search for {value}...",
     your_journey: "Your journey",
     how_can_use_it: "How can use it?",
-    session_expired: "Sorry, we can't continue because your session expired!",
+    session_expired: "Your session has expired!",
     start_now: "Start now",
+    no_message: "There is no message",
     buttons: {
         search: "Search",
         filter: "Filter",

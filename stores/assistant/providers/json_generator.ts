@@ -1,42 +1,30 @@
-import { $availableRoutes } from "~/configs/routes.config";
 import { _AIMJSONGenerator, _AIMStart } from "~/services/assistants.service";
-import type { AvailableAssistants } from "~/types/assistants.types";
 import type { ServerResponseType } from "~/types/general.types";
 import type { JSONGeneratorStateModelType } from "~/types/json_generator.types";
 
 
-const model = (): JSONGeneratorStateModelType => {
-    return deepCopy({
-        environments: {
-            key_name: 'json_generator',
-            conversation_key: null
+const model: JSONGeneratorStateModelType = {
+    environments: {
+        key_name: 'json_generator',
+        c_key: null,
+        c_id: null
+    },
+    progress: {
+        input: {
+            message: '',
+            result: `{\n    "request": {} \n}`,
         },
-        progress: {
-            input: {
-                message: '',
-                result: `{
-    "user": {
-        "fullname": "Add a name here",
-        "email": "Add an email here",
-        "details": {
-            "age": "A random number between 18-65",
-            "job": "A random job",
-            "salary": "Random salary"
-        }
+        output: {
+            message: '',
+            result: '',
+            success: null,
+        },
     }
-}`,
-            },
-            output: {
-                message: '',
-                result: '',
-                success: null,
-            },
-        }
-    }) as JSONGeneratorStateModelType;
 }
 
+
 export const useJSONGenerator = defineStore('json_generator', {
-    state: () => (model()),
+    state: () => (deepCopy(model) as JSONGeneratorStateModelType),
     getters: {},
     actions: {
         async start() {
@@ -47,9 +35,11 @@ export const useJSONGenerator = defineStore('json_generator', {
                 });
                 if (response.success && response?.data?.result?.conversation_key) {
                     await useAssistant().updateUserAssistantKeys();
-                    this.environments.conversation_key = response?.data?.result?.conversation_key;
-                    if (this.environments.conversation_key) {
-                        await useAssistant().goToAssistantItem('json_generator', this.environments.conversation_key);
+                    this.environments.c_key = response?.data?.result?.conversation_key;
+                    console.log(response.data.result);
+                    
+                    if (this.environments.c_key) {
+                        await useAssistant().goToAssistantItem(this.environments.key_name, this.environments.c_key);
                     }
                 }
                 return response;
@@ -59,6 +49,7 @@ export const useJSONGenerator = defineStore('json_generator', {
         },
         async generate() {
             try {
+                this.resetOutputProgress();
                 const response = await _AIMJSONGenerator.post({
                     user_id: useUser().getUserId,
                     data: {
@@ -67,8 +58,10 @@ export const useJSONGenerator = defineStore('json_generator', {
                             result: JSON.parse(this.progress.input.result),
                         }
                     }
-                }, this.environments.conversation_key!);
+                }, this.environments.c_key!);
                 this.setResponse(response);
+                await useAssistant().updateUserAssistantKeys();
+                await useAssistant().updateAssistantKeyHistoryById(this.environments.c_id);
             }
             catch (error: any) {
                 throw error;
@@ -82,10 +75,28 @@ export const useJSONGenerator = defineStore('json_generator', {
             this.progress.output.result = str;
         },
         setResponse(response: ServerResponseType) {
-            if(response.success) {
+            if (response.success) {
                 this.progress.output.message = response?.data?.message;
-                this.progress.output.result = JSON.stringify(response?.data?.result, null, 2);
+                this.progress.output.result = JSON.stringify(response?.data?.result, null, 4);
             }
+        },
+        resetInputProgress() {
+            this.progress.input.message = model.progress.input.message;
+            this.progress.input.result = model.progress.input.result;
+        },
+        resetOutputProgress() {
+            this.progress.output.message = model.progress.output.message
+            this.progress.output.result = model.progress.output.result
+            this.progress.output.success = model.progress.output.success;
+        },
+        resetEnvironments() {
+            this.environments.c_id = model.environments.c_id;
+            this.environments.c_key = model.environments.c_key;
+            this.environments.key_name = model.environments.key_name;
+        },
+        resetAll() {
+            this.resetInputProgress();
+            this.resetOutputProgress();
         }
     },
 });

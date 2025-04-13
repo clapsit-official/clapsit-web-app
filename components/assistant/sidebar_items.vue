@@ -1,0 +1,83 @@
+<script lang="ts">
+import colorUtilities from '~/constants/colorUtilities';
+import type { UserAssistantKeyItem } from '~/types/assistants.types';
+
+export default defineComponent({
+    name: "AssistantSidebarItems",
+    setup() {
+        return {
+            colorUtilities,
+            $t: useI18nStore().i18n.global.t
+        }
+    },
+    computed: {
+        userAssistantKeys() {
+           return useAssistant().getUserAssistantKeys;
+        },
+        userAssistantKeyHistory() {
+            return useAssistant().getAssistantKeyHistory;
+        },
+        currentRoute() {
+            return useRouteManagement().config.key;
+        }
+    },
+    methods: {
+        formatDateString,
+        formatDateForTitle(date: Date) {
+            const formated = formatDate(date);
+            return `${formated.day}/${formated.month}/${formated.year} - ${formated.hours}:${formated.minutes}`;
+        },
+        async getAssistantItem(item: UserAssistantKeyItem) {
+            await useAssistant().goToAssistantItem(item.key_name, item.c_key);
+        }
+    }
+});
+</script>
+<template>
+  <section id="sidebar_history-area">
+    <div
+      v-if="currentRoute === 'home'"
+      v-for="(item, index) in userAssistantKeys"
+      style="margin: 0.8rem 0"
+      class="hover-effect"
+      :key="item.id">
+      <div
+        class="flex-row-start-center"
+        style="gap: 5px"
+        @click.prevent="getAssistantItem(item)"
+        :title="formatDateForTitle(item.date)">
+        <div class="icon-area">
+          <icon-component icon-name="clock_arrow" icon-size="18px" />
+        </div>
+        <span class="ellipsis">
+          {{
+            capitalizeFirstLetter(item.label) ||
+            $t(`assistants.${item.key_name}.label`)
+          }}
+        </span>
+      </div>
+    </div>
+    <div
+      v-else
+      v-for="(item, index) in userAssistantKeyHistory"
+      :key="index"
+      style="margin: 1rem 0; gap: 10px"
+      class="hover-effect flex-row-start-center"
+      :title="formatDateForTitle(item.date)">
+      <strong>
+        [{{ formatDateString(item.date) }}]
+      </strong>
+      <span class="ellipsis" v-if="item.input.message">
+        {{ capitalizeFirstLetter(item.input.message) }}
+      </span>
+      <i v-else> {{ $t("no_message") }}</i>
+    </div>
+  </section>
+</template>
+<style lang="scss" scoped>
+    section#sidebar_history-area {
+        height: 90%;
+        font-size: .75rem;
+        width: 100%;
+    }
+</style>

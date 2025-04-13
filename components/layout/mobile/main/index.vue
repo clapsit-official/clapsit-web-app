@@ -23,9 +23,9 @@ export default defineComponent({
 <template>
     <div id="main_layout-mobile">
         <div id="content">
-            <LayoutMobileMainHeader @flod-action="() => setSidebarVisibility(true)"/>
+            <LayoutMobileMainHeader @fold-action="() => setSidebarVisibility(true)"/>
             <main @click.prevent="setSidebarVisibility(false)">
-                <LayoutMobileMainSidebar @flod-action="() => setSidebarVisibility(false)" v-if="showSidebar"/>
+                <LayoutMobileMainSidebar @fold-action="() => setSidebarVisibility(false)" v-if="showSidebar"/>
                 <slot />
             </main>
         </div>

@@ -34,9 +34,7 @@ export default {
             }
         },
         currentCKeyData() {
-            return useAssistant().getUserAssistantKeys.find((item) => {
-                return item.c_key === this.cKey;
-            });
+            return useAssistant().getUserAssistantKeys.find((item) => item.c_key === this.cKey);
         },
         currentComponent() {
             return this.assistantComponents[this.keyName!];
@@ -53,7 +51,18 @@ export default {
                     useSeoMeta({ title: this.$t(`assistants.${this.keyName}.label`) + ' | ' + useCoreAppStore().getBrandName });
                 }
             }
-        }
+        },
+        cKey: {
+            immediate: true,
+            async handler(val) {
+                if(val && this.currentCKeyData) {
+                    await useAssistant().updateAssistantKeyHistoryById(this.currentCKeyData?.id!);
+                }
+            }
+        },
+    },
+    unmounted() {
+        useAssistant().resetAssistantKeyHistory();
     }
 }
 </script>

@@ -87,6 +87,7 @@ export interface LanguageContent {
     how_can_use_it: LocaleType;
     session_expired: LocaleType;
     start_now: LocaleType;
+    no_message: LocaleType;
     settings: LocaleType;
     error: LocaleType;
     greetings: LocaleType;

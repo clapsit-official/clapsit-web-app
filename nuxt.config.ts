@@ -18,7 +18,7 @@ export default defineNuxtConfig({
 
   // @ts-ignore
   devServer: {
-      port: 3000,
+      port: process.env.NUXT_APP_PORT || 3000,
       https: false
   },
   devtools: { enabled: true },
