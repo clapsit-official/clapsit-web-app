@@ -36,7 +36,6 @@ export const useJSONGenerator = defineStore('json_generator', {
                 if (response.success && response?.data?.result?.conversation_key) {
                     await useAssistant().updateUserAssistantKeys();
                     this.environments.c_key = response?.data?.result?.conversation_key;
-                    console.log(response.data.result);
                     
                     if (this.environments.c_key) {
                         await useAssistant().goToAssistantItem(this.environments.key_name, this.environments.c_key);
@@ -59,7 +58,6 @@ export const useJSONGenerator = defineStore('json_generator', {
                         }
                     }
                 }, this.environments.c_key!);
-                this.setResponse(response);
                 await useAssistant().updateUserAssistantKeys();
                 await useAssistant().updateAssistantKeyHistoryById(this.environments.c_id);
             }
@@ -73,12 +71,6 @@ export const useJSONGenerator = defineStore('json_generator', {
         },
         outputProgress(str: string) {
             this.progress.output.result = str;
-        },
-        setResponse(response: ServerResponseType) {
-            if (response.success) {
-                this.progress.output.message = response?.data?.message;
-                this.progress.output.result = JSON.stringify(response?.data?.result, null, 4);
-            }
         },
         resetInputProgress() {
             this.progress.input.message = model.progress.input.message;

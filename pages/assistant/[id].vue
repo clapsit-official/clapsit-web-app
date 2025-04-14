@@ -15,9 +15,15 @@ export default {
             const { c_key } = useRoute().query;
             if (c_key) {
                 return c_key;
-            } else {
-                useRouter().push($availableRoutes.home);
             }
+            useRouter().push($availableRoutes.home);
+        },
+        cId() {
+            const { c_id } = useRoute().query;
+            if (c_id) {
+                return c_id;
+            }
+            return null
         },
         keyName(): AvailableAssistants | undefined {
             const { id } = useRoute().params;
@@ -45,11 +51,7 @@ export default {
             immediate: true,
             deep: true,
             handler() {
-                if (this.currentCKeyData?.label && typeof this.currentCKeyData?.label === 'string') {
-                    useSeoMeta({ title: this.currentCKeyData?.label  + ' | ' + useCoreAppStore().getBrandName });
-                } else {
-                    useSeoMeta({ title: this.$t(`assistants.${this.keyName}.label`) + ' | ' + useCoreAppStore().getBrandName });
-                }
+                this.setTitleByCData();
             }
         },
         cKey: {
@@ -58,8 +60,21 @@ export default {
                 if(val && this.currentCKeyData) {
                     await useAssistant().updateAssistantKeyHistoryById(this.currentCKeyData?.id!);
                 }
+                this.setTitleByCData();
             }
         },
+        cId() {
+            this.setTitleByCData();
+        }
+    },
+    methods: {
+        setTitleByCData() {
+            if (this.currentCKeyData?.label && typeof this.currentCKeyData?.label === 'string') {
+                useSeoMeta({ title: capitalizeFirstLetter(this.currentCKeyData?.label)  + ' | ' + useCoreAppStore().getBrandName });
+            } else {
+                useSeoMeta({ title: this.$t(`assistants.${this.keyName}.label`) + ' | ' + useCoreAppStore().getBrandName });
+            }
+        }
     },
     unmounted() {
         useAssistant().resetAssistantKeyHistory();

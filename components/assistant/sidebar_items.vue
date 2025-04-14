@@ -1,6 +1,6 @@
 <script lang="ts">
 import colorUtilities from '~/constants/colorUtilities';
-import type { UserAssistantKeyItem } from '~/types/assistants.types';
+import type { UserAssistantHistoryItem, UserAssistantKeyItem } from '~/types/assistants.types';
 
 export default defineComponent({
     name: "AssistantSidebarItems",
@@ -19,6 +19,13 @@ export default defineComponent({
         },
         currentRoute() {
             return useRouteManagement().config.key;
+        },
+        cId() {
+          const { c_id } = useRoute().query;
+            if (c_id) {
+                return Number(c_id);
+            }
+            return null
         }
     },
     methods: {
@@ -29,7 +36,35 @@ export default defineComponent({
         },
         async getAssistantItem(item: UserAssistantKeyItem) {
             await useAssistant().goToAssistantItem(item.key_name, item.c_key);
+        },
+        async getAssistantHistory(item: UserAssistantHistoryItem) {
+          if(item) {
+            await useAssistant().goToAssistantItem(
+              useAssistant().getCurrentAssistantStore.environments.key_name, 
+              item.c_key, 
+              item.c_id
+            );
+          }
         }
+    },
+    watch: {
+      userAssistantKeyHistory: {
+        immediate: true,
+        deep: true,
+        async handler(val) {
+          await this.getAssistantHistory(val[0]);
+        }
+      },
+      cId: {
+        immediate: true,
+        deep: true,
+        async handler(val) {   
+          const item: UserAssistantHistoryItem | undefined= this.userAssistantKeyHistory.find(item => item.c_id === val);
+          if(item) {
+            useAssistant().setAssistantHistory(item);
+          }
+        }
+      }
     }
 });
 </script>
@@ -63,6 +98,7 @@ export default defineComponent({
       :key="index"
       style="margin: 1rem 0; gap: 10px"
       class="hover-effect flex-row-start-center"
+      @click.prevent="getAssistantHistory(item)"
       :title="formatDateForTitle(item.date)">
       <strong>
         [{{ formatDateString(item.date) }}]

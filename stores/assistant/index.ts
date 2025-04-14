@@ -21,6 +21,13 @@ export const useAssistant = defineStore('assistant', {
         },
         getAssistantKeyHistory(state): UserAssistantHistoryItem[] {
             return state.data.history;
+        },
+        getCurrentAssistantStore() {
+            const { id } = useRoute().params;
+            if(id) {
+                //@ts-ignore
+                return this.getProvider[id]();
+            }
         }
     },
     actions: {
@@ -67,13 +74,30 @@ export const useAssistant = defineStore('assistant', {
             this.resetUserAssistantKeys();
             this.resetAssistantKeyHistory();
         },
-        async goToAssistantItem(assistant: AvailableAssistants, conversation_key: string) {
+        async goToAssistantItem(assistant: AvailableAssistants, conversation_key: string, c_id?: number) {
             await useRouter().push({
                 path: $availableRoutes[assistant],
                 query: {
-                    c_key: conversation_key
+                    c_id,
+                    c_key: conversation_key,
                 }
             });
         },
+        setAssistantHistory(item: UserAssistantHistoryItem) {
+            this.getCurrentAssistantStore.progress.input.message = item.input.message;
+            this.getCurrentAssistantStore.progress.output.message = item.output.message;
+            this.getCurrentAssistantStore.progress.output.success = item.output.success;
+            if(typeof item.input.result === 'object') {
+                this.getCurrentAssistantStore.progress.input.result = JSON.stringify(item.input.result, null, 4);
+            } else {
+                this.getCurrentAssistantStore.progress.input.result = `${item.input.result}`;
+            }
+           
+            if(typeof item.output.result === 'object') {
+                this.getCurrentAssistantStore.progress.output.result = JSON.stringify(item.output.result, null, 4);
+            } else {
+                this.getCurrentAssistantStore.progress.output.result = `${item.output.result}`;
+            }
+        }
     },
 });

@@ -6,5 +6,6 @@ export type LoginDataType = {
 
 export type AuthStateType = {
     loginData: LoginDataType;
-    emailConfirmRequired: Boolean
+    emailConfirmRequired: Boolean,
+    authResult: Boolean | null
 }

@@ -16,7 +16,7 @@ export default defineNuxtRouteMiddleware(async (from, to) => {
                 console.error(error);
             }
         }
-        if(useAuth().checkAuthCredentials()){
+        if(useAuth().checkAuthCredentials() && !useAuth().isAuth){
             try {
                 await useAuth().auth();
             } catch(error: any) {

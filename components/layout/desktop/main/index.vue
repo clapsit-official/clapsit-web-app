@@ -43,7 +43,7 @@ export default defineComponent({
         </div>
         <div id="content">
             <LayoutDesktopMainHeader />
-            <main :key="showSidebar.toString()">
+            <main>
                 <slot />
             </main>
         </div>
