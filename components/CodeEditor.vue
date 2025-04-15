@@ -62,20 +62,41 @@ export default defineComponent({
     height: 100%;
     overflow: hidden;
     padding: 1.3rem 0;
-    background-color: #fff;
-    border-radius: 7px;
-    border: 1px solid colors.$textSecondary;
+    background-color: #1E1E1E;
+    border-radius: .7rem;
+    overflow: hidden;
+    @include colors.box-shadow-2;
+    &:deep(.monaco-editor) {
+        width: 100%;
+        height: 100%;
+        .overflow-guard {
+          width: 100%;
+          height: 100%;
+          & > * {
+            width: 100%;
+            .lines-content {
+              width: 100%;
+              height: 100%;
+              .view-lines {
+                height: 100%;
+                & > * {
+                  width: 100% !important;
+                  height: 100%;
+                }
+              }
+            }
+          }
+        }
+    }
 }
 .desktop-app-container{
   .code-editor-component {
     & > * {
       position: relative;
-      width: 33vw;
       height: 100%;
-      min-height: 500px;
       &:deep(.monaco-editor) {
         * {
-          font-size: .8rem !important;
+          font-size: 11px !important;
           font-family: "JetBrains Mono", monospace !important;
         }
       }
@@ -92,7 +113,7 @@ export default defineComponent({
       min-height: 500px;
       &:deep(.monaco-editor) {
         * {
-          font-size: .8rem !important;
+          font-size: .9rem !important;
           font-family: "JetBrains Mono", monospace !important;
         }
       }

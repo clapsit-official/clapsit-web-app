@@ -12,11 +12,11 @@ const model: JSONGeneratorStateModelType = {
     progress: {
         input: {
             message: '',
-            result: `{\n    "request": {} \n}`,
+            result: `{\n    "data": {} \n}`,
         },
         output: {
-            message: '',
-            result: '',
+            message: 'Fill left side with your request and JSON examples',
+            result: `{}`,
             success: null,
         },
     }
@@ -48,7 +48,7 @@ export const useJSONGenerator = defineStore('json_generator', {
         },
         async generate() {
             try {
-                this.resetOutputProgress();
+                this.progress.output.message = '';
                 const response = await _AIMJSONGenerator.post({
                     user_id: useUser().getUserId,
                     data: {
@@ -58,6 +58,7 @@ export const useJSONGenerator = defineStore('json_generator', {
                         }
                     }
                 }, this.environments.c_key!);
+                this.resetOutputProgress();
                 await useAssistant().updateUserAssistantKeys();
                 await useAssistant().updateAssistantKeyHistoryById(this.environments.c_id);
             }
@@ -89,6 +90,16 @@ export const useJSONGenerator = defineStore('json_generator', {
         resetAll() {
             this.resetInputProgress();
             this.resetOutputProgress();
+        },
+        reverse() {
+            const deepOutput = deepCopy(this.progress.output);
+
+            this.progress.output.message = '';
+            this.progress.output.result = '';
+            this.progress.output.success = null;
+
+            this.progress.input.message = deepOutput.message;
+            this.progress.input.result = deepOutput.result;
         }
     },
 });

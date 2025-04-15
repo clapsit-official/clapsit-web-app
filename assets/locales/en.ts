@@ -199,7 +199,16 @@ locales = {
         json_generator: {
             label: "AI-JSON Generator",
             slogan: "Generate and design JSON objects however you want!",
-            description: "Generate and design JSON objects however you want. Generate and design JSON objects however you want. Generate and design JSON objects however generate and design JSON objects however you want!"
+            description: "With AI, you can create your own JSON data and use it as you wish. It's a flexible and fast tool, easy and straightforward to use",
+            input: "Input",
+            input_placeholder: "Add your message here",
+            output: "Output",
+            output_placeholder: "Fill left side with your request and JSON examples",
+            generate: "Generate",
+            copy: "Copy",
+            reverse: "Reverse",
+            clear: "Clear",
+            loading: "Loading..."
         }
     }
 };

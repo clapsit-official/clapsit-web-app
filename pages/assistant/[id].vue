@@ -94,7 +94,7 @@ export default {
     width: 100%;
     height: 100%;
     display: flex;
-    justify-content: center;
+    padding: 0 1rem;
     @include animations.fadeIn(.1s);
 }
 </style>

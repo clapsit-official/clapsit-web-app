@@ -118,7 +118,7 @@ export default defineComponent({
                 max-width: 50%;
                 min-width: 15%;
                 max-height: 80%;
-                @include animations.slideInRightBounce(1s);
+                @include animations.slideDownBounce(.5s);
             }
         }
     }

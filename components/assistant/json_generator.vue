@@ -1,4 +1,5 @@
 <script lang="ts">
+import { useI18n } from "vue-i18n";
 import { $availableRoutes } from "~/configs/routes.config";
 import colorUtilities from "~/constants/colorUtilities";
 export default defineComponent({
@@ -8,11 +9,13 @@ export default defineComponent({
       $availableRoutes,
       colorUtilities,
       store: useJSONGenerator(),
+      $t: useI18nStore().i18n.global.t
     };
   },
   data() {
     return {
       count: 0,
+      copyToggle: false,
     };
   },
   props: {
@@ -80,25 +83,50 @@ export default defineComponent({
       }
     }
   },
+  methods: {
+    handleGenerateShortcut(event: any) {
+      if ((event.metaKey || event.ctrlKey) && event.key === 'Enter') {
+        this.store.generate();
+      }
+    },
+    toClipboard() {
+      this.copyToggle = true;
+      copyToClipboard(this.store.progress.output.result.toString())
+      setTimeout(() => {
+        this.copyToggle = false;
+      }, 2000)
+    }
+  },
+  mounted() {
+    window.addEventListener('keydown', this.handleGenerateShortcut);
+  },
+  unmounted(){
+    window.removeEventListener('keydown', this.handleGenerateShortcut);
+  }
 });
 </script>
 
 <template>
-  <div id="assistant-jsong_generator" :key="count">
+  <form id="assistant-jsong_generator" :key="count" @submit.prevent="store.generate">
     <div class="editor-area">
-      <strong>Input:</strong>
-      <custom-input
+      <strong>
+        <Text locale="assistants.json_generator.input"/>:
+      </strong>
+      <JsonEditorComponent 
+        :disabled="isLoading"
+        v-model="inputComputed" />
+      <textarea
+        :readonly="isLoading"
         v-model="store.progress.input.message"
-        left-icon="message_caption"
-        placeholder="Message"
+        :placeholder="$t('assistants.json_generator.input_placeholder')"
       />
-      <JsonEditorComponent v-model="inputComputed" />
     </div>
     <div id="btns-area">
       <button
         class="primary"
         :class="{ loading: isLoading }"
-        title="Generate"
+        :title="$t('assistants.json_generator.generate')"
+        type="submit"
         @click="store.generate">
         <icon-component
           v-if="!isLoading"
@@ -106,52 +134,88 @@ export default defineComponent({
           :color="colorUtilities.$whiteColor"
           fill />
       </button>
-      <button class="white" title="Reset" @click="store.resetAll">
+      <button 
+        class="white" 
+        type="button"
+        :title="$t('assistants.json_generator.copy')"
+        @click="toClipboard">
+        <icon-component :fill="copyToggle" :icon-name="copyToggle ? 'file_check' : 'file_copy_alt'" />
+      </button>
+      <button 
+        class="white"
+        :title="$t('assistants.json_generator.reverse')"
+        type="button"
+        @click="store.reverse">
+        <icon-component icon-name="refresh" />
+      </button>
+      <button 
+        class="white" 
+        :title="$t('assistants.json_generator.clear')"
+        type="reset"
+        @click="store.resetAll">
         <icon-component
           fill
           icon-name="trash"
           :color="colorUtilities.$errorColor"
         />
       </button>
-      <button class="white">
-        <icon-component icon-name="person" />
-      </button>
-      <button class="white">
-        <icon-component icon-name="person" />
-      </button>
     </div>
     <div class="editor-area">
-      <strong>Output:</strong>
-      <custom-input
+      <strong>
+        <Text locale="assistants.json_generator.output"/>:
+      </strong>
+      <JsonEditorComponent 
+        :loading="isLoading"
+        v-model="outputComputed" 
+        :read-only="true" />
+      <textarea
+        readonly
         v-model="store.progress.output.message"
-        left-icon="message_caption"
-        placeholder="Message"
+        :placeholder="!isLoading ? $t('assistants.json_generator.output_placeholder') : $t('assistants.json_generator.loading')"
       />
-      <JsonEditorComponent v-model="outputComputed" :read-only="true" />
     </div>
-  </div>
+  </form>
 </template>
 <style lang="scss" scoped>
 .desktop-app-container,
 .tablet-app-container {
   #assistant-jsong_generator {
     display: flex;
-    justify-content: center;
+    width: 98%;
+    justify-content: space-between;
     #btns-area {
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
       padding: 0 2rem;
       gap: 1rem;
       height: 80%;
+      width: 50px;
+      margin-top: 2.5rem;
       button {
         width: 3rem;
       }
     }
     .editor-area {
-      :deep(.custom-input-component) {
-        max-width: 100%;
+      width: 100%;
+      height: 60vh;
+      & > * {
+        margin: 1.6rem 0;
+      }
+      textarea {
+        width: calc(100% - (1.3rem * 2));
+        min-height: 10vh;
+        resize: vertical;
+        padding: 1.3rem;
+        background-color: #1E1E1E;
+        color: colors.$primaryColor;
+        font-family: "JetBrains Mono", monospace !important;
+        font-size: .8rem;
+        font-weight: bold;
+        border-radius: .7rem;
+        border: none;
+        @include colors.box-shadow-2;
+        outline: none;
       }
     }
   }

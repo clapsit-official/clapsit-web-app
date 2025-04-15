@@ -33,7 +33,7 @@ export default defineComponent({
     },
     color: {
       type: String,
-      default: () => colorUtilities.$blackColor
+      default: () => colorUtilities.$textPrimary
     },
     hover: {
       type: Boolean,

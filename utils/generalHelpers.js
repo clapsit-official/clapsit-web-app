@@ -229,3 +229,28 @@ export function formatDateString(dateString) {
 
   return `${day}/${month}/${year}`;
 }
+
+export function copyToClipboard(value) {
+  // Create a temporary textarea element
+  const textarea = document.createElement('textarea');
+  textarea.value = value;
+  
+  // Make it invisible
+  textarea.style.position = 'fixed';
+  textarea.style.opacity = '0';
+  
+  // Append to body
+  document.body.appendChild(textarea);
+  
+  // Select and copy
+  textarea.select();
+  try {
+      document.execCommand('copy');
+      console.log('Value copied to clipboard');
+  } catch (err) {
+      console.error('Failed to copy: ', err);
+  }
+  
+  // Clean up
+  document.body.removeChild(textarea);
+}

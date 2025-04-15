@@ -138,7 +138,16 @@ export type ModalsLocaleType = {
 export type AssistantsLocale = {
     [key: string]: {
         label: LocaleType,
-        slogan: LocaleType
-        description: LocaleType
+        slogan: LocaleType,
+        description: LocaleType,
+        input: LocaleType,
+        input_placeholder: LocaleType,
+        output: LocaleType,
+        output_placeholder: LocaleType,
+        generate: LocaleType,
+        copy: LocaleType,
+        reverse: LocaleType,
+        clear: LocaleType,
+        loading: LocaleType
     }
 }

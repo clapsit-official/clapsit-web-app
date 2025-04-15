@@ -62,7 +62,7 @@ export default defineComponent({
                     <icon-component hover icon-name="clock_arrow" @click="() => $emit('foldAction')"/>
                 </div>
             </section>
-            <AssistantSidebarItems v-if="!fold"/>
+            <AssistantSidebarItems v-show="!fold"/>
             <section></section>
             <section></section>
             <section></section>
