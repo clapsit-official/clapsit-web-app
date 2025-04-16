@@ -1,0 +1,103 @@
+.light-theme {
+  $primaryColor: #0097b2;
+  $secondaryColor: #37474f;
+
+  $whiteColor: #ffffff;
+  $blackColor: #000000;
+
+  // Background Colors
+  $backgroundColor: $whiteColor;
+  $surfaceColor: #fafafa;
+  $surfaceColor1: #f1f1f1;
+  $surfaceColor2: #fafafa;
+  $surfaceColor3: #f3f3f3;
+  $surfaceColor4: #f4f4f4;
+  $surfaceColor5: #fafafa;
+
+  // Text Colors
+  $textPrimary: $blackColor;
+  $textSecondary: #5d5d5d;
+
+  $errorColor: #c62323;
+  $errorSecondary: #f3ecec;
+
+  $successColor: #1aa11d;
+
+  $warningColor: #f9a700;
+  $warningSecondary: #f5f1ea;
+  $infoColor: #0658ff;
+
+  // Disabled Colors
+  $disabledColor: #cccccc;
+  // Divider Color
+  $dividerColor: #bdbdbd;
+  // Shadows
+  $shadowColor: #000;
+
+  @mixin box-shadow-1() {
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
+      rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+  }
+  @mixin box-shadow-2() {
+    box-shadow: rgba(60, 64, 67, 0.15) 0px 1px 2px 0px,
+      rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+  }
+  @mixin box-shadow-3() {
+    box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px,
+      rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+  }
+  @mixin box-shadow-4() {
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 20px 30px -25px inset;
+  }
+}
+
+$primaryColor: #0097b2;
+$secondaryColor: #37474f;
+
+$whiteColor: #ffffff;
+$blackColor: #1e1e1e;
+
+// Background Colors
+$backgroundColor: #2f2f2f;
+$surfaceColor: #1e1e1e;
+$surfaceColor1: #414141;
+$surfaceColor2: #4a4a4a;
+$surfaceColor3: #434343;
+$surfaceColor4: #444444;
+$surfaceColor5: #5a5a5a;
+
+// Text Colors
+$textPrimary: $whiteColor;
+$textSecondary: #eee;
+
+$errorColor: #c62323;
+$errorSecondary: #f3ecec;
+
+$successColor: #1aa11d;
+
+$warningColor: #f9a700;
+$warningSecondary: #f5f1ea;
+$infoColor: #0658ff;
+
+// Disabled Colors
+$disabledColor: #cccccc;
+// Divider Color
+$dividerColor: #bdbdbd;
+// Shadows
+$shadowColor: #000;
+
+@mixin box-shadow-1() {
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
+    rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+}
+@mixin box-shadow-2() {
+  box-shadow: rgba(60, 64, 67, 0.15) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+}
+@mixin box-shadow-3() {
+  box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px,
+    rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+}
+@mixin box-shadow-4() {
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 20px 30px -25px inset;
+}

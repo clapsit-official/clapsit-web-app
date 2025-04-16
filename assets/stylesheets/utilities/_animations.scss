@@ -588,6 +588,208 @@ $default_hover_opacity_value: 0.6;
   }
 }
 
+// SCSS Mixins for CSS Backdrop Filter Animations
+
+// Blur Animation Mixin
+@mixin animate-backdrop-blur(
+  $duration: 1s,
+  $timing: ease,
+  $delay: 0s,
+  $blur-start: 1.5px,
+  $blur-end: 3px
+) {
+  animation: blurAnimation $duration $timing $delay infinite alternate;
+
+  @keyframes blurAnimation {
+    from {
+      backdrop-filter: blur($blur-start);
+    }
+    to {
+      backdrop-filter: blur($blur-end);
+    }
+  }
+}
+
+// Brightness Animation Mixin
+@mixin animate-backdrop-brightness(
+  $duration: 1s,
+  $timing: ease,
+  $delay: 0s,
+  $brightness-start: 100%,
+  $brightness-end: 5%
+) {
+  animation: brightnessAnimation $duration $timing $delay infinite alternate;
+
+  @keyframes brightnessAnimation {
+    from {
+      backdrop-filter: brightness($brightness-start);
+    }
+    to {
+      backdrop-filter: brightness($brightness-end);
+    }
+  }
+}
+
+// Contrast Animation Mixin
+@mixin animate-backdrop-contrast(
+  $duration: 1s,
+  $timing: ease,
+  $delay: 0s,
+  $contrast-start: 100%,
+  $contrast-end: 150%
+) {
+  animation: contrastAnimation $duration $timing $delay infinite alternate;
+
+  @keyframes contrastAnimation {
+    from {
+      backdrop-filter: contrast($contrast-start);
+    }
+    to {
+      backdrop-filter: contrast($contrast-end);
+    }
+  }
+}
+
+// Drop Shadow Animation Mixin
+@mixin animate-backdrop-drop-shadow(
+  $duration: 1s,
+  $timing: ease,
+  $delay: 0s,
+  $shadow-start: 0px 0px 0px 0px rgba(0, 0, 0, 0.2),
+  $shadow-end: 10px 10px 10px 0px rgba(0, 0, 0, 0.5)
+) {
+  animation: dropShadowAnimation $duration $timing $delay infinite alternate;
+
+  @keyframes dropShadowAnimation {
+    from {
+      backdrop-filter: drop-shadow($shadow-start);
+    }
+    to {
+      backdrop-filter: drop-shadow($shadow-end);
+    }
+  }
+}
+
+// Grayscale Animation Mixin
+@mixin animate-backdrop-grayscale(
+  $duration: 1s,
+  $timing: ease,
+  $delay: 0s,
+  $grayscale-start: 0%,
+  $grayscale-end: 100%
+) {
+  animation: grayscaleAnimation $duration $timing $delay infinite alternate;
+
+  @keyframes grayscaleAnimation {
+    from {
+      backdrop-filter: grayscale($grayscale-start);
+    }
+    to {
+      backdrop-filter: grayscale($grayscale-end);
+    }
+  }
+}
+
+// Hue Rotate Animation Mixin
+@mixin animate-backdrop-hue-rotate(
+  $duration: 1s,
+  $timing: ease,
+  $delay: 0s,
+  $hue-start: 0deg,
+  $hue-end: 180deg
+) {
+  animation: hueRotateAnimation $duration $timing $delay infinite alternate;
+
+  @keyframes hueRotateAnimation {
+    from {
+      backdrop-filter: hue-rotate($hue-start);
+    }
+    to {
+      backdrop-filter: hue-rotate($hue-end);
+    }
+  }
+}
+
+// Invert Animation Mixin
+@mixin animate-backdrop-invert(
+  $duration: 1s,
+  $timing: ease,
+  $delay: 0s,
+  $invert-start: 0%,
+  $invert-end: 100%
+) {
+  animation: invertAnimation $duration $timing $delay infinite alternate;
+
+  @keyframes invertAnimation {
+    from {
+      backdrop-filter: invert($invert-start);
+    }
+    to {
+      backdrop-filter: invert($invert-end);
+    }
+  }
+}
+
+// Opacity Animation Mixin
+@mixin animate-backdrop-opacity(
+  $duration: 1s,
+  $timing: ease,
+  $delay: 0s,
+  $opacity-start: 100%,
+  $opacity-end: 50%
+) {
+  animation: opacityAnimation $duration $timing $delay infinite alternate;
+
+  @keyframes opacityAnimation {
+    from {
+      backdrop-filter: opacity($opacity-start);
+    }
+    to {
+      backdrop-filter: opacity($opacity-end);
+    }
+  }
+}
+
+// Saturate Animation Mixin
+@mixin animate-backdrop-saturate(
+  $duration: 1s,
+  $timing: ease,
+  $delay: 0s,
+  $saturate-start: 100%,
+  $saturate-end: 200%
+) {
+  animation: saturateAnimation $duration $timing $delay infinite alternate;
+
+  @keyframes saturateAnimation {
+    from {
+      backdrop-filter: saturate($saturate-start);
+    }
+    to {
+      backdrop-filter: saturate($saturate-end);
+    }
+  }
+}
+
+// Sepia Animation Mixin
+@mixin animate-backdrop-sepia(
+  $duration: 1s,
+  $timing: ease,
+  $delay: 0s,
+  $sepia-start: 0%,
+  $sepia-end: 100%
+) {
+  animation: sepiaAnimation $duration $timing $delay infinite alternate;
+
+  @keyframes sepiaAnimation {
+    from {
+      backdrop-filter: sepia($sepia-start);
+    }
+    to {
+      backdrop-filter: sepia($sepia-end);
+    }
+  }
+}
+
 // Example usage:
 .animation {
   &.fade {

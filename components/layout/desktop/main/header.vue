@@ -41,6 +41,7 @@ header#main-header {
         #header-item_right-side {
             gap: 1.5rem;
             #create-btn_right-side {
+                color: colors.$blackColor;
                 gap: .5rem;
                 padding: .6rem 1.2rem;
                 border-radius: 10rem;

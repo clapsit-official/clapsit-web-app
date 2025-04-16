@@ -63,8 +63,6 @@ export default defineComponent({
     overflow: hidden;
     padding: 1.3rem 0;
     background-color: #1E1E1E;
-    border-radius: .7rem;
-    overflow: hidden;
     @include colors.box-shadow-2;
     &:deep(.monaco-editor) {
         width: 100%;

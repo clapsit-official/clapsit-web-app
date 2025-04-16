@@ -139,14 +139,19 @@ export default defineComponent({
         type="button"
         :title="$t('assistants.json_generator.copy')"
         @click="toClipboard">
-        <icon-component :fill="copyToggle" :icon-name="copyToggle ? 'file_check' : 'file_copy_alt'" />
+        <icon-component 
+          :fill="copyToggle" 
+          :color="colorUtilities.$blackColor"
+          :icon-name="copyToggle ? 'file_check' : 'file_copy_alt'" />
       </button>
       <button 
         class="white"
         :title="$t('assistants.json_generator.reverse')"
         type="button"
         @click="store.reverse">
-        <icon-component icon-name="refresh" />
+        <icon-component 
+          :color="colorUtilities.$blackColor"
+          icon-name="refresh" />
       </button>
       <button 
         class="white" 
