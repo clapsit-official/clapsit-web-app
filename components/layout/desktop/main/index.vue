@@ -34,9 +34,9 @@ export default defineComponent({
 
 <template>
     <div id="main_layout-desktop" :class="{ 'full': !showSidebar, 'partial': showSidebar }">
-        <LayoutDesktopMainSidebar :flod="!showSidebar" @flod-action="setSidebarVisibility(!showSidebar)"/>
-        <div id="sidebar-flod" class="flex-column-center" v-if="!showSidebar">
-            <div id="flod-btn" class="hover-effect" @click="setSidebarVisibility(!showSidebar)">
+        <LayoutDesktopMainSidebar :fold="!showSidebar" @fold-action="setSidebarVisibility(!showSidebar)"/>
+        <div id="sidebar-fold" class="flex-column-center" v-if="!showSidebar">
+            <div id="fold-btn" class="hover-effect" @click="setSidebarVisibility(!showSidebar)">
                 <IconComponent :icon-name="`caret_${!showSidebar ? 'right' : 'left'}`" icon-size="13"
                     :color="colorUtilities.$textSecondary" fill />
             </div>
@@ -68,7 +68,7 @@ $gap-header-main: 1.3rem;
         gap: $gap-header-main;
 
         section#sidebar_logo-area {
-            div#flod-sidebar {
+            div#fold-sidebar {
                 display: block;
                 position: relative;
                 left: 10px;
@@ -81,10 +81,10 @@ $gap-header-main: 1.3rem;
         }
     }
 
-    #sidebar-flod {
+    #sidebar-fold {
         width: 0;
 
-        #flod-btn {
+        #fold-btn {
             background-color: colors.$surfaceColor;
             padding: .8rem 0;
             @include colors.box-shadow-2();
@@ -103,6 +103,7 @@ $gap-header-main: 1.3rem;
         main {
             overflow-y: auto;
             overflow-x: hidden;
+            height: 100%;
         }
     }
 }
@@ -137,8 +138,8 @@ $gap-header-main: 1.3rem;
 
     }
 
-    #sidebar-flod {
-        #flod-btn {}
+    #sidebar-fold {
+        #fold-btn {}
     }
 
     #content {

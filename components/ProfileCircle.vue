@@ -27,10 +27,11 @@ export default defineComponent({
         width: 2.3rem;
         height: 2.3rem;
         border-radius: 100rem;
-        color: colors.$backgroundColor;
         span {
+            color: colors.$whiteColor;
             position: relative;
             top: 1px;
+            font-size: 1rem;
         }
     }
 }

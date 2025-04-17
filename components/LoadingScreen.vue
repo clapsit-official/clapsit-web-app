@@ -31,8 +31,6 @@ export default defineComponent({
   width: 100%;
   height: 100%;
   z-index: 1000;
-  background-color: rgba(250, 250, 250, 0.7);
-  backdrop-filter: blur(4px);
   gap: 1rem;
 
   img[alt="logo"] {

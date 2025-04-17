@@ -10,11 +10,15 @@ const model: AuthStateType = {
         expires_in: null,
     },
     emailConfirmRequired: false,
+    authResult: null
 };
 
 export const useAuth = defineStore('auth', {
     state: () => (deepCopy(model) as AuthStateType),
     getters: {
+        isAuth(state) {
+            return state.authResult;
+        }
     },
     actions: {
         setAuth(data: LoginDataType) {
@@ -45,8 +49,10 @@ export const useAuth = defineStore('auth', {
             try {
                 const response = await _UserService.auth.get();
                 useUser().setUserData(response.data as UserDataType);
+                this.authResult = true;
                 return response;
             } catch (error: any) {
+                this.authResult = false;
                 switch (error.message.key) {
                     case 'INVALID_TOKEN': {
                         this.resetAuth();

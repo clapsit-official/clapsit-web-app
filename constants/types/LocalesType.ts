@@ -65,6 +65,8 @@ export interface Buttons {
     save: LocaleType;
     change: LocaleType;
     cancel: LocaleType;
+    start: LocaleType;
+    ok: LocaleType;
 }
 
 export interface LanguageContent {
@@ -79,6 +81,13 @@ export interface LanguageContent {
     redirecting_to_login: LocaleType;
     logout_prompt_question: LocaleType;
     say_hello_to: LocaleType;
+    main_description: LocaleType;
+    search_for: LocaleType;
+    your_journey: LocaleType;
+    how_can_use_it: LocaleType;
+    session_expired: LocaleType;
+    start_now: LocaleType;
+    no_message: LocaleType;
     settings: LocaleType;
     error: LocaleType;
     greetings: LocaleType;
@@ -96,10 +105,12 @@ export interface LanguageContent {
     service_temporarily_unavailable: LocaleType;
     coming_soon: LocaleType;
     we_are_working_on_it: LocaleType;
+    not_supported_device: LocaleType;
     buttons: Buttons;
     backend_messages: Record<BackendMessageKeys, string>;
-    pages: PagesType;
-    modals: ModalsType;
+    pages: PagesLocaleType;
+    modals: ModalsLocaleType;
+    assistants: AssistantsLocale;
 }
 
 export type LangOptionsType = 'az-AZ' | 'en-US' | 'ru-RU';
@@ -111,7 +122,7 @@ export interface AvailableLocalItem {
 }
 
 export type AvailableLocals = Array<AvailableLocalItem>;
-export type PagesType = {
+export type PagesLocaleType = {
     [key: string]: {
         title: LocaleType,
         description: LocaleType,
@@ -119,8 +130,29 @@ export type PagesType = {
         utilities?: any,
     }
 }
-export type ModalsType = {
+export type ModalsLocaleType = {
     [key: string]: {
         label: LocaleType,
+    }
+}
+
+export type AssistantsLocale = {
+    [key: string]: {
+        label: LocaleType,
+        slogan: LocaleType,
+        description: LocaleType,
+        input: LocaleType,
+        input_placeholder: LocaleType,
+        output: LocaleType,
+        output_placeholder: LocaleType,
+        generate: LocaleType,
+        copy: LocaleType,
+        copied: LocaleType,
+        reverse: LocaleType,
+        clear: LocaleType,
+        loading: LocaleType,
+        fetching: LocaleType,
+        input_info: LocaleType,
+        output_info: LocaleType,
     }
 }

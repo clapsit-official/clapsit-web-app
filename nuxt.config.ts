@@ -18,7 +18,7 @@ export default defineNuxtConfig({
 
   // @ts-ignore
   devServer: {
-      port: 3000,
+      port: process.env.NUXT_APP_PORT || 3000,
       https: false
   },
   devtools: { enabled: true },
@@ -28,7 +28,7 @@ export default defineNuxtConfig({
       preprocessorOptions: {
         scss: {
           additionalData:
-              '@use "assets/stylesheets/utilities/colors" as colors;' +
+              '@use "assets/stylesheets/utilities/colors_dark" as colors;' +
               '@use "assets/stylesheets/utilities/configs" as configs;' +
               '@use "assets/stylesheets/utilities/responsive" as responsive;' +
               '@use "assets/stylesheets/utilities/animations" as animations;' +
@@ -42,7 +42,7 @@ export default defineNuxtConfig({
   ],
   plugins: [],
   build: {},
-  modules: ["@pinia/nuxt", '@nuxt/devtools'],
+  modules: ["@pinia/nuxt", '@nuxt/devtools', 'nuxt-monaco-editor'],
   pinia: { storesDirs: ['./stores/**', './stores/**/*'] },
   imports: {
       dirs: [

@@ -51,7 +51,7 @@ div.signup-with-button-component {
         span {
             width: 70%;
             font-weight: 500;
-            color: colors.$textPrimary;
+            color: colors.$blackColor;
         }
     }
 }

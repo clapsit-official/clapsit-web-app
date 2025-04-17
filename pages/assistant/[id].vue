@@ -1,28 +1,117 @@
+<script lang="ts">
+import type { AvailableAssistants } from "~/types/assistants.types";
+import json_generator from "~/components/assistant/json_generator.vue";
+import { $availableRoutes } from "~/configs/routes.config";
+
+export default {
+  name: "AssistantContainer",
+  setup() {
+    return {
+      $t: useI18nStore().i18n.global.t,
+    };
+  },
+  computed: {
+    cKey() {
+      const { c_key } = useRoute().query;
+      if (c_key) {
+        return c_key;
+      }
+      useRouter().push($availableRoutes.home);
+    },
+    cId() {
+      const { c_id } = useRoute().query;
+      if (c_id) {
+        return c_id;
+      }
+      return null;
+    },
+    keyName(): AvailableAssistants | undefined {
+      const { id } = useRoute().params;
+      if (id) {
+        if (this.assistantComponents[id as AvailableAssistants] !== undefined) {
+          return id as AvailableAssistants;
+        }
+      }
+      useRouter().push($availableRoutes.home);
+    },
+    assistantComponents(): { [key in AvailableAssistants]: any } {
+      return {
+        json_generator,
+      };
+    },
+    currentCKeyData() {
+      return useAssistant().getUserAssistantKeys.find(
+        (item) => item.c_key === this.cKey
+      );
+    },
+    currentComponent() {
+      return this.assistantComponents[this.keyName!];
+    },
+  },
+  watch: {
+    currentCKeyData: {
+      immediate: true,
+      deep: true,
+      handler() {
+        this.setTitleByCData();
+      },
+    },
+    cKey: {
+      immediate: true,
+      async handler(val) {
+        if (val && this.currentCKeyData) {
+          await useAssistant().updateAssistantKeyHistoryById(
+            this.currentCKeyData?.id!
+          );
+        }
+        this.setTitleByCData();
+      },
+    },
+    cId() {
+      this.setTitleByCData();
+    },
+  },
+  methods: {
+    setTitleByCData() {
+      if (
+        this.currentCKeyData?.label &&
+        typeof this.currentCKeyData?.label === "string"
+      ) {
+        useSeoMeta({
+          title:
+            capitalizeFirstLetter(this.currentCKeyData?.label) +
+            " | " +
+            useCoreAppStore().getBrandName,
+        });
+      } else {
+        useSeoMeta({
+          title:
+            this.$t(`assistants.${this.keyName}.label`) +
+            " | " +
+            useCoreAppStore().getBrandName,
+        });
+      }
+    },
+  },
+  unmounted() {
+    useAssistant().resetAssistantKeyHistory();
+  },
+};
+</script>
 <template>
-    <div id="learn_a_lang-page">
-        <div class="flex-column-start">
-            <strong>Öğrenilecek Dil ve Seviye</strong>
-            <p>Öğrenmek istediği dil</p>
-            <p>
-            Mevcut dil seviyesi (A1, A2, B1, B2, C1, C2)
-            </p>
-            <p>
-            Hedef dil seviyesi (örneğin B2’ye ulaşmak istiyor)
-            </p>
-        </div>
-        <br>
-        <div>
-            <strong>Dil Öğrenme Amacı:</strong>
-            <p>İş amaçlı</p>
-            <p>Akademik sınavlar (IELTS, TOEFL, vb.)</p>
-            <p>Seyahat</p>
-            <p>Hobi veya kişisel gelişim</p>
-            <p>Sosyal iletişim veya arkadaşlık ̰</p>
-        </div>
-    </div>
+  <div id="assistant_provider-page">
+    <component :is="currentComponent" :cData="currentCKeyData" v-if="keyName" />
+  </div>
 </template>
 <style lang="scss" scoped>
-#learn_a_lang-page {
-    @include animations.fadeIn(.1s);
+.desktop-app-container,
+.tablet-app-container,
+.mobile-app-container {
+  #assistant_provider-page {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    @include animations.fadeIn(0.1s);
+  }
 }
 </style>

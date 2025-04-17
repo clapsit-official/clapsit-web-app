@@ -11,6 +11,7 @@ export default defineComponent({
             colorUtilities,
             availableRoutes: $availableRoutes,
             store: useUser(),
+            $t: useI18nStore().i18n.global.t
         }
     },
     data() {
@@ -108,7 +109,7 @@ export default defineComponent({
             <br />
             <button 
                 type="submit" 
-                class="black" 
+                class="primary" 
                 :disabled="disableSubmit"
                 :class="{'loading': isLoading}">
                 <Text locale="pages.reset_password.utilities.save"/>

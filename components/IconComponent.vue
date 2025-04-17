@@ -9,7 +9,7 @@
 <script lang="ts">
 import iconsList, { type IconsTypes } from "~/assets/icons/materialIconsList";
 import { stringToElement } from '#imports';
-import colorUtilities from "~/constants/colorUtilities.js";
+import colorUtilities from "~/constants/colorUtilities";
 
 let optionsCanBeSelected = Object.keys(iconsList)
 
@@ -33,7 +33,7 @@ export default defineComponent({
     },
     color: {
       type: String,
-      default: () => colorUtilities.$blackColor
+      default: () => colorUtilities.$textPrimary
     },
     hover: {
       type: Boolean,

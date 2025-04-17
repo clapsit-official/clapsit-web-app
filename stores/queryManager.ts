@@ -1,3 +1,4 @@
+import { $availableRoutes } from "~/configs/routes.config";
 import type { ServerResponseType } from "~/types/general.types";
 
 type QueryOrderItemType = {
@@ -40,6 +41,9 @@ export const useQueryManager = defineStore('queryManager', {
             if(target > -1) {
                 this.queries[target].isLoading = false;
                 this.queries[target].result = response;
+                if(response.status === 401 && useRoute().path !== $availableRoutes.getstarted){
+                    useModal().provide('session_expired');
+                }
             }
         },
         checkQueryIsLoading(serivce: string) {

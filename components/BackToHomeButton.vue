@@ -20,7 +20,7 @@ import { $availableRoutes } from '~/configs/routes.config';
   cursor: pointer;
   gap: 10px;
   margin: 3rem 0;
-  background-color: #eeeeee;
+  background-color: colors.$surfaceColor2;
   padding: 1rem;
   border-radius: 10rem;
   user-select: none;

@@ -5,7 +5,9 @@ import type { AvailableModals } from '~/stores/modal';
 
 const modalMap: Record<string, () => Promise<any>> = {
     user_account: () => import('~/components/modal/views/user_account.vue'),
+    json_generator: () => import('~/components/modal/views/json_generator.vue'),
     logout: () => import('~/components/modal/views/logout_prompt.vue'),
+    session_expired: () => import('~/components/modal/views/session_expired.vue'),
 }
 
 export default defineComponent({
@@ -35,7 +37,9 @@ export default defineComponent({
             this.store.deprive(key);
         },
         outsideClick() {
-            this.closeModal(this.resolvedViews[this.resolvedViews.length - 1].key);
+            if(this.resolvedViews[this.resolvedViews.length - 1]) {
+                this.closeModal(this.resolvedViews[this.resolvedViews.length - 1].key);
+            }
         },
         handleEscKey(event: KeyboardEvent) {
             if (event.key === 'Escape') {
@@ -82,7 +86,7 @@ export default defineComponent({
         left: 0;
         width: 100vw;
         height: 100%;
-        backdrop-filter: blur(2px);
+        backdrop-filter: brightness(15%);
         background-color: rgba(0, 0, 0, 0.25);
         @include animations.fadeIn(.3s);
 
@@ -114,7 +118,7 @@ export default defineComponent({
                 max-width: 50%;
                 min-width: 15%;
                 max-height: 80%;
-                @include animations.slideInRightBounce(1s);
+                @include animations.slideDownBounce(.5s);
             }
         }
     }
@@ -137,7 +141,6 @@ export default defineComponent({
     #modal-component {
         section#modal-content {
             .modal-area {
-                top: 15vh;
                 max-width: 75%;
                 min-width: 15%;
                 max-height: 80%;

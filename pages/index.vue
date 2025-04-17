@@ -8,8 +8,9 @@
             name: parseFullname(useUser().getUserDetails.fullname).first_name
           }" />
         </h1>
-        <span class="description">Discover and create custom versions of Clapsit that combine instructions, extra
-          knowledge, and any combination of skills.</span>
+        <span class="description">
+          <Text locale="main_description"/>
+        </span>
       </div>
       <AssistantNavigation />
     </div>

@@ -9,6 +9,7 @@ export default defineComponent({
             getBrandName,
             availableRoutes: $availableRoutes,
             store: useGetstarted(),
+            $t: useI18nStore().i18n.global.t
         }
     },
     data() {
@@ -88,7 +89,7 @@ export default defineComponent({
                 </nuxt-link>    
             </custom-checkbox>
             <br>
-            <button type="submit" class="black" :class="{ 'loading': isLoading }">
+            <button type="submit" class="primary" :class="{ 'loading': isLoading }">
                 <Text locale="pages.register.utilities.create_account"/>
             </button>
             <button type="button" class="white" :disabled="isLoading"
