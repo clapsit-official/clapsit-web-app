@@ -240,6 +240,7 @@ export default defineComponent({
   </div>
 </template>
 <style lang="scss" scoped>
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap');
 .desktop-app-container,
 .tablet-app-container {
   #assistant-jsong_generator {
