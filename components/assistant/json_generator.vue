@@ -240,7 +240,6 @@ export default defineComponent({
   </div>
 </template>
 <style lang="scss" scoped>
-@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap');
 .desktop-app-container,
 .tablet-app-container {
   #assistant-jsong_generator {
@@ -289,7 +288,7 @@ export default defineComponent({
           width: 100%;
           height: 100%;
           min-height: 1rem;
-          font-family: "JetBrains Mono", monospace !important;
+          font-family: 'Fira Code', monospace !important;
           font-size: 0.8rem;
           font-weight: bold;
           resize: none;
