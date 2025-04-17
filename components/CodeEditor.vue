@@ -57,7 +57,6 @@ export default defineComponent({
 });
 </script>
 <style scoped lang="scss">
-@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap');
 .code-editor-component {
     width: 100%;
     height: 100%;
@@ -96,7 +95,7 @@ export default defineComponent({
       &:deep(.monaco-editor) {
         * {
           font-size: 11px !important;
-          font-family: "JetBrains Mono", monospace !important;
+          font-family: 'Fira Code', monospace !important;
         }
       }
     }
@@ -113,7 +112,7 @@ export default defineComponent({
       &:deep(.monaco-editor) {
         * {
           font-size: .9rem !important;
-          font-family: "JetBrains Mono", monospace !important;
+          font-family: 'Fira Code', monospace !important;
         }
       }
     }
