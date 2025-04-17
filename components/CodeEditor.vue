@@ -68,8 +68,8 @@ export default defineComponent({
 </script>
 <style scoped lang="scss">
 .code-editor-component {
-  width: 100%;
-  height: 100%;
+  width: 100% !important;
+  height: 100% !important;
   overflow: hidden;
   padding: 1.3rem 0;
   background-color: #1e1e1e;
@@ -78,24 +78,23 @@ export default defineComponent({
     font-family: "Fira Code", monospace !important;
   }
   &:deep(.monaco-editor) {
-    width: 100%;
-    height: 100%;
+    width: 100% !important;
+    height: 100% !important;
     * {
       font-family: "Fira Code", monospace !important;
     }
     .overflow-guard {
-      width: 100%;
-      height: 100%;
+      width: 100% !important;
+      height: 100% !important;
       & > * {
-        width: 100%;
         .lines-content {
-          width: 100%;
-          height: 100%;
+          width: 100% !important;
+          height: 100% !important;
           .view-lines {
-            height: 100%;
+            height: 100% !important;
             & > * {
               width: 100% !important;
-              height: 100%;
+              height: 100% !important;
             }
           }
         }
