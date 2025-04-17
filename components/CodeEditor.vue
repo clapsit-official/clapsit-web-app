@@ -1,9 +1,9 @@
 <template>
   <div class="code-editor-component">
-    <MonacoEditor 
-      v-model="valueComputed" 
-      :lang="lang" 
-      :options="{ 
+    <MonacoEditor
+      v-model="valueComputed"
+      :lang="lang"
+      :options="{
         theme: theme,
         automaticLayout: true,
         wordWrap: 'on',
@@ -16,7 +16,8 @@
           verticalScrollbarSize: 5,
           horizontalScrollbarSize: 5,
         },
-      }" />
+      }"
+    />
   </div>
 </template>
 <script lang="ts">
@@ -24,12 +25,21 @@ export default defineComponent({
   name: "CodeEditor",
   props: {
     lang: {
-      type: String as PropType<'json' | 'javascript' | 'typescript' | 'html' | 'css' | 'scss' | 'less' | 'markdown'>,
-      default: () => 'text'
+      type: String as PropType<
+        | "json"
+        | "javascript"
+        | "typescript"
+        | "html"
+        | "css"
+        | "scss"
+        | "less"
+        | "markdown"
+      >,
+      default: () => "text",
     },
     theme: {
-      type: String as PropType<'vs-dark'| 'hc-black'| 'hc-light'>,
-      default: () => 'vs'
+      type: String as PropType<"vs-dark" | "hc-black" | "hc-light">,
+      default: () => "vs",
     },
     modelValue: {
       type: String,
@@ -50,44 +60,50 @@ export default defineComponent({
         return this.modelValue;
       },
       set(value: string) {
-        this.$emit('update:modelValue', value);
-      }
+        this.$emit("update:modelValue", value);
+      },
     },
-  }
+  },
 });
 </script>
 <style scoped lang="scss">
 .code-editor-component {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  padding: 1.3rem 0;
+  background-color: #1e1e1e;
+  @include colors.box-shadow-2;
+  * {
+    font-family: "Fira Code", monospace !important;
+  }
+  &:deep(.monaco-editor) {
     width: 100%;
     height: 100%;
-    overflow: hidden;
-    padding: 1.3rem 0;
-    background-color: #1E1E1E;
-    @include colors.box-shadow-2;
-    &:deep(.monaco-editor) {
+    * {
+      font-family: "Fira Code", monospace !important;
+    }
+    .overflow-guard {
+      width: 100%;
+      height: 100%;
+      & > * {
         width: 100%;
-        height: 100%;
-        .overflow-guard {
+        .lines-content {
           width: 100%;
           height: 100%;
-          & > * {
-            width: 100%;
-            .lines-content {
-              width: 100%;
+          .view-lines {
+            height: 100%;
+            & > * {
+              width: 100% !important;
               height: 100%;
-              .view-lines {
-                height: 100%;
-                & > * {
-                  width: 100% !important;
-                  height: 100%;
-                }
-              }
             }
           }
         }
+      }
     }
+  }
 }
-.desktop-app-container{
+.desktop-app-container {
   .code-editor-component {
     & > * {
       position: relative;
@@ -95,14 +111,13 @@ export default defineComponent({
       &:deep(.monaco-editor) {
         * {
           font-size: 11px !important;
-          font-family: 'Fira Code', monospace !important;
         }
       }
     }
   }
 }
 
-.tablet-app-container{
+.tablet-app-container {
   .code-editor-component {
     & > * {
       position: relative;
@@ -111,8 +126,7 @@ export default defineComponent({
       min-height: 500px;
       &:deep(.monaco-editor) {
         * {
-          font-size: .9rem !important;
-          font-family: 'Fira Code', monospace !important;
+          font-size: 0.9rem !important;
         }
       }
     }
