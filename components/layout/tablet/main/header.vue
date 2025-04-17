@@ -47,6 +47,7 @@ header#main-header {
                 border-radius: 10rem;
                 font-size: .9rem;
                 background-color: colors.$whiteColor;
+                color: colors.$errorColor;
                 @include colors.box-shadow-2
             }
         }

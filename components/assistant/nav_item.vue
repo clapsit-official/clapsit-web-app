@@ -68,7 +68,6 @@ export default defineComponent({
         cursor: pointer;
 
         &:hover {
-            background-color: colors.$surfaceColor5;
             scale: 1.01;
         }
 
@@ -127,7 +126,6 @@ export default defineComponent({
         cursor: pointer;
 
         &:hover {
-            background-color: colors.$surfaceColor5;
             scale: 1.01;
         }
 
@@ -191,7 +189,6 @@ export default defineComponent({
         cursor: pointer;
 
         &:hover {
-            background-color: colors.$surfaceColor5;
             scale: 1.01;
         }
 

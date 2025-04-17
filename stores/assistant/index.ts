@@ -78,8 +78,8 @@ export const useAssistant = defineStore('assistant', {
             await useRouter().push({
                 path: $availableRoutes[assistant],
                 query: {
-                    c_id,
                     c_key: conversation_key,
+                    c_id,
                 }
             });
         },

@@ -58,7 +58,9 @@ export const useJSONGenerator = defineStore('json_generator', {
                         }
                     }
                 }, this.environments.c_key!);
-                this.resetOutputProgress();
+                this.progress.output.message = useI18nStore().i18n.global.t('assistants.json_generator.fetching');
+                this.progress.output.result = `{\n\n    \n\n}`;
+                this.progress.output.success = null;
                 await useAssistant().updateUserAssistantKeys();
                 await useAssistant().updateAssistantKeyHistoryById(this.environments.c_id);
             }

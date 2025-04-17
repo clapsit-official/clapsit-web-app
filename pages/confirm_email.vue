@@ -5,13 +5,20 @@
       <logo v-if="response.success"/>
       <br/>
       <LinkExpired v-if="!response.success"/>
-      <message-box
-          v-else
+      <div v-else>
+        <br/>
+        <br/>
+        <message-box
           :label="$t('backend_messages.DONE')"
           @action="() => useRouter().push($availableRoutes.login)"
           :message="$keyValidation({
             success: [response.message.key]
           }, response)"/>
+          <br/>
+          <div class="flex-row-center"> 
+            <BackToHomeButton/>
+          </div>
+      </div>
     </div>
   </div>
 </template>
@@ -21,6 +28,11 @@ import {$availableRoutes} from "~/configs/routes.config";
 
 export default defineComponent({
   name: "ConfirmEmail",
+  setup() {
+    return {
+      $t: useI18nStore().i18n.global.t
+    }
+  },
   computed: {
     $availableRoutes() {
       return $availableRoutes

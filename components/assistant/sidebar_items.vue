@@ -100,13 +100,15 @@ export default defineComponent({
       class="hover-effect flex-row-start-center"
       @click.prevent="getAssistantHistory(item)"
       :title="formatDateForTitle(item.date)">
-      <strong>
-        [{{ formatDateString(item.date) }}]
-      </strong>
-      <span class="ellipsis" v-if="item.input.message">
-        {{ capitalizeFirstLetter(item.input.message) }}
-      </span>
-      <i v-else> {{ $t("no_message") }}</i>
+      <div class="flex-row-center" style="gap: .5rem;">
+        <strong>
+          [{{ formatDateString(item.date) }}]
+        </strong>
+        <span class="ellipsis" v-if="item.input.message">
+          {{ capitalizeFirstLetter(item.input.message) }}
+        </span>
+        <i v-else> {{ $t("no_message") }}</i>
+      </div>
     </div>
   </section>
 </template>
@@ -115,5 +117,14 @@ export default defineComponent({
         height: 90%;
         font-size: .75rem;
         width: 100%;
+    }
+    .desktop-app-container {
+      section#sidebar_history-area {
+        overflow-y: hidden !important;
+        overflow-x: hidden !important;
+        &:hover {
+          overflow-y: auto !important;
+        }
+    }
     }
 </style>

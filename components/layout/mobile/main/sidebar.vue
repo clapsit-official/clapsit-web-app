@@ -14,6 +14,19 @@ export default defineComponent({
     userAssistantKeys() {
       return useAssistant().getUserAssistantKeys;
     },
+    userAssistantKeyHistory() {
+      return useAssistant().getAssistantKeyHistory;
+    },
+    currentRoute() {
+      return useRouteManagement().config.key;
+    },
+    showSidebarItems() {
+      if(this.currentRoute === 'home') {
+        return this.userAssistantKeys.length > 0;
+      } else {
+        return this.userAssistantKeyHistory.length > 0;
+      }
+    }
   },
   methods: {
     formatDateString,
@@ -59,8 +72,11 @@ export default defineComponent({
       </div>
       <Text locale="buttons.logout" />
     </div>
-    <div id="chat_history-sidebar">
-      <AssistantSidebarItems/>
+    <div
+      id="chat_history-sidebar"
+      v-if="showSidebarItems"
+    >
+      <AssistantSidebarItems />
     </div>
   </div>
 </template>
@@ -115,7 +131,7 @@ export default defineComponent({
   div#chat_history-sidebar {
     width: calc(82% - 2rem);
     overflow-y: auto;
-    background-color: colors.$whiteColor;
+    background-color: colors.$surfaceColor2;
     border-radius: 1rem;
     padding: 1rem;
     @include colors.box-shadow-2();
@@ -126,6 +142,7 @@ export default defineComponent({
     padding: 0.8rem 0;
     border-radius: 10rem;
     background-color: colors.$whiteColor;
+    color: colors.$errorColor;
     @include colors.box-shadow-2;
   }
 

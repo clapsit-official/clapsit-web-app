@@ -84,7 +84,7 @@ export default defineComponent({
   width: 100%;
   height: 100%;
   transition-duration: 0.5s;
-  border-radius: 0.7rem;
+  border-radius: 2rem;
   overflow: hidden;
   filter: blur(0);
   :deep(.code-editor-component) {

@@ -105,6 +105,7 @@ export interface LanguageContent {
     service_temporarily_unavailable: LocaleType;
     coming_soon: LocaleType;
     we_are_working_on_it: LocaleType;
+    not_supported_device: LocaleType;
     buttons: Buttons;
     backend_messages: Record<BackendMessageKeys, string>;
     pages: PagesLocaleType;
@@ -146,8 +147,12 @@ export type AssistantsLocale = {
         output_placeholder: LocaleType,
         generate: LocaleType,
         copy: LocaleType,
+        copied: LocaleType,
         reverse: LocaleType,
         clear: LocaleType,
-        loading: LocaleType
+        loading: LocaleType,
+        fetching: LocaleType,
+        input_info: LocaleType,
+        output_info: LocaleType,
     }
 }

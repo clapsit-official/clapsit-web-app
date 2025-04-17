@@ -1,6 +1,6 @@
 <script lang="ts">
 import type { IconsTypes } from "~/assets/icons/materialIconsList";
-import colorUtilities from "~/constants/colorUtilities.js";
+import colorUtilities from "~/constants/colorUtilities";
 import type { InputNameType, InputAutoCompleteType, InputMessageType } from "~/constants/types/InputComponentTypes";
 
 export default defineComponent({
@@ -258,11 +258,11 @@ $input-gap-value: .5rem;
   .input-area__center {
     display: flex;
     border-radius: 7px;
-    border: 1px solid colors.$textSecondary;
+    border: 1px solid colors.$surfaceColor2;
     height: 100%;
     overflow: hidden;
     width: 100%;
-    background: #fff;
+    background: colors.$surfaceColor2;
 
     & > div {
       height: $input-component-height;
@@ -287,6 +287,7 @@ $input-gap-value: .5rem;
         transition-duration: animations.$default_transition_duration_value;
         border: none !important;
         background: transparent;
+        color: colors.$textPrimary;
         &::placeholder {
           color: colors.$dividerColor
         }

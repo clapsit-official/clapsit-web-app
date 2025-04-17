@@ -48,7 +48,7 @@ header#main-header {
             }
             #show-more-area {
                 #icon-area {
-                    background-color: #ddd;
+                    background-color: colors.$surfaceColor2;
                     padding: .7rem;
                     border-radius: 5px;
                 }

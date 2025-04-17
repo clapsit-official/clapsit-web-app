@@ -32,7 +32,7 @@ export default defineComponent({
             </p>
         </section>
         <section id="btn-area">
-            <button class="black" @click="$emit('startEvent')" :class="{'loading': isLoading}">
+            <button class="primary" @click="$emit('startEvent')" :class="{'loading': isLoading}">
                 {{ $t('buttons.start') }}
             </button>
         </section>

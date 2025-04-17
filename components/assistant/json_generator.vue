@@ -9,7 +9,7 @@ export default defineComponent({
       $availableRoutes,
       colorUtilities,
       store: useJSONGenerator(),
-      $t: useI18nStore().i18n.global.t
+      $t: useI18nStore().i18n.global.t,
     };
   },
   data() {
@@ -33,6 +33,9 @@ export default defineComponent({
     },
   },
   computed: {
+    deviceType() {
+      return useCoreAppStore().getDeviceType;
+    },
     inputComputed: {
       get() {
         return this.store.progress.input.result;
@@ -62,7 +65,7 @@ export default defineComponent({
     },
     cKey() {
       return this.cData.c_key;
-    }
+    },
   },
   watch: {
     cData: {
@@ -80,42 +83,53 @@ export default defineComponent({
       immediate: true,
       handler() {
         this.store.resetAll();
-      }
-    }
+      },
+    },
   },
   methods: {
     handleGenerateShortcut(event: any) {
-      if ((event.metaKey || event.ctrlKey) && event.key === 'Enter') {
+      if ((event.metaKey || event.ctrlKey) && event.key === "Enter") {
         this.store.generate();
       }
     },
     toClipboard() {
       this.copyToggle = true;
-      copyToClipboard(this.store.progress.output.result.toString())
+      copyToClipboard(this.store.progress.output.result.toString());
       setTimeout(() => {
         this.copyToggle = false;
-      }, 2000)
-    }
+      }, 2000);
+    },
   },
   mounted() {
-    window.addEventListener('keydown', this.handleGenerateShortcut);
+    window.addEventListener("keydown", this.handleGenerateShortcut);
   },
-  unmounted(){
-    window.removeEventListener('keydown', this.handleGenerateShortcut);
-  }
+  unmounted() {
+    window.removeEventListener("keydown", this.handleGenerateShortcut);
+  },
 });
 </script>
 
 <template>
-  <form id="assistant-jsong_generator" :key="count" @submit.prevent="store.generate">
-    <div class="editor-area">
-      <strong>
-        <Text locale="assistants.json_generator.input"/>:
-      </strong>
-      <JsonEditorComponent 
-        :disabled="isLoading"
-        v-model="inputComputed" />
+  <form
+    id="assistant-jsong_generator"
+    :key="count"
+    @submit.prevent="store.generate"
+    v-if="deviceType !== 'mobile'"
+  >
+    <div id="input" class="editor-area">
+      <div class="headline-area flex-row-between-center">
+        <strong> <Text locale="assistants.json_generator.input" />: </strong>
+        <div class="icon-area">
+          <icon-component
+            icon-name="info"
+            :color="colorUtilities.$whiteColor"
+            :icon-size="'1.5rem'"
+            :title="$t('assistants.json_generator.input_info')"/>
+        </div>
+      </div>
+      <JsonEditorComponent :disabled="isLoading" v-model="inputComputed" />
       <textarea
+        id="input-message_assistant-jsong_generator"
         :readonly="isLoading"
         v-model="store.progress.input.message"
         :placeholder="$t('assistants.json_generator.input_placeholder')"
@@ -127,37 +141,44 @@ export default defineComponent({
         :class="{ loading: isLoading }"
         :title="$t('assistants.json_generator.generate')"
         type="submit"
-        @click="store.generate">
+        @click="store.generate"
+      >
         <icon-component
           v-if="!isLoading"
           icon-name="rocket"
           :color="colorUtilities.$whiteColor"
-          fill />
+          fill
+        />
       </button>
-      <button 
-        class="white" 
+      <button
+        class="white"
         type="button"
-        :title="$t('assistants.json_generator.copy')"
-        @click="toClipboard">
-        <icon-component 
-          :fill="copyToggle" 
+        :title="!copyToggle ? $t('assistants.json_generator.copy') : $t('assistants.json_generator.copied')"
+        @click="toClipboard"
+      >
+        <icon-component
+          :fill="copyToggle"
           :color="colorUtilities.$blackColor"
-          :icon-name="copyToggle ? 'file_check' : 'file_copy_alt'" />
+          :icon-name="copyToggle ? 'clipboard_copied' : 'clipboard_copy'"
+        />
       </button>
-      <button 
+      <button
         class="white"
         :title="$t('assistants.json_generator.reverse')"
         type="button"
-        @click="store.reverse">
-        <icon-component 
+        @click="store.reverse"
+      >
+        <icon-component
           :color="colorUtilities.$blackColor"
-          icon-name="refresh" />
+          icon-name="refresh"
+        />
       </button>
-      <button 
-        class="white" 
+      <button
+        class="white"
         :title="$t('assistants.json_generator.clear')"
         type="reset"
-        @click="store.resetAll">
+        @click="store.resetAll"
+      >
         <icon-component
           fill
           icon-name="trash"
@@ -165,63 +186,130 @@ export default defineComponent({
         />
       </button>
     </div>
-    <div class="editor-area">
-      <strong>
-        <Text locale="assistants.json_generator.output"/>:
-      </strong>
-      <JsonEditorComponent 
+    <div id="output" class="editor-area">
+      <div class="headline-area flex-row-between-center">
+        <strong> <Text locale="assistants.json_generator.output" />: </strong>
+        <div class="icon-area">
+          <icon-component
+            icon-name="info"
+            :color="colorUtilities.$whiteColor"
+            :icon-size="'1.5rem'"
+            :title="$t('assistants.json_generator.output_info')"/>
+        </div>
+      </div>
+      <JsonEditorComponent
         :loading="isLoading"
-        v-model="outputComputed" 
-        :read-only="true" />
+        v-model="outputComputed"
+        :read-only="true"
+      />
       <textarea
+        id="output-message_assistant-jsong_generator"
         readonly
+        :key="store.progress.output.message"
         v-model="store.progress.output.message"
-        :placeholder="!isLoading ? $t('assistants.json_generator.output_placeholder') : $t('assistants.json_generator.loading')"
+        :placeholder="
+          !isLoading
+            ? $t('assistants.json_generator.output_placeholder')
+            : $t('assistants.json_generator.loading')
+        "
       />
     </div>
   </form>
+  <div v-else class="flex-column-center" style="width: 100%; gap: 40px; height: 50vh;">
+    <div class="icon-area">
+      <icon-component icon-name="warning" icon-size="50px" color="white" fill/>
+    </div>
+    <span style="text-align: center; width: 90%; font-size: 17px;">
+      <Text locale="not_supported_device"/>
+    </span>
+    <BackToHomeButton/>
+  </div>
 </template>
 <style lang="scss" scoped>
 .desktop-app-container,
 .tablet-app-container {
   #assistant-jsong_generator {
     display: flex;
-    width: 98%;
+    width: 99%;
     justify-content: space-between;
+    padding: 0 1rem;
     #btns-area {
       display: flex;
       flex-direction: column;
       align-items: center;
+      justify-content: center;
       padding: 0 2rem;
       gap: 1rem;
       height: 80%;
       width: 50px;
-      margin-top: 2.5rem;
       button {
         width: 3rem;
+        height: 3rem;
       }
     }
     .editor-area {
       width: 100%;
-      height: 60vh;
-      & > * {
-        margin: 1.6rem 0;
+      height: 95%;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      $default_border_radius: 3rem;
+      .headline-area {
+        background-color: colors.$surfaceColor;
+        padding: 0.5rem 1.5rem;
+        border-radius: $default_border_radius;
+        cursor: pointer;
       }
       textarea {
-        width: calc(100% - (1.3rem * 2));
+        $padding-textarea: 1.5rem;
+        width: calc(100% - ($padding-textarea * 2));
         min-height: 10vh;
         resize: vertical;
-        padding: 1.3rem;
-        background-color: #1E1E1E;
+        padding: $padding-textarea;
+        background-color: colors.$surfaceColor;
         color: colors.$primaryColor;
         font-family: "JetBrains Mono", monospace !important;
-        font-size: .8rem;
+        font-size: 0.8rem;
         font-weight: bold;
-        border-radius: .7rem;
+        border-radius: $default_border_radius;
+        resize: none;
         border: none;
         @include colors.box-shadow-2;
         outline: none;
+        &:hover {
+          resize: vertical;
+        }
+        &#input-message_assistant-jsong_generator {
+          border-top-left-radius: 0 !important;
+        }
+        &#output-message_assistant-jsong_generator {
+          border-top-right-radius: 0 !important;
+          pointer-events: none;
+          @include animations.fadeIn(.5s);
+        }
       }
+      &#input {
+        .headline-area,
+        :deep(.json-editor-component){
+          border-radius: $default_border_radius;
+          border-top-left-radius: 0 !important;
+        }
+      }
+      &#output {
+        .headline-area,
+        :deep(.json-editor-component){
+          border-radius: $default_border_radius;
+          border-top-right-radius: 0 !important;
+        }
+      }
+    }
+  }
+}
+.mobile-app-container {
+  #assistant-jsong_generator {
+    & > * {
+      display: none;
     }
   }
 }

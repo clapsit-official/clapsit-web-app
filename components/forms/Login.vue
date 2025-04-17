@@ -12,6 +12,7 @@ export default defineComponent({
             colorUtilities,
             availableRoutes: $availableRoutes,
             store: useGetstarted(),
+            $t: useI18nStore().i18n.global.t
         }
     },
     data() {
@@ -51,8 +52,8 @@ export default defineComponent({
             v-if="response && !response.success"
             :label="$t('error')"
             :message="$keyValidation({
-                error: ['USER_LOGIN_PROGRESS_FAILED', 'EMAIL_OR_PASSWORD_INCORRECT', 'SOMETHING_WENT_WRONG', 'EMAIL_CONFIRM_REQUIRED'], 
-                warning: ['INVALID_EMAIL', 'INVALID_PASSWORD']
+                error: ['USER_LOGIN_PROGRESS_FAILED', 'EMAIL_OR_PASSWORD_INCORRECT', 'SOMETHING_WENT_WRONG'], 
+                warning: ['INVALID_EMAIL', 'INVALID_PASSWORD', 'EMAIL_CONFIRM_REQUIRED']
             }, response)"/>
         <br/>
         <label for="login-form" class="flex-row-start-center" style="gap: 15px">
@@ -103,7 +104,7 @@ export default defineComponent({
             <br/>
             <button 
                 type="submit" 
-                class="black" 
+                class="primary" 
                 :class="{'loading': isLoading}">
                 <Text locale="pages.login.utilities.login"/>
             </button>

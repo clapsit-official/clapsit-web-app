@@ -44,7 +44,7 @@ export default defineComponent({
 <template>
     <section class="message-component" :class="`${message?.type}-effect`" v-if="show && message" @click="action">
         <div class="icon-area" v-if="icon">
-            <icon-component :icon-name="icon" icon-size="1.8rem" :color="colorUtilities[`$${icon}Color`]" fill />
+            <icon-component :icon-name="icon" icon-size="1.8rem" :color="colorUtilities.$textPrimary" fill />
         </div>
         <div class="content-area">
             <label class="message-label" :for="id" v-if="label"> {{ label }}</label>
@@ -64,8 +64,8 @@ export default defineComponent({
     min-height: 5rem;
     border-radius: .5rem;
     font-size: 1rem;
-    border: 1px solid #fff;
-    background-color: #fff;
+    border: 1px solid colors.$surfaceColor;
+    background-color: colors.$successColor;
     transition-duration: animations.$default_transition_duration_value;
     display: flex;
     align-items: center;

@@ -44,8 +44,8 @@ input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
 input:-webkit-autofill:active {
   transition: background-color 5000s ease-in-out 0s;
-  -webkit-text-fill-color: colors.$blackColor;
-  -webkit-box-shadow: 0 0 0px 1000px #fff inset;
+  -webkit-text-fill-color: colors.$textSecondary;
+  -webkit-box-shadow: 0 0 0px 1000px colors.$surfaceColor2 inset;
 }
 
 button {
@@ -73,7 +73,7 @@ button {
   &.black {
     @include colors.box-shadow-1();
     background-color: colors.$blackColor;
-    border-color: colors.$blackColor;
+    border-color: colors.$surfaceColor;
     color: colors.$whiteColor;
     font-weight: bold;
     &.loading {
@@ -82,8 +82,8 @@ button {
   }
   &.white {
     @include colors.box-shadow-2();
-    background-color: #fff;
-    border-color: #fff;
+    background-color: colors.$whiteColor;
+    border-color: colors.$whiteColor;
     color: colors.$blackColor;
     font-weight: 500;
     &.loading {

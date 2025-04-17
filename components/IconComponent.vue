@@ -9,7 +9,7 @@
 <script lang="ts">
 import iconsList, { type IconsTypes } from "~/assets/icons/materialIconsList";
 import { stringToElement } from '#imports';
-import colorUtilities from "~/constants/colorUtilities.js";
+import colorUtilities from "~/constants/colorUtilities";
 
 let optionsCanBeSelected = Object.keys(iconsList)
 

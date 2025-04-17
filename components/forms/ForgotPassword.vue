@@ -11,6 +11,7 @@ export default defineComponent({
             colorUtilities,
             availableRoutes: $availableRoutes,
             store: useGetstarted(),
+            $t: useI18nStore().i18n.global.t
         }
     },
     data() {
@@ -81,7 +82,7 @@ export default defineComponent({
             <br/>
             <button 
                 type="submit" 
-                class="black" 
+                class="primary" 
                 :class="{'loading': isLoading}">
                 <Text locale="pages.forgot_password.utilities.send_reset_link"/>
             </button>

@@ -80,7 +80,7 @@ export default defineComponent({
             </div>
         </section>
         <br>
-        <button class="black">
+        <button class="white">
             <Text locale="buttons.save"/>
         </button>
     </div>
