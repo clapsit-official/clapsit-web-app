@@ -124,16 +124,19 @@ export default defineComponent({
             icon-name="info"
             :color="colorUtilities.$whiteColor"
             :icon-size="'1.5rem'"
-            :title="$t('assistants.json_generator.input_info')"/>
+            :title="$t('assistants.json_generator.input_info')"
+          />
         </div>
       </div>
       <JsonEditorComponent :disabled="isLoading" v-model="inputComputed" />
-      <textarea
-        id="input-message_assistant-jsong_generator"
-        :readonly="isLoading"
-        v-model="store.progress.input.message"
-        :placeholder="$t('assistants.json_generator.input_placeholder')"
-      />
+      <div id="input-message">
+        <textarea
+          id="input-message_assistant-jsong_generator"
+          :readonly="isLoading"
+          v-model="store.progress.input.message"
+          :placeholder="$t('assistants.json_generator.input_placeholder')"
+        />
+      </div>
     </div>
     <div id="btns-area">
       <button
@@ -153,7 +156,11 @@ export default defineComponent({
       <button
         class="white"
         type="button"
-        :title="!copyToggle ? $t('assistants.json_generator.copy') : $t('assistants.json_generator.copied')"
+        :title="
+          !copyToggle
+            ? $t('assistants.json_generator.copy')
+            : $t('assistants.json_generator.copied')
+        "
         @click="toClipboard"
       >
         <icon-component
@@ -194,7 +201,8 @@ export default defineComponent({
             icon-name="info"
             :color="colorUtilities.$whiteColor"
             :icon-size="'1.5rem'"
-            :title="$t('assistants.json_generator.output_info')"/>
+            :title="$t('assistants.json_generator.output_info')"
+          />
         </div>
       </div>
       <JsonEditorComponent
@@ -202,27 +210,33 @@ export default defineComponent({
         v-model="outputComputed"
         :read-only="true"
       />
-      <textarea
-        id="output-message_assistant-jsong_generator"
-        readonly
-        :key="store.progress.output.message"
-        v-model="store.progress.output.message"
-        :placeholder="
-          !isLoading
-            ? $t('assistants.json_generator.output_placeholder')
-            : $t('assistants.json_generator.loading')
-        "
-      />
+      <div id="output-message">
+        <textarea
+          id="output-message_assistant-jsong_generator"
+          readonly
+          :key="store.progress.output.message"
+          v-model="store.progress.output.message"
+          :placeholder="
+            !isLoading
+              ? $t('assistants.json_generator.output_placeholder')
+              : $t('assistants.json_generator.loading')
+          "
+        />
+      </div>
     </div>
   </form>
-  <div v-else class="flex-column-center" style="width: 100%; gap: 40px; height: 50vh;">
+  <div
+    v-else
+    class="flex-column-center"
+    style="width: 100%; gap: 40px; height: 50vh"
+  >
     <div class="icon-area">
-      <icon-component icon-name="warning" icon-size="50px" color="white" fill/>
+      <icon-component icon-name="warning" icon-size="50px" color="white" fill />
     </div>
-    <span style="text-align: center; width: 90%; font-size: 17px;">
-      <Text locale="not_supported_device"/>
+    <span style="text-align: center; width: 90%; font-size: 17px">
+      <Text locale="not_supported_device" />
     </span>
-    <BackToHomeButton/>
+    <BackToHomeButton />
   </div>
 </template>
 <style lang="scss" scoped>
@@ -259,49 +273,63 @@ export default defineComponent({
         background-color: colors.$surfaceColor;
         padding: 0.5rem 1.5rem;
         border-radius: $default_border_radius;
+        min-height: 5%;
         cursor: pointer;
       }
-      textarea {
+      #output-message,
+      #input-message {
         $padding-textarea: 1.5rem;
         width: calc(100% - ($padding-textarea * 2));
-        min-height: 10vh;
-        resize: vertical;
         padding: $padding-textarea;
         background-color: colors.$surfaceColor;
-        color: colors.$primaryColor;
-        font-family: "JetBrains Mono", monospace !important;
-        font-size: 0.8rem;
-        font-weight: bold;
-        border-radius: $default_border_radius;
-        resize: none;
-        border: none;
+        border-radius: $default_border_radius;        
         @include colors.box-shadow-2;
-        outline: none;
-        &:hover {
-          resize: vertical;
-        }
-        &#input-message_assistant-jsong_generator {
-          border-top-left-radius: 0 !important;
-        }
-        &#output-message_assistant-jsong_generator {
-          border-top-right-radius: 0 !important;
-          pointer-events: none;
-          @include animations.fadeIn(.5s);
+        textarea {
+          width: 100%;
+          height: 100%;
+          min-height: 1rem;
+          font-family: "JetBrains Mono", monospace !important;
+          font-size: 0.8rem;
+          font-weight: bold;
+          resize: none;
+          border: none;
+          color: colors.$primaryColor;
+          background-color: transparent;
+          outline: none;
+          &:hover {
+            resize: vertical;
+          }
+          &#output-message_assistant-jsong_generator {
+            @include animations.fadeIn(0.5s);
+          }
         }
       }
+
+      #input-message {
+        border-top-left-radius: 0 !important;
+      }
+      #output-message {
+        border-top-right-radius: 0 !important;
+        pointer-events: none;
+      }
+
       &#input {
         .headline-area,
-        :deep(.json-editor-component){
+        :deep(.json-editor-component) {
           border-radius: $default_border_radius;
           border-top-left-radius: 0 !important;
         }
       }
+
       &#output {
         .headline-area,
-        :deep(.json-editor-component){
+        :deep(.json-editor-component) {
           border-radius: $default_border_radius;
           border-top-right-radius: 0 !important;
         }
+      }
+
+      &#output {
       }
     }
   }
