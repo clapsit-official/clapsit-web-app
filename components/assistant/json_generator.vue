@@ -262,7 +262,7 @@ export default defineComponent({
       }
     }
     .editor-area {
-      width: 48rem !important;
+      width: 100%;
       height: 95%;
       overflow: hidden;
       display: flex;
