@@ -78,24 +78,19 @@ export default defineComponent({
     font-family: "Fira Code", monospace !important;
   }
   &:deep(.monaco-editor) {
-    width: 100%;
-    height: 100%;
+    border: 1px solid red;
     * {
       font-family: "Fira Code", monospace !important;
     }
     .overflow-guard {
-      width: 100%;
-      height: 100%;
+      border: 1px solid blue;
       & > * {
-        width: 100%;
         .lines-content {
-          width: 100%;
-          height: 100%;
+          border: 1px solid orange;
           .view-lines {
-            height: 100%;
+            border: 1px solid lime;
             & > * {
-              width: 100% !important;
-              height: 100%;
+              border: 1px solid white;
             }
           }
         }
