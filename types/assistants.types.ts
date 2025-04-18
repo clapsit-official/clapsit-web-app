@@ -1,6 +1,6 @@
 import type { JSONGeneratorInputType, JSONGeneratorOutputType } from "./json_generator.types";
 
-export type AvailableAssistants = 'json_generator';
+export type AvailableAssistants = 'json_generator' | 'ai_translator';
 export type StartAssistantParamsType = {
     user_id: number | null,
     key_name: AvailableAssistants | null

@@ -74,7 +74,6 @@ export default defineComponent({
       v-if="currentRoute === 'home'"
       v-for="(item, index) in userAssistantKeys"
       style="margin: 0.8rem 0"
-      class="hover-effect"
       :key="item.id">
       <div
         class="flex-row-start-center"
@@ -82,7 +81,11 @@ export default defineComponent({
         @click.prevent="getAssistantItem(item)"
         :title="formatDateForTitle(item.date)">
         <div class="icon-area">
-          <icon-component icon-name="clock_arrow" icon-size="18px" />
+          <icon-component 
+            fill
+            :icon-name="item.key_name" 
+            icon-size="18px" 
+            :color="colorUtilities.$primaryColor"/>
         </div>
         <span class="ellipsis">
           {{
@@ -117,6 +120,21 @@ export default defineComponent({
         height: 90%;
         font-size: .75rem;
         width: 100%;
+        .icon-area {
+          background-color: colors.$surfaceColor2;
+          border-radius: 50%;
+          padding: 0.1rem;
+          transition-duration: .3s;
+        }
+        & > div:hover {
+          cursor: pointer;
+          .icon-area {
+            background-color: colors.$whiteColor;
+            & > * {
+              @include animations.animate-hue-rotate(1s)
+            }
+          }
+        }
     }
     .desktop-app-container {
       section#sidebar_history-area {
