@@ -79,12 +79,6 @@ export default defineComponent({
         }
       },
     },
-    cKey: {
-      immediate: true,
-      handler() {
-        this.store.resetAll();
-      },
-    },
   },
   methods: {
     handleGenerateShortcut(event: any) {
@@ -144,7 +138,6 @@ export default defineComponent({
         :class="{ loading: isLoading }"
         :title="$t('assistants.json_generator.generate')"
         type="submit"
-        @click="store.generate"
       >
         <icon-component
           v-if="!isLoading"

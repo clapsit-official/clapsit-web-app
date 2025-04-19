@@ -6,6 +6,7 @@ import type { AvailableModals } from '~/stores/modal';
 const modalMap: Record<string, () => Promise<any>> = {
     user_account: () => import('~/components/modal/views/user_account.vue'),
     json_generator: () => import('~/components/modal/views/json_generator.vue'),
+    ai_translator: () => import('~/components/modal/views/ai_translator.vue'),
     logout: () => import('~/components/modal/views/logout_prompt.vue'),
     session_expired: () => import('~/components/modal/views/session_expired.vue'),
 }

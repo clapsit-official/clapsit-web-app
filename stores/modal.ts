@@ -1,6 +1,6 @@
 import type { IconsTypes } from "~/assets/icons/materialIconsList";
 
-export type AvailableModals = 'user_account' | 'logout' | 'json_generator' | 'session_expired';
+export type AvailableModals = 'user_account' | 'logout' | 'json_generator' | 'ai_translator' | 'session_expired';
 
 type ModalItemType = {
     label: string,
@@ -24,6 +24,9 @@ const model = (): ModalStateModelType => {
             },
             json_generator: {
                 label: useI18nStore().i18n.global.t('assistants.json_generator.label'),
+            },
+            ai_translator: {
+                label: useI18nStore().i18n.global.t('assistants.ai_translator.label'),
             },
             session_expired: {
                 label: null,

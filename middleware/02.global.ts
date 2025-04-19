@@ -4,9 +4,6 @@ import {$availableRoutes} from "~/configs/routes.config";
 export default defineNuxtRouteMiddleware(async (from, to) => {
     if (process.client) {
         const {middleware, auth_required} = useRouteManagement().config;
-        if (middleware) {
-            await middleware(from, to);
-        }
         if(auth_required) {
             try {
                 if(!useAuth().checkAuthCredentials()){
@@ -22,6 +19,9 @@ export default defineNuxtRouteMiddleware(async (from, to) => {
             } catch(error: any) {
                 console.error(error);
             }
+        }
+        if (middleware) {
+            await middleware(from, to);
         }
     }
     return

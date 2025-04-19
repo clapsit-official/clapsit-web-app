@@ -23,15 +23,19 @@ export default defineComponent({
 <style lang="scss" scoped>
 .profile-circle_component {
     .profile-circle {
-        background-color: colors.$primaryColor;
+        background-color: colors.$secondaryColor;
         width: 2.3rem;
         height: 2.3rem;
         border-radius: 100rem;
+        text-align: center;
+        @include animations.animate-hue-rotate(60s);
         span {
+            text-align: center;
             color: colors.$whiteColor;
             position: relative;
-            top: 1px;
+            top: .5px;
             font-size: 1rem;
+            font-weight: bold;
         }
     }
 }

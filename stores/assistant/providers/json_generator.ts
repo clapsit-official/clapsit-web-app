@@ -1,5 +1,5 @@
 import { _AIMJSONGenerator, _AIMStart } from "~/services/assistants.service";
-import type { ServerResponseType } from "~/types/general.types";
+import type { UserAssistantHistoryItem } from "~/types/assistants.types";
 import type { JSONGeneratorStateModelType } from "~/types/json_generator.types";
 
 
@@ -63,6 +63,7 @@ export const useJSONGenerator = defineStore('json_generator', {
                 this.progress.output.success = null;
                 await useAssistant().updateUserAssistantKeys();
                 await useAssistant().updateAssistantKeyHistoryById(this.environments.c_id);
+                useAssistant().goToAssistantHistoryById();
             }
             catch (error: any) {
                 throw error;
@@ -76,18 +77,18 @@ export const useJSONGenerator = defineStore('json_generator', {
             this.progress.output.result = str;
         },
         resetInputProgress() {
-            this.progress.input.message = model.progress.input.message;
-            this.progress.input.result = model.progress.input.result;
+            this.progress.input.message = deepCopy(model.progress.input.message);
+            this.progress.input.result = deepCopy(model.progress.input.result);
         },
         resetOutputProgress() {
-            this.progress.output.message = model.progress.output.message
-            this.progress.output.result = model.progress.output.result
-            this.progress.output.success = model.progress.output.success;
+            this.progress.output.message = deepCopy(model.progress.output.message);
+            this.progress.output.result = deepCopy(model.progress.output.result);
+            this.progress.output.success = deepCopy(model.progress.output.success);
         },
         resetEnvironments() {
-            this.environments.c_id = model.environments.c_id;
-            this.environments.c_key = model.environments.c_key;
-            this.environments.key_name = model.environments.key_name;
+            this.environments.c_id = deepCopy(model.environments.c_id);
+            this.environments.c_key = deepCopy(model.environments.c_key);
+            this.environments.key_name = deepCopy(model.environments.key_name);
         },
         resetAll() {
             this.resetInputProgress();
@@ -102,6 +103,22 @@ export const useJSONGenerator = defineStore('json_generator', {
 
             this.progress.input.message = deepOutput.message;
             this.progress.input.result = deepOutput.result;
+        },
+        setAssistantHistory(item: UserAssistantHistoryItem) {
+            this.progress.input.message = item.input.message;
+            this.progress.output.message = item.output.message;
+            this.progress.output.success = item.output.success;
+            if(typeof item.input.result === 'object') {
+                this.progress.input.result = JSON.stringify(item.input.result, null, 4);
+            } else {
+                this.progress.input.result = `${item.input.result}`;
+            }
+           
+            if(typeof item.output.result === 'object') {
+                this.progress.output.result = JSON.stringify(item.output.result, null, 4);
+            } else {
+                this.progress.output.result = `${item.output.result}`;
+            }
         }
     },
 });

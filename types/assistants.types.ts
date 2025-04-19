@@ -1,3 +1,4 @@
+import type { AITranslatorInputType, AITranslatorOutputType } from "./ai_translator.types";
 import type { JSONGeneratorInputType, JSONGeneratorOutputType } from "./json_generator.types";
 
 export type AvailableAssistants = 'json_generator' | 'ai_translator';
@@ -30,7 +31,7 @@ export type GetAssistantHistoryByIdParamsType = {
 export type UserAssistantHistoryItem = {
     c_id: number,
     c_key: string,
-    input: JSONGeneratorInputType,
-    output: JSONGeneratorOutputType,
+    input: JSONGeneratorInputType & AITranslatorInputType,
+    output: JSONGeneratorOutputType & AITranslatorOutputType,
     date: Date
 }

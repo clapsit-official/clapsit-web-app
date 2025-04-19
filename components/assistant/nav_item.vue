@@ -35,6 +35,9 @@ export default defineComponent({
                 case 'json_generator':
                     useModal().provide('json_generator');
                     break;
+                case 'ai_translator':
+                    useModal().provide('ai_translator');
+                    break;
             }
         }
     }
@@ -82,7 +85,7 @@ export default defineComponent({
 
             width: calc($img_size / 1.2);
             height: calc($img_size / 1.2);
-            background-color: #ddd;
+            background-color: colors.$secondaryColor;
             border-radius: 10rem;
         }
 
@@ -104,7 +107,7 @@ export default defineComponent({
             span.black {
                 color: colors.$textSecondary;
                 margin-top: 5px;
-                font-size: .8rem;
+                font-size: .68rem;
             }
         }
     }
@@ -140,7 +143,7 @@ export default defineComponent({
 
             width: calc($img_size / 1.2);
             height: calc($img_size / 1.2);
-            background-color: #ddd;
+            background-color: colors.$secondaryColor;
             border-radius: 10rem;
         }
 
@@ -162,7 +165,7 @@ export default defineComponent({
             span.black {
                 color: colors.$textSecondary;
                 margin-top: 5px;
-                font-size: .8rem;
+                font-size: .7rem;
             }
 
             a {
@@ -203,7 +206,7 @@ export default defineComponent({
 
             width: calc($img_size / 1.2);
             height: calc($img_size / 1.2);
-            background-color: #ddd;
+            background-color: colors.$secondaryColor;
             border-radius: 10rem;
         }
 
@@ -225,7 +228,7 @@ export default defineComponent({
             span.black {
                 color: colors.$textSecondary;
                 margin-top: 5px;
-                font-size: .8rem;
+                font-size: .75rem;
             }
 
             a {

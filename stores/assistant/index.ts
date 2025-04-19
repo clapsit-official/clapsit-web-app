@@ -1,5 +1,6 @@
 import type { AvailableAssistants, UserAssistantKeyItem, UserAssistantHistoryItem } from "~/types/assistants.types";
 import { useJSONGenerator } from "./providers/json_generator";
+import { useAITranslator } from "./providers/ai_translator";
 import { _AIMKeyHistory, _AIMUserKeys } from "~/services/assistants.service";
 import { $availableRoutes } from "~/configs/routes.config";
 
@@ -13,7 +14,8 @@ export const useAssistant = defineStore('assistant', {
     getters: {
         getProvider(): { [key in AvailableAssistants]: any } {
             return {
-                json_generator: () => useJSONGenerator()
+                json_generator: () => useJSONGenerator(),
+                ai_translator: () => useAITranslator()
             }
         },
         getUserAssistantKeys(state): UserAssistantKeyItem[] {
@@ -53,7 +55,7 @@ export const useAssistant = defineStore('assistant', {
                     user_id: useUser().getUserId,
                     key_id
                 });
-                if (response.success && response?.data) {
+                if (response.success && response?.data && response?.data?.length) {
                     this.data.history = response.data.map((item: UserAssistantHistoryItem) => {
                         const reDesign = item;
                         reDesign.date = new Date(item.date);
@@ -73,6 +75,9 @@ export const useAssistant = defineStore('assistant', {
         resetAllData() {
             this.resetUserAssistantKeys();
             this.resetAssistantKeyHistory();
+            if(this.getCurrentAssistantStore) {
+                this.getCurrentAssistantStore.resetAll();
+            } 
         },
         async goToAssistantItem(assistant: AvailableAssistants, conversation_key: string, c_id?: number) {
             await useRouter().push({
@@ -84,20 +89,22 @@ export const useAssistant = defineStore('assistant', {
             });
         },
         setAssistantHistory(item: UserAssistantHistoryItem) {
-            this.getCurrentAssistantStore.progress.input.message = item.input.message;
-            this.getCurrentAssistantStore.progress.output.message = item.output.message;
-            this.getCurrentAssistantStore.progress.output.success = item.output.success;
-            if(typeof item.input.result === 'object') {
-                this.getCurrentAssistantStore.progress.input.result = JSON.stringify(item.input.result, null, 4);
-            } else {
-                this.getCurrentAssistantStore.progress.input.result = `${item.input.result}`;
+            this.getCurrentAssistantStore?.setAssistantHistory(item);
+        },
+        goToAssistantHistoryById(cId?: number | null) {
+            this.getCurrentAssistantStore.resetAll();
+            if (cId) {
+                const item = this.data.history.find((item) => item.c_id === cId);
+            if(item) {
+                this.setAssistantHistory(item);
             }
-           
-            if(typeof item.output.result === 'object') {
-                this.getCurrentAssistantStore.progress.output.result = JSON.stringify(item.output.result, null, 4);
             } else {
-                this.getCurrentAssistantStore.progress.output.result = `${item.output.result}`;
+                const item = this.data.history[0];
+                if(item) {
+                    this.setAssistantHistory(item);
+                }
             }
         }
+
     },
 });

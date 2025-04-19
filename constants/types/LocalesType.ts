@@ -1,3 +1,5 @@
+import type { AvailableAssistants } from "~/types/assistants.types";
+
 type LocaleType = string | number;
 export type BackendMessageKeys =
     'DONE' |
@@ -137,22 +139,9 @@ export type ModalsLocaleType = {
 }
 
 export type AssistantsLocale = {
-    [key: string]: {
+    [key in AvailableAssistants]: {
         label: LocaleType,
         slogan: LocaleType,
         description: LocaleType,
-        input: LocaleType,
-        input_placeholder: LocaleType,
-        output: LocaleType,
-        output_placeholder: LocaleType,
-        generate: LocaleType,
-        copy: LocaleType,
-        copied: LocaleType,
-        reverse: LocaleType,
-        clear: LocaleType,
-        loading: LocaleType,
-        fetching: LocaleType,
-        input_info: LocaleType,
-        output_info: LocaleType,
-    }
+    } | any
 }
