@@ -38,6 +38,8 @@ locales = {
     start_now: "Start now",
     no_message: "There is no message",
     not_supported_device: "We're sorry, but this content is not supported on your current device.",
+    no_options: "No options available",
+    select_an_option: "Select an option",
     buttons: {
         search: "Search",
         filter: "Filter",
@@ -189,6 +191,11 @@ locales = {
             title: "AI-JSON Generator",
             description: "Generate and design JSON objects however you want!",
             keywords: "AI-JSON Generator, JSON objects, Design JSON, Generate JSON",
+        },
+        ai_translator: {
+            title: "AI Translator",
+            description: "Break language barriers with Clapsit’s AI-Powered Translator!",
+            keywords: "AI, Translator, Language, Translation, Clapsit, AI-Powered"
         }
     },
     modals: {
@@ -219,6 +226,13 @@ locales = {
             label: "AI Translator",
             slogan: "Break language barriers with Clapsit’s AI-Powered Translator",
             description: "Discover the Future of Communication with Clapsit’s AI-Powered Translator! Unlock Instant, Precise Translations Across 100+ Languages Using Cutting-Edge Artificial Intelligence!",
+            from_lang: "From",
+            to_lang: "Target",
+            from_lang_placeholder: "Add your text here to translate",
+            to_lang_placeholder: "Waiting to translate...",
+            loading: "Translating...",
+            input_info: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum",
+            output_info: "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.",
         }
     }
 };

@@ -51,7 +51,7 @@ export default defineComponent({
 </template>
 <style lang="scss" scoped>
 $default-padding: 1.5rem;
-$gap-header-main: 1.3rem;
+$gap-header-main: 1.8rem;
 
 #main_layout-desktop {
     display: flex;

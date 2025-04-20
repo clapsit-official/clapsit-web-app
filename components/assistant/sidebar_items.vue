@@ -49,12 +49,12 @@ export default defineComponent({
       if(this.currentRoute === "json_generator") {
         itemTitle = item.input.message;
       } else if(this.currentRoute === "ai_translator") {
-        if (item.input.data) itemTitle = item.input.data.input
+        if (item.input.data) itemTitle = item.output.result.output.result
         else itemTitle = undefined;
       } else {
         itemTitle = '--';
       }
-      return capitalizeFirstLetter(itemTitle) || null;
+      return revertEscapeSequences(capitalizeFirstLetter(itemTitle)) || null;
     },
   },
 });
@@ -83,7 +83,7 @@ export default defineComponent({
         </div>
         <span class="ellipsis">
           {{
-            capitalizeFirstLetter(item.label) ||
+            capitalizeFirstLetter(revertEscapeSequences(item.label)) ||
             $t(`assistants.${item.key_name}.label`)
           }}
         </span>
@@ -100,7 +100,7 @@ export default defineComponent({
     >
       <div class="flex-row-center" style="gap: 0.5rem">
         <strong> [{{ formatDateString(item.date) }}] </strong>
-        <span class="ellipsis" v-if="getSidebarNestItem(item)">
+        <span :class="{'highlight': item.c_id === cId || (!cId && index === 0)}" class="ellipsis" v-if="getSidebarNestItem(item)">
           {{ getSidebarNestItem(item) }}
         </span>
         <i v-else> {{ $t("no_message") }}</i>
@@ -118,6 +118,9 @@ section#sidebar_history-area {
     background-color: colors.$surfaceColor2;
     border-radius: 50%;
     transition-duration: 0.3s;
+  }
+  span.highlight {
+    opacity: 0.5;
   }
   & > div:hover {
     cursor: pointer;

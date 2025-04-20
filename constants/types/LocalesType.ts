@@ -108,6 +108,8 @@ export interface LanguageContent {
     coming_soon: LocaleType;
     we_are_working_on_it: LocaleType;
     not_supported_device: LocaleType;
+    no_options: LocaleType;
+    select_an_option: LocaleType;
     buttons: Buttons;
     backend_messages: Record<BackendMessageKeys, string>;
     pages: PagesLocaleType;

@@ -14,7 +14,6 @@ export default defineComponent({
   },
   data() {
     return {
-      count: 0,
       copyToggle: false,
     };
   },
@@ -41,15 +40,7 @@ export default defineComponent({
         return this.store.progress.input.result;
       },
       set(value: string) {
-        if (!value.startsWith("{") || !value.endsWith("}")) {
-          this.store.resetInputProgress();
-          this.count++;
-        } else if (value === "" || !value) {
-          this.store.resetInputProgress();
-          this.count++;
-        } else {
-          this.store.inputProgress(value);
-        }
+        this.store.inputProgress(value);
       },
     },
     outputComputed: {
@@ -86,6 +77,9 @@ export default defineComponent({
         this.store.generate();
       }
     },
+    resetInputProgress() {
+      this.store.resetInputProgress();
+    },
     toClipboard() {
       this.copyToggle = true;
       copyToClipboard(this.store.progress.output.result.toString());
@@ -106,7 +100,6 @@ export default defineComponent({
 <template>
   <form
     id="assistant-jsong_generator"
-    :key="count"
     @submit.prevent="store.generate"
     v-if="deviceType !== 'mobile'"
   >
@@ -122,7 +115,10 @@ export default defineComponent({
           />
         </div>
       </div>
-      <JsonEditorComponent :disabled="isLoading" v-model="inputComputed" />
+      <TsEditorComponent 
+        @reset-input-progress="resetInputProgress"
+        :disabled="isLoading" 
+        v-model="inputComputed" />
       <div id="input-message">
         <textarea
           id="input-message_assistant-jsong_generator"
@@ -308,6 +304,7 @@ export default defineComponent({
 
       &#input {
         .headline-area,
+        :deep(.typescript-editor-component),
         :deep(.json-editor-component) {
           border-radius: $default_border_radius;
           border-top-left-radius: 0 !important;
@@ -316,6 +313,7 @@ export default defineComponent({
 
       &#output {
         .headline-area,
+        :deep(.typescript-editor-component),
         :deep(.json-editor-component) {
           border-radius: $default_border_radius;
           border-top-right-radius: 0 !important;

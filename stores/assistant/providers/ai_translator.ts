@@ -1,3 +1,4 @@
+import { all_languages } from "~/constants/general";
 import { _AIMAITranslator, _AIMStart } from "~/services/assistants.service";
 import type { AITranslatorStateModelType } from "~/types/ai_translator.types";
 import type { UserAssistantHistoryItem } from "~/types/assistants.types";
@@ -12,10 +13,10 @@ const model: AITranslatorStateModelType = {
     progress: {
         input: {
             data: {
-                to_lang: "",
-                from_lang: "",
+                to_lang: null,
+                from_lang: "detect",
                 input: ""
-            }
+            },
         },
         output: {
             message: "",
@@ -27,7 +28,8 @@ const model: AITranslatorStateModelType = {
                     result: "",
                     unique_and_rarely: []
                 }
-            }
+            },
+
         },
     }
 }
@@ -35,7 +37,23 @@ const model: AITranslatorStateModelType = {
 
 export const useAITranslator = defineStore('ai_translator', {
     state: () => (deepCopy(model) as AITranslatorStateModelType),
-    getters: {},
+    getters: {
+        from_lang_options(state) {
+            return [
+                {
+                    label: 'Auto',
+                    value: "detect"
+                },
+                ...all_languages
+            ];
+        },
+        to_lang_options(state){
+            return [
+                ...all_languages,
+            ];
+        }
+
+    },
     actions: {
         async start() {
             try {
@@ -58,19 +76,34 @@ export const useAITranslator = defineStore('ai_translator', {
         },
         async generate() {
             try {
-                this.progress.output.message = '';
-                const response = await _AIMAITranslator.post({
-                    user_id: useUser().getUserId,
-                    data: {
-                        value: this.progress.input
-                    }
-                }, this.environments.c_key!);
+                let readyToSubmit: boolean = true;
                 
-                this.progress.output.message = useI18nStore().i18n.global.t('assistants.ai_translator.fetching');
-                this.progress.output.result = deepCopy(model.progress.output.result);
-                this.progress.output.success = null;
-                await useAssistant().updateUserAssistantKeys();
-                await useAssistant().updateAssistantKeyHistoryById(this.environments.c_id);
+                if(!this.progress.input.data.input) {
+                    readyToSubmit = false;
+                } else if(this.progress.input.data.input.length === 0) {
+                    readyToSubmit = false;
+                }
+
+                if(!this.progress.input.data.to_lang){
+                    readyToSubmit = false;
+                }
+
+                if(readyToSubmit){
+                    this.progress.output.message = '';
+                    const response = await _AIMAITranslator.post({
+                        user_id: useUser().getUserId,
+                        data: {
+                            value: this.progress.input
+                        }
+                    }, this.environments.c_key!);
+                    
+                    this.progress.output.message = useI18nStore().i18n.global.t('assistants.ai_translator.fetching');
+                    this.progress.output.result = deepCopy(model.progress.output.result);
+                    this.progress.output.success = null;
+                    await useAssistant().updateUserAssistantKeys();
+                    await useAssistant().updateAssistantKeyHistoryById(this.environments.c_id);
+                    useAssistant().goToAssistantHistoryById();
+                }
             }
             catch (error: any) {
                 throw error;
@@ -103,12 +136,23 @@ export const useAITranslator = defineStore('ai_translator', {
             this.environments.c_id = item.c_id;
             this.environments.c_key = item.c_key;
             this.progress.input.data.input = item.input.data.input;
-            this.progress.input.data.to_lang = item.input.data.to_lang;
-            this.progress.input.data.from_lang = item.input.data.from_lang;
+            this.progress.input.data.to_lang = item.input.data.to_lang ? item.input.data.to_lang.toLowerCase() : null;
+            this.progress.input.data.from_lang = item.output.result.from_lang ? item.output.result.from_lang.toLowerCase() : null;
             this.progress.output.result.output.result = item.output.result.output.result;
             this.progress.output.result.output.unique_and_rarely = item.output.result.output.unique_and_rarely;
-            this.progress.output.result.from_lang = item.output.result.from_lang;
-            this.progress.output.result.to_lang = item.output.result.to_lang;   
+            this.progress.output.result.from_lang = item.output.result.from_lang ?  item.output.result.from_lang.toLowerCase() : null;
+            this.progress.output.result.to_lang = item.output.result.to_lang ? item.output.result.to_lang.toLowerCase() : null;   
+        },
+        reverseProgress() {
+            const input = deepCopy(this.progress.input.data);
+            const output = deepCopy(this.progress.output.result);
+
+            this.progress.input.data.from_lang = input.to_lang;
+            this.progress.input.data.to_lang = input.from_lang;
+            this.progress.input.data.input = output.output.result;
+            this.progress.output.result.output.result = '';
+            this.progress.output.result.output.unique_and_rarely = [];
+            this.generate();
         }
     },
 });

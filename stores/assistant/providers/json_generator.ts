@@ -12,7 +12,7 @@ const model: JSONGeneratorStateModelType = {
     progress: {
         input: {
             message: '',
-            result: `{\n    "data": {} \n}`,
+            result: `// Add your TypeScript code here`,
         },
         output: {
             message: 'Fill left side with your request and JSON examples',
@@ -54,7 +54,8 @@ export const useJSONGenerator = defineStore('json_generator', {
                     data: {
                         value: {
                             message: this.progress.input.message,
-                            result: JSON.parse(this.progress.input.result),
+                            //@ts-ignore
+                            result: this.progress.input.result.toString(),
                         }
                     }
                 }, this.environments.c_key!);
