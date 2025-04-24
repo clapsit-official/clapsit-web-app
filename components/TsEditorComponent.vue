@@ -1,11 +1,11 @@
 <template>
   <div
-    class="json-editor-component"
+    class="typescript-editor-component"
     :class="{ disabled: disabled, loading: loading }"
   >
     <code-editor
       :key="count"
-      lang="json"
+      lang="typescript"
       v-model="valueComputed"
       :read-only="readOnly || disabled"
       theme="vs-dark"
@@ -20,10 +20,9 @@
 <script lang="ts">
 import loadingGIF from "~/assets/gifs/loading3.gif";
 export default defineComponent({
-  name: "JsonEditorComponent",
+  name: "TsEditorComponent",
   emits: [
     "update:modelValue",
-    "resetInputProgress",
   ],
   data() {
     return {
@@ -56,17 +55,7 @@ export default defineComponent({
         return this.modelValue;
       },
       set(value: string) {
-        if (!value.startsWith("{") || !value.endsWith("}")) {
-          this.$emit("update:modelValue", ''); 
-          this.$emit("resetInputProgress"); 
-          this.count++;
-        } else if (value === "" || !value) {
-          this.$emit("update:modelValue", ''); 
-          this.$emit("resetInputProgress"); 
-          this.count++;
-        } else {
-          this.$emit("update:modelValue", value); 
-        }
+        this.$emit("update:modelValue", value); 
       },
     },
   },
@@ -96,7 +85,7 @@ export default defineComponent({
     transform: rotate(45deg);
   }
 }
-.json-editor-component {
+.typescript-editor-component {
   width: 100%;
   height: 100%;
   transition-duration: 0.5s;

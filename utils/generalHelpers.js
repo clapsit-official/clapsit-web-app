@@ -72,7 +72,7 @@ export function stringToElement(str) {
 
 // Creates a deep copy of an object or array using JSON serialization and deserialization.
 export function deepCopy(model) {
-  if(model) {
+  if (model) {
     return JSON.parse(JSON.stringify(model));
   }
   return model;
@@ -118,7 +118,7 @@ export function capitalizeFirstLetter(string) {
 
 export function getShortOfFullName(name) {
   const words = name.trim().split(/\s+/); // split by spaces
-  let initials = '';
+  let initials = "";
 
   if (words.length > 0) initials += words[0][0];
   if (words.length > 1) initials += words[1][0];
@@ -127,12 +127,12 @@ export function getShortOfFullName(name) {
 }
 
 export function parseFullname(fullname) {
-  const parsed = fullname.split(' ');
+  const parsed = fullname.split(" ");
   return {
     first_name: parsed[0],
     mid_name: parsed.length > 2 ? parsed[1] : null,
-    last_name: parsed[parsed.length - 1]
-  }
+    last_name: parsed[parsed.length - 1],
+  };
 }
 
 export function reverseObject(obj) {
@@ -148,14 +148,14 @@ export function reverseObject(obj) {
 export function scrollToTarget(targetId) {
   const targetElement = document.getElementById(targetId);
   if (targetElement) {
-      targetElement.scrollIntoView({ behavior: "smooth" });
+    targetElement.scrollIntoView({ behavior: "smooth" });
   } else {
-      console.error("Element with ID " + targetId + " not found.");
+    console.error("Element with ID " + targetId + " not found.");
   }
 }
 
-export function generateArrayForEmptyElems(count,arr) {
-  const generatedArr = arr.filter(item => item !== "");
+export function generateArrayForEmptyElems(count, arr) {
+  const generatedArr = arr.filter((item) => item !== "");
 
   if (generatedArr.length >= count) {
     return generatedArr;
@@ -166,19 +166,19 @@ export function generateArrayForEmptyElems(count,arr) {
 
 export const getRandomBetween = function (min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
-}
+};
 
 export function formatDate(dateString) {
   const date = new Date(dateString);
 
-  const day = String(date.getDate()).padStart(2, '0');
-  const month = String(date.getMonth() + 1).padStart(2, '0'); // Months are 0-indexed
+  const day = String(date.getDate()).padStart(2, "0");
+  const month = String(date.getMonth() + 1).padStart(2, "0"); // Months are 0-indexed
   const year = date.getFullYear();
-  
-  const hours = String(date.getHours()).padStart(2, '0');
-  const minutes = String(date.getMinutes()).padStart(2, '0');
 
-  return {day, month, year, hours, minutes};
+  const hours = String(date.getHours()).padStart(2, "0");
+  const minutes = String(date.getMinutes()).padStart(2, "0");
+
+  return { day, month, year, hours, minutes };
 }
 
 export function isToday(dateString) {
@@ -186,9 +186,11 @@ export function isToday(dateString) {
   const today = new Date();
 
   // Compare only the year, month, and date (ignore time)
-  return inputDate.getDate() === today.getDate() &&
-         inputDate.getMonth() === today.getMonth() &&
-         inputDate.getFullYear() === today.getFullYear();
+  return (
+    inputDate.getDate() === today.getDate() &&
+    inputDate.getMonth() === today.getMonth() &&
+    inputDate.getFullYear() === today.getFullYear()
+  );
 }
 
 export function formatDateString(dateString) {
@@ -206,25 +208,25 @@ export function formatDateString(dateString) {
   // If it's the same day
   if (diffDays === 0) {
     const original = new Date(dateString);
-    const hours = String(original.getHours()).padStart(2, '0');
-    const minutes = String(original.getMinutes()).padStart(2, '0');
+    const hours = String(original.getHours()).padStart(2, "0");
+    const minutes = String(original.getMinutes()).padStart(2, "0");
     return `${hours}:${minutes}`;
   }
 
   // If it's yesterday
   if (diffDays === 1) {
-    return 'yesterday';
+    return "yesterday";
   }
 
   // If it's within the past week, return the weekday
   if (diffDays < 7) {
-    const weekdays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+    const weekdays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
     return weekdays[inputDate.getDay()];
   }
 
   // If it's more than a week ago, return the full date
-  const day = String(inputDate.getDate()).padStart(2, '0');
-  const month = String(inputDate.getMonth() + 1).padStart(2, '0');
+  const day = String(inputDate.getDate()).padStart(2, "0");
+  const month = String(inputDate.getMonth() + 1).padStart(2, "0");
   const year = inputDate.getFullYear();
 
   return `${day}/${month}/${year}`;
@@ -232,25 +234,50 @@ export function formatDateString(dateString) {
 
 export function copyToClipboard(value) {
   // Create a temporary textarea element
-  const textarea = document.createElement('textarea');
+  const textarea = document.createElement("textarea");
   textarea.value = value;
-  
+
   // Make it invisible
-  textarea.style.position = 'fixed';
-  textarea.style.opacity = '0';
-  
+  textarea.style.position = "fixed";
+  textarea.style.opacity = "0";
+
   // Append to body
   document.body.appendChild(textarea);
-  
+
   // Select and copy
   textarea.select();
   try {
-      document.execCommand('copy');
-      console.log('Value copied to clipboard');
+    document.execCommand("copy");
+    console.log("Value copied to clipboard");
   } catch (err) {
-      console.error('Failed to copy: ', err);
+    console.error("Failed to copy: ", err);
   }
-  
+
   // Clean up
   document.body.removeChild(textarea);
 }
+
+export const replaceEscapeSequences = (str) => {
+  // Replace the escape sequences with HTML tags
+  if (str) {
+    return str
+      .replace(/\n/g, "<br>") // Replace newline (\n) with <br>
+      .replace(/\t/g, "&nbsp;&nbsp;&nbsp;&nbsp;") // Replace tab (\t) with 4 non-breaking spaces
+      .replace(/\\/g, "&bsol;") // Replace backslash (\\) with &bsol; (for a backslash)
+      .replace(/\'/g, "&apos;") // Replace single quote (') with &apos;
+      .replace(/\"/g, "&quot;"); // Replace double quote (") with &quot;
+  }
+  return str;
+};
+export const revertEscapeSequences = (str) => {
+  // Replace the HTML tags with the corresponding escape sequences
+  if (str) {
+    return str
+      .replace(/<br>/g, "\n") // Replace <br> with \n
+      .replace(/&nbsp;/g, "\t") // Replace &nbsp; with \t (tab)
+      .replace(/&bsol;/g, "\\") // Replace &bsol; with \\ (backslash)
+      .replace(/&apos;/g, "'") // Replace &apos; with \' (single quote)
+      .replace(/&quot;/g, '"'); // Replace &quot; with \" (double quote)
+  }
+  return str;
+};

@@ -1,7 +1,7 @@
 <script lang="ts">
 import colorUtilities from "@/constants/colorUtilities";
 export default defineComponent({
-    name: "InfoJSONGenerator",
+    name: "InfoAITranslator",
     setup() {
         return {
             colorUtilities,
@@ -21,8 +21,8 @@ export default defineComponent({
     methods: {
         async start() {
             try {
-                await useJSONGenerator().start()
-                useModal().deprive('json_generator');
+                await useAITranslator().start()
+                useModal().deprive('ai_translator');
             } catch(error: any) {
                 this.failed = true;
             }
@@ -31,11 +31,11 @@ export default defineComponent({
 });
 </script>
 <template>
-    <div id="json_generator-component" class="modal">
+    <div id="ai_translator-component" class="modal">
        <assistant-info 
         v-if="!failed"
         @start-event="start"
-        :description="$t('assistants.json_generator.description')"/>
+        :description="$t('assistants.ai_translator.description')"/>
         <div v-else style="text-align: center;">
             <div class="icon-area">
                 <icon-component icon-name="warning" :color="colorUtilities.$warningColor" fill icon-size="55px" />

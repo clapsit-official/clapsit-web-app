@@ -62,3 +62,4 @@ export type InputFileAcceptType =
     '.html' | '.css' | '.js' | '.jsx' | '.ts' | '.tsx' | '.json' | '.xml';
 
 export type InputMessageType = { type?: 'warning' | 'info' | 'error' | 'success', text: string } | null
+export type OptionsType = { label: string | any, value: any, disabled?: boolean };

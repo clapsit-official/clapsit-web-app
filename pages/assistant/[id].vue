@@ -1,6 +1,7 @@
 <script lang="ts">
 import type { AvailableAssistants } from "~/types/assistants.types";
 import json_generator from "~/components/assistant/json_generator.vue";
+import ai_translator from "~/components/assistant/ai_translator.vue";
 import { $availableRoutes } from "~/configs/routes.config";
 
 export default {
@@ -21,9 +22,9 @@ export default {
     cId() {
       const { c_id } = useRoute().query;
       if (c_id) {
-        return c_id;
+        return Number(c_id);
       }
-      return null;
+      return null
     },
     keyName(): AvailableAssistants | undefined {
       const { id } = useRoute().params;
@@ -37,70 +38,35 @@ export default {
     assistantComponents(): { [key in AvailableAssistants]: any } {
       return {
         json_generator,
+        ai_translator,
       };
+    },
+    currentComponent() {
+      return this.assistantComponents[this.keyName!];
     },
     currentCKeyData() {
       return useAssistant().getUserAssistantKeys.find(
         (item) => item.c_key === this.cKey
       );
     },
-    currentComponent() {
-      return this.assistantComponents[this.keyName!];
-    },
   },
-  watch: {
-    currentCKeyData: {
-      immediate: true,
-      deep: true,
-      handler() {
-        this.setTitleByCData();
-      },
-    },
-    cKey: {
-      immediate: true,
-      async handler(val) {
-        if (val && this.currentCKeyData) {
-          await useAssistant().updateAssistantKeyHistoryById(
-            this.currentCKeyData?.id!
-          );
-        }
-        this.setTitleByCData();
-      },
-    },
-    cId() {
-      this.setTitleByCData();
-    },
-  },
-  methods: {
-    setTitleByCData() {
-      if (
-        this.currentCKeyData?.label &&
-        typeof this.currentCKeyData?.label === "string"
-      ) {
-        useSeoMeta({
-          title:
-            capitalizeFirstLetter(this.currentCKeyData?.label) +
-            " | " +
-            useCoreAppStore().getBrandName,
-        });
-      } else {
-        useSeoMeta({
-          title:
-            this.$t(`assistants.${this.keyName}.label`) +
-            " | " +
-            useCoreAppStore().getBrandName,
-        });
-      }
-    },
-  },
-  unmounted() {
+  beforeUnmount() {
     useAssistant().resetAssistantKeyHistory();
   },
+  watch: {
+    cId: {
+      immediate: true,
+      deep: true,
+      handler(val) {
+        useAssistant().goToAssistantHistoryById(val);
+      },
+    }
+  }
 };
 </script>
 <template>
   <div id="assistant_provider-page">
-    <component :is="currentComponent" :cData="currentCKeyData" v-if="keyName" />
+    <component :is="currentComponent" :cData="currentCKeyData" />
   </div>
 </template>
 <style lang="scss" scoped>

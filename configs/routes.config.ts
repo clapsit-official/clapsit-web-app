@@ -12,6 +12,7 @@ export const $availableRoutes = {
     reset_password: '/reset_password',
     assistant: '/assistant',
     json_generator: '/assistant/json_generator',
+    ai_translator: '/assistant/ai_translator',
 }
 
 export const routeConfigs: RouteConfigsType = {
@@ -24,10 +25,11 @@ export const routeConfigs: RouteConfigsType = {
 routeConfigs[$availableRoutes.home] = {
     key: 'home',
     layout: 'default',
-    middleware: () => {
+    middleware: async () => {
         if (useAuth().checkAuthCredentials()) {
             routeConfigs[$availableRoutes.home].layout = 'main';
             setPageLayout('main');
+            await useAssistant().updateUserAssistantKeys();
         }
     }
 }
@@ -84,7 +86,28 @@ routeConfigs[$availableRoutes.json_generator] = {
     key: 'json_generator',
     layout: 'main',
     auth_required: true,
-    async middleware() {
-        
+    async middleware(to, from) {
+        await updateAssistantHistory(to, from);
+    }
+}
+
+routeConfigs[$availableRoutes.ai_translator] = {
+    key: 'ai_translator',
+    layout: 'main',
+    auth_required: true,
+    async middleware(to, from) {
+        await updateAssistantHistory(to, from);
+    }
+}
+
+
+async function updateAssistantHistory(to: any, from: any) {
+    await useAssistant().updateUserAssistantKeys();
+    const target = useAssistant().getUserAssistantKeys.find(item => item.c_key === to.query.c_key);
+    
+    if(target) {
+        await useAssistant().updateAssistantKeyHistoryById(target.id);        
+    } else {
+        //window.location.href = ('/404');
     }
 }

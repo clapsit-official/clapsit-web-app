@@ -26,6 +26,14 @@ export const useI18nStore = defineStore('i18n', {
                 messages,
             });
         },
+        langOptions(state) {
+            return state.availableLocales.map(item => {
+                return {
+                    label: useI18n().t(item.label),
+                    value: item.iso,
+                }
+            })
+        }
     },
     actions: {
     }

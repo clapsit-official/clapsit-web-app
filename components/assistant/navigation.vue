@@ -1,7 +1,7 @@
 <script lang="ts">
-import ClapsitTeachLang from 'assets/images/vectors/English teacher-amico.svg';
+import ClapsitAITranslator from 'assets/images/vectors/Learning languages-rafiki.svg';
 import ClapsitMentor from 'assets/images/vectors/Webinar-pana.svg';
-import ClapsitJSONGenerator from 'assets/images/vectors/Cyborg-amico.svg';
+import ClapsitJSONGenerator from 'assets/images/vectors/Developer activity-bro.svg';
 import ClapsitHr from 'assets/images/vectors/Telecommuting-rafiki.svg';
 export default defineComponent({
     name: "MainNavigation",
@@ -9,7 +9,7 @@ export default defineComponent({
         return {
             $t: useI18nStore().i18n.global.t,
             ClapsitMentor,
-            ClapsitTeachLang,
+            ClapsitAITranslator,
             ClapsitHr,
             versions: [
                 {
@@ -31,10 +31,10 @@ export default defineComponent({
                     imgSrc: ClapsitMentor
                 },
                 {
-                    key: '/',
-                    title: 'Learn a language',
-                    description: 'Bring your trip plans to life – get there, stay there, find things to see and do.',
-                    imgSrc: ClapsitTeachLang
+                    key: 'ai_translator',
+                    title: useI18nStore().i18n.global.t('assistants.ai_translator.label'),
+                    description: useI18nStore().i18n.global.t('assistants.ai_translator.slogan'),
+                    imgSrc: ClapsitAITranslator
                 },
             ]
         }

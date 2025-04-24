@@ -1,5 +1,5 @@
 import { _AIMJSONGenerator, _AIMStart } from "~/services/assistants.service";
-import type { ServerResponseType } from "~/types/general.types";
+import type { UserAssistantHistoryItem } from "~/types/assistants.types";
 import type { JSONGeneratorStateModelType } from "~/types/json_generator.types";
 
 
@@ -7,12 +7,13 @@ const model: JSONGeneratorStateModelType = {
     environments: {
         key_name: 'json_generator',
         c_key: null,
-        c_id: null
+        c_id: null,
+        save: false
     },
     progress: {
         input: {
             message: '',
-            result: `{\n    "data": {} \n}`,
+            result: `// Add your TypeScript code here \n\n const result = {}`,
         },
         output: {
             message: 'Fill left side with your request and JSON examples',
@@ -54,7 +55,8 @@ export const useJSONGenerator = defineStore('json_generator', {
                     data: {
                         value: {
                             message: this.progress.input.message,
-                            result: JSON.parse(this.progress.input.result),
+                            //@ts-ignore
+                            result: this.progress.input.result.toString(),
                         }
                     }
                 }, this.environments.c_key!);
@@ -63,6 +65,7 @@ export const useJSONGenerator = defineStore('json_generator', {
                 this.progress.output.success = null;
                 await useAssistant().updateUserAssistantKeys();
                 await useAssistant().updateAssistantKeyHistoryById(this.environments.c_id);
+                useAssistant().goToAssistantHistoryById();
             }
             catch (error: any) {
                 throw error;
@@ -76,32 +79,47 @@ export const useJSONGenerator = defineStore('json_generator', {
             this.progress.output.result = str;
         },
         resetInputProgress() {
-            this.progress.input.message = model.progress.input.message;
-            this.progress.input.result = model.progress.input.result;
+            this.progress.input.message = deepCopy(model.progress.input.message);
+            this.progress.input.result = deepCopy(model.progress.input.result);
         },
         resetOutputProgress() {
-            this.progress.output.message = model.progress.output.message
-            this.progress.output.result = model.progress.output.result
-            this.progress.output.success = model.progress.output.success;
+            this.progress.output.message = deepCopy(model.progress.output.message);
+            this.progress.output.result = deepCopy(model.progress.output.result);
+            this.progress.output.success = deepCopy(model.progress.output.success);
         },
         resetEnvironments() {
-            this.environments.c_id = model.environments.c_id;
-            this.environments.c_key = model.environments.c_key;
-            this.environments.key_name = model.environments.key_name;
+            this.environments.c_id = deepCopy(model.environments.c_id);
+            this.environments.c_key = deepCopy(model.environments.c_key);
+            this.environments.key_name = deepCopy(model.environments.key_name);
+            this.environments.save = deepCopy(model.environments.save);
         },
         resetAll() {
             this.resetInputProgress();
             this.resetOutputProgress();
         },
-        reverse() {
-            const deepOutput = deepCopy(this.progress.output);
-
-            this.progress.output.message = '';
-            this.progress.output.result = '';
-            this.progress.output.success = null;
-
-            this.progress.input.message = deepOutput.message;
-            this.progress.input.result = deepOutput.result;
+        getAPI() {
+            useModal().provide('json_generator_curl');
+        },
+        setAssistantHistory(item: UserAssistantHistoryItem) {
+            const apiIntro = 'API: '
+            if(item.input.message && item.input.message.startsWith(apiIntro)) {
+                this.progress.input.message = deepCopy(item.input.message.split(apiIntro)[1])
+            } else {
+                this.progress.input.message = item.input.message;
+            }
+            this.progress.output.message = item.output.message;
+            this.progress.output.success = item.output.success;
+            if(typeof item.input.result === 'object') {
+                this.progress.input.result = JSON.stringify(item.input.result, null, 4);
+            } else {
+                this.progress.input.result = `${item.input.result}`;
+            }
+           
+            if(typeof item.output.result === 'object') {
+                this.progress.output.result = JSON.stringify(item.output.result, null, 4);
+            } else {
+                this.progress.output.result = `${item.output.result}`;
+            }
         }
     },
 });

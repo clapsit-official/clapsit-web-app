@@ -54,7 +54,6 @@ export default defineComponent({
       width: 40rem;
       text-align: center;
       gap: 1rem;
-
       span.description {
         color: colors.$textSecondary;
       }

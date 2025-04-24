@@ -14,8 +14,8 @@ export default defineComponent({
   },
   data() {
     return {
-      count: 0,
       copyToggle: false,
+      inputValueChanged: false
     };
   },
   props: {
@@ -27,6 +27,7 @@ export default defineComponent({
           label: null,
           c_key: null,
           date: null,
+          save: false,
           key_name: "json_generator",
         };
       },
@@ -41,15 +42,7 @@ export default defineComponent({
         return this.store.progress.input.result;
       },
       set(value: string) {
-        if (!value.startsWith("{") || !value.endsWith("}")) {
-          this.store.resetInputProgress();
-          this.count++;
-        } else if (value === "" || !value) {
-          this.store.resetInputProgress();
-          this.count++;
-        } else {
-          this.store.inputProgress(value);
-        }
+        this.store.inputProgress(value);
       },
     },
     outputComputed: {
@@ -66,6 +59,13 @@ export default defineComponent({
     cKey() {
       return this.cData.c_key;
     },
+    cId() {
+      const { c_id } = useRoute().query;
+      if (c_id) {
+        return Number(c_id);
+      }
+      return null
+    },
   },
   watch: {
     cData: {
@@ -76,21 +76,29 @@ export default defineComponent({
           useJSONGenerator().environments.c_key = this.cData.c_key;
           useJSONGenerator().environments.c_id = this.cData.id;
           useJSONGenerator().environments.key_name = this.cData.key_name;
+          useJSONGenerator().environments.save = this.cData.save;
         }
-      },
-    },
-    cKey: {
-      immediate: true,
-      handler() {
-        this.store.resetAll();
       },
     },
   },
   methods: {
+    async generate() {
+      try {
+        await this.store.generate();
+        if(this.store.progress.output.result) {
+          this.inputValueChanged = false;
+        }
+      } catch(error) {
+        console.error(error);
+      }
+    },
     handleGenerateShortcut(event: any) {
       if ((event.metaKey || event.ctrlKey) && event.key === "Enter") {
-        this.store.generate();
+        this.generate();
       }
+    },
+    resetInputProgress() {
+      this.store.resetInputProgress();
     },
     toClipboard() {
       this.copyToggle = true;
@@ -112,8 +120,7 @@ export default defineComponent({
 <template>
   <form
     id="assistant-jsong_generator"
-    :key="count"
-    @submit.prevent="store.generate"
+    @submit.prevent="generate"
     v-if="deviceType !== 'mobile'"
   >
     <div id="input" class="editor-area">
@@ -128,11 +135,15 @@ export default defineComponent({
           />
         </div>
       </div>
-      <JsonEditorComponent :disabled="isLoading" v-model="inputComputed" />
+      <TsEditorComponent 
+        @reset-input-progress="resetInputProgress"
+        :disabled="isLoading" 
+        v-model="inputComputed" />
       <div id="input-message">
         <textarea
           id="input-message_assistant-jsong_generator"
           :readonly="isLoading"
+          @input="() => inputValueChanged = true"
           v-model="store.progress.input.message"
           :placeholder="$t('assistants.json_generator.input_placeholder')"
         />
@@ -144,7 +155,6 @@ export default defineComponent({
         :class="{ loading: isLoading }"
         :title="$t('assistants.json_generator.generate')"
         type="submit"
-        @click="store.generate"
       >
         <icon-component
           v-if="!isLoading"
@@ -163,22 +173,18 @@ export default defineComponent({
         "
         @click="toClipboard"
       >
-        <icon-component
-          :fill="copyToggle"
-          :color="colorUtilities.$blackColor"
-          :icon-name="copyToggle ? 'clipboard_copied' : 'clipboard_copy'"
-        />
+      <icon-component 
+        :icon-name="!copyToggle ? 'clipboard_copy' : 'clipboard_copied'" 
+        :fill="copyToggle"
+        :color="colorUtilities.$backgroundColor" />
       </button>
       <button
         class="white"
         :title="$t('assistants.json_generator.reverse')"
         type="button"
-        @click="store.reverse"
-      >
-        <icon-component
-          :color="colorUtilities.$blackColor"
-          icon-name="refresh"
-        />
+        :disabled="!useAssistant().data.history.length || inputValueChanged || !cId || isLoading"
+        @click="store.getAPI">
+        API
       </button>
       <button
         class="white"
@@ -257,8 +263,13 @@ export default defineComponent({
       height: 80%;
       width: 50px;
       button {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
         width: 3rem;
         height: 3rem;
+        color: colors.$warningColor
       }
     }
     .editor-area {
@@ -315,6 +326,7 @@ export default defineComponent({
 
       &#input {
         .headline-area,
+        :deep(.typescript-editor-component),
         :deep(.json-editor-component) {
           border-radius: $default_border_radius;
           border-top-left-radius: 0 !important;
@@ -323,6 +335,7 @@ export default defineComponent({
 
       &#output {
         .headline-area,
+        :deep(.typescript-editor-component),
         :deep(.json-editor-component) {
           border-radius: $default_border_radius;
           border-top-right-radius: 0 !important;
