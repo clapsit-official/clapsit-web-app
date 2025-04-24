@@ -8,7 +8,8 @@ const model: AITranslatorStateModelType = {
     environments: {
         key_name: 'ai_translator',
         c_key: null,
-        c_id: null
+        c_id: null,
+        save: false
     },
     progress: {
         input: {
@@ -127,6 +128,7 @@ export const useAITranslator = defineStore('ai_translator', {
             this.environments.c_id = deepCopy(model.environments.c_id);
             this.environments.c_key = deepCopy(model.environments.c_key);
             this.environments.key_name = deepCopy(model.environments.key_name);
+            this.environments.save = deepCopy(model.environments.save);
         },
         resetAll() {
             this.resetInputProgress();
@@ -141,7 +143,8 @@ export const useAITranslator = defineStore('ai_translator', {
             this.progress.output.result.output.result = item.output.result.output.result;
             this.progress.output.result.output.unique_and_rarely = item.output.result.output.unique_and_rarely;
             this.progress.output.result.from_lang = item.output.result.from_lang ?  item.output.result.from_lang.toLowerCase() : null;
-            this.progress.output.result.to_lang = item.output.result.to_lang ? item.output.result.to_lang.toLowerCase() : null;   
+            this.progress.output.result.to_lang = item.output.result.to_lang ? item.output.result.to_lang.toLowerCase() : null
+            this.progress.output.message = item.output.message;   
         },
         reverseProgress() {
             const input = deepCopy(this.progress.input.data);

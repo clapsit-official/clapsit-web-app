@@ -9,6 +9,7 @@ const modalMap: Record<string, () => Promise<any>> = {
     ai_translator: () => import('~/components/modal/views/ai_translator.vue'),
     logout: () => import('~/components/modal/views/logout_prompt.vue'),
     session_expired: () => import('~/components/modal/views/session_expired.vue'),
+    json_generator_curl: () => import('~/components/modal/views/json_generator_curl.vue'),
 }
 
 export default defineComponent({

@@ -7,12 +7,13 @@ const model: JSONGeneratorStateModelType = {
     environments: {
         key_name: 'json_generator',
         c_key: null,
-        c_id: null
+        c_id: null,
+        save: false
     },
     progress: {
         input: {
             message: '',
-            result: `// Add your TypeScript code here`,
+            result: `// Add your TypeScript code here \n\n const result = {}`,
         },
         output: {
             message: 'Fill left side with your request and JSON examples',
@@ -90,23 +91,22 @@ export const useJSONGenerator = defineStore('json_generator', {
             this.environments.c_id = deepCopy(model.environments.c_id);
             this.environments.c_key = deepCopy(model.environments.c_key);
             this.environments.key_name = deepCopy(model.environments.key_name);
+            this.environments.save = deepCopy(model.environments.save);
         },
         resetAll() {
             this.resetInputProgress();
             this.resetOutputProgress();
         },
-        reverse() {
-            const deepOutput = deepCopy(this.progress.output);
-
-            this.progress.output.message = '';
-            this.progress.output.result = '';
-            this.progress.output.success = null;
-
-            this.progress.input.message = deepOutput.message;
-            this.progress.input.result = deepOutput.result;
+        getAPI() {
+            useModal().provide('json_generator_curl');
         },
         setAssistantHistory(item: UserAssistantHistoryItem) {
-            this.progress.input.message = item.input.message;
+            const apiIntro = 'API: '
+            if(item.input.message && item.input.message.startsWith(apiIntro)) {
+                this.progress.input.message = deepCopy(item.input.message.split(apiIntro)[1])
+            } else {
+                this.progress.input.message = item.input.message;
+            }
             this.progress.output.message = item.output.message;
             this.progress.output.success = item.output.success;
             if(typeof item.input.result === 'object') {

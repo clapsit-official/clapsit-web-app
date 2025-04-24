@@ -48,7 +48,7 @@ export const DarkThemeColors: ColorsContainer = {
   
   // Text Colors
   $textPrimary: '#ffffff',
-  $textSecondary: '#ddd',
+  $textSecondary: '#ccc',
   
   $errorColor: '#c62323',
   $errorSecondary: '#632929',

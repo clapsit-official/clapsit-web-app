@@ -1,10 +1,10 @@
 <script lang="ts">
-import { useAITranslator } from '~/stores/assistant/providers/ai_translator';
-
+import colorUtilities from "@/constants/colorUtilities";
 export default defineComponent({
     name: "InfoAITranslator",
     setup() {
         return {
+            colorUtilities,
             $t: useI18nStore().i18n.global.t
         }
     },
@@ -13,13 +13,18 @@ export default defineComponent({
             return useCoreAppStore().getDeviceType;
         },
     },
+    data() {
+        return {
+            failed: false
+        }
+    },
     methods: {
         async start() {
             try {
                 await useAITranslator().start()
                 useModal().deprive('ai_translator');
             } catch(error: any) {
-                
+                this.failed = true;
             }
         }
     }
@@ -28,7 +33,17 @@ export default defineComponent({
 <template>
     <div id="ai_translator-component" class="modal">
        <assistant-info 
+        v-if="!failed"
         @start-event="start"
         :description="$t('assistants.ai_translator.description')"/>
+        <div v-else style="text-align: center;">
+            <div class="icon-area">
+                <icon-component icon-name="warning" :color="colorUtilities.$warningColor" fill icon-size="55px" />
+            </div>
+            <br>
+            <div>
+                {{ $t('backend_messages.SOMETHING_WENT_WRONG') }}
+            </div>
+        </div>
     </div>
 </template>

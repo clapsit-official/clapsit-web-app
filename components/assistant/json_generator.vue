@@ -15,6 +15,7 @@ export default defineComponent({
   data() {
     return {
       copyToggle: false,
+      inputValueChanged: false
     };
   },
   props: {
@@ -26,6 +27,7 @@ export default defineComponent({
           label: null,
           c_key: null,
           date: null,
+          save: false,
           key_name: "json_generator",
         };
       },
@@ -57,6 +59,13 @@ export default defineComponent({
     cKey() {
       return this.cData.c_key;
     },
+    cId() {
+      const { c_id } = useRoute().query;
+      if (c_id) {
+        return Number(c_id);
+      }
+      return null
+    },
   },
   watch: {
     cData: {
@@ -67,14 +76,25 @@ export default defineComponent({
           useJSONGenerator().environments.c_key = this.cData.c_key;
           useJSONGenerator().environments.c_id = this.cData.id;
           useJSONGenerator().environments.key_name = this.cData.key_name;
+          useJSONGenerator().environments.save = this.cData.save;
         }
       },
     },
   },
   methods: {
+    async generate() {
+      try {
+        await this.store.generate();
+        if(this.store.progress.output.result) {
+          this.inputValueChanged = false;
+        }
+      } catch(error) {
+        console.error(error);
+      }
+    },
     handleGenerateShortcut(event: any) {
       if ((event.metaKey || event.ctrlKey) && event.key === "Enter") {
-        this.store.generate();
+        this.generate();
       }
     },
     resetInputProgress() {
@@ -100,7 +120,7 @@ export default defineComponent({
 <template>
   <form
     id="assistant-jsong_generator"
-    @submit.prevent="store.generate"
+    @submit.prevent="generate"
     v-if="deviceType !== 'mobile'"
   >
     <div id="input" class="editor-area">
@@ -123,6 +143,7 @@ export default defineComponent({
         <textarea
           id="input-message_assistant-jsong_generator"
           :readonly="isLoading"
+          @input="() => inputValueChanged = true"
           v-model="store.progress.input.message"
           :placeholder="$t('assistants.json_generator.input_placeholder')"
         />
@@ -152,22 +173,18 @@ export default defineComponent({
         "
         @click="toClipboard"
       >
-        <icon-component
-          :fill="copyToggle"
-          :color="colorUtilities.$blackColor"
-          :icon-name="copyToggle ? 'clipboard_copied' : 'clipboard_copy'"
-        />
+      <icon-component 
+        :icon-name="!copyToggle ? 'clipboard_copy' : 'clipboard_copied'" 
+        :fill="copyToggle"
+        :color="colorUtilities.$backgroundColor" />
       </button>
       <button
         class="white"
         :title="$t('assistants.json_generator.reverse')"
         type="button"
-        @click="store.reverse"
-      >
-        <icon-component
-          :color="colorUtilities.$blackColor"
-          icon-name="refresh"
-        />
+        :disabled="!useAssistant().data.history.length || inputValueChanged || !cId || isLoading"
+        @click="store.getAPI">
+        API
       </button>
       <button
         class="white"
@@ -246,8 +263,13 @@ export default defineComponent({
       height: 80%;
       width: 50px;
       button {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
         width: 3rem;
         height: 3rem;
+        color: colors.$warningColor
       }
     }
     .editor-area {

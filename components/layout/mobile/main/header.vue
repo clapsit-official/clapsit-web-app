@@ -5,9 +5,15 @@ export default defineComponent({
     emits: ['foldAction'],
     setup() {
         return {
+            $t: useI18nStore().i18n.global.t,
             colorUtilities
         }
     },
+    computed: {
+        currentRouteKey() {
+            return useRouteManagement().config.key
+        },
+    }
 })
 </script>
 
@@ -16,8 +22,11 @@ export default defineComponent({
         <div id="header-items" class="flex-row-between-center">
             <div id="header-item_left-side">
                 <div>
-                    <Logo :type="3" size="50"/>
+                    <Logo :type="3" size="38"/>
                 </div>
+            </div>
+            <div v-if="currentRouteKey">
+                <h3>{{ $t(`pages.${currentRouteKey}.title`) }}</h3>
             </div>
             <div id="header-item_right-side" class="flex-row-between-center">
                 <div id="show-more-area">
@@ -35,9 +44,9 @@ header#main-header {
     #header-items {
         width: 100%;
         user-select: none;
+        margin-bottom: 3vh;
         #header-item_right-side {
             gap: 1rem;
-
             #create-btn_right-side {
                 gap: .5rem;
                 padding: .6rem 1.2rem;
@@ -49,7 +58,7 @@ header#main-header {
             #show-more-area {
                 #icon-area {
                     background-color: colors.$surfaceColor2;
-                    padding: .7rem;
+                    padding: .4rem;
                     border-radius: 5px;
                 }
             }

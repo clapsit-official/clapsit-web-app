@@ -223,7 +223,7 @@ $select-gap-value: 0.2rem;
   display: flex;
   flex-direction: column;
   width: 100%;
-  min-width: 300px;
+  min-width: 10vw;
   height: calc($select-component-height + 1.6rem);
   margin: $select-gap-value 0;
   transition-duration: animations.$default_transition_duration_value;

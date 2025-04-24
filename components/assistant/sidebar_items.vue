@@ -42,17 +42,21 @@ export default defineComponent({
       await useAssistant().goToAssistantItem(item.key_name, item.c_key);
     },
     async getAssistantHistory(item: UserAssistantHistoryItem) {
-      await useAssistant().goToAssistantItem(useAssistant().getCurrentAssistantStore.environments.key_name, item.c_key, item.c_id);
+      await useAssistant().goToAssistantItem(
+        useAssistant().getCurrentAssistantStore.environments.key_name,
+        item.c_key,
+        item.c_id
+      );
     },
     getSidebarNestItem(item: any) {
       let itemTitle: string | undefined;
-      if(this.currentRoute === "json_generator") {
+      if (this.currentRoute === "json_generator") {
         itemTitle = item.input.message;
-      } else if(this.currentRoute === "ai_translator") {
-        if (item.input.data) itemTitle = item.output.result.output.result
+      } else if (this.currentRoute === "ai_translator") {
+        if (item.input.data) itemTitle = item.output.result.output.result;
         else itemTitle = undefined;
       } else {
-        itemTitle = '--';
+        itemTitle = "--";
       }
       return revertEscapeSequences(capitalizeFirstLetter(itemTitle)) || null;
     },
@@ -87,6 +91,23 @@ export default defineComponent({
             $t(`assistants.${item.key_name}.label`)
           }}
         </span>
+        <div class="flex-row-center" @click.stop style="gap: 0.5rem">
+          <icon-component
+            icon-name="trash"
+            icon-size="14px"
+            class="icon-area-2"
+            :title="$t('buttons.delete')"
+            @click="useAssistant().deleteKeyById(item.id)"
+          />
+          <icon-component
+            :fill="item.save"
+            :class="{ 'icon-area-2': !item.save }"
+            @click="useAssistant().saveKeyById(item.id, !item.save)"
+            :title="$t('buttons.save')"
+            icon-name="star"
+            icon-size="14px"
+          />
+        </div>
       </div>
     </div>
     <div
@@ -98,12 +119,35 @@ export default defineComponent({
       @click.prevent="getAssistantHistory(item)"
       :title="formatDateForTitle(item.date)"
     >
-      <div class="flex-row-center" style="gap: 0.5rem">
+      <div class="flex-row-center" style="gap: 0.5rem; width: 100%">
         <strong> [{{ formatDateString(item.date) }}] </strong>
-        <span :class="{'highlight': item.c_id === cId || (!cId && index === 0)}" class="ellipsis" v-if="getSidebarNestItem(item)">
+        <span
+          :class="{ highlight: item.c_id === cId || (!cId && index === 0) }"
+          class="ellipsis"
+          v-if="getSidebarNestItem(item)"
+        >
           {{ getSidebarNestItem(item) }}
         </span>
         <i v-else> {{ $t("no_message") }}</i>
+        <div class="flex-row-center" @click.stop style="gap: 0.5rem">
+          <icon-component
+            icon-name="trash"
+            icon-size="14px"
+            class="icon-area-2"
+            @click="useAssistant().deleteHistoryByConversationId(item.c_id)"
+            :title="$t('buttons.delete')"
+          />
+          <icon-component
+            :fill="item.save"
+            :class="{ 'icon-area-2': !item.save }"
+            @click="
+              useAssistant().saveHistoryByConversationId(item.c_id, !item.save)
+            "
+            :title="$t('buttons.save')"
+            icon-name="star"
+            icon-size="14px"
+          />
+        </div>
       </div>
     </div>
   </section>
@@ -130,6 +174,9 @@ section#sidebar_history-area {
         @include animations.animate-hue-rotate(1s);
       }
     }
+    .icon-area-2 {
+      display: flex;
+    }
   }
 }
 .desktop-app-container {
@@ -138,6 +185,9 @@ section#sidebar_history-area {
     overflow-x: hidden !important;
     &:hover {
       overflow-y: auto !important;
+    }
+    .icon-area-2 {
+      display: none;
     }
   }
 }

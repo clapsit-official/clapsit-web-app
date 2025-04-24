@@ -12,7 +12,8 @@ export type GetUserAssistantKeysParamsType = {
 export type AssistantEnvironmentsType = {
     key_name: AvailableAssistants,
     c_key: string | null,
-    c_id: number | null
+    c_id: number | null,
+    save: boolean
 }
 
 export type UserAssistantKeyItem = {
@@ -21,6 +22,7 @@ export type UserAssistantKeyItem = {
     date: Date,
     key_name: AvailableAssistants,
     label?: string,
+    save: boolean,
 }
 
 export type GetAssistantHistoryByIdParamsType = {
@@ -33,5 +35,6 @@ export type UserAssistantHistoryItem = {
     c_key: string,
     input: JSONGeneratorInputType & AITranslatorInputType,
     output: JSONGeneratorOutputType & AITranslatorOutputType,
+    save: boolean,
     date: Date
 }
