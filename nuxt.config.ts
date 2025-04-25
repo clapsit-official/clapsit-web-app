@@ -3,6 +3,7 @@
 export default defineNuxtConfig({
   compatibilityDate: '2025-02-13',
   devtools: { enabled: true },
+  ssr: true,
   // @ts-ignore
   app: {
       head: {

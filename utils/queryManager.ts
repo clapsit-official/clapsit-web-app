@@ -54,6 +54,7 @@ export async function $query(
 
     const requestHeaders: any = {
         'Content-Type': 'application/json',
+        'Cache-Control': 'public, max-age=3600',
         ...Object.fromEntries(Object.entries(endpointHeaders).filter(([key]) => key.toLowerCase() !== 'content-type')),
         ...mergedConfig.headers,
     };

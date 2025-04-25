@@ -87,7 +87,6 @@ routeConfigs[$availableRoutes.json_generator] = {
     layout: 'main',
     auth_required: true,
     async middleware(to, from) {
-        await updateAssistantHistory(to, from);
     }
 }
 
@@ -96,18 +95,5 @@ routeConfigs[$availableRoutes.ai_translator] = {
     layout: 'main',
     auth_required: true,
     async middleware(to, from) {
-        await updateAssistantHistory(to, from);
-    }
-}
-
-
-async function updateAssistantHistory(to: any, from: any) {
-    await useAssistant().updateUserAssistantKeys();
-    const target = useAssistant().getUserAssistantKeys.find(item => item.c_key === to.query.c_key);
-    
-    if(target) {
-        await useAssistant().updateAssistantKeyHistoryById(target.id);        
-    } else {
-        //window.location.href = ('/404');
     }
 }

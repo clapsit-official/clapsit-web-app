@@ -14,7 +14,7 @@ export default defineComponent({
             useAuth().resetAuth();
             useModal().deprive('session_expired');
             if(useRoute().path !== $availableRoutes.getstarted) {
-                window.location.reload();
+                reloadNuxtApp();
             }
         }
     },

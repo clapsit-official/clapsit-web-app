@@ -1,8 +1,7 @@
 <script lang="ts">
 import type { AvailableAssistants } from "~/types/assistants.types";
-import json_generator from "~/components/assistant/json_generator.vue";
-import ai_translator from "~/components/assistant/ai_translator.vue";
 import { $availableRoutes } from "~/configs/routes.config";
+import Loading from "~/components/Loading.vue";
 
 export default {
   name: "AssistantContainer",
@@ -15,9 +14,9 @@ export default {
     cKey() {
       const { c_key } = useRoute().query;
       if (c_key) {
-        return c_key;
+        return c_key.toString();
       }
-      useRouter().push($availableRoutes.home);
+      return null;
     },
     cId() {
       const { c_id } = useRoute().query;
@@ -37,8 +36,20 @@ export default {
     },
     assistantComponents(): { [key in AvailableAssistants]: any } {
       return {
-        json_generator,
-        ai_translator,
+        json_generator: defineAsyncComponent({
+          loader: async () => {
+            await updateAssistantHistory(this.cKey);
+            return import('@/components/assistant/json_generator.vue')
+          },
+          loadingComponent: Loading
+        }),
+        ai_translator: defineAsyncComponent({
+          loader: async () => {
+            await updateAssistantHistory(this.cKey);
+            return import('@/components/assistant/ai_translator.vue')
+          },
+          loadingComponent: Loading
+        }),
       };
     },
     currentComponent() {
