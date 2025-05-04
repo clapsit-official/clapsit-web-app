@@ -25,11 +25,14 @@ export const routeConfigs: RouteConfigsType = {
 routeConfigs[$availableRoutes.home] = {
     key: 'home',
     layout: 'default',
+    auth_required: true,
     middleware: async () => {
         if (useAuth().checkAuthCredentials()) {
             routeConfigs[$availableRoutes.home].layout = 'main';
             setPageLayout('main');
             await useAssistant().updateUserAssistantKeys();
+            await useAssistant().getRecentlyKeyHistories();
+            await useAssistant().getSavedKeyHistories();
         }
     }
 }

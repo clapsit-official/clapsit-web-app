@@ -141,6 +141,7 @@ export default defineComponent({
         v-model="inputComputed" />
       <div id="input-message">
         <textarea
+          :rows="1"
           id="input-message_assistant-jsong_generator"
           :readonly="isLoading"
           @input="() => inputValueChanged = true"
@@ -218,6 +219,7 @@ export default defineComponent({
       />
       <div id="output-message">
         <textarea
+          :rows="1"
           id="output-message_assistant-jsong_generator"
           readonly
           :key="store.progress.output.message"
@@ -245,6 +247,7 @@ export default defineComponent({
     <BackToHomeButton />
   </div>
 </template>
+
 <style lang="scss" scoped>
 .desktop-app-container,
 .tablet-app-container {
@@ -293,12 +296,12 @@ export default defineComponent({
         width: calc(100% - ($padding-textarea * 2));
         padding: $padding-textarea;
         background-color: colors.$surfaceColor;
-        border-radius: $default_border_radius;        
+        border-radius: $default_border_radius;
         @include colors.box-shadow-2;
         textarea {
           width: 100%;
           height: 100%;
-          min-height: 1rem;
+          min-height: 1.1rem;
           font-family: 'Fira Code', monospace !important;
           font-size: 0.8rem;
           font-weight: bold;

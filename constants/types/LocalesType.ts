@@ -117,6 +117,8 @@ export interface LanguageContent {
     pages: PagesLocaleType;
     modals: ModalsLocaleType;
     assistants: AssistantsLocale;
+    recently: AssistantsLocale;
+    favorites: AssistantsLocale;
 }
 
 export type LangOptionsType = 'az-AZ' | 'en-US' | 'ru-RU';

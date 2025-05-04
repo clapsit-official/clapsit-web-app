@@ -45,7 +45,8 @@ export default defineComponent({
       await useAssistant().goToAssistantItem(
         useAssistant().getCurrentAssistantStore.environments.key_name,
         item.c_key,
-        item.c_id
+        item.c_id,
+        false
       );
     },
     getSidebarNestItem(item: any) {
@@ -53,10 +54,10 @@ export default defineComponent({
       if (this.currentRoute === "json_generator") {
         itemTitle = item.input.message;
       } else if (this.currentRoute === "ai_translator") {
-        if (item.input.data) itemTitle = item.output.result.output.result;
+        if (item.input.data && item.output.result) itemTitle = item.output.result.output.result;
         else itemTitle = undefined;
       } else {
-        itemTitle = "--";
+        itemTitle = this.$t("no_message");
       }
       return revertEscapeSequences(capitalizeFirstLetter(itemTitle)) || null;
     },
@@ -128,7 +129,7 @@ export default defineComponent({
         >
           {{ getSidebarNestItem(item) }}
         </span>
-        <i v-else> {{ $t("no_message") }}</i>
+        <i v-else style="opacity: 0.5;"> {{ $t("no_message") }}</i>
         <div class="flex-row-center" @click.stop style="gap: 0.5rem">
           <icon-component
             icon-name="trash"
@@ -149,6 +150,12 @@ export default defineComponent({
           />
         </div>
       </div>
+    </div>
+    <div v-if="currentRoute === 'home' && !userAssistantKeys.length">
+      <Text locale="there_is_no_item_yet"/>
+    </div>
+    <div v-if="currentRoute !== 'home' && !userAssistantKeyHistory.length">
+      <Text locale="there_is_no_item_yet"/>
     </div>
   </section>
 </template>

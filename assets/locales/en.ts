@@ -40,6 +40,8 @@ locales = {
     not_supported_device: "We're sorry, but this content is not supported on your current device.",
     no_options: "No options available",
     select_an_option: "Select an option",
+    recently: "Recently",
+    favorites: "Favorties",
     buttons: {
         search: "Search",
         filter: "Filter",

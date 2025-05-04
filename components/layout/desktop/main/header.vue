@@ -45,7 +45,7 @@ header#main-header {
                 gap: .5rem;
                 padding: .6rem 1.2rem;
                 border-radius: 10rem;
-                font-size: .9rem;
+                font-size: .8rem;
                 background-color: colors.$whiteColor;
                 @include colors.box-shadow-2
             }

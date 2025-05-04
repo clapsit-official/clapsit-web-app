@@ -13,7 +13,7 @@ const model: JSONGeneratorStateModelType = {
     progress: {
         input: {
             message: '',
-            result: `// Add your TypeScript code here \n\n const result = {}`,
+            result: `// Add your TypeScript code here \n\nconst result = {}`,
         },
         output: {
             message: 'Fill left side with your request and JSON examples',

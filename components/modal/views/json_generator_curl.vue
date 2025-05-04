@@ -25,7 +25,7 @@ export default defineComponent({
       return null;
     },
     urlComputed() {
-      return `${this.baseUrl}/api/json_generator/${this.cId}`;
+      return `${this.baseUrl}/api/v1/aim/json_generator/${this.cId}`;
     },
     baseUrl() {
       return window.location.origin;

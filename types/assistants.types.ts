@@ -27,7 +27,7 @@ export type UserAssistantKeyItem = {
 
 export type GetAssistantHistoryByIdParamsType = {
     user_id: number | null,
-    key_id: number | null
+    key_id?: number | null
 }
 
 export type UserAssistantHistoryItem = {
@@ -37,4 +37,5 @@ export type UserAssistantHistoryItem = {
     output: JSONGeneratorOutputType & AITranslatorOutputType,
     save: boolean,
     date: Date
+    key_name: AvailableAssistants,
 }

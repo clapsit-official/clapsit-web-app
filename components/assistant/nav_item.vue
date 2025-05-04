@@ -124,7 +124,7 @@ export default defineComponent({
         align-items: center;
         gap: $items-gap-value;
         width: 100%;
-        max-width: 26rem;
+        max-width: 45%;
         height: 10rem;
         cursor: pointer;
 
@@ -134,7 +134,7 @@ export default defineComponent({
 
         .img-area_nav-item {
             margin-left: .8rem;
-            $img_size: 7rem;
+            $img_size: 6rem;
 
             img {
                 width: $img_size;
@@ -155,6 +155,7 @@ export default defineComponent({
 
             span.title {
                 font-weight: bold;
+                font-size: .8rem;
             }
 
             span.description,
