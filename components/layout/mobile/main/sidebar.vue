@@ -34,9 +34,6 @@ export default defineComponent({
       const formated = formatDate(date);
       return `${formated.day}/${formated.month}/${formated.year} - ${formated.hours}:${formated.minutes}`;
     },
-    async getAssistantItem(item: UserAssistantKeyItem) {
-      await useAssistant().goToAssistantItem(item.key_name, item.c_key);
-    },
   },
 });
 </script>

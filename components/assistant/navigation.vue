@@ -66,6 +66,7 @@ export default defineComponent({
                     :img-src="version.imgSrc"
                 />
             </nav>
+            <AssistantHistories/>
         </div>
     </section>
 </template>

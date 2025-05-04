@@ -113,10 +113,7 @@ export default defineComponent({
           },
         ];
       }
-      if (!this.modelValue) {
-        return [this.tempuraryValue, ...this.options];
-      }
-      return this.options;
+      return [this.tempuraryValue, ...this.options];
     },
   },
   methods: {

@@ -546,7 +546,7 @@ export default defineComponent({
   justify-content: space-between;
   padding: 0 1rem;
   section {
-    width: calc(48% - (2rem * 2));
+    width: calc(49% - (2rem * 2));
     height: 90%;
     display: flex;
     flex-direction: column;

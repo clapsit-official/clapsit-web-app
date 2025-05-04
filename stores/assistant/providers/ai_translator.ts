@@ -139,11 +139,11 @@ export const useAITranslator = defineStore('ai_translator', {
             this.environments.c_key = item.c_key;
             this.progress.input.data.input = item.input.data.input;
             this.progress.input.data.to_lang = item.input.data.to_lang ? item.input.data.to_lang.toLowerCase() : null;
-            this.progress.input.data.from_lang = item.output.result.from_lang ? item.output.result.from_lang.toLowerCase() : null;
-            this.progress.output.result.output.result = item.output.result.output.result;
-            this.progress.output.result.output.unique_and_rarely = item.output.result.output.unique_and_rarely;
-            this.progress.output.result.from_lang = item.output.result.from_lang ?  item.output.result.from_lang.toLowerCase() : null;
-            this.progress.output.result.to_lang = item.output.result.to_lang ? item.output.result.to_lang.toLowerCase() : null
+            this.progress.input.data.from_lang = item.output.result?.from_lang ? item.output.result?.from_lang.toLowerCase() : null;
+            this.progress.output.result.output.result = item.output.result?.output.result;
+            this.progress.output.result.output.unique_and_rarely = item.output.result?.output.unique_and_rarely;
+            this.progress.output.result.from_lang = item.output.result?.from_lang ?  item.output.result?.from_lang.toLowerCase() : null;
+            this.progress.output.result.to_lang = item.output.result?.to_lang ? item.output.result?.to_lang.toLowerCase() : null
             this.progress.output.message = item.output.message;   
         },
         reverseProgress() {

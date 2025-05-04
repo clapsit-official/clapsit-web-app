@@ -23,8 +23,15 @@ export const _AIMUserKeys = {
 }
 
 export const _AIMKeyHistory = {
-    async get(params: GetAssistantHistoryByIdParamsType) {
-        return await defineService('assistant_key_history', () => $get('/aim/key_history', {params}));   
+    async get(params: GetAssistantHistoryByIdParamsType, filter? : 'recently' | 'saved') {
+        switch(filter) {
+            case 'recently':
+                return await defineService('assistant_key_history', () => $get('/aim/key_history/recently', {params}));   
+            case 'saved':
+                return await defineService('assistant_key_history', () => $get('/aim/key_history/saved', {params}));   
+            default:
+                return await defineService('assistant_key_history', () => $get('/aim/key_history', {params}));   
+        }
     },
     async patch(conversation_id: number, data: {save: boolean, user_id: number | null}): Promise<ServerResponseType> {
         return await defineService('patch_assistant_key_history', () => $patch(`/aim/key_history/${conversation_id}`, {data}));

@@ -29,7 +29,10 @@ export default defineComponent({
   computed: {
     ready() {
       return this.auth.checkAuthCredentials();
-    }
+    },
+    deviceType() {
+      return useCoreAppStore().getDeviceType;
+    },
   },
   methods: {
     async logout() {
