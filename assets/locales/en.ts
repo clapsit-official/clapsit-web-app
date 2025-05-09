@@ -42,6 +42,7 @@ locales = {
     select_an_option: "Select an option",
     recently: "Recently",
     favorites: "Favorties",
+    there_is_no_item_yet: "There is no action yet",
     buttons: {
         search: "Search",
         filter: "Filter",
