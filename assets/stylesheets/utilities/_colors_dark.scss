@@ -1,8 +1,8 @@
 $primaryColor: #0097b2;
 $secondaryColor: #37474F;
 
-$whiteColor: #ffffff;
-$blackColor: #111113;
+$whiteColor: var(--fgColor-white);
+$blackColor: var(--fgColor-black);
 
 // Background Colors
 $backgroundColor: var(--bgColor-inset);
@@ -10,22 +10,22 @@ $surfaceColor: var(--bgColor-default);
 $surfaceColor2: var(--bgColor-muted);
 
 // Text Colors
-$textPrimary: $whiteColor;
-$textSecondary: #ccc;
+$textPrimary: var(--fgColor-default);
+$textSecondary: var(--fgColor-muted);
 
-$errorColor: #c62323;
+$errorColor: var(--fgColor-danger);
 $errorSecondary: #632929;
 
-$successColor: #28812a;
+$successColor: var(--fgColor-success);
 
-$warningColor: #f9a700;
+$warningColor: var(--fgColor-attention);
 $warningSecondary: #a27323;
 $infoColor: #0658ff;
 
 // Disabled Colors
-$disabledColor: #cccccc;
+$disabledColor: var(--bgColor-disabled);
 // Divider Color
-$dividerColor: $textSecondary;
+$dividerColor: var(--borderColor-default);
 // Shadows
 $shadowColor: $whiteColor;
 
