@@ -9,7 +9,7 @@ html {
 }
 
 body {
-  background-color: colors.$backgroundColor;
+  background-color: var(--bgColor-default);
   color: colors.$textPrimary;
 }
 

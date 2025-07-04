@@ -75,7 +75,7 @@ export default defineComponent({
     }
 
     #area-header {
-      width: 30rem;
+      width: 70%;
       text-align: center;
       gap: 1rem;
 

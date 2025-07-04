@@ -5,9 +5,9 @@ $whiteColor: #ffffff;
 $blackColor: #111113;
 
 // Background Colors
-$backgroundColor: $blackColor;
-$surfaceColor: #1E1E1E;
-$surfaceColor2: #2E3033;
+$backgroundColor: var(--bgColor-inset);
+$surfaceColor: var(--bgColor-default);
+$surfaceColor2: var(--bgColor-muted);
 
 // Text Colors
 $textPrimary: $whiteColor;

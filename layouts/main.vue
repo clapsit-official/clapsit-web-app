@@ -1,4 +1,4 @@
-<script lang="ts">
+<script>
 export default {
     name: "MainLayout",
     computed: {
@@ -8,8 +8,15 @@ export default {
     },
 }
 </script>
+<script setup>
+const colorMode = useColorMode();
+</script>
 <template>
-    <body id="main_layout-area" class="default-width default-height">
+    <body 
+        :data-color-mode="colorMode.value"
+        :data-dark-theme="colorMode.value === 'dark' ? 'dark_colorblind' : ''"
+        :data-light-theme="colorMode.value === 'light' ? 'light_colorblind' : ''"
+        id="main_layout-area" class="default-width default-height">
         <layout-desktop-main v-if="deviceType === 'desktop'">
             <slot/>
         </layout-desktop-main>

@@ -39,10 +39,17 @@ export default defineNuxtConfig({
   },
   css: [
     '~/assets/stylesheets/global.scss',
+    '~/assets/stylesheets/colors/dark-colorblind.scss',
+    '~/assets/stylesheets/colors/light-colorblind.scss',
   ],
+  colorMode: {
+    preference: 'system',
+    fallback: 'light',
+    classSuffix: '',
+  },
   plugins: [],
   build: {},
-  modules: ["@pinia/nuxt", '@nuxt/devtools', 'nuxt-monaco-editor'],
+  modules: ['@pinia/nuxt', '@nuxt/devtools', 'nuxt-monaco-editor', '@nuxtjs/color-mode'],
   pinia: { storesDirs: ['./stores/**', './stores/**/*'] },
   imports: {
       dirs: [
