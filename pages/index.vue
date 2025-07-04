@@ -1,9 +1,10 @@
 <template>
   <div id="home-page" class="default-height">
     <ComingSoon v-if="!ready" />
-    <div class="flex-column-center" v-else>
+    <div id="home-page-content" class="flex-column-center" v-else>
       <div id="area-header" class="flex-column-center">
         <h1>
+          👋
           <Text locale="say_hello_to" :args="{
             name: parseFullname(useUser().getUserDetails.fullname).first_name
           }" />
@@ -48,9 +49,8 @@ export default defineComponent({
     height: 100%;
     overflow-y: auto;
 
-    div {
-      gap: 1rem;
-      margin: 1.5rem 0
+    div#home-page-content {
+      height: 100%;
     }
 
     #area-header {
@@ -75,7 +75,7 @@ export default defineComponent({
     }
 
     #area-header {
-      width: 35rem;
+      width: 30rem;
       text-align: center;
       gap: 1rem;
 
@@ -96,7 +96,7 @@ export default defineComponent({
     }
 
     #area-header {
-      width: 100%;
+      width: 90%;
       text-align: center;
       gap: 1rem;
 

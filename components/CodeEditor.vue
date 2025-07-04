@@ -115,7 +115,7 @@ export default defineComponent({
   .code-editor-component {
     & > * {
       position: relative;
-      width: 36vw;
+      width: 80vw;
       height: 100%;
       min-height: 500px;
       &:deep(.monaco-editor) {

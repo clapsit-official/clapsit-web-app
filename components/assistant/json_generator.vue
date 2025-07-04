@@ -15,7 +15,7 @@ export default defineComponent({
   data() {
     return {
       copyToggle: false,
-      inputValueChanged: false
+      inputValueChanged: false,
     };
   },
   props: {
@@ -64,7 +64,7 @@ export default defineComponent({
       if (c_id) {
         return Number(c_id);
       }
-      return null
+      return null;
     },
   },
   watch: {
@@ -85,10 +85,10 @@ export default defineComponent({
     async generate() {
       try {
         await this.store.generate();
-        if(this.store.progress.output.result) {
+        if (this.store.progress.output.result) {
           this.inputValueChanged = false;
         }
-      } catch(error) {
+      } catch (error) {
         console.error(error);
       }
     },
@@ -135,16 +135,17 @@ export default defineComponent({
           />
         </div>
       </div>
-      <TsEditorComponent 
+      <TsEditorComponent
         @reset-input-progress="resetInputProgress"
-        :disabled="isLoading" 
-        v-model="inputComputed" />
+        :disabled="isLoading"
+        v-model="inputComputed"
+      />
       <div id="input-message">
         <textarea
           :rows="1"
           id="input-message_assistant-jsong_generator"
           :readonly="isLoading"
-          @input="() => inputValueChanged = true"
+          @input="() => (inputValueChanged = true)"
           v-model="store.progress.input.message"
           :placeholder="$t('assistants.json_generator.input_placeholder')"
         />
@@ -174,17 +175,24 @@ export default defineComponent({
         "
         @click="toClipboard"
       >
-      <icon-component 
-        :icon-name="!copyToggle ? 'clipboard_copy' : 'clipboard_copied'" 
-        :fill="copyToggle"
-        :color="colorUtilities.$backgroundColor" />
+        <icon-component
+          :icon-name="!copyToggle ? 'clipboard_copy' : 'clipboard_copied'"
+          :fill="copyToggle"
+          :color="colorUtilities.$backgroundColor"
+        />
       </button>
       <button
         class="white"
         :title="$t('assistants.json_generator.reverse')"
         type="button"
-        :disabled="!useAssistant().data.history.length || inputValueChanged || !cId || isLoading"
-        @click="store.getAPI">
+        :disabled="
+          !useAssistant().data.history.length ||
+          inputValueChanged ||
+          !cId ||
+          isLoading
+        "
+        @click="store.getAPI"
+      >
         API
       </button>
       <button
@@ -235,8 +243,7 @@ export default defineComponent({
 </template>
 
 <style lang="scss" scoped>
-.desktop-app-container,
-.tablet-app-container {
+.desktop-app-container {
   #assistant-jsong_generator {
     display: flex;
     width: 99%;
@@ -258,7 +265,7 @@ export default defineComponent({
         justify-content: center;
         width: 3rem;
         height: 3rem;
-        color: colors.$warningColor
+        color: colors.$warningColor;
       }
     }
     .editor-area {
@@ -267,7 +274,7 @@ export default defineComponent({
       display: flex;
       flex-direction: column;
       gap: 1.5rem;
-      $default_border_radius: .6rem;
+      $default_border_radius: 0.6rem;
       .headline-area {
         background-color: colors.$surfaceColor;
         padding: 0.5rem 1.5rem;
@@ -282,10 +289,10 @@ export default defineComponent({
         overflow: hidden;
         @include colors.box-shadow-2;
         textarea {
-          height: 100%;
-          width: calc(95% - ($padding-textarea * 2));
+          height: calc(100% - ($padding-textarea * 2));
+          width: calc(100% - ($padding-textarea * 2));
           padding: $padding-textarea;
-          font-family: 'Fira Code', monospace !important;
+          font-family: "Fira Code", monospace !important;
           font-size: 0.8rem;
           font-weight: bold;
           resize: none;
@@ -296,7 +303,93 @@ export default defineComponent({
           &:hover {
             resize: vertical;
           }
+        }
+      }
 
+      #input-message {
+        height: 25%;
+      }
+
+      &#input {
+        .headline-area,
+        :deep(.typescript-editor-component),
+        :deep(.json-editor-component) {
+          border-radius: $default_border_radius;
+        }
+      }
+
+      &#output {
+        .headline-area,
+        :deep(.typescript-editor-component),
+        :deep(.json-editor-component) {
+          border-radius: $default_border_radius;
+        }
+      }
+
+      &#output {
+      }
+    }
+  }
+}
+.tablet-app-container {
+  #assistant-jsong_generator {
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 90%;
+    position: relative;
+    left: 1rem;
+    #btns-area {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem 2rem;
+      gap: 1rem;
+      height: 10%;
+      width: 100%;
+      button {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 25%;
+        height: 3rem;
+        color: colors.$warningColor;
+      }
+    }
+    .editor-area {
+      width: 100%;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      $default_border_radius: 0.6rem;
+      .headline-area {
+        display: none;
+      }
+      #input-message {
+        $padding-textarea: 1.6rem;
+        width: 100%;
+        background-color: colors.$surfaceColor;
+        border-radius: $default_border_radius;
+        @include colors.box-shadow-2;
+        textarea {
+          height: calc(100% - ($padding-textarea * 2));
+          width: calc(100% - ($padding-textarea * 2));
+          padding: $padding-textarea;
+          font-family: "Fira Code", monospace !important;
+          font-size: 0.8rem;
+          font-weight: bold;
+          resize: none;
+          border: none;
+          color: colors.$primaryColor;
+          background-color: transparent;
+          outline: none;
+          &:hover {
+            resize: vertical;
+          }
         }
       }
 

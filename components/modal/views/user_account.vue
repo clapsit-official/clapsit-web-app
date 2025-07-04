@@ -1,8 +1,10 @@
 <script lang="ts">
+import colorUtilities from '~/constants/colorUtilities';
 export default defineComponent({
     name: "UserAccount",
     setup() {
         return {
+            colorUtilities,
             user: useUser(),
             store: useGetstarted(),
         }
@@ -13,8 +15,11 @@ export default defineComponent({
         }
     },
     methods: {
-        closeModal(){
+        logout(){
             useModal().deprive('user_account');
+            setTimeout(() => {
+                useModal().provide('logout')
+            }, 100)
         }
     }
 })
@@ -44,8 +49,11 @@ export default defineComponent({
         </section>
 
         <br>
-        <button class="white" @click="closeModal">
-            <Text locale="buttons.ok"/>
+        <button class="white flex-row-center" style="gap: 5px;" @click="logout">
+            <div>
+                <icon-component icon-name="logout" icon-size="18px" :color="colorUtilities.$errorColor"/>
+            </div>
+            <Text locale="buttons.logout"/>
         </button>
     </div>
 </template>

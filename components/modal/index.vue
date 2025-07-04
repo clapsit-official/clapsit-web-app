@@ -130,7 +130,7 @@ export default defineComponent({
     #modal-component {
         section#modal-content {
             .modal-area {
-                max-width: 50%;
+                max-width: 70%;
                 min-width: 15%;
                 max-height: 80%;
                 @include animations.slideDownBounce(1s);

@@ -248,7 +248,6 @@ export function copyToClipboard(value) {
   textarea.select();
   try {
     document.execCommand("copy");
-    console.log("Value copied to clipboard");
   } catch (err) {
     console.error("Failed to copy: ", err);
   }

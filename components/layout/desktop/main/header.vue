@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { $availableRoutes } from '~/configs/routes.config';
-import colorUtilities from '~/constants/colorUtilities';
 </script>
 
 <template>
@@ -19,14 +18,8 @@ import colorUtilities from '~/constants/colorUtilities';
                 </div>
             </div>
             <div id="header-item_right-side" class="flex-row-between-center">
-                <div style="width: 80px; text-align: center;">
-                    <b>BETA</b>
-                </div>
-                <div id="create-btn_right-side" class="flex-row-center hover-effect" @click="useModal().provide('logout')">
-                    <div>
-                        <icon-component icon-name="logout" icon-size="18px" :color="colorUtilities.$errorColor"/>
-                    </div>
-                    <Text locale="buttons.logout"/>
+                <div style="text-align: center;">
+                    <b class="beta-version">BETA</b>
                 </div>
                 <profile-circle :value="useUser().getUserDetails.fullname"/>
             </div>
@@ -49,6 +42,15 @@ header#main-header {
                 background-color: colors.$whiteColor;
                 @include colors.box-shadow-2
             }
+            .beta-version {
+                $beta-size: .7rem;
+                user-select: none;
+                padding: calc($beta-size / 2) calc($beta-size / 1.2);
+                font-size: $beta-size;
+                background-color: white;
+                border-radius: .35rem;
+                color: colors.$blackColor;
+                box-shadow: rgb(200, 200, 200) 3px 3px 6px 0px inset, rgb(200, 200, 200) -3px -3px 6px 1px inset;            }
         }
 
     }

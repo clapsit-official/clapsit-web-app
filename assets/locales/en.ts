@@ -200,7 +200,7 @@ locales = {
     },
     modals: {
         user_account: {
-            label: 'User Account'
+            label: 'Account'
         },
     },
     assistants: {

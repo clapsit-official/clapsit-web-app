@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { $availableRoutes } from '~/configs/routes.config';
-import colorUtilities from '~/constants/colorUtilities';
 </script>
 
 <template>
@@ -19,14 +18,8 @@ import colorUtilities from '~/constants/colorUtilities';
                 </div>
             </div>
             <div id="header-item_right-side" class="flex-row-between-center">
-                <div style="width: 80px; text-align: center;">
-                    <b>My Clapsit</b>
-                </div>
-                <div id="create-btn_right-side" class="flex-row-center hover-effect" @click="useModal().provide('logout')">
-                    <div>
-                        <icon-component icon-name="logout" icon-size="18px" :color="colorUtilities.$errorColor"/>
-                    </div>
-                    <Text locale="buttons.logout"/>
+                <div style="text-align: center;">
+                    <b class="beta-version">BETA</b>
                 </div>
                 <profile-circle :value="useUser().getUserDetails.fullname"/>
             </div>
@@ -38,18 +31,27 @@ import colorUtilities from '~/constants/colorUtilities';
 header#main-header {
     #header-items {
         width: 100%;
-        user-select: none;
+        margin-left: 5%;
         #header-item_right-side {
             gap: 1.5rem;
             #create-btn_right-side {
+                color: colors.$blackColor;
                 gap: .5rem;
                 padding: .6rem 1.2rem;
                 border-radius: 10rem;
-                font-size: .9rem;
+                font-size: .8rem;
                 background-color: colors.$whiteColor;
-                color: colors.$errorColor;
                 @include colors.box-shadow-2
             }
+            .beta-version {
+                $beta-size: .7rem;
+                user-select: none;
+                padding: calc($beta-size / 2) calc($beta-size / 1.2);
+                font-size: $beta-size;
+                background-color: white;
+                border-radius: .35rem;
+                color: colors.$blackColor;
+                box-shadow: rgb(200, 200, 200) 3px 3px 6px 0px inset, rgb(200, 200, 200) -3px -3px 6px 1px inset;            }
         }
 
     }

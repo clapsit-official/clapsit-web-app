@@ -103,7 +103,7 @@ export default defineComponent({
 </template>
 <style lang="scss" scoped>
 #json_generator_curl-component {
-  width: 50vw;
+  width: 100%;
   padding: 1rem 0;
   display: flex;
   flex-direction: column;

@@ -65,7 +65,7 @@ $gap-header-main: 1.8rem;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-        gap: $gap-header-main;
+        gap: .2rem;
 
         section#sidebar_logo-area {
             div#fold-sidebar {
@@ -74,6 +74,7 @@ $gap-header-main: 1.8rem;
                 left: 10px;
                 top: -15px;
             }
+            margin-bottom: 1.8rem;
         }
 
         section#sidebar_history-area {

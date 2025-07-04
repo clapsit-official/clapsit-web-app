@@ -71,7 +71,6 @@ export default {
 </template>
 <style lang="scss" scoped>
 .desktop-app-container,
-.tablet-app-container,
 .mobile-app-container {
   #assistant_provider-page {
     width: 100%;
@@ -79,5 +78,15 @@ export default {
     display: flex;
     @include animations.fadeIn(0.1s);
   }
+}
+.tablet-app-container{
+    #assistant_provider-page {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    @include animations.fadeIn(0.1s);
+  }
+
 }
 </style>

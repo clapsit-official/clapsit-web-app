@@ -37,7 +37,7 @@ type FakeUserListItem = {
 *   This constant holds the final JSON data structure 
 */
 const result = {
-    users: [] as FakeUserListItem[] // Generate 10 users
+    users: [] as FakeUserListItem[] // Generate 3 users
 };`,
         },
         output: {

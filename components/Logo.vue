@@ -1,9 +1,9 @@
 <template>
     <div class="logo">
         <section id="logo-area" class="flex-row-center">
-            <nuxt-link :to="availableRoutes.home" class="animation" :class="{'pulse': isLoading}">
+            <a :href="availableRoutes.home" class="animation" :class="{'pulse': isLoading}">
                 <img :src="show" alt="Logo" :srcset="show" :width="size">
-            </nuxt-link>
+            </a>
         </section>
     </div>
 </template>
