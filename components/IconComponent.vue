@@ -7,7 +7,7 @@
     class="icon-container flex-column-center" />
 </template>
 <script lang="ts">
-import iconsList, { type IconsTypes } from "~/assets/icons/materialIconsList";
+import iconsList, { type IconsTypes } from "~/assets/icons/IconsList";
 import { stringToElement } from '#imports';
 import colorUtilities from "~/constants/colorUtilities";
 

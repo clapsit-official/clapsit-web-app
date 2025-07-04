@@ -1,4 +1,4 @@
-import type { IconsTypes } from "~/assets/icons/materialIconsList";
+import type { IconsTypes } from "~/assets/icons/IconsList";
 
 export type InputComponentTypeTypes = "button"
     | "checkbox"

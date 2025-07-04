@@ -126,7 +126,9 @@ button {
   }
   &.loading {
     @include animations.buttonLoading(colors.$blackColor);
-    cursor: progress !important;
+    & {
+      cursor: progress !important;
+    }
   }
 }
 

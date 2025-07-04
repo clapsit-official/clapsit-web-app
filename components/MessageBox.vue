@@ -1,5 +1,5 @@
 <script lang="ts">
-import type { IconsTypes } from '~/assets/icons/materialIconsList';
+import type { IconsTypes } from '~/assets/icons/IconsList';
 import type { InputMessageType } from '~/constants/types/InputComponentTypes';
 import colorUtilities from '~/constants/colorUtilities';
 export default defineComponent({

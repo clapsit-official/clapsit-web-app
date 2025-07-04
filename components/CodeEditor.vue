@@ -104,7 +104,7 @@ export default defineComponent({
       height: 100%;
       &:deep(.monaco-editor) {
         * {
-          font-size: 11px !important;
+          font-size: .9rem !important;
         }
       }
     }

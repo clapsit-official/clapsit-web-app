@@ -20,7 +20,7 @@ import colorUtilities from '~/constants/colorUtilities';
             </div>
             <div id="header-item_right-side" class="flex-row-between-center">
                 <div style="width: 80px; text-align: center;">
-                    <b>My Clapsit</b>
+                    <b>BETA</b>
                 </div>
                 <div id="create-btn_right-side" class="flex-row-center hover-effect" @click="useModal().provide('logout')">
                     <div>

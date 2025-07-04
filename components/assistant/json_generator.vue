@@ -126,9 +126,9 @@ export default defineComponent({
     <div id="input" class="editor-area">
       <div class="headline-area flex-row-between-center">
         <strong> <Text locale="assistants.json_generator.input" />: </strong>
-        <div class="icon-area">
+        <div class="icon-area flex-row-center">
           <icon-component
-            icon-name="info"
+            icon-name="coder"
             :color="colorUtilities.$whiteColor"
             :icon-size="'1.5rem'"
             :title="$t('assistants.json_generator.input_info')"
@@ -205,8 +205,8 @@ export default defineComponent({
         <strong> <Text locale="assistants.json_generator.output" />: </strong>
         <div class="icon-area">
           <icon-component
-            icon-name="info"
-            :color="colorUtilities.$whiteColor"
+            icon-name="ai"
+            :fill="true"
             :icon-size="'1.5rem'"
             :title="$t('assistants.json_generator.output_info')"
           />
@@ -217,20 +217,6 @@ export default defineComponent({
         v-model="outputComputed"
         :read-only="true"
       />
-      <div id="output-message">
-        <textarea
-          :rows="1"
-          id="output-message_assistant-jsong_generator"
-          readonly
-          :key="store.progress.output.message"
-          v-model="store.progress.output.message"
-          :placeholder="
-            !isLoading
-              ? $t('assistants.json_generator.output_placeholder')
-              : $t('assistants.json_generator.loading')
-          "
-        />
-      </div>
     </div>
   </form>
   <div
@@ -255,7 +241,7 @@ export default defineComponent({
     display: flex;
     width: 99%;
     justify-content: space-between;
-    padding: 0 1rem;
+    padding: 0 1rem 1rem 1rem;
     #btns-area {
       display: flex;
       flex-direction: column;
@@ -277,12 +263,11 @@ export default defineComponent({
     }
     .editor-area {
       width: 100%;
-      height: 95%;
       overflow: hidden;
       display: flex;
       flex-direction: column;
       gap: 1.5rem;
-      $default_border_radius: 3rem;
+      $default_border_radius: .6rem;
       .headline-area {
         background-color: colors.$surfaceColor;
         padding: 0.5rem 1.5rem;
@@ -290,18 +275,17 @@ export default defineComponent({
         min-height: 5%;
         cursor: pointer;
       }
-      #output-message,
       #input-message {
-        $padding-textarea: 1.5rem;
-        width: calc(100% - ($padding-textarea * 2));
-        padding: $padding-textarea;
+        $padding-textarea: 1.6rem;
+        width: 100%;
         background-color: colors.$surfaceColor;
         border-radius: $default_border_radius;
+        overflow: hidden;
         @include colors.box-shadow-2;
         textarea {
-          width: 100%;
           height: 100%;
-          min-height: 1.1rem;
+          width: calc(95% - ($padding-textarea * 2));
+          padding: $padding-textarea;
           font-family: 'Fira Code', monospace !important;
           font-size: 0.8rem;
           font-weight: bold;
@@ -313,18 +297,12 @@ export default defineComponent({
           &:hover {
             resize: vertical;
           }
-          &#output-message_assistant-jsong_generator {
-            @include animations.fadeIn(0.5s);
-          }
+
         }
       }
 
       #input-message {
-        border-top-left-radius: 0 !important;
-      }
-      #output-message {
-        border-top-right-radius: 0 !important;
-        pointer-events: none;
+        height: 25%;
       }
 
       &#input {
@@ -332,7 +310,6 @@ export default defineComponent({
         :deep(.typescript-editor-component),
         :deep(.json-editor-component) {
           border-radius: $default_border_radius;
-          border-top-left-radius: 0 !important;
         }
       }
 
@@ -341,7 +318,6 @@ export default defineComponent({
         :deep(.typescript-editor-component),
         :deep(.json-editor-component) {
           border-radius: $default_border_radius;
-          border-top-right-radius: 0 !important;
         }
       }
 

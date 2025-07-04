@@ -1,4 +1,4 @@
-import type { IconsTypes } from "~/assets/icons/materialIconsList";
+import type { IconsTypes } from "~/assets/icons/IconsList";
 
 export type AvailableModals = 'user_account' | 'logout' | 'json_generator' | 'json_generator_curl' | 'ai_translator' | 'session_expired';
 

@@ -1,5 +1,5 @@
 <script lang="ts">
-import type { IconsTypes } from "~/assets/icons/materialIconsList";
+import type { IconsTypes } from "~/assets/icons/IconsList";
 import colorUtilities from "~/constants/colorUtilities";
 import type {
   InputMessageType,
