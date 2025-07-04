@@ -273,7 +273,6 @@ export default defineComponent({
         padding: 0.5rem 1.5rem;
         border-radius: $default_border_radius;
         min-height: 5%;
-        cursor: pointer;
       }
       #input-message {
         $padding-textarea: 1.6rem;
