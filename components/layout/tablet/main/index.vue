@@ -1,12 +1,7 @@
 <script lang="ts">
-import colorUtilities from '~/constants/colorUtilities';
+import colors from '~/constants/colorUtilities';
 export default defineComponent({
     name: 'MainLayoutIndex',
-    setup() {
-        return {
-            colorUtilities
-        }
-    },
     data() {
         return {
             showSidebar: false
@@ -22,6 +17,12 @@ export default defineComponent({
             }
         }
     },
+    computed: {
+        colorUtilities(){
+            const colorMode = useColorMode().value;
+            return colors(colorMode)
+        },
+    }
 });
 </script>
 

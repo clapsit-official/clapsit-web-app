@@ -1,7 +1,7 @@
 <template>
   <div id="home-page" class="default-height">
     <ComingSoon v-if="!ready" />
-    <div id="home-page-content" class="flex-column-center" v-else>
+    <div id="home-page-content" v-else>
       <div id="area-header" class="flex-column-center">
         <h1>
           👋
@@ -50,6 +50,9 @@ export default defineComponent({
     overflow-y: auto;
 
     div#home-page-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
       height: 100%;
     }
 
@@ -64,7 +67,7 @@ export default defineComponent({
   }
 }
 
-.tablet-app-container {
+.tablet-app-container {   
   #home-page {
     width: 100%;
     height: 100%;
@@ -72,6 +75,13 @@ export default defineComponent({
     div {
       gap: 1rem;
       margin: 1.5rem 0
+    }
+
+    div#home-page-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      height: 100%;
     }
 
     #area-header {
@@ -93,6 +103,12 @@ export default defineComponent({
     div {
       gap: 1rem;
       margin: 1.5rem 0
+    }
+    div#home-page-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      height: 100%;
     }
 
     #area-header {

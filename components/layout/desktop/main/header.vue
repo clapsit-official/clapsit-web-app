@@ -6,20 +6,20 @@ import { $availableRoutes } from '~/configs/routes.config';
     <header id="main-header" class="flex-row-center">
         <div id="header-items" class="flex-row-between-center">
             <div id="header-item_left-side">
-                <div  
-                    @click="useRouter().push($availableRoutes.home)"
+                <a  
+                    :href="$availableRoutes.home"
                     style="gap: 5px"
-                    class="flex-row-between-center hover-effect" 
+                    class="flex-row-between-center hover-effect black" 
                     v-show="useRouteManagement().config.key !== 'home'">
                     <div>
                     <IconComponent icon-name="arrow_back"/>
                     </div>
                     <span>Home</span>
-                </div>
+                </a>
             </div>
             <div id="header-item_right-side" class="flex-row-between-center">
                 <div style="text-align: center;">
-                    <b class="beta-version">BETA</b>
+                    <b class="beta-version bordered">BETA</b>
                 </div>
                 <profile-circle :value="useUser().getUserDetails.fullname"/>
             </div>
@@ -47,10 +47,10 @@ header#main-header {
                 user-select: none;
                 padding: calc($beta-size / 2) calc($beta-size / 1.2);
                 font-size: $beta-size;
-                background-color: white;
+                background-color: colors.$surfaceColor2;
                 border-radius: .35rem;
-                color: colors.$blackColor;
-                box-shadow: rgb(200, 200, 200) 3px 3px 6px 0px inset, rgb(200, 200, 200) -3px -3px 6px 1px inset;            }
+                color: colors.$textPrimary;
+            }
         }
 
     }

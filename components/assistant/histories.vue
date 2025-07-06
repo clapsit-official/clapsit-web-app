@@ -62,6 +62,7 @@ export default defineComponent({
   <div id="assistant-histories_component" v-if="isActive">
     <section
       id="favorites_assistant-histories"
+      class="bordered"
       v-if="
         useAssistant().getSavedAssistantKeyHistory.length &&
         !!(call === 'saved' || call === null)
@@ -99,6 +100,7 @@ export default defineComponent({
     <br v-if="call === null" />
     <section
       id="last_assistant-histories"
+      class="bordered"
       v-if="
         useAssistant().getRecentlyAssistantKeyHistory.length &&
         !!(call === 'recently' || call === null)
@@ -151,7 +153,7 @@ export default defineComponent({
       display: flex;
       flex-direction: column;
       gap: 0.1rem;
-      border-radius: 2rem;
+      border-radius: 1rem;
       background-color: colors.$surfaceColor2;
       padding: 2rem 2rem 1rem 2rem;
       .header {

@@ -1,33 +1,32 @@
-$primaryColor: #0097b2;
+$primaryColor: #0097B2;
 $secondaryColor: #37474F;
 
-$whiteColor: #ffffff;
-$blackColor: #000000;
+$whiteColor: var(--fgColor-white);
+$blackColor: var(--fgColor-black);
 
 // Background Colors
-$backgroundColor: $whiteColor;
-$surfaceColor: #aaa;
-$surfaceColor2: #eee;
+$backgroundColor: var(--bgColor-default);
+$surfaceColor: var(--bgColor-inset);
+$surfaceColor2: var(--bgColor-muted);
 
 // Text Colors
-$textPrimary: $blackColor;
-$textSecondary: #5d5d5d;
+$textPrimary: var(--fgColor-default);
+$textSecondary: var(--fgColor-muted);
 
-$errorColor: #c62323;
-$errorSecondary: #F3ECEC;
+$errorColor: var(--display-red-fgColor);
+$errorSecondary: var(--display-red-bgColor-muted);
 
-$successColor: #1aa11d;
+$successColor: var(--display-pine-bgColor-emphasis);
 
-$warningColor: #f9a700;
-$warningSecondary: #F5F1EA;
-$infoColor: #0658ff;
+$warningColor: var(--bgColor-attention-emphasis);
+$warningSecondary: var(--bgColor-attention-muted);
+$infoColor: var(--bgColor-accent-emphasis);
+$infoSecondary: var(--bgColor-accent-muted);
 
 // Disabled Colors
-$disabledColor: #cccccc;
+$disabledColor: var(--bgColor-disabled);
 // Divider Color
-$dividerColor: #bdbdbd;
-// Shadows
-$shadowColor: #000;
+$dividerColor: var(--borderColor-default);
 
 @mixin box-shadow-1() {
   box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,

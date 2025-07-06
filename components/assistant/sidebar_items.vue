@@ -1,6 +1,5 @@
 <script lang="ts">
-import { nodeModuleNameResolver } from "typescript";
-import colorUtilities from "~/constants/colorUtilities";
+import colors from "~/constants/colorUtilities";
 import type {
   UserAssistantHistoryItem,
   UserAssistantKeyItem,
@@ -10,11 +9,14 @@ export default defineComponent({
   name: "AssistantSidebarItems",
   setup() {
     return {
-      colorUtilities,
       $t: useI18nStore().i18n.global.t,
     };
   },
   computed: {
+    colorUtilities() {
+      const colorMode = useColorMode().value;
+      return colors(colorMode);
+    },
     userAssistantKeys() {
       return useAssistant().getUserAssistantKeys;
     },

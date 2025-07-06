@@ -28,7 +28,7 @@ export default defineNuxtConfig({
       preprocessorOptions: {
         scss: {
           additionalData:
-              '@use "assets/stylesheets/utilities/colors_dark" as colors;' +
+              '@use "assets/stylesheets/utilities/colors" as colors;' +
               '@use "assets/stylesheets/utilities/configs" as configs;' +
               '@use "assets/stylesheets/utilities/responsive" as responsive;' +
               '@use "assets/stylesheets/utilities/animations" as animations;' +

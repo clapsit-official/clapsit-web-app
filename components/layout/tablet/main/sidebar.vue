@@ -1,12 +1,10 @@
 <script lang="ts">
-import colorUtilities from '~/constants/colorUtilities';
-import type { UserAssistantKeyItem } from '~/types/assistants.types';
+import colors from '~/constants/colorUtilities';
 export default defineComponent({
     name: 'MainLayoutSidebar',
     emits: ['foldAction'],
     setup() {
         return {
-            colorUtilities,
             $t: useI18nStore().i18n.global.t
         }
     },
@@ -16,6 +14,12 @@ export default defineComponent({
             required: true,
         }
     },
+    computed: {
+        colorUtilities(){
+            const colorMode = useColorMode().value;
+            return colors(colorMode)
+        },
+    }
 });
 </script>
 <template>
@@ -24,15 +28,15 @@ export default defineComponent({
                 <Logo :type="fold ? 3 : 1" :size="fold ? '35px' : '150px'"/>
             </section>
             <section v-if="!fold" id="sidebar_main-tools" class="flex-row-between-center">
-                <div id="fold-sidebar" class="flex-row-center" style="gap: .5rem;">
-                    <div>
+                <div id="fold-sidebar" class="flex-row-center" style="gap: .2rem;">
+                    <div @click="() => $emit('foldAction')">
                         <icon-component 
                             icon-name="clock_arrow" 
-                            icon-size="19px" 
+                            icon-size="1rem" 
                             :color="colorUtilities.$textPrimary"/>
                     </div>
                     <div class="recently">
-                        <b><Text locale="recently"/>:</b>
+                        <span><Text locale="recently"/>:</span>
                     </div>
                 </div>
                 <div id="right_side-items" class="flex-row-between-center">
@@ -65,6 +69,7 @@ export default defineComponent({
 #sidebar {
     position: absolute;
     z-index: 100;
+    border-right: 1px solid colors.$dividerColor;
     section#sidebar_main-tools {
         #right_side-items {
             gap: .5rem;
@@ -75,6 +80,9 @@ export default defineComponent({
                     left: 1px;
                 }
             }
+        }
+        .recently {
+            font-size: .85rem;
         }
         padding: 1rem 0;
         border-bottom: 1px solid colors.$dividerColor;

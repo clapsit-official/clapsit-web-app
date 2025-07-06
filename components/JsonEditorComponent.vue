@@ -1,6 +1,6 @@
 <template>
   <div
-    class="json-editor-component"
+    class="json-editor-component bordered"
     :class="{ disabled: disabled, loading: loading }"
   >
     <code-editor
@@ -8,7 +8,7 @@
       lang="json"
       v-model="valueComputed"
       :read-only="readOnly || disabled"
-      theme="vs-dark"
+      :theme="theme"
     />
     <div class="loading-area" v-if="loading">
       <div class="gif-area">
@@ -68,6 +68,10 @@ export default defineComponent({
           this.$emit("update:modelValue", value); 
         }
       },
+    },
+    theme(): any{
+      const colorMode = useColorMode().value;
+      return colorMode === 'dark' ? 'vs-dark' : 'vs-light'
     },
   },
 });

@@ -1,6 +1,6 @@
 <template>
   <div id="clapsit">
-    <LoadingScreen v-show="!deviceTypeSafe || isLoading"/>
+    <LoadingScreen/>
     <NuxtLayout v-if="deviceTypeSafe && !isLoading" :class="`${deviceTypeSafe}-app-container`">
       <NuxtPage v-if="readyForView === true && deviceTypeSafe" ref="NuxtPage"/>
       <NotAvailable v-else-if="readyForView === false" />

@@ -1,13 +1,11 @@
 <script lang="ts">
-import { useI18n } from "vue-i18n";
 import { $availableRoutes } from "~/configs/routes.config";
-import colorUtilities from "~/constants/colorUtilities";
+import colors from "~/constants/colorUtilities";
 export default defineComponent({
   name: "JsonGenerator",
   setup() {
     return {
       $availableRoutes,
-      colorUtilities,
       store: useJSONGenerator(),
       $t: useI18nStore().i18n.global.t,
     };
@@ -34,6 +32,10 @@ export default defineComponent({
     },
   },
   computed: {
+    colorUtilities(){
+      const colorMode = useColorMode().value;
+      return colors(colorMode)
+    },
     deviceType() {
       return useCoreAppStore().getDeviceType;
     },
@@ -124,7 +126,7 @@ export default defineComponent({
     v-if="deviceType !== 'mobile'"
   >
     <div id="input" class="editor-area">
-      <div class="headline-area flex-row-between-center">
+      <div class="headline-area bordered flex-row-between-center">
         <strong> <Text locale="assistants.json_generator.input" />: </strong>
         <div class="icon-area flex-row-center">
           <icon-component
@@ -140,7 +142,7 @@ export default defineComponent({
         :disabled="isLoading"
         v-model="inputComputed"
       />
-      <div id="input-message">
+      <div id="input-message" class="bordered">
         <textarea
           :rows="1"
           id="input-message_assistant-jsong_generator"
@@ -166,7 +168,7 @@ export default defineComponent({
         />
       </button>
       <button
-        class="white"
+        class="monochrome-invers"
         type="button"
         :title="
           !copyToggle
@@ -178,11 +180,11 @@ export default defineComponent({
         <icon-component
           :icon-name="!copyToggle ? 'clipboard_copy' : 'clipboard_copied'"
           :fill="copyToggle"
-          :color="colorUtilities.$backgroundColor"
+          :color="colorUtilities.$textPrimary"
         />
       </button>
       <button
-        class="white"
+        class="monochrome-invers"
         :title="$t('assistants.json_generator.reverse')"
         type="button"
         :disabled="
@@ -196,7 +198,7 @@ export default defineComponent({
         API
       </button>
       <button
-        class="white"
+        class="monochrome-invers"
         :title="$t('assistants.json_generator.clear')"
         type="reset"
         @click="store.resetAll"
@@ -209,7 +211,7 @@ export default defineComponent({
       </button>
     </div>
     <div id="output" class="editor-area">
-      <div class="headline-area flex-row-between-center">
+      <div class="headline-area bordered flex-row-between-center">
         <strong> <Text locale="assistants.json_generator.output" />: </strong>
         <div class="icon-area">
           <icon-component

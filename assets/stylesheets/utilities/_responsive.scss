@@ -2,13 +2,13 @@ $desktop-font-size: 16px;
 $tablet-font-size: calc($desktop-font-size * 95 / 100);
 $mobile-font-size: calc($desktop-font-size * 85 / 100);
 
-$desktop-height-limit: 100vh;
-$tablet-height-limit: 95.5vh;
-$mobile-height-limit: 91vh;
+$desktop-height-limit: 100dvh;
+$tablet-height-limit: 95.5dvh;
+$mobile-height-limit: 100dvh;
 
-$desktop-width-limit: 100vw;
-$tablet-width-limit: 97vw;
-$mobile-width-limit: 100vw;
+$desktop-width-limit: 100dvw;
+$tablet-width-limit: 97dvw;
+$mobile-width-limit: 100dvw;
 
 html#desktop-ap { font-size: $desktop-font-size !important; }
 html#tablet-app { font-size: $tablet-font-size !important; }

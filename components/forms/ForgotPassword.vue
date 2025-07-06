@@ -108,6 +108,7 @@ export default defineComponent({
             display: flex;
             flex-direction: column;
             span.headline {
+                color: colors.$textPrimary;
                 font-weight: bolder;
                 font-size: 1.2rem;
             }

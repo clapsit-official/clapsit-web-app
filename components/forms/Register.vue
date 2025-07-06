@@ -113,6 +113,7 @@ export default defineComponent({
             span.headline {
                 font-weight: bolder;
                 font-size: 1.2rem;
+                color: colors.$textPrimary;
             }
             span.description {
                 color: colors.$textSecondary;

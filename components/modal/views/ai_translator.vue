@@ -1,16 +1,19 @@
 <script lang="ts">
-import colorUtilities from "@/constants/colorUtilities";
+import colors from "@/constants/colorUtilities";
 export default defineComponent({
     name: "InfoAITranslator",
     setup() {
         return {
-            colorUtilities,
             $t: useI18nStore().i18n.global.t
         }
     },
     computed: {
         deviceType() {
             return useCoreAppStore().getDeviceType;
+        },
+        colorUtilities(){
+            const colorMode = useColorMode().value;
+            return colors(colorMode)
         },
     },
     data() {

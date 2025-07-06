@@ -72,7 +72,6 @@ export default defineComponent({
   height: 100%;
   overflow: hidden;
   padding: 1.3rem 0;
-  background-color: #1e1e1e;
   @include colors.box-shadow-2;
   * {
     font-family: "Fira Code", monospace !important;
