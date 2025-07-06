@@ -1,6 +1,6 @@
 <script lang="ts">
-import type { IconsTypes } from "~/assets/icons/materialIconsList";
-import colorUtilities from "~/constants/colorUtilities";
+import type { IconsTypes } from "~/assets/icons/IconsList";
+import colors from "~/constants/colorUtilities";
 import type {
   InputMessageType,
   OptionsType,
@@ -8,6 +8,11 @@ import type {
 
 export default defineComponent({
   name: "CustomSelect",
+  setup() {
+    return {
+      $t: useI18nStore().i18n.global.t,
+    };
+  },
   props: {
     modelValue: {
       type: String as PropType<string | number | null>,
@@ -58,11 +63,14 @@ export default defineComponent({
   },
   data() {
     return {
-      colorUtilities,
       focus: false as boolean,
     };
   },
   computed: {
+    colorUtilities() {
+      const colorMode = useColorMode().value;
+      return colors(colorMode);
+    },
     id() {
       return `input_${generateUniqueId(5)}`;
     },

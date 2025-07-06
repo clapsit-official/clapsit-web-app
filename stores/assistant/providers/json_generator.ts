@@ -12,8 +12,33 @@ const model: JSONGeneratorStateModelType = {
     },
     progress: {
         input: {
-            message: '',
-            result: `// Add your TypeScript code here \n\nconst result = {}`,
+            message: 'Hello Clapsit! Based on the data structure I defined earlier, could you please generate a JSON file for me?',
+            result: `/** 
+
+Hey there! Let's define the structure of the JSON data we need
+- You just need to define types and add comments for clarity.
+- You can add comments, and the AI will understand them 
+  to generate the JSON data accordingly!
+ 
+Here is the improved TypeScript example for you:
+
+*/
+
+type FakeUserListItem = {
+    username: string; // Act like real.
+    bio: string; // About the user (max 150 characters).
+    birthdate: string; // I need "mm-dd-yyyy" format
+    email: string;
+    hobbies: string[];
+};
+
+/** 
+*   Don't remove "result" variable!
+*   This constant holds the final JSON data structure 
+*/
+const result = {
+    users: [] as FakeUserListItem[] // Generate 3 users
+};`,
         },
         output: {
             message: 'Fill left side with your request and JSON examples',

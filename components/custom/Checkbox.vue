@@ -67,7 +67,7 @@ export default defineComponent({
   gap: 10px;
 
   input[type="checkbox"] {
-    accent-color: colors.$textPrimary;
+    accent-color: colors.$primaryColor;
     width: 1.2rem;
     height: 1.2rem;
     border: 2px solid colors.$blackColor;

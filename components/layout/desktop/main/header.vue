@@ -1,32 +1,25 @@
 <script setup lang="ts">
 import { $availableRoutes } from '~/configs/routes.config';
-import colorUtilities from '~/constants/colorUtilities';
 </script>
 
 <template>
     <header id="main-header" class="flex-row-center">
         <div id="header-items" class="flex-row-between-center">
             <div id="header-item_left-side">
-                <div  
-                    @click="useRouter().push($availableRoutes.home)"
+                <a  
+                    :href="$availableRoutes.home"
                     style="gap: 5px"
-                    class="flex-row-between-center hover-effect" 
+                    class="flex-row-between-center hover-effect black" 
                     v-show="useRouteManagement().config.key !== 'home'">
                     <div>
                     <IconComponent icon-name="arrow_back"/>
                     </div>
                     <span>Home</span>
-                </div>
+                </a>
             </div>
             <div id="header-item_right-side" class="flex-row-between-center">
-                <div style="width: 80px; text-align: center;">
-                    <b>My Clapsit</b>
-                </div>
-                <div id="create-btn_right-side" class="flex-row-center hover-effect" @click="useModal().provide('logout')">
-                    <div>
-                        <icon-component icon-name="logout" icon-size="18px" :color="colorUtilities.$errorColor"/>
-                    </div>
-                    <Text locale="buttons.logout"/>
+                <div style="text-align: center;">
+                    <b class="beta-version bordered">BETA</b>
                 </div>
                 <profile-circle :value="useUser().getUserDetails.fullname"/>
             </div>
@@ -48,6 +41,15 @@ header#main-header {
                 font-size: .8rem;
                 background-color: colors.$whiteColor;
                 @include colors.box-shadow-2
+            }
+            .beta-version {
+                $beta-size: .7rem;
+                user-select: none;
+                padding: calc($beta-size / 2) calc($beta-size / 1.2);
+                font-size: $beta-size;
+                background-color: colors.$surfaceColor2;
+                border-radius: .35rem;
+                color: colors.$textPrimary;
             }
         }
 

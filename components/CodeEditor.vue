@@ -72,7 +72,6 @@ export default defineComponent({
   height: 100%;
   overflow: hidden;
   padding: 1.3rem 0;
-  background-color: #1e1e1e;
   @include colors.box-shadow-2;
   * {
     font-family: "Fira Code", monospace !important;
@@ -104,7 +103,7 @@ export default defineComponent({
       height: 100%;
       &:deep(.monaco-editor) {
         * {
-          font-size: 11px !important;
+          font-size: .9rem !important;
         }
       }
     }
@@ -115,7 +114,7 @@ export default defineComponent({
   .code-editor-component {
     & > * {
       position: relative;
-      width: 36vw;
+      width: 80vw;
       height: 100%;
       min-height: 500px;
       &:deep(.monaco-editor) {

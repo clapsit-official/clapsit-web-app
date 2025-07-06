@@ -91,6 +91,12 @@ export default {
 <style lang="scss" scoped>
 #get-started-page {
     background-color: colors.$backgroundColor;
+    #logo-area {
+        background-color: colors.$surfaceColor;
+    }
+    #form-area {
+        @include colors.box-shadow-1;
+    }
 }
 
 .desktop-app-container > #get-started-page {

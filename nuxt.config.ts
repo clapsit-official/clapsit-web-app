@@ -28,7 +28,7 @@ export default defineNuxtConfig({
       preprocessorOptions: {
         scss: {
           additionalData:
-              '@use "assets/stylesheets/utilities/colors_dark" as colors;' +
+              '@use "assets/stylesheets/utilities/colors" as colors;' +
               '@use "assets/stylesheets/utilities/configs" as configs;' +
               '@use "assets/stylesheets/utilities/responsive" as responsive;' +
               '@use "assets/stylesheets/utilities/animations" as animations;' +
@@ -39,10 +39,17 @@ export default defineNuxtConfig({
   },
   css: [
     '~/assets/stylesheets/global.scss',
+    '~/assets/stylesheets/colors/dark-colorblind.scss',
+    '~/assets/stylesheets/colors/light-colorblind.scss',
   ],
+  colorMode: {
+    preference: 'system',
+    fallback: 'light',
+    classSuffix: '',
+  },
   plugins: [],
   build: {},
-  modules: ["@pinia/nuxt", '@nuxt/devtools', 'nuxt-monaco-editor'],
+  modules: ['@pinia/nuxt', '@nuxt/devtools', 'nuxt-monaco-editor', '@nuxtjs/color-mode'],
   pinia: { storesDirs: ['./stores/**', './stores/**/*'] },
   imports: {
       dirs: [

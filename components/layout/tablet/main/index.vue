@@ -1,12 +1,7 @@
 <script lang="ts">
-import colorUtilities from '~/constants/colorUtilities';
+import colors from '~/constants/colorUtilities';
 export default defineComponent({
     name: 'MainLayoutIndex',
-    setup() {
-        return {
-            colorUtilities
-        }
-    },
     data() {
         return {
             showSidebar: false
@@ -22,6 +17,12 @@ export default defineComponent({
             }
         }
     },
+    computed: {
+        colorUtilities(){
+            const colorMode = useColorMode().value;
+            return colors(colorMode)
+        },
+    }
 });
 </script>
 
@@ -59,7 +60,7 @@ $gap-header-main: 1.3rem;
         flex-direction: column;
         justify-content: space-between;
         gap: $gap-header-main;
-        height: 100%;
+        height: 95.95%;
         section#sidebar_logo-area {
             div#fold-sidebar {
                 display: block;
@@ -75,8 +76,7 @@ $gap-header-main: 1.3rem;
     }
 
     #sidebar-fold {
-        width: 0;
-
+        z-index: 101;
         #fold-btn {
             @include colors.box-shadow-2();
             background-color: colors.$surfaceColor;
@@ -108,7 +108,7 @@ $gap-header-main: 1.3rem;
     }
 
     #content {
-        width: calc(100vw - $sidebar-width - ($default-padding * 2));
+        width: calc(100vw - ($default-padding * 2));
     }
 }
 
@@ -131,11 +131,17 @@ $gap-header-main: 1.3rem;
     }
 
     #sidebar-fold {
-        #fold-btn {}
+        width: 8rem;
+        position: absolute;
+        height: 100%;
+        #fold-btn {
+            position: absolute;
+        }
     }
 
     #content {
         width: calc(100vw - $sidebar-width);
+        margin-left: 2rem;
     }
 }
 </style>

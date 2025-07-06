@@ -1,7 +1,7 @@
 <script lang="ts">
 import { useAuth } from '~/stores/auth';
 import {$availableRoutes} from "~/configs/routes.config";
-import colorUtilities from '~/constants/colorUtilities';
+import colors from '~/constants/colorUtilities';
 
 export default defineComponent({
     name: "LoginForm",
@@ -9,7 +9,6 @@ export default defineComponent({
         const { getBrandName } = useCoreAppStore();
         return {
             getBrandName,
-            colorUtilities,
             availableRoutes: $availableRoutes,
             store: useGetstarted(),
             $t: useI18nStore().i18n.global.t
@@ -25,6 +24,10 @@ export default defineComponent({
             const { loadingList } = useQueryManager();
             return loadingList.includes('login');
         },
+        colorUtilities(){
+            const colorMode = useColorMode().value;
+            return colors(colorMode)
+        }
     },
     methods: {
         async submit() {
@@ -130,6 +133,7 @@ export default defineComponent({
             display: flex;
             flex-direction: column;
             span.headline {
+                color: colors.$textPrimary;
                 font-weight: bolder;
                 font-size: 1.2rem;
             }

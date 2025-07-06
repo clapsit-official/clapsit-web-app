@@ -23,9 +23,9 @@ export default defineComponent({
 <style lang="scss" scoped>
 .profile-circle_component {
     .profile-circle {
-        background-color: colors.$secondaryColor;
-        width: 2.3rem;
-        height: 2.3rem;
+        background-color: red;
+        width: 2.5rem;
+        height: 2.5rem;
         border-radius: 100rem;
         text-align: center;
         @include animations.animate-hue-rotate(60s);
@@ -33,7 +33,8 @@ export default defineComponent({
             text-align: center;
             color: colors.$whiteColor;
             position: relative;
-            top: .5px;
+            top: .8px;
+            right: .4px;
             font-size: 1rem;
             font-weight: bold;
         }

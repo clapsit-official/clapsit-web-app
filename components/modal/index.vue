@@ -88,16 +88,16 @@ export default defineComponent({
         left: 0;
         width: 100vw;
         height: 100%;
-        backdrop-filter: brightness(15%);
+        backdrop-filter: blur(5px);
         background-color: rgba(0, 0, 0, 0.25);
-        @include animations.fadeIn(.3s);
+        @include animations.fadeIn(.5s);
 
         .modal-area {
             display: flex;
             flex-direction: column;
             gap: 2rem;
             position: absolute;
-            background-color: colors.$surfaceColor;
+            background-color: colors.$surfaceColor2;
             overflow-y: auto;
             padding: 1.7rem;
             border-radius: 1rem;
@@ -130,7 +130,7 @@ export default defineComponent({
     #modal-component {
         section#modal-content {
             .modal-area {
-                max-width: 50%;
+                max-width: 70%;
                 min-width: 15%;
                 max-height: 80%;
                 @include animations.slideDownBounce(1s);

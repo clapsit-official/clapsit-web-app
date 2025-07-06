@@ -1,13 +1,11 @@
 <script lang="ts">
-import { useI18n } from "vue-i18n";
 import { $availableRoutes } from "~/configs/routes.config";
-import colorUtilities from "~/constants/colorUtilities";
+import colors from "~/constants/colorUtilities";
 export default defineComponent({
   name: "JsonGenerator",
   setup() {
     return {
       $availableRoutes,
-      colorUtilities,
       store: useJSONGenerator(),
       $t: useI18nStore().i18n.global.t,
     };
@@ -15,7 +13,7 @@ export default defineComponent({
   data() {
     return {
       copyToggle: false,
-      inputValueChanged: false
+      inputValueChanged: false,
     };
   },
   props: {
@@ -34,6 +32,10 @@ export default defineComponent({
     },
   },
   computed: {
+    colorUtilities(){
+      const colorMode = useColorMode().value;
+      return colors(colorMode)
+    },
     deviceType() {
       return useCoreAppStore().getDeviceType;
     },
@@ -64,7 +66,7 @@ export default defineComponent({
       if (c_id) {
         return Number(c_id);
       }
-      return null
+      return null;
     },
   },
   watch: {
@@ -85,10 +87,10 @@ export default defineComponent({
     async generate() {
       try {
         await this.store.generate();
-        if(this.store.progress.output.result) {
+        if (this.store.progress.output.result) {
           this.inputValueChanged = false;
         }
-      } catch(error) {
+      } catch (error) {
         console.error(error);
       }
     },
@@ -124,27 +126,28 @@ export default defineComponent({
     v-if="deviceType !== 'mobile'"
   >
     <div id="input" class="editor-area">
-      <div class="headline-area flex-row-between-center">
+      <div class="headline-area bordered flex-row-between-center">
         <strong> <Text locale="assistants.json_generator.input" />: </strong>
-        <div class="icon-area">
+        <div class="icon-area flex-row-center">
           <icon-component
-            icon-name="info"
+            icon-name="coder"
             :color="colorUtilities.$whiteColor"
             :icon-size="'1.5rem'"
             :title="$t('assistants.json_generator.input_info')"
           />
         </div>
       </div>
-      <TsEditorComponent 
+      <TsEditorComponent
         @reset-input-progress="resetInputProgress"
-        :disabled="isLoading" 
-        v-model="inputComputed" />
-      <div id="input-message">
+        :disabled="isLoading"
+        v-model="inputComputed"
+      />
+      <div id="input-message" class="bordered">
         <textarea
           :rows="1"
           id="input-message_assistant-jsong_generator"
           :readonly="isLoading"
-          @input="() => inputValueChanged = true"
+          @input="() => (inputValueChanged = true)"
           v-model="store.progress.input.message"
           :placeholder="$t('assistants.json_generator.input_placeholder')"
         />
@@ -165,7 +168,7 @@ export default defineComponent({
         />
       </button>
       <button
-        class="white"
+        class="monochrome-invers"
         type="button"
         :title="
           !copyToggle
@@ -174,21 +177,28 @@ export default defineComponent({
         "
         @click="toClipboard"
       >
-      <icon-component 
-        :icon-name="!copyToggle ? 'clipboard_copy' : 'clipboard_copied'" 
-        :fill="copyToggle"
-        :color="colorUtilities.$backgroundColor" />
+        <icon-component
+          :icon-name="!copyToggle ? 'clipboard_copy' : 'clipboard_copied'"
+          :fill="copyToggle"
+          :color="colorUtilities.$textPrimary"
+        />
       </button>
       <button
-        class="white"
+        class="monochrome-invers"
         :title="$t('assistants.json_generator.reverse')"
         type="button"
-        :disabled="!useAssistant().data.history.length || inputValueChanged || !cId || isLoading"
-        @click="store.getAPI">
+        :disabled="
+          !useAssistant().data.history.length ||
+          inputValueChanged ||
+          !cId ||
+          isLoading
+        "
+        @click="store.getAPI"
+      >
         API
       </button>
       <button
-        class="white"
+        class="monochrome-invers"
         :title="$t('assistants.json_generator.clear')"
         type="reset"
         @click="store.resetAll"
@@ -201,12 +211,12 @@ export default defineComponent({
       </button>
     </div>
     <div id="output" class="editor-area">
-      <div class="headline-area flex-row-between-center">
+      <div class="headline-area bordered flex-row-between-center">
         <strong> <Text locale="assistants.json_generator.output" />: </strong>
         <div class="icon-area">
           <icon-component
-            icon-name="info"
-            :color="colorUtilities.$whiteColor"
+            icon-name="ai"
+            :fill="true"
             :icon-size="'1.5rem'"
             :title="$t('assistants.json_generator.output_info')"
           />
@@ -217,20 +227,6 @@ export default defineComponent({
         v-model="outputComputed"
         :read-only="true"
       />
-      <div id="output-message">
-        <textarea
-          :rows="1"
-          id="output-message_assistant-jsong_generator"
-          readonly
-          :key="store.progress.output.message"
-          v-model="store.progress.output.message"
-          :placeholder="
-            !isLoading
-              ? $t('assistants.json_generator.output_placeholder')
-              : $t('assistants.json_generator.loading')
-          "
-        />
-      </div>
     </div>
   </form>
   <div
@@ -249,13 +245,12 @@ export default defineComponent({
 </template>
 
 <style lang="scss" scoped>
-.desktop-app-container,
-.tablet-app-container {
+.desktop-app-container {
   #assistant-jsong_generator {
     display: flex;
     width: 99%;
     justify-content: space-between;
-    padding: 0 1rem;
+    padding: 0 1rem 1rem 1rem;
     #btns-area {
       display: flex;
       flex-direction: column;
@@ -272,37 +267,34 @@ export default defineComponent({
         justify-content: center;
         width: 3rem;
         height: 3rem;
-        color: colors.$warningColor
+        color: colors.$warningColor;
       }
     }
     .editor-area {
       width: 100%;
-      height: 95%;
       overflow: hidden;
       display: flex;
       flex-direction: column;
       gap: 1.5rem;
-      $default_border_radius: 3rem;
+      $default_border_radius: 0.6rem;
       .headline-area {
         background-color: colors.$surfaceColor;
         padding: 0.5rem 1.5rem;
         border-radius: $default_border_radius;
         min-height: 5%;
-        cursor: pointer;
       }
-      #output-message,
       #input-message {
-        $padding-textarea: 1.5rem;
-        width: calc(100% - ($padding-textarea * 2));
-        padding: $padding-textarea;
+        $padding-textarea: 1.6rem;
+        width: 100%;
         background-color: colors.$surfaceColor;
         border-radius: $default_border_radius;
+        overflow: hidden;
         @include colors.box-shadow-2;
         textarea {
-          width: 100%;
-          height: 100%;
-          min-height: 1.1rem;
-          font-family: 'Fira Code', monospace !important;
+          height: calc(100% - ($padding-textarea * 2));
+          width: calc(100% - ($padding-textarea * 2));
+          padding: $padding-textarea;
+          font-family: "Fira Code", monospace !important;
           font-size: 0.8rem;
           font-weight: bold;
           resize: none;
@@ -313,18 +305,11 @@ export default defineComponent({
           &:hover {
             resize: vertical;
           }
-          &#output-message_assistant-jsong_generator {
-            @include animations.fadeIn(0.5s);
-          }
         }
       }
 
       #input-message {
-        border-top-left-radius: 0 !important;
-      }
-      #output-message {
-        border-top-right-radius: 0 !important;
-        pointer-events: none;
+        height: 25%;
       }
 
       &#input {
@@ -332,7 +317,6 @@ export default defineComponent({
         :deep(.typescript-editor-component),
         :deep(.json-editor-component) {
           border-radius: $default_border_radius;
-          border-top-left-radius: 0 !important;
         }
       }
 
@@ -341,7 +325,93 @@ export default defineComponent({
         :deep(.typescript-editor-component),
         :deep(.json-editor-component) {
           border-radius: $default_border_radius;
-          border-top-right-radius: 0 !important;
+        }
+      }
+
+      &#output {
+      }
+    }
+  }
+}
+.tablet-app-container {
+  #assistant-jsong_generator {
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 90%;
+    position: relative;
+    left: 1rem;
+    #btns-area {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem 2rem;
+      gap: 1rem;
+      height: 10%;
+      width: 100%;
+      button {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 25%;
+        height: 3rem;
+        color: colors.$warningColor;
+      }
+    }
+    .editor-area {
+      width: 100%;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      $default_border_radius: 0.6rem;
+      .headline-area {
+        display: none;
+      }
+      #input-message {
+        $padding-textarea: 1.6rem;
+        width: 100%;
+        background-color: colors.$surfaceColor;
+        border-radius: $default_border_radius;
+        @include colors.box-shadow-2;
+        textarea {
+          height: calc(100% - ($padding-textarea * 2));
+          width: calc(100% - ($padding-textarea * 2));
+          padding: $padding-textarea;
+          font-family: "Fira Code", monospace !important;
+          font-size: 0.8rem;
+          font-weight: bold;
+          resize: none;
+          border: none;
+          color: colors.$primaryColor;
+          background-color: transparent;
+          outline: none;
+          &:hover {
+            resize: vertical;
+          }
+        }
+      }
+
+      #input-message {
+        height: 25%;
+      }
+
+      &#input {
+        .headline-area,
+        :deep(.typescript-editor-component),
+        :deep(.json-editor-component) {
+          border-radius: $default_border_radius;
+        }
+      }
+
+      &#output {
+        .headline-area,
+        :deep(.typescript-editor-component),
+        :deep(.json-editor-component) {
+          border-radius: $default_border_radius;
         }
       }
 

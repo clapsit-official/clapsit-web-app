@@ -9,7 +9,7 @@ html {
 }
 
 body {
-  background-color: colors.$backgroundColor;
+  background-color: var(--bgColor-default);
   color: colors.$textPrimary;
 }
 
@@ -19,6 +19,9 @@ span.divider {
   padding: 0.5px 0;
   background: colors.$dividerColor;
   margin: 1.5rem 0;
+}
+span.text {
+  color: colors.$textPrimary;
 }
 
 br,
@@ -31,10 +34,15 @@ b {
 }
 
 a {
-  color: colors.$primaryColor;
+  text-decoration-color: colors.$primaryColor !important;
+  font-weight: bold;
+  span {
+    color: colors.$primaryColor !important;
+  }
+
   &.black {
-    color: colors.$textPrimary;
-    text-decoration: none;
+    color: colors.$textPrimary !important;
+    text-decoration: none !important;
   }
 }
 
@@ -44,7 +52,7 @@ input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
 input:-webkit-autofill:active {
   transition: background-color 5000s ease-in-out 0s;
-  -webkit-text-fill-color: colors.$textSecondary;
+  -webkit-text-fill-color: colors.$textPrimary;
   -webkit-box-shadow: 0 0 0px 1000px colors.$surfaceColor2 inset;
 }
 
@@ -64,30 +72,60 @@ button {
     @include colors.box-shadow-1();
     background-color: colors.$primaryColor;
     border-color: colors.$primaryColor;
-    color: colors.$whiteColor;
     font-weight: bold;
     &.loading {
       @include animations.buttonLoading(colors.$whiteColor);
+    }
+    & > * {
+      color: colors.$whiteColor;
     }
   }
   &.black {
     @include colors.box-shadow-1();
     background-color: colors.$blackColor;
-    border-color: colors.$surfaceColor;
-    color: colors.$whiteColor;
     font-weight: bold;
     &.loading {
       @include animations.buttonLoading(colors.$whiteColor);
+    }
+    & > * {
+      color: colors.$whiteColor;
     }
   }
   &.white {
     @include colors.box-shadow-2();
     background-color: colors.$whiteColor;
     border-color: colors.$whiteColor;
-    color: colors.$blackColor;
     font-weight: 500;
     &.loading {
       @include animations.buttonLoading(colors.$blackColor);
+    }
+    & > * {
+      color: colors.$blackColor;
+    }
+  }
+  &.monochrome {
+    @include colors.box-shadow-2();
+    background-color: colors.$textPrimary;
+    border-color: colors.$textPrimary;
+    font-weight: 500;
+    &.loading {
+      @include animations.buttonLoading(colors.$backgroundColor);
+    }
+    & > * {
+      color: colors.$backgroundColor;
+    }
+  }
+
+  &.monochrome-invers {
+    @include colors.box-shadow-2();
+    background-color: colors.$surfaceColor;
+    border-color: colors.$surfaceColor2;
+    font-weight: 500;
+    &.loading {
+      @include animations.buttonLoading(colors.$textPrimary);
+    }
+    & > * {
+      color: colors.$textPrimary;
     }
   }
 
@@ -95,10 +133,12 @@ button {
     @include colors.box-shadow-2();
     background-color: colors.$errorColor;
     border-color: colors.$errorColor;
-    color: colors.$whiteColor;
     font-weight: 500;
     &.loading {
       @include animations.buttonLoading(colors.$whiteColor);
+    }
+    & > * {
+      color: colors.$whiteColor;
     }
   }
 
@@ -118,15 +158,22 @@ button {
   }
   &.disabled,
   &:disabled {
-    opacity: 0.1;
+    opacity: 0.5;
+    filter: grayscale(1);
     cursor: not-allowed !important;
     & * {
       cursor: not-allowed !important;
     }
+    @include colors.box-shadow-4();
   }
   &.loading {
     @include animations.buttonLoading(colors.$blackColor);
-    cursor: progress !important;
+    & {
+      cursor: progress !important;
+    }
+    & > * {
+      color: transparent !important;
+    }
   }
 }
 
@@ -272,4 +319,8 @@ button {
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
+}
+
+.bordered {
+  border: 1px solid colors.$dividerColor;
 }

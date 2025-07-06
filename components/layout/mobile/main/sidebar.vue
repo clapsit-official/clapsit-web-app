@@ -1,16 +1,18 @@
 <script lang="ts">
-import colorUtilities from "~/constants/colorUtilities";
-import type { UserAssistantKeyItem } from "~/types/assistants.types";
+import colors from "~/constants/colorUtilities";
 export default defineComponent({
   name: "MainLayoutSidebar",
   emits: ["foldAction"],
   setup() {
     return {
-      colorUtilities,
       $t: useI18nStore().i18n.global.t,
     };
   },
   computed: {
+    colorUtilities(){
+      const colorMode = useColorMode().value;
+      return colors(colorMode)
+    },
     userAssistantKeys() {
       return useAssistant().getUserAssistantKeys;
     },
@@ -128,7 +130,7 @@ export default defineComponent({
   div#chat_history-sidebar {
     width: calc(82% - 2rem);
     overflow-y: auto;
-    background-color: colors.$surfaceColor2;
+    background-color: colors.$backgroundColor;
     border-radius: 1rem;
     padding: 1rem;
     @include colors.box-shadow-2();

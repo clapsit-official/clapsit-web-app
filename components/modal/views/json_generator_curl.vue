@@ -1,10 +1,9 @@
 <script lang="ts">
-import colorUtilities from "@/constants/colorUtilities";
+import colors from "@/constants/colorUtilities";
 export default defineComponent({
   name: "JSONGeneratorCURL",
   setup() {
     return {
-      colorUtilities,
       $t: useI18nStore().i18n.global.t,
     };
   },
@@ -14,6 +13,10 @@ export default defineComponent({
     };
   },
   computed: {
+    colorUtilities(){
+      const colorMode = useColorMode().value;
+      return colors(colorMode)
+    },
     deviceType() {
       return useCoreAppStore().getDeviceType;
     },
@@ -70,7 +73,7 @@ export default defineComponent({
         <button type="button" @click="openInNewTab(urlComputed)">
           <icon-component
             icon-name="arrow_up_right"
-            :color="colorUtilities.$backgroundColor"
+            :color="colorUtilities.$textPrimary"
           />
         </button>
       </div>
@@ -91,7 +94,7 @@ export default defineComponent({
             :icon-name="!copyToggle ? 'file_copy_alt' : 'file_check'"
             :icon-size="copyToggle ? '1.1rem' : ''"
             :fill="copyToggle"
-            :color="colorUtilities.$backgroundColor"
+            :color="colorUtilities.$textPrimary"
           />
         </button>
       </div>
@@ -103,14 +106,14 @@ export default defineComponent({
 </template>
 <style lang="scss" scoped>
 #json_generator_curl-component {
-  width: 50vw;
+  width: 100%;
   padding: 1rem 0;
   display: flex;
   flex-direction: column;
   gap: 2rem;
   section {
-    background-color: colors.$surfaceColor2;
-    border-radius: 0.6rem;
+    background-color: colors.$dividerColor;
+    border-radius: 0.4rem;
     padding: 1rem 2rem;
   }
   section#curl-area {

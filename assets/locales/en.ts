@@ -1,4 +1,4 @@
-import type {LanguageContent} from "~/constants/types/LocalesType";
+import type { LanguageContent } from "~/constants/types/LocalesType";
 
 let locales: LanguageContent;
 locales = {
@@ -30,7 +30,7 @@ locales = {
     logout_prompt_question: "Are you sure you want to log out?",
     settings: 'Settings',
     say_hello_to: 'Hello, {name}!',
-    main_description: 'Discover versions of Clapsit that combine instructions, extra knowledge, and any combination of AI skills.',
+    main_description: 'Instantly build APIs with Clapsit\'s AI JSON Generator. Describe your data or use a TypeScript JSON schema, and get a fully functional API with dummy data in just one minute. Free, fast, and developer-friendly—start now!',
     search_for: "Search for {value}...",
     your_journey: "Your journey",
     how_can_use_it: "How can use it?",
@@ -117,27 +117,27 @@ locales = {
     pages: {
         default: {
             title: "Page",
-            description: "Page",
-            keywords: "index"
+            description: "Explore Clapsit's innovative tools for developers, designed to simplify your workflow.",
+            keywords: "Clapsit, developer tools, JSON generator, API creation, front-end development"
         },
         home: {
             title: "Home",
-            description: "Home page",
-            keywords: "Home, Main, index"
+            description: "Welcome to Clapsit, your go-to platform for creating APIs and generating JSON data effortlessly.",
+            keywords: "Clapsit, JSON API generator, front-end development, dummy data, developer tools"
         },
         getstarted: {
             title: "Get started",
-            description: "Welcome to {brand}!",
-            keywords: "Get started, Login, Logout, Sigin, Sign out, Sign up, Auth",
+            description: "Join Clapsit today! Start creating APIs with our AI JSON Generator in just minutes.",
+            keywords: "Clapsit get started, sign up, create account, JSON API, developer onboarding",
             utilities: {
                 create_account: "Create Account",
-                login: "Login",
+                login: "Login"
             }
         },
         login: {
             title: "Login",
-            description: "Welcome to our secure login page! Here, you can access your personalized account by entering your credentials!",
-            keywords: "User authentication, Account access, Secure login and registration, Sign in or sign up, Create or log in to your account, Membership login and registration, Easy account access, Online account management, Login and registration portal, Secure user onboarding",
+            description: "Securely log in to your Clapsit account to access powerful API and JSON generation tools.",
+            keywords: "Clapsit login, user authentication, secure sign in, account access, developer login",
             utilities: {
                 create_account: "Create Account",
                 login: "Login",
@@ -145,25 +145,25 @@ locales = {
                 login_description: "To access your account securely.",
                 email_field: 'Email',
                 password_field: 'Password',
-                forgot_password: "Forgot password?",
+                forgot_password: "Forgot password?"
             }
         },
         forgot_password: {
             title: "Login",
-            description: "Welcome to our secure login page! Here, you can access your personalized account by entering your credentials!",
-            keywords: "User authentication, Account access, Secure login and registration, Sign in or sign up, Create or log in to your account, Membership login and registration, Easy account access, Online account management, Login and registration portal, Secure user onboarding",
+            description: "Reset your Clapsit password easily with a secure magic link sent to your email.",
+            keywords: "Clapsit forgot password, password reset, account recovery, secure login, user authentication",
             utilities: {
                 back_to_login: "Back To Login",
                 send_reset_link: "Send Reset Link",
                 forgot_password_title: "Please enter your email!",
                 forgot_password_description: "We'll send you a magic link to reset your password.",
-                email_field: 'Your Email',
+                email_field: 'Your Email'
             }
         },
         reset_password: {
             title: "Login",
-            description: "Welcome to our secure login page! Here, you can access your personalized account by entering your credentials!",
-            keywords: "User authentication, Account access, Secure login and registration, Sign in or sign up, Create or log in to your account, Membership login and registration, Easy account access, Online account management, Login and registration portal, Secure user onboarding",
+            description: "Create a new password for your Clapsit account to regain access to your developer tools.",
+            keywords: "Clapsit reset password, password recovery, secure account, user authentication, developer login",
             utilities: {
                 back_to_login: "Back To Login",
                 send_reset_link: "Send Reset Link",
@@ -172,13 +172,13 @@ locales = {
                 new_password_field: 'New Password',
                 confirm_password_field: 'Confirm Password',
                 save: 'Save',
-                cancel: 'Cancel',
+                cancel: 'Cancel'
             }
         },
         register: {
             title: "Register",
-            description: "Welcome to {brand}! Join our community by creating your account in just a few simple steps. Provide your basic details like fullname, email address, and a secure password to get started",
-            keywords: "Create an account, Sign up now, Free registration, Join our platform, Register for free, New user signup, Secure account creation, Easy registration process, Start your journey, Get started today",
+            description: "Sign up for Clapsit and start generating APIs with dummy JSON data in just a few steps.",
+            keywords: "Clapsit register, sign up, create account, free registration, JSON API generator",
             utilities: {
                 email_field: 'Your Email',
                 password_field: 'New Password',
@@ -189,23 +189,18 @@ locales = {
                 terms_of_service: "Terms of Service",
                 privacy_policy: "Privacy Policy",
                 register_title: "Register for {brand}!",
-                register_description: "Join us by creating your account in just a few simple steps.",
+                register_description: "Join us by creating your account in just a few simple steps."
             }
         },
         json_generator: {
             title: "AI-JSON Generator",
-            description: "Generate and design JSON objects however you want!",
-            keywords: "AI-JSON Generator, JSON objects, Design JSON, Generate JSON",
-        },
-        ai_translator: {
-            title: "AI Translator",
-            description: "Break language barriers with Clapsit’s AI-Powered Translator!",
-            keywords: "AI, Translator, Language, Translation, Clapsit, AI-Powered"
+            description: "Create custom JSON objects and APIs instantly with Clapsit's AI-powered JSON Generator.",
+            keywords: "Clapsit JSON generator, AI JSON creator, dummy data API, JSON schema, developer tools"
         }
     },
     modals: {
         user_account: {
-            label: 'User Account'
+            label: 'Account'
         },
     },
     assistants: {
@@ -243,4 +238,4 @@ locales = {
     }
 };
 
-export default {...locales};
+export default { ...locales };

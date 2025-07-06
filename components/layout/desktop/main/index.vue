@@ -1,15 +1,16 @@
 <script lang="ts">
-import colorUtilities from '~/constants/colorUtilities';
+import colors from '~/constants/colorUtilities';
 export default defineComponent({
     name: 'MainLayoutIndex',
-    setup() {
-        return {
-            colorUtilities
-        }
-    },
     data() {
         return {
             showSidebar: true
+        }
+    },
+    computed: {
+        colorUtilities(){
+            const colorMode = useColorMode().value;
+            return colors(colorMode)
         }
     },
     methods: {
@@ -65,7 +66,7 @@ $gap-header-main: 1.8rem;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-        gap: $gap-header-main;
+        gap: .2rem;
 
         section#sidebar_logo-area {
             div#fold-sidebar {
@@ -74,6 +75,7 @@ $gap-header-main: 1.8rem;
                 left: 10px;
                 top: -15px;
             }
+            margin-bottom: 1.8rem;
         }
 
         section#sidebar_history-area {
