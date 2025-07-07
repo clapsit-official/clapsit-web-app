@@ -36,7 +36,7 @@ export default defineComponent({
                             :color="colorUtilities.$textPrimary"/>
                     </div>
                     <div class="recently">
-                        <span><Text locale="recently"/>:</span>
+                        <span><Text locale="your_apis"/>:</span>
                     </div>
                 </div>
                 <div id="right_side-items" class="flex-row-between-center">

@@ -17,7 +17,7 @@ export default defineComponent({
             <button class="danger" @click="useUser().logoutUser()" :class="{'loading': isLoading}">
                 <Text locale="buttons.logout"/>
             </button>
-            <button @click="useModal().deprive('logout')">
+            <button class="white" @click="useModal().deprive('logout')">
                 <Text locale="buttons.cancel"/>
             </button>
         </div>

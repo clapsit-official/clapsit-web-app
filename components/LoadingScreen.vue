@@ -1,24 +1,24 @@
 <template>
   <div>
-      <div
+    <div
       v-if="visible !== null"
-    :class="{'fade-out': !visible}"
-    :data-color-mode="colorMode.value"
-    :data-dark-theme="colorMode.value === 'dark' ? 'dark_colorblind' : ''"
-    :data-light-theme="colorMode.value === 'light' ? 'light_colorblind' : ''"
-    class="loading-screen flex-column-center"
-  >
-    <div>
-      <logo :type="2" small size="300" />
+      :class="{ 'fade-out': !visible }"
+      :data-color-mode="colorMode.value"
+      :data-dark-theme="colorMode.value === 'dark' ? 'dark_colorblind' : ''"
+      :data-light-theme="colorMode.value === 'light' ? 'light_colorblind' : ''"
+      class="loading-screen flex-column-center"
+    >
+      <div>
+        <logo :type="2" small size="300" />
+      </div>
+      <br />
+      <br />
+      <div class="flex-row-center">
+        <img :src="loadingGIF" alt="loading" width="20" />
+        <Text locale="please_wait" />
+        <span v-if="progress"> {{ progress }}% </span>
+      </div>
     </div>
-    <br />
-    <br />
-    <div class="flex-row-center">
-      <img :src="loadingGIF" alt="loading" width="20" />
-      <Text locale="please_wait" />
-      <span v-if="progress"> {{ progress }}% </span>
-    </div>
-  </div>
   </div>
 </template>
 
@@ -45,26 +45,34 @@ export default defineComponent({
   },
   mounted() {
     const count = this.getRandomBetween(1, 9);
-    const interval = setInterval(() => {
-      if (this.progress + count < 100) {
-        this.progress += count;
-      } else {
-        clearInterval(interval);
-        this.visible = false;
-        this.progress = 100;
-        const tId = setTimeout(() => {
-          this.visible = null;
-          clearTimeout(tId);
-        }, 1000)
-      }
-    }, count * 10);
+    if (useRoute().path !== "/") {
+      const interval = setInterval(() => {
+        if (this.progress + count < 100) {
+          this.progress += count;
+        } else {
+          clearInterval(interval);
+          this.visible = false;
+          this.progress = 100;
+          const tId = setTimeout(() => {
+            this.visible = null;
+            clearTimeout(tId);
+          }, 1000);
+        }
+      }, count * 10);
+    } else {
+      this.visible = false;
+      const tId = setTimeout(() => {
+        this.visible = null;
+        clearTimeout(tId);
+      }, 1000);
+    }
   },
 });
 </script>
 
 <style scoped lang="scss">
 .loading-screen {
-  background-color: #0D1117;
+  background-color: #0d1117;
   color: #fff;
   font-weight: bold;
   position: fixed;
@@ -83,7 +91,7 @@ export default defineComponent({
     gap: 0.5rem;
   }
   &.fade-out {
-    transition-duration: .5s;
+    transition-duration: 0.3s;
     opacity: 0;
   }
 }
