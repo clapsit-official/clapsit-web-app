@@ -120,6 +120,7 @@ export interface LanguageContent {
     recently: LocaleType;
     favorites: LocaleType;
     there_is_no_item_yet: LocaleType;
+    your_apis: LocaleType;
 }
 
 export type LangOptionsType = 'az-AZ' | 'en-US' | 'ru-RU';

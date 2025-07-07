@@ -58,20 +58,6 @@ export default defineComponent({
       </div>
     </div>
     <div
-      id="create-btn_right-side"
-      class="flex-row-center hover-effect"
-      @click="useModal().provide('logout')"
-    >
-      <div>
-        <icon-component
-          icon-name="logout"
-          icon-size="18px"
-          :color="colorUtilities.$errorColor"
-        />
-      </div>
-      <Text locale="buttons.logout" />
-    </div>
-    <div
       id="chat_history-sidebar"
       v-if="showSidebarItems"
     >

@@ -43,6 +43,7 @@ locales = {
     recently: "Recently",
     favorites: "Favorties",
     there_is_no_item_yet: "There is no action yet",
+    your_apis: "Created API's",
     buttons: {
         search: "Search",
         filter: "Filter",
