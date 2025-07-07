@@ -94,9 +94,6 @@ export default {
     #logo-area {
         background-color: colors.$surfaceColor;
     }
-    #form-area {
-        @include colors.box-shadow-1;
-    }
 }
 
 .desktop-app-container > #get-started-page {
@@ -108,11 +105,13 @@ export default {
     }
 
     section#logo-area { 
+        @include colors.box-shadow-1;
         img {
             width: 500px;
         }
     }
     section#form-area {
+        @include colors.box-shadow-4;
         div.static-container>* {
             width: 20rem;
         }

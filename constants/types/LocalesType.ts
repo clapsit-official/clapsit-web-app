@@ -71,6 +71,9 @@ export interface Buttons {
     start: LocaleType;
     ok: LocaleType;
     delete: LocaleType;
+    pin: LocaleType;
+    add_to_favorites: LocaleType;
+    remove_from_favorites: LocaleType;
 }
 
 export interface LanguageContent {
@@ -121,6 +124,7 @@ export interface LanguageContent {
     favorites: LocaleType;
     there_is_no_item_yet: LocaleType;
     your_apis: LocaleType;
+    collections: LocaleType
 }
 
 export type LangOptionsType = 'az-AZ' | 'en-US' | 'ru-RU';
