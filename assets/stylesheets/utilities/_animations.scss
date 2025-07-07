@@ -494,7 +494,7 @@ $default_hover_opacity_value: 0.6;
   $timing: ease,
   $delay: 0s,
   $hue-start: 0deg,
-  $hue-end: 180deg
+  $hue-end: 360deg
 ) {
   animation: hueRotateAnimation $duration $timing $delay infinite alternate;
 

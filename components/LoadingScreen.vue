@@ -8,12 +8,13 @@
       :data-light-theme="colorMode.value === 'light' ? 'light_colorblind' : ''"
       class="loading-screen flex-column-center"
     >
-      <div>
-        <logo :type="2" small size="300" />
+      <div class="logo-area">
+        <logo :type="3" small size="200" />
       </div>
       <br />
+      <h1>Clapsit.com</h1>
       <br />
-      <div class="flex-row-center">
+      <div class="please-wait flex-row-center">
         <img :src="loadingGIF" alt="loading" width="20" />
         <Text locale="please_wait" />
         <span v-if="progress"> {{ progress }}% </span>
@@ -74,7 +75,6 @@ export default defineComponent({
 .loading-screen {
   background-color: #0d1117;
   color: #fff;
-  font-weight: bold;
   position: fixed;
   top: 0;
   left: 0;
@@ -82,6 +82,7 @@ export default defineComponent({
   height: 100%;
   z-index: 1000;
   gap: 1rem;
+  @include animations.animate-hue-rotate(4s);
 
   img[alt="logo"] {
     width: 30vw;
@@ -93,6 +94,9 @@ export default defineComponent({
   &.fade-out {
     transition-duration: 0.3s;
     opacity: 0;
+  }
+  .logo-area {
+    @include animations.wobble(3s);
   }
 }
 

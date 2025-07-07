@@ -106,8 +106,8 @@ export default defineComponent({
             :fill="item.save"
             :class="{ 'icon-area-2': !item.save }"
             @click="useAssistant().saveKeyById(item.id, !item.save)"
-            :title="$t('buttons.save')"
-            icon-name="star"
+            :title="$t('buttons.pin')"
+            icon-name="thumbtack"
             icon-size="14px"
           />
         </div>
@@ -146,7 +146,7 @@ export default defineComponent({
             @click="
               useAssistant().saveHistoryByConversationId(item.c_id, !item.save)
             "
-            :title="$t('buttons.save')"
+            :title="!item.save ? $t('buttons.add_to_favorites') : $t('buttons.remove_from_favorites')"
             icon-name="star"
             icon-size="14px"
           />

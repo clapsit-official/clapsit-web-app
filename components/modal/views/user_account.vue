@@ -53,7 +53,7 @@ export default defineComponent({
         <icon-component
           icon-name="logout"
           icon-size="18px"
-          :color="colorUtilities.$textPrimary"
+          :color="colorUtilities.$whiteColor"
         />
       </div>
       <Text locale="buttons.logout" />

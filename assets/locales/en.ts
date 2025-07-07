@@ -44,6 +44,7 @@ locales = {
     favorites: "Favorties",
     there_is_no_item_yet: "There is no action yet",
     your_apis: "Created API's",
+    collections: "Collections",
     buttons: {
         search: "Search",
         filter: "Filter",
@@ -57,7 +58,10 @@ locales = {
         cancel: "Cancel",
         start: "Start",
         ok: "Okay",
-        delete: "Remove"
+        delete: "Remove",
+        pin: "Pin",
+        add_to_favorites: "Add to favorites",
+        remove_from_favorites: "Remove from favorites",
     },
     backend_messages: {
         DONE: "Completed successfully.",

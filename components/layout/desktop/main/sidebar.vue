@@ -1,10 +1,12 @@
 <script lang="ts">
+import { $availableRoutes } from '~/configs/routes.config';
 import colors from '~/constants/colorUtilities';
 export default defineComponent({
     name: 'MainLayoutSidebar',
     emits: ['foldAction'],
     setup() {
         return {
+            availableRoutes: $availableRoutes,
             $t: useI18nStore().i18n.global.t
         }
     },
@@ -28,7 +30,7 @@ export default defineComponent({
                 <Logo :type="fold ? 3 : 1" :size="fold ? '35px' : '150px'"/>
             </section>
             <section v-if="!fold" id="sidebar_main-tools" class="flex-row-between-center">
-                <div id="fold-sidebar" class="flex-row-center" style="gap: .2rem;">
+                <div v-if="useRoute().path !== availableRoutes.home" id="fold-sidebar" class="flex-row-center" style="gap: .2rem;">
                     <div>
                         <icon-component 
                             icon-name="clock_arrow" 
@@ -37,6 +39,17 @@ export default defineComponent({
                     </div>
                     <div class="recently">
                         <span><Text locale="your_apis"/>:</span>
+                    </div>
+                </div>
+                <div v-else id="fold-sidebar" class="flex-row-center" style="gap: .2rem;">
+                    <div>
+                        <icon-component
+                            icon-name="folder_open" 
+                            icon-size="1rem" 
+                            :color="colorUtilities.$textPrimary"/>
+                    </div>
+                    <div class="recently">
+                        <span><Text locale="collections"/>:</span>
                     </div>
                 </div>
                 <div id="right_side-items" class="flex-row-between-center">
