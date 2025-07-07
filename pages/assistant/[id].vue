@@ -73,8 +73,8 @@ export default {
 .desktop-app-container,
 .mobile-app-container {
   #assistant_provider-page {
-    width: 100%;
-    height: 100%;
+    width: 98%;
+    height: 97%;
     display: flex;
     @include animations.fadeIn(0.1s);
   }

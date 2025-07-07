@@ -2,6 +2,7 @@
 import { defineComponent, computed } from 'vue'
 import { defineAsyncComponent } from 'vue'
 import type { AvailableModals } from '~/stores/modal';
+import colors from '~/constants/colorUtilities';
 
 const modalMap: Record<string, () => Promise<any>> = {
     user_account: () => import('~/components/modal/views/user_account.vue'),
@@ -54,7 +55,13 @@ export default defineComponent({
     },
     beforeUnmount() {
         window.removeEventListener('keydown', this.handleEscKey);
-    }
+    },
+    computed: {
+        colorUtilities(){
+            const colorMode = useColorMode().value;
+            return colors(colorMode)
+        }
+    },
 })
 </script>
 
@@ -71,7 +78,7 @@ export default defineComponent({
                         <h2>{{ modal.label }}</h2>
                     </div>
                     <div id="close-btn" class="hover-effect" @click="closeModal(modal.key)">
-                        <icon-component icon-name="close" icon-size="20" />
+                        <icon-component :color="colorUtilities.$textPrimary" icon-name="close" icon-size="20" />
                     </div>
                 </header>
                 <component :is="modal.component" />

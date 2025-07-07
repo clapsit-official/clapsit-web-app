@@ -68,8 +68,8 @@ export default defineComponent({
 </script>
 <style scoped lang="scss">
 .code-editor-component {
-  width: 100%;
-  height: 100%;
+  width: 98%;
+  height: 98%;
   overflow: hidden;
   padding: 1.3rem 0;
   @include colors.box-shadow-2;

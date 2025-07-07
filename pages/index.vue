@@ -71,7 +71,6 @@ export default defineComponent({
   #home-page {
     width: 100%;
     height: 100%;
-    overflow-y: auto;
     div {
       gap: 1rem;
       margin: 1.5rem 0
