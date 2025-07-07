@@ -30,7 +30,7 @@ export default defineComponent({
     <div id="main_layout-tablet" :class="{ 'full': !showSidebar, 'partial': showSidebar }">
         <LayoutTabletMainSidebar :fold="!showSidebar" @fold-action="setSidebarVisibility(!showSidebar)"/>
         <div id="sidebar-fold" class="flex-column-center" v-if="!showSidebar">
-            <div id="fold-btn" class="hover-effect" @click="setSidebarVisibility(!showSidebar)">
+            <div id="fold-btn" class="hover-effect bordered" @click="setSidebarVisibility(!showSidebar)">
                 <IconComponent :icon-name="`caret_${!showSidebar ? 'right' : 'left'}`" icon-size="13"
                     :color="colorUtilities.$textSecondary" fill />
             </div>
@@ -60,7 +60,7 @@ $gap-header-main: 1.3rem;
         flex-direction: column;
         justify-content: space-between;
         gap: $gap-header-main;
-        height: 95.95%;
+        height: calc(100% - (($default-padding / 1.1) * 2));
         section#sidebar_logo-area {
             div#fold-sidebar {
                 display: block;
@@ -92,7 +92,7 @@ $gap-header-main: 1.3rem;
         gap: $gap-header-main;
         padding: calc($default-padding / 1.1) $default-padding;
         background-color: colors.$backgroundColor;
-
+        margin-left: 3rem;
         main {
             overflow-y: auto;
             overflow-x: hidden;
@@ -141,7 +141,6 @@ $gap-header-main: 1.3rem;
 
     #content {
         width: calc(100vw - $sidebar-width);
-        margin-left: 2rem;
     }
 }
 </style>

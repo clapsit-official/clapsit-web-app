@@ -3,11 +3,11 @@ $tablet-font-size: calc($desktop-font-size * 95 / 100);
 $mobile-font-size: calc($desktop-font-size * 85 / 100);
 
 $desktop-height-limit: 100dvh;
-$tablet-height-limit: 95.5dvh;
+$tablet-height-limit: 100dvh;
 $mobile-height-limit: 100dvh;
 
 $desktop-width-limit: 100dvw;
-$tablet-width-limit: 97dvw;
+$tablet-width-limit: 100dvw;
 $mobile-width-limit: 100dvw;
 
 html#desktop-ap { font-size: $desktop-font-size !important; }

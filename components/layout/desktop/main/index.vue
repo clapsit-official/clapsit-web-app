@@ -37,7 +37,7 @@ export default defineComponent({
     <div id="main_layout-desktop" :class="{ 'full': !showSidebar, 'partial': showSidebar }">
         <LayoutDesktopMainSidebar :fold="!showSidebar" @fold-action="setSidebarVisibility(!showSidebar)"/>
         <div id="sidebar-fold" class="flex-column-center" v-if="!showSidebar">
-            <div id="fold-btn" class="hover-effect" @click="setSidebarVisibility(!showSidebar)">
+            <div id="fold-btn" class="hover-effect bordered" @click="setSidebarVisibility(!showSidebar)">
                 <IconComponent :icon-name="`caret_${!showSidebar ? 'right' : 'left'}`" icon-size="13"
                     :color="colorUtilities.$textSecondary" fill />
             </div>

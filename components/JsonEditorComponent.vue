@@ -1,7 +1,7 @@
 <template>
   <div
     class="json-editor-component bordered"
-    :class="{ disabled: disabled, loading: loading }"
+    :class="{ disabled: disabled, loading: loading, 'dark': colorMode === 'dark' }"
   >
     <code-editor
       :key="count"
@@ -69,9 +69,11 @@ export default defineComponent({
         }
       },
     },
+    colorMode() {
+      return useColorMode().value;
+    },
     theme(): any{
-      const colorMode = useColorMode().value;
-      return colorMode === 'dark' ? 'vs-dark' : 'vs-light'
+      return this.colorMode === 'dark' ? 'vs-dark' : 'vs-light'
     },
   },
 });
@@ -101,7 +103,7 @@ export default defineComponent({
   }
 }
 .json-editor-component {
-  width: 100%;
+  width: calc(100% - 2px);
   height: 100%;
   transition-duration: 0.5s;
   border-radius: 2rem;
@@ -146,6 +148,9 @@ export default defineComponent({
         }
       }
     }
+  }
+  &.dark {
+    background-color: #1E1E1E;
   }
 }
 </style>

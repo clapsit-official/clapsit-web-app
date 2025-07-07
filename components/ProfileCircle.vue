@@ -24,8 +24,8 @@ export default defineComponent({
 .profile-circle_component {
     .profile-circle {
         background-color: red;
-        width: 2.5rem;
-        height: 2.5rem;
+        width: 2rem;
+        height: 2rem;
         border-radius: 100rem;
         text-align: center;
         @include animations.animate-hue-rotate(60s);
@@ -35,8 +35,7 @@ export default defineComponent({
             position: relative;
             top: .8px;
             right: .4px;
-            font-size: 1rem;
-            font-weight: bold;
+            font-size: .8rem;
         }
     }
 }

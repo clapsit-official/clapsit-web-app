@@ -1,20 +1,35 @@
-<script setup lang="ts">
+<script lang="ts">
+import colors from '~/constants/colorUtilities';
 import { $availableRoutes } from '~/configs/routes.config';
+export default defineComponent({
+    name: 'MainLayoutHeader',
+    setup() {
+        return {
+            availableRoutes: $availableRoutes,
+            $t: useI18nStore().i18n.global.t
+        }
+    },
+    computed: {
+        colorUtilities(){
+            const colorMode = useColorMode().value;
+            return colors(colorMode)
+        }
+    },
+});
 </script>
-
 <template>
     <header id="main-header" class="flex-row-center">
         <div id="header-items" class="flex-row-between-center">
             <div id="header-item_left-side">
                 <a  
-                    :href="$availableRoutes.home"
+                    :href="availableRoutes.home"
                     style="gap: 5px"
                     class="flex-row-between-center hover-effect black" 
                     v-show="useRouteManagement().config.key !== 'home'">
                     <div>
                     <IconComponent icon-name="arrow_back"/>
                     </div>
-                    <span>Home</span>
+                    <Text locale="pages.home.title"/>
                 </a>
             </div>
             <div id="header-item_right-side" class="flex-row-between-center">

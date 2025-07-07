@@ -35,14 +35,16 @@ b {
 
 a {
   text-decoration-color: colors.$primaryColor !important;
-  font-weight: bold;
+  font-weight: 400;
   span {
     color: colors.$primaryColor !important;
   }
 
   &.black {
-    color: colors.$textPrimary !important;
     text-decoration: none !important;
+    & > * {
+      color: colors.$textPrimary !important;
+    }
   }
 }
 

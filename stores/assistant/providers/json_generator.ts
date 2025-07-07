@@ -12,7 +12,7 @@ const model: JSONGeneratorStateModelType = {
     },
     progress: {
         input: {
-            message: 'Hello Clapsit! Based on the data structure I defined earlier, could you please generate a JSON file for me?',
+            message: 'Hello Clapsit! Based on the data structure I defined earlier, could you please generate a JSON for me?',
             result: `/** 
 
 Hey there! Let's define the structure of the JSON data we need
@@ -105,7 +105,11 @@ export const useJSONGenerator = defineStore('json_generator', {
         },
         resetInputProgress() {
             this.progress.input.message = deepCopy(model.progress.input.message);
-            this.progress.input.result = deepCopy(model.progress.input.result);
+            this.progress.input.result = `/** 
+*   Don't remove "result" variable!
+*   This constant holds the final JSON data structure 
+*/
+const result = {};`;
         },
         resetOutputProgress() {
             this.progress.output.message = deepCopy(model.progress.output.message);

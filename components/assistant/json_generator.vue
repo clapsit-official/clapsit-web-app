@@ -259,7 +259,7 @@ export default defineComponent({
       padding: 0 2rem;
       gap: 1rem;
       height: 80%;
-      width: 50px;
+      width: 30px;
       button {
         display: flex;
         flex-direction: column;
@@ -285,7 +285,8 @@ export default defineComponent({
       }
       #input-message {
         $padding-textarea: 1.6rem;
-        width: 100%;
+        width: calc(100% - 2px);
+        height: 25%;
         background-color: colors.$surfaceColor;
         border-radius: $default_border_radius;
         overflow: hidden;
@@ -306,10 +307,6 @@ export default defineComponent({
             resize: vertical;
           }
         }
-      }
-
-      #input-message {
-        height: 25%;
       }
 
       &#input {
@@ -373,7 +370,8 @@ export default defineComponent({
       }
       #input-message {
         $padding-textarea: 1.6rem;
-        width: 100%;
+        width: calc(100% - 2px);
+        height: 25%;
         background-color: colors.$surfaceColor;
         border-radius: $default_border_radius;
         @include colors.box-shadow-2;
@@ -393,10 +391,6 @@ export default defineComponent({
             resize: vertical;
           }
         }
-      }
-
-      #input-message {
-        height: 25%;
       }
 
       &#input {

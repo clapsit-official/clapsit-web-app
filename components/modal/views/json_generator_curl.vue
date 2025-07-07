@@ -70,7 +70,7 @@ export default defineComponent({
         </nuxt-link>
       </div>
       <div id="btns_url-area">
-        <button type="button" @click="openInNewTab(urlComputed)">
+        <button type="button" @click="openInNewTab(urlComputed)" class="monochrome-invers">
           <icon-component
             icon-name="arrow_up_right"
             :color="colorUtilities.$textPrimary"
@@ -89,6 +89,7 @@ export default defineComponent({
           "
           type="button"
           @click="toClipboard"
+           class="monochrome-invers"
         >
           <icon-component
             :icon-name="!copyToggle ? 'file_copy_alt' : 'file_check'"
@@ -112,7 +113,7 @@ export default defineComponent({
   flex-direction: column;
   gap: 2rem;
   section {
-    background-color: colors.$dividerColor;
+    background-color: colors.$disabledColor;
     border-radius: 0.4rem;
     padding: 1rem 2rem;
   }
