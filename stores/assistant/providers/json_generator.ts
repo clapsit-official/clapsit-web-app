@@ -19,11 +19,11 @@ Hey there! Let's define the structure of the JSON data we need
 - You just need to define types and add comments for clarity.
 - You can add comments, and the AI will understand them 
   to generate the JSON data accordingly!
- 
-Here is the improved TypeScript example for you:
 
 */
 
+
+// Here is the improved TypeScript example for you:
 type FakeUserListItem = {
     username: string; // Act like real.
     bio: string; // About the user (max 150 characters).
@@ -105,11 +105,7 @@ export const useJSONGenerator = defineStore('json_generator', {
         },
         resetInputProgress() {
             this.progress.input.message = deepCopy(model.progress.input.message);
-            this.progress.input.result = `/** 
-*   Don't remove "result" variable!
-*   This constant holds the final JSON data structure 
-*/
-const result = {};`;
+            this.progress.input.result = deepCopy(model.progress.input.result);
         },
         resetOutputProgress() {
             this.progress.output.message = deepCopy(model.progress.output.message);
@@ -121,6 +117,12 @@ const result = {};`;
             this.environments.c_key = deepCopy(model.environments.c_key);
             this.environments.key_name = deepCopy(model.environments.key_name);
             this.environments.save = deepCopy(model.environments.save);
+        },
+        resetToStart() {
+            this.resetAll();
+            this.progress.input.result = 
+`const result = {};`
+
         },
         resetAll() {
             this.resetInputProgress();
