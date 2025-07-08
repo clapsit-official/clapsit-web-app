@@ -124,7 +124,8 @@ export interface LanguageContent {
     favorites: LocaleType;
     there_is_no_item_yet: LocaleType;
     your_apis: LocaleType;
-    collections: LocaleType
+    collections: LocaleType;
+    history: LocaleType;
 }
 
 export type LangOptionsType = 'az-AZ' | 'en-US' | 'ru-RU';

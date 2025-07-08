@@ -19,7 +19,7 @@ span.divider {
   width: 100%;
   padding: 0.5px 0;
   background: colors.$dividerColor;
-  margin: 1.5rem 0;
+  margin: .7rem 0;
 }
 span.text {
   color: colors.$textPrimary;
@@ -109,7 +109,7 @@ button {
   &.monochrome {
     @include colors.box-shadow-2();
     background-color: colors.$textPrimary;
-    border-color: colors.$textPrimary;
+    border-color: colors.$dividerColor;
     font-weight: 500;
     &.loading {
       @include animations.buttonLoading(colors.$backgroundColor);
@@ -122,7 +122,7 @@ button {
   &.monochrome-invers {
     @include colors.box-shadow-2();
     background-color: colors.$surfaceColor;
-    border-color: colors.$surfaceColor2;
+    border-color: colors.$dividerColor;
     font-weight: 500;
     &.loading {
       @include animations.buttonLoading(colors.$textPrimary);
@@ -176,6 +176,8 @@ button {
     }
     & > * {
       color: transparent !important;
+      fill: none;
+      stroke: none;
     }
   }
 }

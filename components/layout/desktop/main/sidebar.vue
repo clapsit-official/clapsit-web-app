@@ -38,7 +38,7 @@ export default defineComponent({
                             :color="colorUtilities.$textPrimary"/>
                     </div>
                     <div class="recently">
-                        <span><Text locale="your_apis"/>:</span>
+                        <span><Text locale="history"/>:</span>
                     </div>
                 </div>
                 <div v-else id="fold-sidebar" class="flex-row-center" style="gap: .2rem;">
@@ -55,8 +55,8 @@ export default defineComponent({
                 <div id="right_side-items" class="flex-row-between-center">
                     <div>
                         <icon-component 
-                            @click="() => $emit('foldAction')"
                             hover
+                            @click="() => $emit('foldAction')"
                             icon-name="left_panel_close" 
                             icon-size="22px" 
                             :color="colorUtilities.$textPrimary"/>

@@ -74,6 +74,7 @@ export default defineComponent({
         </div>
         <h3>{{ $t("favorites") }}</h3>
       </div>
+      <span class="divider"></span>
       <ul class="list">
         <li
           v-for="(item, index) in useAssistant().getSavedAssistantKeyHistory"
@@ -112,6 +113,7 @@ export default defineComponent({
         </div>
         <h3>{{ $t("recently") }}</h3>
       </div>
+      <span class="divider"></span>
       <ul class="list">
         <li
           v-for="(item, index) in useAssistant().getRecentlyAssistantKeyHistory"
@@ -146,14 +148,14 @@ export default defineComponent({
     align-items: center;
     font-size: 0.9rem;
     width: 100%;
-    margin: 2rem;
+    margin: .5rem;
     gap: 1rem;
     section {
       width: 87%;
       display: flex;
       flex-direction: column;
       gap: 0.1rem;
-      border-radius: 1rem;
+      border-radius: .7rem;
       background-color: colors.$surfaceColor2;
       padding: 2rem 2rem 1rem 2rem;
       .header {

@@ -130,8 +130,7 @@ export default defineComponent({
         <strong> <Text locale="assistants.json_generator.input" />: </strong>
         <div class="icon-area flex-row-center">
           <icon-component
-            icon-name="coder"
-            :color="colorUtilities.$whiteColor"
+            icon-name="typescript_icon"
             :icon-size="'1.5rem'"
             :title="$t('assistants.json_generator.input_info')"
           />
@@ -201,7 +200,7 @@ export default defineComponent({
         class="monochrome-invers"
         :title="$t('assistants.json_generator.clear')"
         type="reset"
-        @click="store.resetAll"
+        @click="store.resetToStart"
       >
         <icon-component
           fill
@@ -215,7 +214,7 @@ export default defineComponent({
         <strong> <Text locale="assistants.json_generator.output" />: </strong>
         <div class="icon-area">
           <icon-component
-            icon-name="ai"
+            icon-name="json_icon"
             :fill="true"
             :icon-size="'1.5rem'"
             :title="$t('assistants.json_generator.output_info')"

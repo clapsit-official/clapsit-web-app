@@ -78,7 +78,7 @@ export default defineComponent({
         class="flex-row-start-center"
         style="gap: 5px"
         @click.prevent="getAssistantItem(item)"
-        :title="formatDateForTitle(item.date)"
+        :title="`${formatDateForTitle(item.date)}: ${capitalizeFirstLetter(revertEscapeSequences(item.label)) || $t(`assistants.${item.key_name}.label`)}`"
       >
         <div class="icon-area flex-row-center">
           <icon-component
@@ -90,8 +90,7 @@ export default defineComponent({
         </div>
         <span class="ellipsis">
           {{
-            capitalizeFirstLetter(revertEscapeSequences(item.label)) ||
-            $t(`assistants.${item.key_name}.label`)
+            capitalizeFirstLetter(revertEscapeSequences(item.label)) || $t(`assistants.${item.key_name}.label`)
           }}
         </span>
         <div class="flex-row-center" @click.stop style="gap: 0.5rem">

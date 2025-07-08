@@ -46,6 +46,11 @@ export default defineComponent({
 header#main-header {
     #header-items {
         width: 100%;
+        #header-item_left-side {
+            a { 
+                font-weight: bold;
+            }
+        }
         #header-item_right-side {
             gap: 1.5rem;
             #create-btn_right-side {
