@@ -29,7 +29,7 @@ export default defineComponent({
 <template>
     <div id="main_layout-tablet" :class="{ 'full': !showSidebar, 'partial': showSidebar }">
         <LayoutTabletMainSidebar :fold="!showSidebar" @fold-action="setSidebarVisibility(!showSidebar)"/>
-        <div id="sidebar-fold" class="flex-column-center" v-if="!showSidebar">
+        <div id="sidebar-fold" class="flex-column-center" :class="{ 'visible': !showSidebar, 'hidden': showSidebar }">
             <div id="fold-btn" class="hover-effect bordered" @click="setSidebarVisibility(!showSidebar)">
                 <IconComponent :icon-name="`caret_${!showSidebar ? 'right' : 'left'}`" icon-size="13"
                     :color="colorUtilities.$textSecondary" fill />
@@ -59,7 +59,6 @@ $gap-header-main: 1.3rem;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-        gap: $gap-header-main;
         height: calc(100% - (($default-padding / 1.1) * 2));
         section#sidebar_logo-area {
             div#fold-sidebar {
@@ -68,6 +67,7 @@ $gap-header-main: 1.3rem;
                 left: 10px;
                 top: -15px;
             }
+            margin-bottom: 1.8rem;
         }
 
         section#sidebar_history-area {
@@ -76,12 +76,19 @@ $gap-header-main: 1.3rem;
     }
 
     #sidebar-fold {
-        z-index: 101;
+        transition-duration: .4s;
         #fold-btn {
+            z-index: 100;
             @include colors.box-shadow-2();
             background-color: colors.$surfaceColor;
             padding: .8rem 0;
             border-radius: .3rem;
+        }
+        &.hidden {
+            opacity: 0;
+        }
+        &.visible {
+            opacity: 1;
         }
     }
 
@@ -101,7 +108,7 @@ $gap-header-main: 1.3rem;
 }
 
 #main_layout-tablet.partial {
-    $sidebar-width: 260px;
+    $sidebar-width: 40dvw;
 
     :deep(#sidebar) {
         width: calc($sidebar-width - ($default-padding * 2));
@@ -122,10 +129,6 @@ $gap-header-main: 1.3rem;
             display: flex;
             flex-direction: column;
             align-items: center;
-        }
-
-        section#sidebar_history-area {
-            display: none;
         }
 
     }
