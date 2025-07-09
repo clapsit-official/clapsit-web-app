@@ -9,6 +9,7 @@ locales = {
     ru: "Russian",
     email_confirming: "Email address confirming",
     please_wait: "Please wait...",
+    loading: "Loading",
     redirecting_to_home: "Redirecting to home page",
     redirecting_to_login: "Redirecting to login page",
     error: 'Oops! An error occurred',
@@ -212,7 +213,7 @@ locales = {
     assistants: {
         json_generator: {
             label: "AI-JSON Generator",
-            curl_label: "CURL Details:",
+            curl_label: "cURL Details:",
             slogan: "Generate and design JSON objects however you want!",
             description: "With AI, you can create your own JSON data and use it as you wish. It's a flexible and fast tool, easy and straightforward to use",
             input: "Input",
@@ -222,7 +223,7 @@ locales = {
             generate: "Generate",
             copy: "Copy",
             copied: "Copied",
-            reverse: "Reverse",
+            get_curl: "Show cURL Details",
             clear: "Clear",
             loading: "Generating...",
             fetching: "Fetching...",

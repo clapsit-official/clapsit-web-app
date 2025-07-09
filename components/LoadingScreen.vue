@@ -12,11 +12,11 @@
         <logo :type="3" small size="200" />
       </div>
       <br />
-      <h1>Clapsit.com</h1>
+      <h1>{{ [useCoreAppStore().getBrandName, 'com'].join('.') }}</h1>
       <br />
       <div class="please-wait flex-row-center">
         <img :src="loadingGIF" alt="loading" width="20" />
-        <Text locale="please_wait" />
+        <Text :locale="progress ? 'loading' : 'please_wait'" />
         <span v-if="progress"> {{ progress }}% </span>
       </div>
     </div>

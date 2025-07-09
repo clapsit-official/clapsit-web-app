@@ -26,8 +26,8 @@ export default defineComponent({
                     style="gap: 5px"
                     class="flex-row-between-center hover-effect black" 
                     v-show="useRouteManagement().config.key !== 'home'">
-                    <div>
-                    <IconComponent icon-name="arrow_back"/>
+                    <div class="icon-area">
+                        <IconComponent icon-name="arrow_back"/>
                     </div>
                     <Text locale="pages.home.title"/>
                 </a>

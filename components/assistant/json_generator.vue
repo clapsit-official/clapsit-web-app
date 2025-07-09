@@ -184,7 +184,7 @@ export default defineComponent({
       </button>
       <button
         class="monochrome-invers"
-        :title="$t('assistants.json_generator.reverse')"
+        :title="$t('assistants.json_generator.get_curl')"
         type="button"
         :disabled="
           !useAssistant().data.history.length ||
