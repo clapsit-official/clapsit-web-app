@@ -9,6 +9,7 @@ locales = {
     ru: "Russian",
     email_confirming: "Email address confirming",
     please_wait: "Please wait...",
+    loading: "Loading",
     redirecting_to_home: "Redirecting to home page",
     redirecting_to_login: "Redirecting to login page",
     error: 'Oops! An error occurred',

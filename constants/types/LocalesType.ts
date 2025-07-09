@@ -84,6 +84,7 @@ export interface LanguageContent {
     ru: LocaleType;
     email_confirming: LocaleType;
     please_wait: LocaleType;
+    loading: LocaleType;
     redirecting_to_home: LocaleType;
     redirecting_to_login: LocaleType;
     logout_prompt_question: LocaleType;
