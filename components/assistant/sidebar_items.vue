@@ -70,7 +70,7 @@ export default defineComponent({
   <section id="sidebar_history-area">
     <div
       v-if="currentRoute === 'home'"
-      v-for="(item, index) in userAssistantKeys"
+      v-for="(item, index) in userAssistantKeys.sort((a: any, b: any) => b.save - a.save)"
       style="margin: 1rem 0"
       :key="item.id"
     >
@@ -84,7 +84,7 @@ export default defineComponent({
           <icon-component
             fill
             :icon-name="item.key_name"
-            icon-size="18px"
+            icon-size="16px"
             :color="colorUtilities.$primaryColor"
           />
         </div>
@@ -93,10 +93,10 @@ export default defineComponent({
             capitalizeFirstLetter(revertEscapeSequences(item.label)) || $t(`assistants.${item.key_name}.label`)
           }}
         </span>
-        <div class="flex-row-center" @click.stop style="gap: 0.5rem">
+        <div v-show="index !== 0" class="flex-row-center btns-area" @click.stop>
           <icon-component
             icon-name="trash"
-            icon-size="18px"
+            icon-size="16px"
             class="icon-area-2"
             :color="colorUtilities.$errorColor"
             :title="$t('buttons.delete')"
@@ -108,7 +108,7 @@ export default defineComponent({
             @click="useAssistant().saveKeyById(item.id, !item.save)"
             :title="$t('buttons.pin')"
             icon-name="thumbtack"
-            icon-size="18px"
+            icon-size="16px"
           />
         </div>
       </div>
@@ -132,10 +132,10 @@ export default defineComponent({
           {{ getSidebarNestItem(item) }}
         </span>
         <i v-else style="opacity: 0.5;"> {{ $t("no_message") }}</i>
-        <div class="flex-row-center" @click.stop style="gap: 0.5rem">
+        <div v-show="index !== 0" class="flex-row-center btns-area" @click.stop>
           <icon-component
             icon-name="trash"
-            icon-size="18px"
+            icon-size="16px"
             :color="colorUtilities.$errorColor"
             class="icon-area-2"
             @click="useAssistant().deleteHistoryByConversationId(item.c_id)"
@@ -149,7 +149,7 @@ export default defineComponent({
             "
             :title="!item.save ? $t('buttons.add_to_favorites') : $t('buttons.remove_from_favorites')"
             icon-name="star"
-            icon-size="18px"
+            icon-size="16px"
           />
         </div>
       </div>
@@ -164,8 +164,6 @@ export default defineComponent({
 </template>
 <style lang="scss" scoped>
 section#sidebar_history-area {
-  height: 90%;
-  font-size: .9rem;
   width: 100%;
   user-select: none;
   .icon-area {
@@ -191,6 +189,8 @@ section#sidebar_history-area {
 }
 .desktop-app-container {
   section#sidebar_history-area {
+    font-size: .8rem;
+    height: 60dvh;
     overflow-y: hidden !important;
     overflow-x: hidden !important;
     &:hover {
@@ -198,6 +198,39 @@ section#sidebar_history-area {
     }
     .icon-area-2 {
       display: none;
+    }
+    .btns-area {
+      gap: .7rem;
+      & > :first-child{ 
+        padding: 0 .7rem;
+        border-right: 1px solid colors.$dividerColor;
+      }
+    }
+  }
+}
+.tablet-app-container {
+  section#sidebar_history-area {
+    height: 60dvh;
+    font-size: .9rem;
+    .btns-area {
+      gap: .7rem;
+      & > :first-child{ 
+        padding: 0 .7rem;
+        border-right: 1px solid colors.$dividerColor;
+      }
+    }
+  }
+}
+
+.mobile-app-container {
+  section#sidebar_history-area {
+    font-size: 1rem;
+    .btns-area {
+      gap: .7rem;
+      & > :first-child{ 
+        padding: 0 .7rem;
+        border-right: 1px solid colors.$dividerColor;
+      }
     }
   }
 }

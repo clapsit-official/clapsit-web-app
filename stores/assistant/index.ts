@@ -163,7 +163,7 @@ export const useAssistant = defineStore('assistant', {
                     user_id: useUser().getUserId,
                     save
                 });
-                await this.updateUserAssistantKeys();
+                //await this.updateUserAssistantKeys();
             } catch (error: any) {
                 throw error;
             }
@@ -177,7 +177,7 @@ export const useAssistant = defineStore('assistant', {
                 await _AIMUserKeys.delete(key_id, {
                     user_id: useUser().getUserId
                 });
-                await this.updateUserAssistantKeys();
+                //await this.updateUserAssistantKeys();
             } catch (error: any) {
                 throw error;
             }
@@ -204,7 +204,7 @@ export const useAssistant = defineStore('assistant', {
                 });
                 const target = this.getKeyDataByCId(c_id);
                 if (target) {
-                    this.updateAssistantKeyHistoryById(target.id!);
+                    //this.updateAssistantKeyHistoryById(target.id!);
                 }
             } catch (error: any) {
                 throw error;
@@ -221,7 +221,7 @@ export const useAssistant = defineStore('assistant', {
                 });
                 const target = this.getKeyDataByCId(c_id);
                 if (target) {
-                    this.updateAssistantKeyHistoryById(target.id!);
+                    //this.updateAssistantKeyHistoryById(target.id!);
                 }
             } catch (error: any) {
                 throw error;
