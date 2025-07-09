@@ -159,6 +159,7 @@ export default defineComponent({
     padding: 0 !important;
     margin: 0 !important;
     height: 0 !important;
+    pointer-events: none;
     filter: blur(4px);
   }
 }
