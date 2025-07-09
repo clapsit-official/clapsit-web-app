@@ -1,117 +1,165 @@
 <script lang="ts">
-import { $availableRoutes } from '~/configs/routes.config';
-import colors from '~/constants/colorUtilities';
+import { $availableRoutes } from "~/configs/routes.config";
+import colors from "~/constants/colorUtilities";
 export default defineComponent({
-    name: 'MainLayoutSidebar',
-    emits: ['foldAction'],
-    setup() {
-        return {
-            availableRoutes: $availableRoutes,
-            $t: useI18nStore().i18n.global.t
-        }
+  name: "MainLayoutSidebar",
+  emits: ["foldAction"],
+  setup() {
+    return {
+      availableRoutes: $availableRoutes,
+      $t: useI18nStore().i18n.global.t,
+    };
+  },
+  props: {
+    fold: {
+      type: Boolean,
+      required: true,
     },
-    props: {
-        fold: {
-            type: Boolean,
-            required: true,
-        }
+  },
+  computed: {
+    colorUtilities() {
+      const colorMode = useColorMode().value;
+      return colors(colorMode);
     },
-    computed: {
-        colorUtilities(){
-            const colorMode = useColorMode().value;
-            return colors(colorMode)
-        },
-    }
+  },
 });
 </script>
 <template>
-        <div id="sidebar" :class="!fold ? 'partial' : 'full'">
-            <section id="sidebar_logo-area" class="flex-row-between-center">
-                <Logo :type="fold ? 3 : 1" :size="fold ? '35px' : '150px'"/>
-            </section>
-            <section v-if="!fold" id="sidebar_main-tools" class="flex-row-between-center">
-                <div v-if="useRoute().path !== availableRoutes.home" id="fold-sidebar" class="flex-row-center" style="gap: .2rem;">
-                    <div @click="() => $emit('foldAction')">
-                        <icon-component 
-                            icon-name="clock_arrow" 
-                            icon-size="1.2rem" 
-                            :color="colorUtilities.$textPrimary"/>
-                    </div>
-                    <div class="recently">
-                        <span><Text locale="your_apis"/>:</span>
-                    </div>
-                </div>
-                <div v-else id="fold-sidebar" class="flex-row-center" style="gap: .2rem;">
-                    <div @click="() => $emit('foldAction')">
-                        <icon-component 
-                            icon-name="folder_open" 
-                            icon-size="1.2rem" 
-                            :color="colorUtilities.$textPrimary"/>
-                    </div>
-                    <div class="recently">
-                        <span><Text locale="collections"/>:</span>
-                    </div>
-                </div>
-                <div id="right_side-items" class="flex-row-between-center">
-                    <div id="right_side-create-new" class="flex-row-center">
-                        <icon-component 
-                            @click="() => $emit('foldAction')"
-                            hover
-                            icon-name="left_panel_close" 
-                            icon-size="22px" 
-                            :color="colorUtilities.$textPrimary"/>
-                    </div>
-                </div>
-            </section>
-            <section v-else style="height: 70%" class="flex-column-justify-start">
-                <div>
-                    <icon-component hover icon-name="clock_arrow" @click="() => $emit('foldAction')"/>
-                </div>
-            </section>
-            <AssistantSidebarItems v-show="!fold"/>
-            <section></section>
-            <section></section>
-            <section></section>
-            <section></section>
-            <section></section>
-            <section id="sidebar_others">
-            </section>
+  <div id="sidebar">
+    <div>
+      <section v-if="fold" id="sidebar_logo-area" class="flex-row-between-center">
+        <Logo :type="3" size="35px" />
+      </section>
+      <section v-else id="sidebar_logo-area" class="flex-row-between-center">
+        <Logo :type="1" size="150px" />
+      </section>
+      <section
+        :class="{ visible: !fold, hidden: fold }"
+        id="sidebar_main-tools"
+        class="flex-row-between-center"
+      >
+        <div
+          :class="{ visible: !fold, hidden: fold }"
+          v-if="useRoute().path !== availableRoutes.home"
+          id="fold-sidebar"
+          class="flex-row-center"
+          style="gap: 0.2rem"
+        >
+          <div>
+            <icon-component
+              icon-name="clock_arrow"
+              icon-size="1rem"
+              :color="colorUtilities.$textPrimary"
+            />
+          </div>
+          <div class="recently" v-if="!fold"><Text locale="history" />:</div>
         </div>
+        <div
+          :class="{ visible: !fold, hidden: fold }"
+          v-else
+          id="fold-sidebar"
+          class="flex-row-center"
+          style="gap: 0.4rem"
+        >
+          <div>
+            <icon-component
+              fill
+              icon-name="folder_open"
+              icon-size="20px"
+              :color="colorUtilities.$textPrimary"
+            />
+          </div>
+          <div class="recently" v-if="!fold">
+            <Text locale="collections" />:
+          </div>
+        </div>
+        <div
+          :class="{ visible: !fold, hidden: fold }"
+          id="right_side-items"
+          class="flex-row-between-center"
+        >
+          <button class="ghost" @click="() => $emit('foldAction')">
+            <icon-component
+              hover
+              icon-name="left_panel_close"
+              icon-size="22px"
+              :color="colorUtilities.$textPrimary"
+            />
+          </button>
+        </div>
+      </section>
+      <section
+        :class="{ visible: fold, hidden: !fold }"
+        class="flex-column-justify-start"
+      >
+        <button class="ghost" @click="() => $emit('foldAction')">
+          <icon-component
+            hover
+            icon-name="folder_open"
+          />
+        </button>
+      </section>
+      <AssistantSidebarItems :class="{ visible: !fold, hidden: fold }" />
+    </div>
+    <section id="sidebar_others">
+      <div class="sidebar_others-item hover-effect">
+        <div>
+          <icon-component icon-name="adjustment" icon-size="20px" />
+        </div>
+        <Text :class="{ visible: !fold, hidden: fold }" locale="settings" />
+      </div>
+    </section>
+  </div>
 </template>
 <style lang="scss" scoped>
 #sidebar {
-    position: absolute;
-    z-index: 100;
-    border-right: 1px solid colors.$dividerColor;
-    section#sidebar_main-tools {
-        #right_side-items {
-            gap: .5rem;
-            #right_side-create-new {
-                & > * {
-                    position: relative;
-                    top: -1px;
-                    left: 1px;
-                }
-            }
+  position: absolute;
+  z-index: 100;
+  border-right: 1px solid colors.$dividerColor;
+  section#sidebar_main-tools {
+    #right_side-items {
+      gap: 0.5rem;
+      #right_side-create-new {
+        & > * {
+          position: relative;
+          top: -1px;
+          left: 1px;
         }
-        .recently {
-            font-size: .85rem;
-        }
-        padding: 1rem 0;
-        border-bottom: 1px solid colors.$dividerColor;
+      }
     }
-    section#sidebar_others {
-        display: flex;
-        flex-direction: column;
-        gap: .5rem;
-        .sidebar_others-item {
-            display: flex;
-            align-items: center;
-            gap: .5rem;
-        }
+    .recently {
+      font-size: 1rem;
     }
-    &.full {
-        @include colors.box-shadow-4();
+    padding: 1rem 0;
+    border-bottom: 1px solid colors.$dividerColor;
+  }
+  section#sidebar_others {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    .sidebar_others-item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
     }
+  }
+  &.full {
+    @include colors.box-shadow-4();
+  }
+  $movement-time: 0.3s;
+  .visible {
+    transition-duration: $movement-time;
+    transition-timing-function: linear;
+    opacity: 1;
+  }
+  .hidden {
+    transition-duration: $movement-time;
+    transition-timing-function: linear;
+    opacity: 0 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    height: 0 !important;
+    filter: blur(4px);
+  }
 }
 </style>

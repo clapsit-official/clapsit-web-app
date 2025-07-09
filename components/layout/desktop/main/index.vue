@@ -66,7 +66,6 @@ $gap-header-main: 1.8rem;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-        gap: .2rem;
 
         section#sidebar_logo-area {
             div#fold-sidebar {
@@ -116,9 +115,8 @@ $gap-header-main: 1.8rem;
     :deep(#sidebar) {
         width: calc($sidebar-width - ($default-padding * 2));
     }
-
     #content {
-        width: calc(100vw - $sidebar-width - ($default-padding * 2));
+        width: 100%;
     }
 }
 
@@ -134,18 +132,10 @@ $gap-header-main: 1.8rem;
             align-items: center;
         }
 
-        section#sidebar_history-area {
-            display: none;
-        }
-
-    }
-
-    #sidebar-fold {
-        #fold-btn {}
     }
 
     #content {
-        width: calc(100vw - $sidebar-width - ($default-padding * 2));
+        width: 100%;
     }
 }
 </style>

@@ -71,7 +71,7 @@ export default defineComponent({
     <div
       v-if="currentRoute === 'home'"
       v-for="(item, index) in userAssistantKeys"
-      style="margin: 0.8rem 0"
+      style="margin: 1rem 0"
       :key="item.id"
     >
       <div
@@ -96,8 +96,9 @@ export default defineComponent({
         <div class="flex-row-center" @click.stop style="gap: 0.5rem">
           <icon-component
             icon-name="trash"
-            icon-size="14px"
+            icon-size="18px"
             class="icon-area-2"
+            :color="colorUtilities.$errorColor"
             :title="$t('buttons.delete')"
             @click="useAssistant().deleteKeyById(item.id)"
           />
@@ -107,7 +108,7 @@ export default defineComponent({
             @click="useAssistant().saveKeyById(item.id, !item.save)"
             :title="$t('buttons.pin')"
             icon-name="thumbtack"
-            icon-size="14px"
+            icon-size="18px"
           />
         </div>
       </div>
@@ -134,7 +135,8 @@ export default defineComponent({
         <div class="flex-row-center" @click.stop style="gap: 0.5rem">
           <icon-component
             icon-name="trash"
-            icon-size="14px"
+            icon-size="18px"
+            :color="colorUtilities.$errorColor"
             class="icon-area-2"
             @click="useAssistant().deleteHistoryByConversationId(item.c_id)"
             :title="$t('buttons.delete')"
@@ -147,7 +149,7 @@ export default defineComponent({
             "
             :title="!item.save ? $t('buttons.add_to_favorites') : $t('buttons.remove_from_favorites')"
             icon-name="star"
-            icon-size="14px"
+            icon-size="18px"
           />
         </div>
       </div>
@@ -163,7 +165,7 @@ export default defineComponent({
 <style lang="scss" scoped>
 section#sidebar_history-area {
   height: 90%;
-  font-size: 0.75rem;
+  font-size: .9rem;
   width: 100%;
   user-select: none;
   .icon-area {
