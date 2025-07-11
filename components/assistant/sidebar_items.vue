@@ -93,8 +93,9 @@ export default defineComponent({
             capitalizeFirstLetter(revertEscapeSequences(item.label)) || $t(`assistants.${item.key_name}.label`)
           }}
         </span>
-        <div v-show="index !== 0" class="flex-row-center btns-area" @click.stop>
+        <div class="flex-row-center btns-area" @click.stop>
           <icon-component
+            v-show="index !== 0" 
             icon-name="trash"
             icon-size="16px"
             class="icon-area-2"
@@ -132,8 +133,9 @@ export default defineComponent({
           {{ getSidebarNestItem(item) }}
         </span>
         <i v-else style="opacity: 0.5;"> {{ $t("no_message") }}</i>
-        <div v-show="index !== 0" class="flex-row-center btns-area" @click.stop>
+        <div class="flex-row-center btns-area" @click.stop>
           <icon-component
+            v-show="index !== 0" 
             icon-name="trash"
             icon-size="16px"
             :color="colorUtilities.$errorColor"

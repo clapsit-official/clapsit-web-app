@@ -1,6 +1,6 @@
 <script lang="ts">
 import {$availableRoutes} from "~/configs/routes.config";
-import colorUtilities from '~/constants/colorUtilities';
+import colors from '~/constants/colorUtilities';
 
 export default defineComponent({
     name: "ForgotPasswordForm",
@@ -8,7 +8,6 @@ export default defineComponent({
         const { getBrandName } = useCoreAppStore();
         return {
             getBrandName,
-            colorUtilities,
             availableRoutes: $availableRoutes,
             store: useUser(),
             $t: useI18nStore().i18n.global.t
@@ -34,6 +33,10 @@ export default defineComponent({
                 return this.newPassword !== this.confirmPassword;
             }
             return true;
+        },
+        colorUtilities(){
+            const colorMode = useColorMode().value;
+            return colors(colorMode)
         }
     },
     methods: {

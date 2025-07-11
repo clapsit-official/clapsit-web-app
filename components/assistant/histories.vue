@@ -156,7 +156,7 @@ export default defineComponent({
       flex-direction: column;
       gap: 0.1rem;
       border-radius: .7rem;
-      background-color: colors.$surfaceColor2;
+      background-color: colors.$surfaceColor;
       padding: 2rem 2rem 1rem 2rem;
       .header {
         display: flex;

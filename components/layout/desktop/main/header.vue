@@ -67,7 +67,7 @@ header#main-header {
                 user-select: none;
                 padding: calc($beta-size / 2) calc($beta-size / 1.2);
                 font-size: $beta-size;
-                background-color: colors.$surfaceColor2;
+                background-color: colors.$surfaceColor;
                 border-radius: .35rem;
                 color: colors.$textPrimary;
             }

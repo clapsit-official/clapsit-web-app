@@ -297,7 +297,7 @@ $input-gap-value: 0.5rem;
     height: 100%;
     overflow: hidden;
     width: 100%;
-    background: colors.$surfaceColor2;
+    background: colors.$surfaceColor;
 
     & > div {
       height: $input-component-height;

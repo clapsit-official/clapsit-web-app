@@ -25,6 +25,7 @@
 
 <script>
 import loadingGIF from "~/assets/gifs/loading2.gif";
+import { $availableRoutes } from "~/configs/routes.config";
 
 export default defineComponent({
   name: "LoadingScreen",
@@ -46,7 +47,7 @@ export default defineComponent({
   },
   mounted() {
     const count = this.getRandomBetween(1, 9);
-    if (useRoute().path !== "/") {
+    if (useRoute().path === $availableRoutes.json_generator) {
       const interval = setInterval(() => {
         if (this.progress + count < 100) {
           this.progress += count;

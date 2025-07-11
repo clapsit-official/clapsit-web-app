@@ -7,7 +7,7 @@ $blackColor: var(--fgColor-black);
 // Background Colors
 $backgroundColor: var(--bgColor-default);
 $surfaceColor: var(--bgColor-inset);
-$surfaceColor2: var(--bgColor-muted);
+$surfaceColor2: var(--bgColor-disabled);
 
 // Text Colors
 $textPrimary: var(--fgColor-default);
@@ -33,7 +33,7 @@ $dividerColor: var(--borderColor-default);
     rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
 }
 @mixin box-shadow-2() {
-  box-shadow: rgba(60, 64, 67, 0.15) 0px 1px 2px 0px,
+  box-shadow: rgba(60, 64, 67, 0.02) 0px 1px 2px 0px,
     rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
 }
 @mixin box-shadow-3() {
