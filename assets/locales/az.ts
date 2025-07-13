@@ -47,6 +47,7 @@ locales = {
     "your_apis": "Yaradılmış API-lər",
     "collections": "Kolleksiyalar",
     "history": "Tarixçə",
+    "theme": "Rəng modu",
     "buttons": {
         "search": "Axtar",
         "filter": "Filtr",
@@ -65,7 +66,7 @@ locales = {
         "add_to_favorites": "Sevimlilərə əlavə et",
         "remove_from_favorites": "Sevimlilərdən sil",
         "create_new": "Yenisini yarat",
-        "learn_how": "Necə edəcəyini öyrən"
+        "learn_how": "Öyrən"
     },
     "backend_messages": {
         "DONE": "Uğurla tamamlandı.",

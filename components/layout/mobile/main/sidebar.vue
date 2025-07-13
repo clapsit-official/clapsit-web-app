@@ -63,6 +63,20 @@ export default defineComponent({
     >
       <AssistantSidebarItems />
     </div>
+    <div class="btns-area">
+      <button class="flex-row-center monochrome" @click="() => useModal().provide('settings')">
+        <div>
+          <icon-component icon-name="adjustment" icon-size="20px" :color="colorUtilities.$backgroundColor" />
+        </div>
+        <Text locale="settings" />
+      </button>
+      <button class="flex-row-center danger" @click="() => useModal().provide('logout')">
+        <div>
+          <icon-component icon-name="logout" icon-size="20px" :color="colorUtilities.$textPrimary" />
+        </div>
+        <Text locale="buttons.logout" />
+      </button>
+    </div>
   </div>
 </template>
 <style lang="scss" scoped>
@@ -135,6 +149,15 @@ export default defineComponent({
     width: 3rem;
     height: 3rem;
     font-size: 1.4rem;
+  }
+  .btns-area {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    button {
+      gap: 5px;
+      font-weight: bolder !important;
+    }
   }
 }
 </style>

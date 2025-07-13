@@ -154,10 +154,11 @@ export default {
 }
 .mobile-app-container > #get-started-page {
     width: 100vw;
+    height: 70dvh;
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin: 3rem 0 15rem 0;
+    justify-content: center;
     #logo-area-mobile {
         margin: 3rem 0;
         img {

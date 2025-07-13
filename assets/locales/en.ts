@@ -47,6 +47,7 @@ locales = {
     your_apis: "Created API's",
     collections: "Collections",
     history: "History",
+    theme: "Theme",
     buttons: {
         search: "Search",
         filter: "Filter",

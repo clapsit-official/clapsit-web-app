@@ -8,12 +8,12 @@
 }
 
 html {
-  background-color: var(--bgColor-default);
+  background-color: colors.$backgroundColor;
   font-size: responsive.$desktop-font-size;
 }
 
 body {
-  background-color: var(--bgColor-default);
+  background-color: colors.$backgroundColor;
   color: colors.$textPrimary;
 }
 
