@@ -236,31 +236,6 @@ locales = {
             "input_info": "TypeScript",
             "output_info": "JSON",
             "example_message": "Salam Clapsit! Yuxarıda təyin etdiyim məlumat strukturu əsasında mənim üçün JSON generasiya edə bilərsənmi?",
-            "example_result": `/** 
-
-Salam! JSON məlumatlarının strukturunu təyin edək
-- Şərhlər əlavə edə bilərsiniz, AI onları başa düşərək 
-  JSON məlumatlarını müvafiq şəkildə generasiya edəcək!
-
-*/
-
-
-// Struktur üçün təkmilləşdirilmiş TypeScript nümunəsi:
-type FakeUserListItem = {
-    username: string; // Real kimi davran.
-    bio: string; // İstifadəçi haqqında (maksimum 150 simvol).
-    birthdate: string; // "mm-dd-yyyy" formatı lazımdır
-    email: string;
-    hobbies: string[];
-};
-
-/** 
-*   "result" dəyişənini silməyin!
-*   Bu sabit dəyişən son JSON məlumat strukturunu saxlayır 
-*/
-const result = {
-    users: [] as FakeUserListItem[] // 3 istifadəçi generasiya et
-};`
         }
     }
 }

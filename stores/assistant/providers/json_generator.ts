@@ -1,3 +1,4 @@
+import { resultsByLocale } from "~/constants/json_generator";
 import { _AIMJSONGenerator, _AIMStart } from "~/services/assistants.service";
 import type { UserAssistantHistoryItem } from "~/types/assistants.types";
 import type { JSONGeneratorStateModelType } from "~/types/json_generator.types";
@@ -22,6 +23,7 @@ const model: JSONGeneratorStateModelType = {
         },
     }
 }
+
 
 
 export const useJSONGenerator = defineStore('json_generator', {
@@ -80,7 +82,11 @@ export const useJSONGenerator = defineStore('json_generator', {
         },
         resetInputProgress() {
             this.progress.input.message = useI18nStore().i18n.global.t('assistants.json_generator.example_message');
-            this.progress.input.result = useI18nStore().i18n.global.t('assistants.json_generator.example_result');
+            const lang = window.localStorage.getItem('lang');
+            if(lang && lang !== 'null' && lang !== 'undefined' && lang !== '') {
+                // @ts-ignore
+                this.progress.input.result = resultsByLocale[lang] || '';
+            }
         },
         resetOutputProgress() {
             this.progress.output.message = deepCopy(model.progress.output.message);
@@ -95,9 +101,7 @@ export const useJSONGenerator = defineStore('json_generator', {
         },
         resetToStart() {
             this.resetAll();
-            this.progress.input.result = 
-`const result = {};`
-
+            this.progress.input.result = `const result = {};`
         },
         resetAll() {
             this.resetInputProgress();
