@@ -32,12 +32,12 @@ export default defineComponent({
         <Logo :class="{ 'visible-logo-2': !fold, 'hidden-logo-2': fold }" :type="1" size="150px" />
       </section>
       <section
-        :class="{ visible: !fold, hidden: fold }"
+        :class="{ 'visible': !fold, 'hidden': fold }"
         id="sidebar_main-tools"
         class="flex-row-between-center"
       >
         <div
-          :class="{ visible: !fold, hidden: fold }"
+          :class="{ 'visible': !fold, 'hidden': fold }"
           v-if="useRoute().path !== availableRoutes.home"
           id="fold-sidebar"
           class="flex-row-center"
@@ -53,7 +53,7 @@ export default defineComponent({
           <div class="recently" v-if="!fold"><Text locale="history" />:</div>
         </div>
         <div
-          :class="{ visible: !fold, hidden: fold }"
+          :class="{ 'visible': !fold, 'hidden': fold }"
           v-else
           id="fold-sidebar"
           class="flex-row-center"
@@ -72,7 +72,7 @@ export default defineComponent({
           </div>
         </div>
         <div
-          :class="{ visible: !fold, hidden: fold }"
+          :class="{ 'visible': !fold, 'hidden': fold }"
           id="right_side-items"
           class="flex-row-between-center"
         >
@@ -87,7 +87,7 @@ export default defineComponent({
         </div>
       </section>
       <section
-        :class="{ visible: fold, hidden: !fold }"
+        :class="{ 'visible': fold, 'hidden': !fold }"
         class="flex-column-justify-start"
       >
         <button class="ghost" @click="() => $emit('foldAction')">
@@ -97,15 +97,15 @@ export default defineComponent({
           />
         </button>
       </section>
-      <AssistantSidebarItems :class="{ visible: !fold, hidden: fold }" />
+      <AssistantSidebarItems :class="{ 'visible': !fold, 'hidden': fold }" />
     </div>
     <section id="sidebar_others">
-      <div class="sidebar_others-item hover-effect">
+      <button class="sidebar_others-item ghost" @click="() => useModal().provide('settings')">
         <div>
           <icon-component icon-name="adjustment" icon-size="20px" />
         </div>
-        <Text :class="{ visible: !fold, hidden: fold }" locale="settings" />
-      </div>
+        <Text :class="{ 'visible': !fold, 'hidden': fold }" locale="settings" />
+      </button>
     </section>
   </div>
 </template>
@@ -172,7 +172,6 @@ export default defineComponent({
     top: -.1rem;
     opacity: 0;
   }
-
   .visible-logo-2{
     transition-duration: $movement-time;
     opacity: 1;

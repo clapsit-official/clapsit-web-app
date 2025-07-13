@@ -16,6 +16,7 @@ const colorMode = useColorMode();
         :data-color-mode="colorMode.value"
         :data-dark-theme="colorMode.value === 'dark' ? 'dark_colorblind' : ''"
         :data-light-theme="colorMode.value === 'light' ? 'light_colorblind' : ''"
+        :key="colorMode.value"
         id="main_layout-area" class="default-width default-height">
         <layout-desktop-main v-if="deviceType === 'desktop'">
             <slot/>

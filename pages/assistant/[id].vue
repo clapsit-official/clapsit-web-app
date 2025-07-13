@@ -1,7 +1,6 @@
 <script lang="ts">
 import type { AvailableAssistants } from "~/types/assistants.types";
 import json_generator from "~/components/assistant/json_generator.vue";
-import ai_translator from "~/components/assistant/ai_translator.vue";
 import { $availableRoutes } from "~/configs/routes.config";
 
 export default {
@@ -38,7 +37,6 @@ export default {
     assistantComponents(): { [key in AvailableAssistants]: any } {
       return {
         json_generator,
-        ai_translator,
       };
     },
     currentComponent() {

@@ -25,7 +25,7 @@ export default {
     systemHealth: () => useCoreAppStore().health,
     deviceType: () => useCoreAppStore().getDeviceType,
     isLoading() {
-      return useQueryManager().loadingList.includes('health');
+      return useQueryManager().loadingList.includes('health') || useQueryManager().loadingList.includes('auth');
     },
     readyForView() {
       return this.systemHealth;

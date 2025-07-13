@@ -1,6 +1,5 @@
 import type { AvailableAssistants, UserAssistantKeyItem, UserAssistantHistoryItem } from "~/types/assistants.types";
 import { useJSONGenerator } from "./providers/json_generator";
-import { useAITranslator } from "./providers/ai_translator";
 import { _AIMKeyHistory, _AIMUserKeys } from "~/services/assistants.service";
 import { $availableRoutes } from "~/configs/routes.config";
 
@@ -17,7 +16,6 @@ export const useAssistant = defineStore('assistant', {
         getProvider(): { [key in AvailableAssistants]: any } {
             return {
                 json_generator: () => useJSONGenerator(),
-                ai_translator: () => useAITranslator()
             }
         },
         getUserAssistantKeys(state): UserAssistantKeyItem[] {
@@ -143,9 +141,6 @@ export const useAssistant = defineStore('assistant', {
                         return reDesign;
                     });
                     this.data.history = histories.filter(item => {
-                        if(item.key_name === 'ai_translator'){
-                            return !!item.output.result
-                        } 
                         return true
                     });
                 }

@@ -1,13 +1,11 @@
 import {createI18n, useI18n} from 'vue-i18n';
-import type {AvailableLocalItem, AvailableLocals, LangOptionsType} from "~/constants/types/LocalesType";
+import type {AvailableLocalItem, LangOptionsType} from "~/constants/types/LocalesType";
 import {availableLocales} from "~/assets/locales/index";
-
-let appLang: LangOptionsType;
+import { _UserService } from '~/services/user.service';
 
 export const useI18nStore = defineStore('i18n', {
     state: () => ({
         //@ts-ignore
-        appLang: 'en-US',
         availableLocales,
     }),
     getters: {
@@ -22,7 +20,7 @@ export const useI18nStore = defineStore('i18n', {
                 legacy: false,
                 globalInjection: true,
                 // @ts-ignore
-                locale: state.appLang || useAppConfig().defaultAppLang,
+                locale: window?.localStorage?.getItem('lang') || useAppConfig().defaultAppLang,
                 messages,
             });
         },
@@ -33,8 +31,15 @@ export const useI18nStore = defineStore('i18n', {
                     value: item.iso,
                 }
             })
-        }
+        },
     },
     actions: {
+        async setAppLang(value: LangOptionsType){
+            window.localStorage.setItem('lang', value);
+            if(useUser().getUserId){
+                await _UserService.preferred_lang.patch(useUser().getUserId!, {lang: value})
+            }
+            window.location.reload();
+        }
     }
 });

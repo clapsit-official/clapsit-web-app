@@ -64,6 +64,8 @@ locales = {
         pin: "Pin",
         add_to_favorites: "Add to favorites",
         remove_from_favorites: "Remove from favorites",
+        create_new: "Create new",
+        learn_how: "Learn how"
     },
     backend_messages: {
         DONE: "Completed successfully.",
@@ -130,7 +132,10 @@ locales = {
         home: {
             title: "Home",
             description: "Welcome to Clapsit, your go-to platform for creating APIs and generating JSON data effortlessly.",
-            keywords: "Clapsit, JSON API generator, front-end development, dummy data, developer tools"
+            keywords: "Clapsit, JSON API generator, front-end development, dummy data, developer tools",
+            utilities: {
+                main_search_placeholder: "Lets start to build amazing APIs",
+            }
         },
         getstarted: {
             title: "Get started",
@@ -229,19 +234,33 @@ locales = {
             fetching: "Fetching...",
             input_info: "TypeScript",
             output_info: "JSON",
+            example_message: "Hello Clapsit! Based on the data structure I defined earlier, could you please generate a JSON for me?",
+            example_result: `/** 
+
+Hey there! Let's define the structure of the JSON data we need
+- You can add comments, and the AI will understand them 
+  to generate the JSON data accordingly!
+
+*/
+
+
+// Here is the improved TypeScript example for you:
+type FakeUserListItem = {
+    username: string; // Act like real.
+    bio: string; // About the user (max 150 characters).
+    birthdate: string; // I need "mm-dd-yyyy" format
+    email: string;
+    hobbies: string[];
+};
+
+/** 
+*   Don't remove "result" variable!
+*   This constant holds the final JSON data structure 
+*/
+const result = {
+    users: [] as FakeUserListItem[] // Generate 3 users
+};`
         },
-        ai_translator: {
-            label: "AI Translator",
-            slogan: "Break language barriers with Clapsit’s AI-Powered Translator",
-            description: "Discover the Future of Communication with Clapsit’s AI-Powered Translator! Unlock Instant, Precise Translations Across 100+ Languages Using Cutting-Edge Artificial Intelligence!",
-            from_lang: "From",
-            to_lang: "Target",
-            from_lang_placeholder: "Add your text here to translate",
-            to_lang_placeholder: "Waiting to translate...",
-            loading: "Translating...",
-            input_info: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum",
-            output_info: "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.",
-        }
     }
 };
 

@@ -96,12 +96,12 @@ export default defineComponent({
       <AssistantSidebarItems :class="{ 'visible': !fold, 'hidden': fold }" />
     </div>
     <section id="sidebar_others">
-      <div class="sidebar_others-item hover-effect">
+      <button class="sidebar_others-item ghost" @click="() => useModal().provide('settings')">
         <div>
           <icon-component icon-name="adjustment" icon-size="20px" />
         </div>
         <Text :class="{ 'visible': !fold, 'hidden': fold }" locale="settings" />
-      </div>
+      </button>
     </section>
   </div>
 </template>
@@ -147,7 +147,6 @@ export default defineComponent({
     opacity: 0 !important;
     padding: 0 !important;
     margin: 0 !important;
-    height: 0 !important;
     pointer-events: none;
     filter: blur(4px);
   }
@@ -163,7 +162,6 @@ export default defineComponent({
     top: -.1rem;
     opacity: 0;
   }
-
   .visible-logo-2{
     transition-duration: $movement-time;
     opacity: 1;
