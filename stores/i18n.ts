@@ -35,6 +35,9 @@ export const useI18nStore = defineStore('i18n', {
     },
     actions: {
         async setAppLang(value: LangOptionsType){
+            if(!value) {
+                value = availableLocales[1].iso;
+            }
             window.localStorage.setItem('lang', value);
             if(useUser().getUserId){
                 await _UserService.preferred_lang.patch(useUser().getUserId!, {lang: value})
