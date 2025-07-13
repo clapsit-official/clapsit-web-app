@@ -74,7 +74,7 @@ locales = {
         EMAIL_SUCCESSFULLY_CONFIRMED: "Email has been successfully confirmed.",
         EMAIL_IS_NOT_VALID: "The provided email is not valid.",
         INVALID_EMAIL: "Invalid email format.",
-        INVALID_PASSWORD: "Invalid password format.",
+        INVALID_PASSWORD: "Please use a strong password including symbols, numbers, lowercase, and uppercase letters for better security.",
         INVALID_FULLNAME: "Invalid full name format.",
         INVALID_BIRTHDAY: "Invalid birthday format.",
         INVALID_TOKEN: "Invalid or expired token.",

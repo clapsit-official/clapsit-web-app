@@ -278,9 +278,10 @@ export default defineComponent({
       $default_border_radius: 0.6rem;
       .headline-area {
         background-color: colors.$surfaceColor;
-        padding: 0.5rem 1.5rem;
+        padding: .6rem .9rem;
         border-radius: $default_border_radius;
-        min-height: 5%;
+        min-height: 3%;
+
       }
       #input-message {
         $padding-textarea: 1.6rem;

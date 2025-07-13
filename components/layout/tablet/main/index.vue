@@ -108,7 +108,7 @@ $gap-header-main: 1.3rem;
 }
 
 #main_layout-tablet.partial {
-    $sidebar-width: 40dvw;
+    $sidebar-width: 30dvw;
 
     :deep(#sidebar) {
         width: calc($sidebar-width - ($default-padding * 2));

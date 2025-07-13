@@ -27,11 +27,9 @@ export default defineComponent({
 <template>
   <div id="sidebar">
     <div>
-      <section v-if="fold" id="sidebar_logo-area" class="flex-row-between-center">
-        <Logo :type="3" size="35px" />
-      </section>
-      <section v-else id="sidebar_logo-area" class="flex-row-between-center">
-        <Logo :type="1" size="150px" />
+      <section id="sidebar_logo-area" :class="{ 'flex-row-between-center': fold, 'flex-row-reverse-between-center': !fold }">
+        <Logo :class="{ 'visible-logo': fold, 'hidden-logo': !fold }" :type="3" size="35px" />
+        <Logo :class="{ 'visible-logo-2': !fold, 'hidden-logo-2': fold }" :type="1" size="150px" />
       </section>
       <section
         :class="{ 'visible': !fold, 'hidden': fold }"
@@ -60,6 +58,7 @@ export default defineComponent({
           style="gap: 0.2rem">
           <div>
             <icon-component
+              fill
               icon-name="folder_open"
               icon-size="1rem"
               :color="colorUtilities.$textPrimary"
@@ -108,6 +107,7 @@ export default defineComponent({
 </template>
 <style lang="scss" scoped>
 #sidebar {
+  $movement-time: .3s;
   border-right: 1px solid colors.$dividerColor;
   section#sidebar_main-tools {
     #right_side-items {
@@ -136,7 +136,6 @@ export default defineComponent({
       gap: 0.5rem;
     }
   }
-  $movement-time: .3s;
   .visible {
     transition-duration: $movement-time;
     transition-timing-function: linear;
@@ -151,6 +150,32 @@ export default defineComponent({
     height: 0 !important;
     pointer-events: none;
     filter: blur(4px);
+  }
+  .visible-logo{
+    transition-duration: $movement-time;
+    opacity: 1;
+    margin: 0 !important;
+  }
+  .hidden-logo{
+    transition-duration: $movement-time;
+    position: relative;
+    left: -16.6rem;
+    top: -.1rem;
+    opacity: 0;
+  }
+
+  .visible-logo-2{
+    transition-duration: $movement-time;
+    opacity: 1;
+
+  }
+  .hidden-logo-2{
+    transition-duration: $movement-time;
+    opacity: 0;
+    position: fixed;
+    left: -3rem;
+    top: -3rem;
+    margin: 0 !important;
   }
 }
 </style>
