@@ -220,6 +220,12 @@ button {
   justify-content: space-between;
   align-items: center;
 }
+.flex-row-reverse-between-center {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+  align-items: center;
+}
 .flex-column-center {
   display: flex;
   flex-direction: column;
@@ -241,6 +247,12 @@ button {
 .flex-row-start-center {
   display: flex;
   flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+}
+.flex-row-reverse-start-center {
+  display: flex;
+  flex-direction: row-reverse;
   justify-content: flex-start;
   align-items: center;
 }

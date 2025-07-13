@@ -156,10 +156,12 @@ export default defineComponent({
         </div>
       </div>
     </div>
-    <div v-if="currentRoute === 'home' && !userAssistantKeys.length">
+    <div v-if="currentRoute === 'home' && !userAssistantKeys.length" style="cursor: auto;">
+      <br>
       <Text locale="there_is_no_item_yet"/>
     </div>
-    <div v-if="currentRoute !== 'home' && !userAssistantKeyHistory.length">
+    <div v-if="currentRoute !== 'home' && !userAssistantKeyHistory.length" style="cursor: auto;">
+      <br>
       <Text locale="there_is_no_item_yet"/>
     </div>
   </section>

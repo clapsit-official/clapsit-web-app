@@ -110,7 +110,7 @@ $gap-header-main: 1.8rem;
 }
 
 #main_layout-desktop.partial {
-    $sidebar-width: 21dvw;
+    $sidebar-width: 20dvw;
     :deep(#sidebar) {
         width: calc($sidebar-width - ($default-padding * 2));
         max-width: 300px;
