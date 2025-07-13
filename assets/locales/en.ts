@@ -236,31 +236,6 @@ locales = {
             input_info: "TypeScript",
             output_info: "JSON",
             example_message: "Hello Clapsit! Based on the data structure I defined earlier, could you please generate a JSON for me?",
-            example_result: `/** 
-
-Hey there! Let's define the structure of the JSON data we need
-- You can add comments, and the AI will understand them 
-  to generate the JSON data accordingly!
-
-*/
-
-
-// Here is the improved TypeScript example for you:
-type FakeUserListItem = {
-    username: string; // Act like real.
-    bio: string; // About the user (max 150 characters).
-    birthdate: string; // I need "mm-dd-yyyy" format
-    email: string;
-    hobbies: string[];
-};
-
-/** 
-*   Don't remove "result" variable!
-*   This constant holds the final JSON data structure 
-*/
-const result = {
-    users: [] as FakeUserListItem[] // Generate 3 users
-};`
         },
     }
 };
