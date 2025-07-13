@@ -12,7 +12,6 @@ export const $availableRoutes = {
     reset_password: '/reset_password',
     assistant: '/assistant',
     json_generator: '/assistant/json_generator',
-    ai_translator: '/assistant/ai_translator',
 }
 
 export const routeConfigs: RouteConfigsType = {
@@ -93,16 +92,6 @@ routeConfigs[$availableRoutes.json_generator] = {
         await updateAssistantHistory(to, from);
     }
 }
-
-routeConfigs[$availableRoutes.ai_translator] = {
-    key: 'ai_translator',
-    layout: 'main',
-    auth_required: true,
-    async middleware(to, from) {
-        await updateAssistantHistory(to, from);
-    }
-}
-
 
 async function updateAssistantHistory(to: any, from: any) {
     await useAssistant().updateUserAssistantKeys();

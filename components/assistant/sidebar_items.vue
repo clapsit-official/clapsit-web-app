@@ -55,9 +55,6 @@ export default defineComponent({
       let itemTitle: string | undefined;
       if (this.currentRoute === "json_generator") {
         itemTitle = item.input.message;
-      } else if (this.currentRoute === "ai_translator") {
-        if (item.input.data && item.output.result) itemTitle = item.output.result.output.result;
-        else itemTitle = undefined;
       } else {
         itemTitle = this.$t("no_message");
       }

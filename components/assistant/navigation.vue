@@ -38,7 +38,7 @@ export default defineComponent({
     <form id="search-nav-area">
       <custom-input
         left-icon="rocket"
-        :placeholder="$t('Lets start to build amazing APIs')"
+        :placeholder="$t('pages.home.utilities.main_search_placeholder')"
         type="search"
       />
     </form>
@@ -50,7 +50,7 @@ export default defineComponent({
             :color="colorUtilities.$backgroundColor"
           />
         </div>
-        <Text locale="Create new" />
+        <Text locale="buttons.create_new" />
       </button>
       <button class="monochrome-invers flex-row-center">
         <div class="icon-area">
@@ -59,7 +59,7 @@ export default defineComponent({
             :color="colorUtilities.$textPrimary"
           />
         </div>
-        <Text locale="Learn how" />
+        <Text locale="buttons.learn_how" />
       </button>
     </div>
     <div id="options-area">

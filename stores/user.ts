@@ -35,6 +35,9 @@ export const useUser = defineStore('user', {
     actions: {
         setUserData(data: UserDataType) {
             this.data = {...data};
+            if(this.data.details.preferred_lang && this.data.details.preferred_lang !== window.localStorage.getItem('lang')){
+                useI18nStore().setAppLang(this.data.details.preferred_lang);
+            }
         },
         async registerQuery(register: RegisterFieldsType) {
             return await _UserService.signup.post(register);

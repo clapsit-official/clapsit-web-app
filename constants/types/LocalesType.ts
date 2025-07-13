@@ -1,6 +1,6 @@
 import type { AvailableAssistants } from "~/types/assistants.types";
 
-type LocaleType = string | number;
+type LocaleType = string;
 export type BackendMessageKeys =
 'DONE' |
 'SOMETHING_WENT_WRONG' |
@@ -74,6 +74,8 @@ export interface Buttons {
     pin: LocaleType;
     add_to_favorites: LocaleType;
     remove_from_favorites: LocaleType;
+    create_new: LocaleType;
+    learn_how: LocaleType;
 }
 
 export interface LanguageContent {

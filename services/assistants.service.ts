@@ -1,7 +1,6 @@
 import type { GetAssistantHistoryByIdParamsType, GetUserAssistantKeysParamsType, StartAssistantParamsType } from "~/types/assistants.types";
 import type { ServerResponseType } from "~/types/general.types";
 import type { JSONGeneratorPayloadType } from "~/types/json_generator.types";
-import type { AITranslatorPayloadType } from "~/types/ai_translator.types";
 
 
 export const _AIMStart = {
@@ -48,11 +47,5 @@ export const _AIMJSONGenerator = {
     },
     async post(data: JSONGeneratorPayloadType, cKey: string): Promise<ServerResponseType> {
         return await defineService('json_generator', () => $post(`/aim/json_generator/${cKey}`, {data}));
-    }
-}
-
-export const _AIMAITranslator = {
-    async post(data: AITranslatorPayloadType, cKey: string): Promise<ServerResponseType> {
-        return await defineService('ai_translator', () => $post(`/aim/ai_translator/${cKey}`, {data}));
     }
 }

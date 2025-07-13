@@ -35,9 +35,6 @@ export default defineComponent({
                 case 'json_generator':
                     useModal().provide('json_generator');
                     break;
-                case 'ai_translator':
-                    useModal().provide('ai_translator');
-                    break;
             }
         }
     }
