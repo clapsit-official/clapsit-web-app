@@ -129,6 +129,7 @@ export interface LanguageContent {
     your_apis: LocaleType;
     collections: LocaleType;
     history: LocaleType;
+    theme: LocaleType;
 }
 
 export type LangOptionsType = 'az-AZ' | 'en-US' | 'ru-RU';

@@ -46,6 +46,7 @@ locales = {
     "your_apis": "Созданные API",
     "collections": "Коллекции",
     "history": "История",
+    "theme": "Тема",
     "buttons": {
         "search": "Поиск",
         "filter": "Фильтр",

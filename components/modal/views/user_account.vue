@@ -30,7 +30,12 @@ export default defineComponent({
 <template>
   <div id="user_account-component">
     <section class="user_account-field">
-      <strong class="header"> <Text locale="pages.register.utilities.fullname_field"/>: </strong>
+      <strong class="header flex-row-center">
+        <div class="icon-area">
+          <icon-component icon-name="person" fill/>
+        </div>
+         <Text locale="pages.register.utilities.fullname_field"/>: 
+      </strong>
       <div class="content">
         <span>
           {{ getUserDetails.fullname }}
@@ -39,7 +44,12 @@ export default defineComponent({
     </section>
 
     <section class="user_account-field">
-      <strong class="header"> <Text locale="pages.register.utilities.email_field"/>: </strong>
+      <strong class="header flex-row-center" style="gap: 5px"> 
+        <div class="icon-area">
+          <icon-component icon-name="alternate_email" icon-size="20px" fill/>
+        </div>
+        <Text locale="pages.register.utilities.email_field"/>: 
+      </strong>
       <div class="content">
         <span>
           {{ getUserDetails.email }}

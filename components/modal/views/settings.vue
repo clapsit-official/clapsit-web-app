@@ -48,9 +48,9 @@ export default defineComponent({
     <secton class="settings-item" :key="currentTheme.preference">
       <div class="header__settings-item flex-row-start-center">
         <div class="icon-area">
-          <icon-component icon-name="grid" icon-size="19px" />
+          <icon-component icon-name="theme" fill icon-size="19px" />
         </div>
-        <Text locale="Theme" />
+        <Text locale="theme" />
       </div>
       <span class="divider"></span>
       <div class="theme-options__settings-item">
@@ -62,7 +62,7 @@ export default defineComponent({
             selected: currentTheme.preference === item.value,
           }"
         >
-          <icon-component v-if="item.icon" :icon-name="item.icon" hover />
+          <icon-component v-if="item.icon" :fill="currentTheme.preference === item.value" :icon-name="item.icon" hover />
           <span v-if="item.text"> {{ item.text }}</span>
         </button>
       </div>
@@ -72,7 +72,7 @@ export default defineComponent({
         <div class="icon-area">
           <icon-component icon-name="translate" icon-size="19px" />
         </div>
-        <Text locale="Language" /> : {{ currentLang }}
+        <Text locale="lang" /> :
       </div>
       <span class="divider"></span>
       <div class="theme-options__settings-item">
@@ -102,6 +102,7 @@ export default defineComponent({
       display: flex;
       align-items: center;
       justify-content: space-between;
+      padding: 1rem 0;
       .option__theme-options {
         height: 5rem;
         width: 5rem;
@@ -120,6 +121,23 @@ export default defineComponent({
         }
       }
     }
+  }
+}
+.desktop-app-container {
+  #settings_component {
+    min-width: 20rem;
+  }
+}
+
+.tablet-app-container {
+  #settings_component {
+    min-width: 35dvw;
+  }
+}
+
+.mobile-app-container {
+  #settings_component {
+    min-width: 55dvw;
   }
 }
 </style>
