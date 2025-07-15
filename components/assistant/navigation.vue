@@ -20,11 +20,15 @@ export default defineComponent({
       return useQueryManager().loadingList.includes("start_assistant");
     },
   },
+  data() {
+    return {
+      startMessage: null
+    }
+  },
   methods: {
     async start() {
       try {
-        await useJSONGenerator().start();
-        useModal().deprive("json_generator");
+        await useJSONGenerator().start(this.startMessage);
       } catch (error: any) {
         // TODO: Show a popup and inform what is went wrong
       }
@@ -35,8 +39,9 @@ export default defineComponent({
 
 <template>
   <section :id="`main-navigation`" :class="`nav-${deviceType}`">
-    <form id="search-nav-area">
+    <form id="search-nav-area" @submit.prevent="start">
       <custom-input
+        v-model="startMessage"
         left-icon="rocket"
         :placeholder="$t('pages.home.utilities.main_search_placeholder')"
         type="search"

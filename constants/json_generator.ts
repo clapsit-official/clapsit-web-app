@@ -1,4 +1,8 @@
-export const resultsByLocale = {
+import type { LangOptionsType } from "./types/LocalesType"
+
+type DefinationByLanguage = { [key in LangOptionsType]: string }
+
+export const resultsByLocale: DefinationByLanguage = {
     'en-US': `/**
 
 Hey there! Let's define the structure of the JSON data we need
@@ -68,9 +72,39 @@ type FakeUserListItem = {
 
 /** 
 *   "result" dəyişənini silməyin!
-*   Bu sabit dəyişən son JSON məlumat strukturunu saxlayır 
+*   Bu sabit dəyişən JSON məlumat strukturunu saxlayır 
 */
 const result = {
     users: [] as FakeUserListItem[] // 3 istifadəçi generasiya et
 };`
+}
+
+export const resultsForClear = `const result = {};`;
+
+export const resultsWithMessage: DefinationByLanguage = {
+    'az-AZ': `/** 
+* "result" dəyişənini silməyin!
+* Bu sabit dəyişən JSON məlumat strukturunu saxlayır
+* Sizə lazım olan type-lər və şərhlər əlavə edə bilərsiniz, 
+* AI JSON məlumatlarını onlara müvafiq şəkildə generasiya edəcək 
+*/
+const result = {};`,
+
+    'en-US': `/** 
+* Don't remove "result" variable!
+* this constant holds the final JSON data structure 
+* You can add your type defination and comments, and the AI will understand them 
+* to generate the JSON data accordingly!
+* Happy coding ;)
+*/
+const result = {};`,
+
+    'ru-RU': `/** 
+* Не удаляйте переменную "result"!
+* Эта константа содержит окончательную структуру данных JSON.
+* Вы можете добавить определение типа и комментарии, и ИИ их распознает.
+* для генерации соответствующих данных JSON!
+* Удачного кодирования ;)
+*/
+const result = {};`,
 }

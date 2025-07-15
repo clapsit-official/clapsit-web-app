@@ -1,4 +1,4 @@
-import { resultsByLocale } from "~/constants/json_generator";
+import { resultsByLocale, resultsForClear } from "~/constants/json_generator";
 import { _AIMJSONGenerator, _AIMStart } from "~/services/assistants.service";
 import type { UserAssistantHistoryItem } from "~/types/assistants.types";
 import type { JSONGeneratorStateModelType } from "~/types/json_generator.types";
@@ -30,16 +30,19 @@ export const useJSONGenerator = defineStore('json_generator', {
     state: () => (deepCopy(model) as JSONGeneratorStateModelType),
     getters: {},
     actions: {
-        async start() {
+        async start(message: string | null) {
             try {
                 const response = await _AIMStart.get({
                     user_id: useUser().getUserId,
                     key_name: this.environments.key_name,
                 });
+                if (message) {
+                    window.localStorage.setItem('ai_message', message);
+                }
                 if (response.success && response?.data?.result?.conversation_key) {
                     await useAssistant().updateUserAssistantKeys();
                     this.environments.c_key = response?.data?.result?.conversation_key;
-                    
+
                     if (this.environments.c_key) {
                         await useAssistant().goToAssistantItem(this.environments.key_name, this.environments.c_key);
                     }
@@ -81,12 +84,8 @@ export const useJSONGenerator = defineStore('json_generator', {
             this.progress.output.result = str;
         },
         resetInputProgress() {
-            this.progress.input.message = useI18nStore().i18n.global.t('assistants.json_generator.example_message');
-            const lang = window.localStorage.getItem('lang');
-            if(lang && lang !== 'null' && lang !== 'undefined' && lang !== '') {
-                // @ts-ignore
-                this.progress.input.result = resultsByLocale[lang] || '';
-            }
+            // this.progress.input.message = '';
+            // this.progress.input.result = resultsForClear
         },
         resetOutputProgress() {
             this.progress.output.message = deepCopy(model.progress.output.message);
@@ -101,7 +100,7 @@ export const useJSONGenerator = defineStore('json_generator', {
         },
         resetToStart() {
             this.resetAll();
-            this.progress.input.result = `const result = {};`
+            this.progress.input.result = resultsForClear;
         },
         resetAll() {
             this.resetInputProgress();
@@ -112,20 +111,20 @@ export const useJSONGenerator = defineStore('json_generator', {
         },
         setAssistantHistory(item: UserAssistantHistoryItem) {
             const apiIntro = 'API: '
-            if(item.input.message && item.input.message.startsWith(apiIntro)) {
+            if (item.input.message && item.input.message.startsWith(apiIntro)) {
                 this.progress.input.message = deepCopy(item.input.message.split(apiIntro)[1])
             } else {
                 this.progress.input.message = item.input.message;
             }
             this.progress.output.message = item.output.message;
             this.progress.output.success = item.output.success;
-            if(typeof item.input.result === 'object') {
+            if (typeof item.input.result === 'object') {
                 this.progress.input.result = JSON.stringify(item.input.result, null, 4);
             } else {
                 this.progress.input.result = `${item.input.result}`;
             }
-           
-            if(typeof item.output.result === 'object') {
+
+            if (typeof item.output.result === 'object') {
                 this.progress.output.result = JSON.stringify(item.output.result, null, 4);
             } else {
                 this.progress.output.result = `${item.output.result}`;
