@@ -236,6 +236,18 @@ locales = {
             input_info: "TypeScript",
             output_info: "JSON",
             example_message: "Hello Clapsit! Based on the data structure I defined earlier, could you please generate a JSON for me?",
+            presets: {
+                how_to_prepare_cappuccino: "How to prepare Cappuccino?",
+                random_country_data: "Random countries data",
+                planets_with_radius: "Planets with radius",
+                random_users_list: "Random users list",
+                interesting_facts: "Interesting facts",
+                learning_new_words: "Learning new words",
+                movie_suggestions: "Movie suggestions",
+                fitness_plan: "Fitness plan",
+                most_streamed_spotify_songs: "Most streamed on Spotify",
+                most_viewed_youtube_videos: "Most viewed on YouTube"
+            }
         },
     }
 };

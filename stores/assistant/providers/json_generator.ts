@@ -30,14 +30,17 @@ export const useJSONGenerator = defineStore('json_generator', {
     state: () => (deepCopy(model) as JSONGeneratorStateModelType),
     getters: {},
     actions: {
-        async start(message: string | null) {
+        async start(data: {message?: string | null, result?: string | null}) {
             try {
                 const response = await _AIMStart.get({
                     user_id: useUser().getUserId,
                     key_name: this.environments.key_name,
                 });
-                if (message) {
-                    window.localStorage.setItem('ai_message', message);
+                if (data.message) {
+                    window.localStorage.setItem('ai_message', data.message);
+                }
+                if (data.result) {
+                    window.localStorage.setItem('ai_result', data.result);
                 }
                 if (response.success && response?.data?.result?.conversation_key) {
                     await useAssistant().updateUserAssistantKeys();

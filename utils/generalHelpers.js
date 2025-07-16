@@ -280,3 +280,24 @@ export const revertEscapeSequences = (str) => {
   }
   return str;
 };
+
+export function shuffleArray(arr) {
+    let array = [...arr]; // Create a copy to avoid modifying the original
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]]; // Swap elements
+    }
+    return array;
+}
+
+export function shuffleAndTake(arr, count) {
+    if (!Number.isInteger(count) || count < 0) return []; // Invalid count
+    if (count === 0) return []; // Return empty array if count is 0
+    if (arr.length < count) return [...arr]; // Return copy of original if count exceeds array length
+    let array = [...arr]; // Create a copy
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]]; // Swap elements
+    }
+    return array.slice(0, count); // Return first 'count' items
+}

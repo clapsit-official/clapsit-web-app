@@ -2,7 +2,7 @@ import type { AvailableAssistants, UserAssistantKeyItem, UserAssistantHistoryIte
 import { useJSONGenerator } from "./providers/json_generator";
 import { _AIMKeyHistory, _AIMUserKeys } from "~/services/assistants.service";
 import { $availableRoutes } from "~/configs/routes.config";
-import { resultsForClear, resultsByLocale, resultsWithMessage } from "~/constants/json_generator";
+import { resultsForClear, resultsByLocale, resultsWithMessage, resultPresets } from "~/constants/json_generator";
 
 export const useAssistant = defineStore('assistant', {
     state: () => ({
@@ -92,8 +92,8 @@ export const useAssistant = defineStore('assistant', {
                     }
                 } else {
                     const messageFromStart = window.localStorage.getItem('ai_message');
+                    const resultFromStart = window.localStorage.getItem('ai_result');
                     const lang = window.localStorage.getItem('lang');
-                    window.localStorage.removeItem('ai_message');
                     if (messageFromStart) {
                         useJSONGenerator().progress.input.message = messageFromStart;
                         if (lang && lang !== 'null' && lang !== 'undefined' && lang !== '') {
@@ -109,6 +109,13 @@ export const useAssistant = defineStore('assistant', {
                             useJSONGenerator().progress.input.result = resultsByLocale[lang] || resultsByLocale["en-US"];
                         } else {
                             useJSONGenerator().progress.input.result = resultsByLocale["en-US"];
+                        }
+                    }
+                    if(resultFromStart) {
+                        const target = resultPresets.find(item => item.key === resultFromStart);
+                        if(target?.result) {
+                            useJSONGenerator().progress.input.result = target.result;
+                            useJSONGenerator().progress.input.message = `${useI18nStore().i18n.global.t('assistants.json_generator.generate')}: ${useI18nStore().i18n.global.t('assistants.json_generator.presets.' + target.key)}`;
                         }
                     }
                 }
