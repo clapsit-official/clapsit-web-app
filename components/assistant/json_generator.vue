@@ -32,9 +32,9 @@ export default defineComponent({
     },
   },
   computed: {
-    colorUtilities(){
+    colorUtilities() {
       const colorMode = useColorMode().value;
-      return colors(colorMode)
+      return colors(colorMode);
     },
     deviceType() {
       return useCoreAppStore().getDeviceType;
@@ -110,8 +110,13 @@ export default defineComponent({
       }, 2000);
     },
   },
-  mounted() {
+  async mounted() {
     window.addEventListener("keydown", this.handleGenerateShortcut);
+    if(window.localStorage.getItem("ai_message") || window.localStorage.getItem("ai_result")) {
+      window.localStorage.removeItem("ai_message");
+      window.localStorage.removeItem("ai_result");
+      await this.generate()
+    }
   },
   unmounted() {
     window.removeEventListener("keydown", this.handleGenerateShortcut);
@@ -278,10 +283,9 @@ export default defineComponent({
       $default_border_radius: 0.6rem;
       .headline-area {
         background-color: colors.$surfaceColor;
-        padding: .6rem .9rem;
+        padding: 0.6rem 0.9rem;
         border-radius: $default_border_radius;
         min-height: 3%;
-
       }
       #input-message {
         $padding-textarea: 1.6rem;

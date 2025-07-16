@@ -235,7 +235,20 @@ locales = {
             "input_info": "TypeScript",
             "output_info": "JSON",
             "example_message": "Привет, Clapsit! На основе структуры данных, которую я определил ранее, не могли бы вы сгенерировать для меня JSON?",
+            "presets": {
+                "how_to_prepare_cappuccino": "Как приготовить капучино?",
+                "random_country_data": "Данные о случайных странах",
+                "planets_with_radius": "Планеты с радиусом",
+                "random_users_list": "Список случайных пользователей",
+                "interesting_facts": "Интересные факты",
+                "learning_new_words": "Изучение новых слов",
+                "movie_suggestions": "Предложения фильмов",
+                "fitness_plan": "Фитнес-план",
+                "most_streamed_spotify_songs": "Самый прослушиваемый на Spotify",
+                "most_viewed_youtube_videos": "Самые просматриваемые на YouTube"
+
+            }
         }
     }
 }
-export default {...locales};
+export default { ...locales };

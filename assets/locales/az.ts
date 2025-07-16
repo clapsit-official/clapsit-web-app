@@ -236,7 +236,19 @@ locales = {
             "input_info": "TypeScript",
             "output_info": "JSON",
             "example_message": "Salam Clapsit! Yuxarıda təyin etdiyim məlumat strukturu əsasında mənim üçün JSON generasiya edə bilərsənmi?",
+            "presets": {
+                "how_to_prepare_cappuccino": "Kapuçino necə hazırlanır?",
+                "random_country_data": "Random ölkələrin məlumatları",
+                "planets_with_radius": "Planetlərin siyahısı",
+                "random_users_list": "Random istifadəçilər siyahısı",
+                "interesting_facts": "Maraqlı faktlar",
+                "learning_new_words": "Yeni sözləri öyrənmək",
+                "movie_suggestions": "Film önəriləri",
+                "fitness_plan": "Fitnes plan",
+                "most_streamed_spotify_songs": "Spotify-da ən çox yayımlananlar",
+                "most_viewed_youtube_videos": "YouTube-da ən çox izlənmələr"
+            }
         }
     }
 }
-export default {...locales};
+export default { ...locales };
