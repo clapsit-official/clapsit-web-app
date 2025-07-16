@@ -1,5 +1,5 @@
 <script lang="ts">
-import { $availableRoutes } from '~/configs/routes.config';
+import { availableRoutes } from '~/configs/routes.config';
 
 export default defineComponent({
     name: "NavItemComponent",
@@ -24,9 +24,9 @@ export default defineComponent({
     computed: {
         to() {
             if (this.target) {
-                return `${$availableRoutes.assistant}/${this.target}`
+                return `${availableRoutes.assistant}/${this.target}`
             }
-            return `${$availableRoutes.assistant}`
+            return `${availableRoutes.assistant}`
         }
     },
     methods: {

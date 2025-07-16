@@ -17,13 +17,13 @@
 <script lang="ts">
 import vector1 from 'assets/images/vectors/No data-pana.svg';
 import vector2 from 'assets/images/vectors/No data-cuate.svg';
-import { $availableRoutes } from '~/configs/routes.config';
+import { availableRoutes } from '~/configs/routes.config';
 
 export default {
     name: "LinkExpired",
     setup() {
         return {
-            $availableRoutes
+            availableRoutes
         }
     },
     computed: {

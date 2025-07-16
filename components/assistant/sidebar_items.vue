@@ -9,7 +9,7 @@ export default defineComponent({
   name: "AssistantSidebarItems",
   setup() {
     return {
-      $t: useI18nStore().i18n.global.t,
+      t: useI18nStore().i18n.global.t,
     };
   },
   computed: {
@@ -56,7 +56,7 @@ export default defineComponent({
       if (this.currentRoute === "json_generator") {
         itemTitle = item.input.message;
       } else {
-        itemTitle = this.$t("no_message");
+        itemTitle = this.t("no_message");
       }
       return revertEscapeSequences(capitalizeFirstLetter(itemTitle)) || null;
     },
@@ -75,7 +75,7 @@ export default defineComponent({
         class="flex-row-start-center"
         style="gap: 5px"
         @click.prevent="getAssistantItem(item)"
-        :title="`${formatDateForTitle(item.date)}: ${capitalizeFirstLetter(revertEscapeSequences(item.label)) || $t(`assistants.${item.key_name}.label`)}`"
+        :title="`${formatDateForTitle(item.date)}: ${capitalizeFirstLetter(revertEscapeSequences(item.label)) || t(`assistants.${item.key_name}.label`)}`"
       >
         <div class="icon-area flex-row-center">
           <icon-component
@@ -87,7 +87,7 @@ export default defineComponent({
         </div>
         <span class="ellipsis">
           {{
-            capitalizeFirstLetter(revertEscapeSequences(item.label)) || $t(`assistants.${item.key_name}.label`)
+            capitalizeFirstLetter(revertEscapeSequences(item.label)) || t(`assistants.${item.key_name}.label`)
           }}
         </span>
         <div class="flex-row-center btns-area" @click.stop>
@@ -97,14 +97,14 @@ export default defineComponent({
             icon-size="16px"
             class="icon-area-2"
             :color="colorUtilities.$errorColor"
-            :title="$t('buttons.delete')"
+            :title="t('buttons.delete')"
             @click="useAssistant().deleteKeyById(item.id)"
           />
           <icon-component
             :fill="item.save"
             :class="{ 'icon-area-2': !item.save }"
             @click="useAssistant().saveKeyById(item.id, !item.save)"
-            :title="$t('buttons.pin')"
+            :title="t('buttons.pin')"
             icon-name="thumbtack"
             icon-size="16px"
           />
@@ -129,7 +129,7 @@ export default defineComponent({
         >
           {{ getSidebarNestItem(item) }}
         </span>
-        <i v-else style="opacity: 0.5;"> {{ $t("no_message") }}</i>
+        <i v-else style="opacity: 0.5;"> {{ t("no_message") }}</i>
         <div class="flex-row-center btns-area" @click.stop>
           <icon-component
             v-show="index !== 0" 
@@ -138,7 +138,7 @@ export default defineComponent({
             :color="colorUtilities.$errorColor"
             class="icon-area-2"
             @click="useAssistant().deleteHistoryByConversationId(item.c_id)"
-            :title="$t('buttons.delete')"
+            :title="t('buttons.delete')"
           />
           <icon-component
             :fill="item.save"
@@ -146,7 +146,7 @@ export default defineComponent({
             @click="
               useAssistant().saveHistoryByConversationId(item.c_id, !item.save)
             "
-            :title="!item.save ? $t('buttons.add_to_favorites') : $t('buttons.remove_from_favorites')"
+            :title="!item.save ? t('buttons.add_to_favorites') : t('buttons.remove_from_favorites')"
             icon-name="star"
             icon-size="16px"
           />

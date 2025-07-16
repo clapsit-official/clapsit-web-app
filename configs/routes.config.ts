@@ -1,6 +1,6 @@
 import type {RouteConfigsType} from "~/types/route_config.types";
 
-export const $availableRoutes = {
+export const availableRoutes = {
     home: "/",
     getstarted: "/getstarted",
     login: "/getstarted?view=login",
@@ -21,13 +21,13 @@ export const routeConfigs: RouteConfigsType = {
     },
 }
 
-routeConfigs[$availableRoutes.home] = {
+routeConfigs[availableRoutes.home] = {
     key: 'home',
     layout: 'default',
     auth_required: true,
     middleware: async () => {
         if (useAuth().checkAuthCredentials()) {
-            routeConfigs[$availableRoutes.home].layout = 'main';
+            routeConfigs[availableRoutes.home].layout = 'main';
             setPageLayout('main');
             await useAssistant().updateUserAssistantKeys();
             await useAssistant().getRecentlyKeyHistories();
@@ -36,55 +36,55 @@ routeConfigs[$availableRoutes.home] = {
     }
 }
 
-routeConfigs[$availableRoutes.getstarted] = {
+routeConfigs[availableRoutes.getstarted] = {
     key: 'getstarted',
     layout: 'default',
     middleware: async () => {
         if (useAuth().checkAuthCredentials()) {
-            await useRouter().push($availableRoutes.home);
+            await useRouter().push(availableRoutes.home);
         }
     }
 }
-routeConfigs[$availableRoutes.login] = {
+routeConfigs[availableRoutes.login] = {
     key: 'login',
     layout: 'default',
     middleware: async () => {
         if (useAuth().checkAuthCredentials()) {
-            await useRouter().push($availableRoutes.home);
+            await useRouter().push(availableRoutes.home);
         }
     }
 }
 
-routeConfigs[$availableRoutes.register] = {
+routeConfigs[availableRoutes.register] = {
     key: 'register',
     layout: 'default',
     middleware: async () => {
         if (useAuth().checkAuthCredentials()) {
-            await useRouter().push($availableRoutes.home);
+            await useRouter().push(availableRoutes.home);
         }
     }
 }
 
-routeConfigs[$availableRoutes.confirm_email] = {
+routeConfigs[availableRoutes.confirm_email] = {
     key: null,
     layout: null,
     middleware: async () => {
         if (useAuth().checkAuthCredentials()) {
-            await useRouter().push($availableRoutes.home);
+            await useRouter().push(availableRoutes.home);
         }
     }
 }
 
-routeConfigs[$availableRoutes.assistant] = {
+routeConfigs[availableRoutes.assistant] = {
     key: 'assistant',
     layout: 'main',
     auth_required: true,
     async middleware() {
-        await useRouter().push($availableRoutes.home);
+        await useRouter().push(availableRoutes.home);
     }
 }
 
-routeConfigs[$availableRoutes.json_generator] = {
+routeConfigs[availableRoutes.json_generator] = {
     key: 'json_generator',
     layout: 'main',
     auth_required: true,

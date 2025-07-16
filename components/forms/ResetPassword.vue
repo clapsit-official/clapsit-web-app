@@ -1,5 +1,5 @@
 <script lang="ts">
-import {$availableRoutes} from "~/configs/routes.config";
+import {availableRoutes} from "~/configs/routes.config";
 import colors from '~/constants/colorUtilities';
 
 export default defineComponent({
@@ -8,9 +8,9 @@ export default defineComponent({
         const { getBrandName } = useCoreAppStore();
         return {
             getBrandName,
-            availableRoutes: $availableRoutes,
+            availableRoutes: availableRoutes,
             store: useUser(),
-            $t: useI18nStore().i18n.global.t
+            t: useI18nStore().i18n.global.t
         }
     },
     data() {
@@ -66,7 +66,7 @@ export default defineComponent({
         <message-box
             v-if="response"
             @action="() => useRouter().push(availableRoutes.login)"
-            :label="response.success ? $t('done') : $t('error')"
+            :label="response.success ? t('done') : t('error')"
             :message="$keyValidation({
                 error: ['SOMETHING_WENT_WRONG'], 
                 warning: ['INVALID_PASSWORD', 'LINK_EXPIRED'], 
@@ -89,7 +89,7 @@ export default defineComponent({
             <custom-input 
                 v-model="newPassword" 
                 type="password"
-                :label="$t('pages.reset_password.utilities.new_password_field')" 
+                :label="t('pages.reset_password.utilities.new_password_field')" 
                 autocomplete="new-password" 
                 name="newpassword"
                 placeholder="••••••••••" 
@@ -101,7 +101,7 @@ export default defineComponent({
             <custom-input 
                 v-model="confirmPassword" 
                 type="password"
-                :label="$t('pages.reset_password.utilities.confirm_password_field')" 
+                :label="t('pages.reset_password.utilities.confirm_password_field')" 
                 autocomplete="new-password" 
                 name="confirm-password"
                 placeholder="••••••••••" 

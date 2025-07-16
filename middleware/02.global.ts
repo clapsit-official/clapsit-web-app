@@ -1,5 +1,5 @@
 import { useRouteManagement } from "~/stores/routeManagement"
-import {$availableRoutes} from "~/configs/routes.config";
+import {availableRoutes} from "~/configs/routes.config";
 
 export default defineNuxtRouteMiddleware(async (from, to) => {
     if (process.client) {
@@ -7,7 +7,7 @@ export default defineNuxtRouteMiddleware(async (from, to) => {
         if(auth_required) {
             try {
                 if(!useAuth().checkAuthCredentials()){
-                    return await useRouter().push($availableRoutes.getstarted);
+                    return await useRouter().push(availableRoutes.getstarted);
                 }
             } catch(error: any) {
                 console.error(error);

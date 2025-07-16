@@ -1,13 +1,13 @@
 <script lang="ts">
-import { $availableRoutes } from "~/configs/routes.config";
+import { availableRoutes } from "~/configs/routes.config";
 import colors from "~/constants/colorUtilities";
 export default defineComponent({
   name: "MainLayoutSidebar",
   emits: ["foldAction"],
   setup() {
     return {
-      availableRoutes: $availableRoutes,
-      $t: useI18nStore().i18n.global.t,
+      availableRoutes: availableRoutes,
+      t: useI18nStore().i18n.global.t,
     };
   },
   props: {

@@ -1,13 +1,13 @@
 <script lang="ts">
 import type { AvailableAssistants } from "~/types/assistants.types";
 import json_generator from "~/components/assistant/json_generator.vue";
-import { $availableRoutes } from "~/configs/routes.config";
+import { availableRoutes } from "~/configs/routes.config";
 
 export default {
   name: "AssistantContainer",
   setup() {
     return {
-      $t: useI18nStore().i18n.global.t,
+      t: useI18nStore().i18n.global.t,
     };
   },
   computed: {
@@ -16,7 +16,7 @@ export default {
       if (c_key) {
         return c_key;
       }
-      useRouter().push($availableRoutes.home);
+      useRouter().push(availableRoutes.home);
     },
     cId() {
       const { c_id } = useRoute().query;
@@ -32,7 +32,7 @@ export default {
           return id as AvailableAssistants;
         }
       }
-      useRouter().push($availableRoutes.home);
+      useRouter().push(availableRoutes.home);
     },
     assistantComponents(): { [key in AvailableAssistants]: any } {
       return {

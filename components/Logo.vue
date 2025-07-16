@@ -12,7 +12,7 @@
   </div>
 </template>
 <script lang="ts">
-import { $availableRoutes } from "~/configs/routes.config";
+import { availableRoutes } from "~/configs/routes.config";
 import logo1 from "~/assets/images/logo1.svg";
 import logo2 from "~/assets/images/logo2.svg";
 import logo1_m from "~/assets/images/logo1-m.svg";
@@ -31,7 +31,7 @@ export default {
     const { getBrandName } = useCoreAppStore();
     return {
       getBrandName,
-      availableRoutes: $availableRoutes,
+      availableRoutes: availableRoutes,
     };
   },
   props: {

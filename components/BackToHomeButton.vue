@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import { $availableRoutes } from '~/configs/routes.config';
+import { availableRoutes } from '~/configs/routes.config';
 
 </script>
 
 <template>
-  <div class="back_to_home_button hover-effect" @click="() => useRouter().push($availableRoutes.home)">
+  <div class="back_to_home_button hover-effect" @click="() => useRouter().push(availableRoutes.home)">
     <div class="icon-area">
         <IconComponent icon-name="arrow_back" icon-size="1.2rem"/>
     </div>

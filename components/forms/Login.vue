@@ -1,6 +1,6 @@
 <script lang="ts">
 import { useAuth } from '~/stores/auth';
-import {$availableRoutes} from "~/configs/routes.config";
+import {availableRoutes} from "~/configs/routes.config";
 import colors from '~/constants/colorUtilities';
 
 export default defineComponent({
@@ -9,9 +9,9 @@ export default defineComponent({
         const { getBrandName } = useCoreAppStore();
         return {
             getBrandName,
-            availableRoutes: $availableRoutes,
+            availableRoutes: availableRoutes,
             store: useGetstarted(),
-            $t: useI18nStore().i18n.global.t
+            t: useI18nStore().i18n.global.t
         }
     },
     data() {
@@ -53,7 +53,7 @@ export default defineComponent({
     <section id="login-section">
         <message-box
             v-if="response && !response.success"
-            :label="$t('error')"
+            :label="t('error')"
             :message="$keyValidation({
                 error: ['USER_LOGIN_PROGRESS_FAILED', 'EMAIL_OR_PASSWORD_INCORRECT', 'SOMETHING_WENT_WRONG'], 
                 warning: ['INVALID_EMAIL', 'INVALID_PASSWORD', 'EMAIL_CONFIRM_REQUIRED']
@@ -74,7 +74,7 @@ export default defineComponent({
             <custom-input 
                 v-model="store.login.email"
                 type="email"
-                :label="$t('pages.login.utilities.email_field')" 
+                :label="t('pages.login.utilities.email_field')" 
                 placeholder="example@email.com"
                 autocomplete="email"
                 icon="alternate_email"
@@ -86,7 +86,7 @@ export default defineComponent({
             <custom-input 
                 v-model="store.login.password"
                 type="password"
-                :label="$t('pages.login.utilities.password_field')" 
+                :label="t('pages.login.utilities.password_field')" 
                 autocomplete="current-password"
                 name="newpassword"
                 placeholder="••••••••••"

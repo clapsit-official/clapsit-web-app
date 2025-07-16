@@ -10,7 +10,7 @@ export default defineComponent({
   name: "CustomSelect",
   setup() {
     return {
-      $t: useI18nStore().i18n.global.t,
+      t: useI18nStore().i18n.global.t,
     };
   },
   props: {

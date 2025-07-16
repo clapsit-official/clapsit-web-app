@@ -9,8 +9,8 @@
         <br/>
         <br/>
         <message-box
-          :label="$t('backend_messages.DONE')"
-          @action="() => useRouter().push($availableRoutes.login)"
+          :label="t('backend_messages.DONE')"
+          @action="() => useRouter().push(availableRoutes.login)"
           :message="$keyValidation({
             success: [response.message.key]
           }, response)"/>
@@ -24,18 +24,18 @@
 </template>
 <script lang="ts">
 import {defineComponent} from 'vue'
-import {$availableRoutes} from "~/configs/routes.config";
+import {availableRoutes} from "~/configs/routes.config";
 
 export default defineComponent({
   name: "ConfirmEmail",
   setup() {
     return {
-      $t: useI18nStore().i18n.global.t
+      t: useI18nStore().i18n.global.t
     }
   },
   computed: {
-    $availableRoutes() {
-      return $availableRoutes
+    availableRoutes() {
+      return availableRoutes
     },
     token() {
       return useRoute().query.token
@@ -59,7 +59,7 @@ export default defineComponent({
     } else {
       this.response = {
         success: false,
-        message: {key: 'NO_TOKEN', text: this.$t('backend_messages.NO_TOKEN')}
+        message: {key: 'NO_TOKEN', text: this.t('backend_messages.NO_TOKEN')}
       };
     }
   },

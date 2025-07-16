@@ -5,7 +5,7 @@ export default defineComponent({
     emits: ['foldAction'],
     setup() {
         return {
-            $t: useI18nStore().i18n.global.t,
+            t: useI18nStore().i18n.global.t,
             colorUtilities
         }
     },
@@ -26,7 +26,7 @@ export default defineComponent({
                 </div>
             </div>
             <div v-if="currentRouteKey">
-                <h3>{{ $t(`pages.${currentRouteKey}.title`) }}</h3>
+                <h3>{{ t(`pages.${currentRouteKey}.title`) }}</h3>
             </div>
             <div id="header-item_right-side" class="flex-row-between-center">
                 <div id="show-more-area">

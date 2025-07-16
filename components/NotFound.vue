@@ -20,13 +20,13 @@ import vector2 from 'assets/images/vectors/404 error with a landscape-rafiki.svg
 import vector3 from 'assets/images/vectors/404 error with people holding the numbers-amico.svg';
 import vector4 from 'assets/images/vectors/404 error with people holding the numbers-bro.svg';
 import vector5 from 'assets/images/vectors/404 Error-amico.svg';
-import { $availableRoutes } from '~/configs/routes.config';
+import { availableRoutes } from '~/configs/routes.config';
 
 export default {
     name: "NotFound",
     setup() {
         return {
-            $availableRoutes
+            availableRoutes
         }
     },
     computed: {
