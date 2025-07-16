@@ -115,7 +115,7 @@ export const useAssistant = defineStore('assistant', {
                         const target = resultPresets.find(item => item.key === resultFromStart);
                         if(target?.result) {
                             useJSONGenerator().progress.input.result = target.result;
-                            useJSONGenerator().progress.input.message = `${useI18nStore().i18n.global.t('assistants.json_generator.generate')}: ${useI18nStore().i18n.global.t('assistants.json_generator.presets.' + target.key)}`;
+                            useJSONGenerator().progress.input.message = `${useI18nStore().i18n.global.t('assistants.json_generator.generate')} -> ${useI18nStore().i18n.global.t('assistants.json_generator.presets.' + target.key)}`;
                         }
                     }
                 }

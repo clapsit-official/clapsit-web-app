@@ -133,9 +133,9 @@ section#main-navigation {
     }
   }
   .presets-area {
-    width: 100%;
+    width: 96%;
     flex-wrap: wrap;
-    gap: 1rem;
+    gap: .5rem;
     .preset-item {
       width: unset;
       height: unset;
