@@ -239,7 +239,7 @@ locales = {
             "presets": {
                 "how_to_prepare_cappuccino": "Kapuçino necə hazırlanır?",
                 "random_country_data": "Təsadüfi ölkələrin məlumatları",
-                "planets_with_radius": "Radiusu olan planetlər",
+                "planets_with_radius": "Planetlərin siyahısı",
                 "random_users_list": "Təsadüfi istifadəçilər siyahısı",
                 "interesting_facts": "Maraqlı faktlar",
                 "learning_new_words": "Yeni sözləri öyrənmək",
