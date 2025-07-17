@@ -9,6 +9,7 @@
   </div>
 </template>
 <script lang="ts">
+import { availableRoutes } from './configs/routes.config';
 import { _HealthService } from './services/health.service';
 export default {
   async mounted() {
@@ -25,7 +26,10 @@ export default {
     systemHealth: () => useCoreAppStore().health,
     deviceType: () => useCoreAppStore().getDeviceType,
     isLoading() {
-      return useQueryManager().loadingList.includes('health') || useQueryManager().loadingList.includes('auth');
+      if(!window.location.pathname.includes(availableRoutes.getstarted)) {
+        return useQueryManager().loadingList.includes('health') || useQueryManager().loadingList.includes('auth');
+      }
+      return useQueryManager().loadingList.includes('health')
     },
     readyForView() {
       return this.systemHealth;
