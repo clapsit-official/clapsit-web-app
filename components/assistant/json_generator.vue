@@ -1,13 +1,13 @@
 <script lang="ts">
-import { $availableRoutes } from "~/configs/routes.config";
+import { availableRoutes } from "~/configs/routes.config";
 import colors from "~/constants/colorUtilities";
 export default defineComponent({
   name: "JsonGenerator",
   setup() {
     return {
-      $availableRoutes,
+      availableRoutes,
       store: useJSONGenerator(),
-      $t: useI18nStore().i18n.global.t,
+      t: useI18nStore().i18n.global.t,
     };
   },
   data() {
@@ -137,7 +137,7 @@ export default defineComponent({
           <icon-component
             icon-name="typescript_icon"
             :icon-size="'1.5rem'"
-            :title="$t('assistants.json_generator.input_info')"
+            :title="t('assistants.json_generator.input_info')"
           />
         </div>
       </div>
@@ -153,7 +153,7 @@ export default defineComponent({
           :readonly="isLoading"
           @input="() => (inputValueChanged = true)"
           v-model="store.progress.input.message"
-          :placeholder="$t('assistants.json_generator.input_placeholder')"
+          :placeholder="t('assistants.json_generator.input_placeholder')"
         />
       </div>
     </div>
@@ -161,7 +161,7 @@ export default defineComponent({
       <button
         class="primary"
         :class="{ loading: isLoading }"
-        :title="$t('assistants.json_generator.generate')"
+        :title="t('assistants.json_generator.generate')"
         type="submit"
       >
         <icon-component
@@ -176,8 +176,8 @@ export default defineComponent({
         type="button"
         :title="
           !copyToggle
-            ? $t('assistants.json_generator.copy')
-            : $t('assistants.json_generator.copied')
+            ? t('assistants.json_generator.copy')
+            : t('assistants.json_generator.copied')
         "
         @click="toClipboard"
       >
@@ -189,7 +189,7 @@ export default defineComponent({
       </button>
       <button
         class="monochrome-invers"
-        :title="$t('assistants.json_generator.get_curl')"
+        :title="t('assistants.json_generator.get_curl')"
         type="button"
         :disabled="
           !useAssistant().data.history.length ||
@@ -203,7 +203,7 @@ export default defineComponent({
       </button>
       <button
         class="monochrome-invers"
-        :title="$t('assistants.json_generator.clear')"
+        :title="t('assistants.json_generator.clear')"
         type="reset"
         @click="store.resetToStart"
       >
@@ -222,7 +222,7 @@ export default defineComponent({
             icon-name="json_icon"
             :fill="true"
             :icon-size="'1.5rem'"
-            :title="$t('assistants.json_generator.output_info')"
+            :title="t('assistants.json_generator.output_info')"
           />
         </div>
       </div>

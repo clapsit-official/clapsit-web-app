@@ -4,7 +4,7 @@ export default defineComponent({
   name: "JSONGeneratorCURL",
   setup() {
     return {
-      $t: useI18nStore().i18n.global.t,
+      t: useI18nStore().i18n.global.t,
     };
   },
   data() {
@@ -84,8 +84,8 @@ export default defineComponent({
         <button
           :title="
             !copyToggle
-              ? $t('assistants.json_generator.copy')
-              : $t('assistants.json_generator.copied')
+              ? t('assistants.json_generator.copy')
+              : t('assistants.json_generator.copied')
           "
           type="button"
           @click="toClipboard"

@@ -6,7 +6,6 @@ import colors from '~/constants/colorUtilities';
 
 const modalMap: Record<string, () => Promise<any>> = {
     user_account: () => import('~/components/modal/views/user_account.vue'),
-    json_generator: () => import('~/components/modal/views/json_generator.vue'),
     logout: () => import('~/components/modal/views/logout_prompt.vue'),
     session_expired: () => import('~/components/modal/views/session_expired.vue'),
     json_generator_curl: () => import('~/components/modal/views/json_generator_curl.vue'),
@@ -73,7 +72,7 @@ export default defineComponent({
                 <header class="flex-row-between-center">
                     <div class="flex-row-between-center" style="gap: 5px">
                         <div v-show="modal.icon">
-                            <icon-component :icon-name="modal.icon" icon-size="25"/>
+                            <icon-component v-if="modal.icon" :icon-name="modal.icon" icon-size="25"/>
                         </div>
                         <h2>{{ modal.label }}</h2>
                     </div>

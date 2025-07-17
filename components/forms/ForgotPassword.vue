@@ -1,5 +1,5 @@
 <script lang="ts">
-import {$availableRoutes} from "~/configs/routes.config";
+import {availableRoutes} from "~/configs/routes.config";
 import colorUtilities from '~/constants/colorUtilities';
 
 export default defineComponent({
@@ -9,9 +9,9 @@ export default defineComponent({
         return {
             getBrandName,
             colorUtilities,
-            availableRoutes: $availableRoutes,
+            availableRoutes: availableRoutes,
             store: useGetstarted(),
-            $t: useI18nStore().i18n.global.t
+            t: useI18nStore().i18n.global.t
         }
     },
     data() {
@@ -48,7 +48,7 @@ export default defineComponent({
         <message-box
             v-if="response"
             @action="() => useRouter().push(availableRoutes.login)"
-            :label="response.success ? $t('done') : $t('error')"
+            :label="response.success ? t('done') : t('error')"
             :message="$keyValidation({
                 error: ['SOMETHING_WENT_WRONG'], 
                 warning: ['INVALID_EMAIL'], 
@@ -70,7 +70,7 @@ export default defineComponent({
             <custom-input 
                 v-model="store.forgotPassword.email"
                 type="email"
-                :label="$t('pages.forgot_password.utilities.email_field')" 
+                :label="t('pages.forgot_password.utilities.email_field')" 
                 placeholder="example@email.com"
                 autocomplete="email"
                 icon="alternate_email"

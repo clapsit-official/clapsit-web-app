@@ -7,7 +7,7 @@ export default defineComponent({
   setup() {
     return {
       resultPresets: shuffleAndTake(resultPresets, 7),
-      $t: useI18nStore().i18n.global.t,
+      t: useI18nStore().i18n.global.t,
     };
   },
   computed: {
@@ -45,7 +45,7 @@ export default defineComponent({
       <custom-input
         v-model="startMessage"
         left-icon="rocket"
-        :placeholder="$t('pages.home.utilities.main_search_placeholder')"
+        :placeholder="t('pages.home.utilities.main_search_placeholder')"
         type="search"
       />
     </form>

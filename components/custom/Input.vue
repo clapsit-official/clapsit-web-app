@@ -79,7 +79,7 @@ export default defineComponent({
   },
   setup() {
     return {
-      $t: useI18nStore().i18n.global.t,
+      t: useI18nStore().i18n.global.t,
     };
   },
   data() {

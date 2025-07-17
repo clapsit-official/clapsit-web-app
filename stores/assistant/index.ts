@@ -1,7 +1,7 @@
 import type { AvailableAssistants, UserAssistantKeyItem, UserAssistantHistoryItem } from "~/types/assistants.types";
 import { useJSONGenerator } from "./providers/json_generator";
 import { _AIMKeyHistory, _AIMUserKeys } from "~/services/assistants.service";
-import { $availableRoutes } from "~/configs/routes.config";
+import { availableRoutes } from "~/configs/routes.config";
 import { resultsForClear, resultsByLocale, resultsWithMessage, resultPresets } from "~/constants/json_generator";
 
 export const useAssistant = defineStore('assistant', {
@@ -130,10 +130,10 @@ export const useAssistant = defineStore('assistant', {
         },
         async goToAssistantItem(assistant: AvailableAssistants, conversation_key: string, c_id?: number, withReload = true) {
             if(withReload) {
-                window.location.href = `${$availableRoutes[assistant]}?c_key=${conversation_key}&c_id=${c_id || null}`;
+                window.location.href = `${availableRoutes[assistant]}?c_key=${conversation_key}&c_id=${c_id || null}`;
             } else {
                 await useRouter().push({
-                    path: $availableRoutes[assistant],
+                    path: availableRoutes[assistant],
                     query: {
                         c_key: conversation_key,
                         c_id: c_id || null,

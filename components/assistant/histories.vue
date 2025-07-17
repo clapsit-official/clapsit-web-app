@@ -14,7 +14,7 @@ export default defineComponent({
   },
   setup() {
     return {
-      $t: useI18nStore().i18n.global.t,
+      t: useI18nStore().i18n.global.t,
     };
   },
   computed: {
@@ -47,7 +47,7 @@ export default defineComponent({
       if (item.key_name === "json_generator") {
         itemTitle = item.input.message;
       } else {
-        itemTitle = this.$t("no_message");
+        itemTitle = this.t("no_message");
       }
       return revertEscapeSequences(capitalizeFirstLetter(itemTitle)) || null;
     },
@@ -68,7 +68,7 @@ export default defineComponent({
         <div class="icon-area">
           <icon-component icon-name="star" icon-size="1.5rem" />
         </div>
-        <h3>{{ $t("favorites") }}</h3>
+        <h3>{{ t("favorites") }}</h3>
       </div>
       <span class="divider"></span>
       <ul class="list">
@@ -88,7 +88,7 @@ export default defineComponent({
               {{ getSidebarNestItem(item) }}
             </span>
             <span class="ellipsis" v-else>
-              <i style="opacity: 0.5"> {{ $t("no_message") }}</i>
+              <i style="opacity: 0.5"> {{ t("no_message") }}</i>
             </span>
           </div>
         </li>
@@ -107,7 +107,7 @@ export default defineComponent({
         <div class="icon-area">
           <icon-component icon-name="clock_arrow" icon-size="1.5rem" />
         </div>
-        <h3>{{ $t("recently") }}</h3>
+        <h3>{{ t("recently") }}</h3>
       </div>
       <span class="divider"></span>
       <ul class="list">
@@ -125,7 +125,7 @@ export default defineComponent({
               {{ getSidebarNestItem(item) }}
             </span>
             <span class="ellipsis" v-else>
-              <i style="opacity: 0.5"> {{ $t("no_message") }}</i>
+              <i style="opacity: 0.5"> {{ t("no_message") }}</i>
             </span>
           </div>
         </li>

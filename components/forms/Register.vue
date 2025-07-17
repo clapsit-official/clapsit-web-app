@@ -1,5 +1,5 @@
 <script lang="ts">
-import { $availableRoutes } from "~/configs/routes.config";
+import { availableRoutes } from "~/configs/routes.config";
 
 export default defineComponent({
     name: "RegisterForm",
@@ -7,9 +7,9 @@ export default defineComponent({
         const { getBrandName } = useCoreAppStore();
         return {
             getBrandName,
-            availableRoutes: $availableRoutes,
+            availableRoutes: availableRoutes,
             store: useGetstarted(),
-            $t: useI18nStore().i18n.global.t
+            t: useI18nStore().i18n.global.t
         }
     },
     data() {
@@ -43,7 +43,7 @@ export default defineComponent({
 </script>
 <template>
     <section id="register-section" :key="response?.toString()">
-        <message-box v-if="response && !response.success" :label="$t('error')" :message="$keyValidation({
+        <message-box v-if="response && !response.success" :label="t('error')" :message="$keyValidation({
             error: ['USER_REGISTRATION_FAILED', 'SOMETHING_WENT_WRONG'],
             warning: ['EMAIL_IS_EXIST', 'INVALID_FULLNAME', 'INVALID_PASSWORD']
         },
@@ -62,15 +62,15 @@ export default defineComponent({
         <br />
         <form id="register-form" @submit.prevent="submit">
             <custom-input v-model="store.register.fullname" type="text"
-                :label="$t('pages.register.utilities.fullname_field')" icon="person" placeholder="John Doe"
+                :label="t('pages.register.utilities.fullname_field')" icon="person" placeholder="John Doe"
                 autocomplete="name" name="fullname" :maxlength="255" :disabled="isLoading"
                 :message="$keyValidation({ error: ['INVALID_FULLNAME'] }, response)" required />
             <custom-input v-model="store.register.email" type="email"
-                :label="$t('pages.register.utilities.email_field')" placeholder="example@email.com" autocomplete="email"
+                :label="t('pages.register.utilities.email_field')" placeholder="example@email.com" autocomplete="email"
                 icon="alternate_email" name="email" :maxlength="255" :disabled="isLoading"
                 :message="$keyValidation({ error: ['EMAIL_IS_EXIST'], warning: ['INVALID_EMAIL'] }, response)" required />
             <custom-input v-model="store.register.password" type="password"
-                :label="$t('pages.register.utilities.password_field')" autocomplete="new-password" name="newpassword"
+                :label="t('pages.register.utilities.password_field')" autocomplete="new-password" name="newpassword"
                 placeholder="••••••••••" icon="lock" :maxlength="255" :disabled="isLoading"
                 :message="$keyValidation({ error: ['INVALID_PASSWORD'] }, response)" required />
             <br />

@@ -13,13 +13,13 @@
     </div>
 </template>
 <script lang="ts">
-import { $availableRoutes } from '~/configs/routes.config';
+import { availableRoutes } from '~/configs/routes.config';
 
 export default {
     name: 'ResetPassword',
     setup() {
         return {
-            $availableRoutes
+            availableRoutes
         }
     },
     computed: {
@@ -43,7 +43,7 @@ export default {
                 this.response = error;
             }
         } else {
-            useRouter().push($availableRoutes.home);
+            useRouter().push(availableRoutes.home);
         }
     }
 }

@@ -1,12 +1,12 @@
 <script lang="ts">
 import colors from '~/constants/colorUtilities';
-import { $availableRoutes } from '~/configs/routes.config';
+import { availableRoutes } from '~/configs/routes.config';
 export default defineComponent({
     name: 'MainLayoutHeader',
     setup() {
         return {
-            availableRoutes: $availableRoutes,
-            $t: useI18nStore().i18n.global.t
+            availableRoutes: availableRoutes,
+            t: useI18nStore().i18n.global.t
         }
     },
     computed: {

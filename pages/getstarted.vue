@@ -61,7 +61,7 @@ import logoMobile from '~/assets/images/logo1.svg';
 import SignupWithButton from '~/components/SignupWithButton.vue';
 import DefaultButton from '~/components/DefaultButton.vue';
 import { useGetstarted } from '~/stores/getstarted';
-import {$availableRoutes} from "~/configs/routes.config";
+import {availableRoutes} from "~/configs/routes.config";
 
 export default {
     name: "GetStartedPage",
@@ -73,7 +73,7 @@ export default {
             logo,
             logoMobile,
             getBrandName,
-            availableRoutes: $availableRoutes,
+            availableRoutes: availableRoutes,
         }
     },
     computed: {
