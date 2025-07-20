@@ -184,6 +184,7 @@ const result = {
   last_name: string;
   middle_name: string | null;
   birthdate: string; // dd-mm-yyyy
+  profile_picture: URL; // Use https://randomuser.me
   job: {
     industry: string;
     title: string;

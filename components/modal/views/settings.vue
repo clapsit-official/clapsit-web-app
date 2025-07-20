@@ -47,9 +47,6 @@ export default defineComponent({
   <div id="settings_component" style="width: 100%">
     <secton class="settings-item" :key="currentTheme.preference">
       <div class="header__settings-item flex-row-start-center">
-        <div class="icon-area">
-          <icon-component icon-name="theme" fill icon-size="19px" />
-        </div>
         <Text locale="theme" />
       </div>
       <span class="divider"></span>
@@ -69,10 +66,7 @@ export default defineComponent({
     </secton>
     <secton class="settings-item">
       <div class="header__settings-item flex-row-start-center">
-        <div class="icon-area">
-          <icon-component icon-name="translate" icon-size="19px" />
-        </div>
-        <Text locale="lang" /> :
+        <Text locale="lang" />
       </div>
       <span class="divider"></span>
       <div class="theme-options__settings-item">
