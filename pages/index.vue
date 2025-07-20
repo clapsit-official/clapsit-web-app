@@ -54,6 +54,8 @@ export default defineComponent({
       flex-direction: column;
       align-items: center;
       height: 100%;
+      position: relative;
+      top: 8rem;
     }
 
     #area-header {

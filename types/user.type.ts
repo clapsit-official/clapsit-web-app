@@ -1,3 +1,5 @@
+import type { LangOptionsType } from "~/constants/types/LocalesType"
+
 export type UserDataType = {
     user_id: number | null,
     details: {
@@ -7,7 +9,7 @@ export type UserDataType = {
         birthday: string | null,
         bio: string | null,
         email_registered: string | null,
-        preferred_lang: string | null,
+        preferred_lang: LangOptionsType | null,
         profile_photo_id: string | null
     }
 }
