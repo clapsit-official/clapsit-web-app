@@ -1,6 +1,7 @@
 import type { UserDataType } from "~/types/user.type";
 import {_UserService} from "~/services/user.service";
 import type {ForgotPasswordFieldsType, LoginFieldsType, RegisterFieldsType} from "~/types/getstarted.types";
+import { availableLocales } from "~/assets/locales";
 
 type UserStateType = {
     data: UserDataType
@@ -37,6 +38,8 @@ export const useUser = defineStore('user', {
             this.data = {...data};
             if(this.data.details.preferred_lang && this.data.details.preferred_lang !== window.localStorage.getItem('lang')){
                 useI18nStore().setAppLang(this.data.details.preferred_lang);
+            } else if(!window.localStorage.getItem('lang')){
+                useI18nStore().setAppLang(availableLocales[1].iso);
             }
         },
         async registerQuery(register: RegisterFieldsType) {

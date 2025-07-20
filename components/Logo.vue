@@ -4,7 +4,7 @@
       <a
         :href="availableRoutes.home"
         class="animation"
-        :class="{ pulse: isLoading }"
+        :class="{ 'hue-rotate': isLoading }"
       >
         <img :src="show" alt="Logo" :srcset="show" :width="size" />
       </a>
