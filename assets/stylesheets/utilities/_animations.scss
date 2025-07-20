@@ -862,7 +862,7 @@ $default_hover_opacity_value: 0.6;
     @include animate-grayscale(1s);
   }
   &.hue-rotate {
-    @include animate-hue-rotate(1s);
+    @include animate-hue-rotate(10s);
   }
   &.invert {
     @include animate-invert(1s);

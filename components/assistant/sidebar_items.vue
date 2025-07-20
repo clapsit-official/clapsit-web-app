@@ -185,6 +185,7 @@ section#sidebar_history-area {
     }
     .icon-area-2 {
       display: flex;
+      opacity: 1;
     }
   }
 }
@@ -198,7 +199,7 @@ section#sidebar_history-area {
       overflow-y: auto !important;
     }
     .icon-area-2 {
-      display: none;
+      opacity: 0;
     }
     .btns-area {
       gap: .7rem;

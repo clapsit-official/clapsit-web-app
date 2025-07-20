@@ -1,7 +1,7 @@
 <template>
   <div id="home-page" class="default-height">
-    <ComingSoon v-if="!ready" />
-    <div id="home-page-content" v-else>
+    <!-- <ComingSoon v-if="!ready" /> -->
+    <div id="home-page-content">
       <div id="area-header" class="flex-column-center">
         <h1>
           👋
