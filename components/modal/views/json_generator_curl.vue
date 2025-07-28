@@ -113,7 +113,7 @@ export default defineComponent({
   flex-direction: column;
   gap: 2rem;
   section {
-    background-color: colors.$disabledColor;
+    background-color: colors.$dividerColor;
     border-radius: 0.4rem;
     padding: 1rem 2rem;
   }
